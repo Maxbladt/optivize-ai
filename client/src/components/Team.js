@@ -181,7 +181,7 @@ const teamMembers = [
     name: "Maximilian Bladt",
     title: "Chief Technology Officer",
     photo: "/uploads/max.png",
-    bio: "Coming from Elevate Digital as head of AI implementation, helping so many companies was a logical next step - now we can help companies without limits. My experience enables me to work fast and train Large Language Models to do what drives revenue and reduces costs. I don't believe AI will replace people, but people using AI will replace people not using AI.",
+    bio: "Coming from Elevate Digital as head of AI implementation, starting Optivaize was the next logical step as then companies could be helped to the fullest without barriers. His experience enables him to work fast and train Large Language Models to do what drives revenue and reduces costs. He doesn't believe AI will replace people, but people using AI will replace people not using AI.",
     skills: ["Cloud Architecture", "AI Engineering", "System Integration", "DevOps"],
     linkedin: "https://www.linkedin.com/in/max-bladt/",
     gradient: "linear-gradient(135deg, #10B981, #059669)"
@@ -190,7 +190,7 @@ const teamMembers = [
     name: "Filip Lysiak",
     title: "AI & Data Science Lead",
     photo: "/uploads/filip.png",
-    bio: "Filip worked for multiple Fortune 500 companies and in a quantitative finance department. We believe strongly that AI skills come from predominant intelligence and good logical reasoning skills, thus Filip is a perfect fit to think out of the box. This together with good coding skills in both data analysis and computer science makes him a perfect fit to integrate AI systems in the companies of the future.",
+    bio: "Filip combines a strong foundation in finance and consulting with hands-on experience driving innovation at scale. Having advised some of Europe's largest enterprises during his time at a Fortune 500 company, he brings both strategic vision and a deep understanding of complex business challenges. With expertise in quantitative finance, coding, and data analysis, Filip bridges the worlds of business and technology - making him uniquely suited to guide companies through successful AI transformations that deliver real, measurable impact.",
     skills: ["Machine Learning", "NLP", "Data Science", "Model Training"],
     linkedin: "https://www.linkedin.com/in/filiplysiak/",
     gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)"

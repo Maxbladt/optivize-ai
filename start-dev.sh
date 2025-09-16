@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Development server startup script
-echo "🚀 Starting Optivize AI development servers..."
+echo "🚀 Starting Optivize AI development server..."
 
 # Colors
 GREEN='\033[0;32m'
@@ -25,52 +25,18 @@ check_port() {
     return 0
 }
 
-# Check if ports are available
-if ! check_port 5000; then
-    exit 1
-fi
-
+# Check if port 3000 is available
 if ! check_port 3000; then
     exit 1
 fi
 
-# Start backend server in background
-print_info "Starting Flask backend server on port 5000..."
-cd backend
-source venv/bin/activate
-python app.py &
-BACKEND_PID=$!
-cd ..
-
-# Wait a moment for backend to start
-sleep 2
-
 # Start frontend server
 print_info "Starting React frontend server on port 3000..."
-cd frontend
-npm start &
-FRONTEND_PID=$!
-cd ..
+cd client
+npm start
 
-print_success "Both servers are starting up!"
+print_success "Frontend server started!"
 echo ""
 echo "Frontend: http://localhost:3000"
-echo "Backend API: http://localhost:5000"
 echo ""
-echo "Press Ctrl+C to stop both servers"
-
-# Function to cleanup background processes
-cleanup() {
-    echo ""
-    print_info "Stopping servers..."
-    kill $BACKEND_PID 2>/dev/null
-    kill $FRONTEND_PID 2>/dev/null
-    print_success "Servers stopped"
-    exit 0
-}
-
-# Trap Ctrl+C and call cleanup
-trap cleanup INT
-
-# Wait for frontend process
-wait $FRONTEND_PID
+echo "Press Ctrl+C to stop the server"

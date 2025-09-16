@@ -9,7 +9,6 @@ import Services from './components/Services';
 import Cases from './components/Cases';
 import Team from './components/Team';
 import Footer from './components/Footer';
-import CTAModal from './components/CTAModal';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -65,7 +64,6 @@ const ProgressFill = styled(motion.div)`
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Simulate loading time
@@ -76,8 +74,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   return (
     <AppContainer>
@@ -93,7 +89,7 @@ function App() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <img src="/uploads/optivaize.png" alt="Optivize AI" />
+              <img src="/uploads/optivaize.png" alt="Optivaize" />
             </LoadingLogo>
             <ProgressBar>
               <ProgressFill
@@ -109,14 +105,13 @@ function App() {
       {!isLoading && (
         <>
           <Navigation />
-          <Hero onOpenModal={openModal} />
+          <Hero />
           <ClientSlider />
           <PresentationSection />
           <Services />
           <Cases />
           <Team />
-          <Footer onOpenModal={openModal} />
-          <CTAModal isOpen={isModalOpen} onClose={closeModal} />
+          <Footer />
         </>
       )}
     </AppContainer>

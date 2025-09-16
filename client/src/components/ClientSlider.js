@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -55,7 +55,7 @@ const SliderTrack = styled(motion.div)`
   }
 `;
 
-const LogoItem = styled(motion.div)`
+const LogoItem = styled.div`
   flex-shrink: 0;
   width: 180px;
   height: 80px;
@@ -65,21 +65,13 @@ const LogoItem = styled(motion.div)`
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  filter: grayscale(100%);
   padding: 1rem;
-
-  &:hover {
-    filter: grayscale(0%);
-    transform: scale(1.1);
-  }
 
   img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    filter: grayscale(100%);
   }
 
   @media (max-width: 768px) {
@@ -89,115 +81,30 @@ const LogoItem = styled(motion.div)`
   }
 `;
 
-const LogoText = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  color: #1E293B;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-`;
-
-const LogoSubtext = styled.div`
-  font-size: 12px;
-  color: #64748B;
-  font-weight: 500;
-  margin-top: 2px;
-
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-`;
-
-const Tooltip = styled(motion.div)`
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #0F172A;
-  color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 14px;
-  white-space: nowrap;
-  z-index: 10;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: #0F172A;
-  }
-`;
-
-const TooltipContent = styled.div`
-  h4 {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: #3B82F6;
-  }
-  
-  p {
-    margin-bottom: 0.25rem;
-    color: #E2E8F0;
-    
-    &:last-child {
-      margin-bottom: 0;
-      color: #10B981;
-      font-weight: 600;
-    }
-  }
-`;
-
 const clientData = [
   {
     name: "Aanhuis",
-    logo: "/uploads/aanhuis.png",
-    industry: "Real Estate",
-    achievement: "90% lead qualification",
-    color: "#3B82F6"
+    logo: "/uploads/aanhuis.png"
   },
   {
     name: "Blosh",
-    logo: "/uploads/blosh.png",
-    industry: "Marketing",
-    achievement: "3x content output",
-    color: "#10B981"
+    logo: "/uploads/blosh.png"
   },
   {
     name: "Fonteyn",
-    logo: "/uploads/fonteyn.png",
-    industry: "Furniture",
-    achievement: "80% process automation",
-    color: "#8B5CF6"
+    logo: "/uploads/fonteyn.png"
   },
   {
     name: "Freebird",
-    logo: "/uploads/freebird.png",
-    industry: "Travel",
-    achievement: "500hrs saved monthly",
-    color: "#F59E0B"
+    logo: "/uploads/freebird.png"
   },
   {
     name: "Marie Stella Maris",
-    logo: "/uploads/marie_stella_maris.png",
-    industry: "Beauty & Wellness",
-    achievement: "10x customer engagement",
-    color: "#EF4444"
+    logo: "/uploads/marie_stella_maris.png"
   },
   {
     name: "Sony",
-    logo: "/uploads/sony.png",
-    industry: "Technology",
-    achievement: "60% cost reduction",
-    color: "#06B6D4"
+    logo: "/uploads/sony.png"
   }
 ];
 
@@ -206,7 +113,6 @@ const duplicatedClients = [...clientData, ...clientData];
 
 function ClientSlider() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [hoveredClient, setHoveredClient] = useState(null);
 
   return (
     <SliderSection ref={ref}>
@@ -229,31 +135,10 @@ function ClientSlider() {
               repeat: Infinity,
               ease: "linear"
             }}
-            style={{ pauseOnHover: true }}
           >
             {duplicatedClients.map((client, index) => (
-              <LogoItem
-                key={`${client.name}-${index}`}
-                onMouseEnter={() => setHoveredClient(`${client.name}-${index}`)}
-                onMouseLeave={() => setHoveredClient(null)}
-                whileHover={{ scale: 1.05 }}
-              >
+              <LogoItem key={`${client.name}-${index}`}>
                 <img src={client.logo} alt={client.name} />
-
-                {hoveredClient === `${client.name}-${index}` && (
-                  <Tooltip
-                    initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <TooltipContent>
-                      <h4>{client.name}</h4>
-                      <p>Industry: {client.industry}</p>
-                      <p>Achievement: {client.achievement}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
               </LogoItem>
             ))}
           </SliderTrack>

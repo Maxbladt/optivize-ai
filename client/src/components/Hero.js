@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const HeroSection = styled.section`
@@ -170,10 +170,24 @@ const CircuitPattern = styled(motion.div)`
   }
 `;
 
-function Hero({ onOpenModal }) {
+function Hero() {
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+
+  // Service titles from Services.js
+  const servicesTitles = [
+    'AI Presentation',
+    'AI Mail Agent',
+    'AI Product Text Writer',
+    'AI Blog Writer',
+    'AI Linkedin Sales Bot',
+    'AI Chatbot',
+    'AI TikTok Domination',
+    'SEA Draining Bot',
+    'AI SEO Intergration'
+  ];
 
   useEffect(() => {
     if (inView) {
@@ -192,6 +206,17 @@ function Hero({ onOpenModal }) {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Cycle through services every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentServiceIndex((prevIndex) => 
+        (prevIndex + 1) % servicesTitles.length
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [servicesTitles.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -229,7 +254,32 @@ function Hero({ onOpenModal }) {
     })
   };
 
-  const headlineWords = "Transform Your Business with Intelligent AI Solutions".split(' ');
+  const serviceVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
+  const currentService = servicesTitles[currentServiceIndex];
+  const baseText = "Transform your business with";
+  const headlineWords = `${baseText} ${currentService}`.split(' ');
 
   return (
     <HeroSection id="home" ref={ref}>
@@ -292,20 +342,54 @@ function Hero({ onOpenModal }) {
           animate={controls}
         >
           <Headline>
-            {headlineWords.map((word, index) => (
+            <motion.span
+              initial="hidden"
+              animate="visible"
+              variants={wordVariants}
+              custom={0}
+              style={{ display: 'inline-block', marginRight: '0.3em' }}
+            >
+              Transform
+            </motion.span>
+            <motion.span
+              initial="hidden"
+              animate="visible"
+              variants={wordVariants}
+              custom={1}
+              style={{ display: 'inline-block', marginRight: '0.3em' }}
+            >
+              your
+            </motion.span>
+            <motion.span
+              initial="hidden"
+              animate="visible"
+              variants={wordVariants}
+              custom={2}
+              style={{ display: 'inline-block', marginRight: '0.3em' }}
+            >
+              business
+            </motion.span>
+            <motion.span
+              initial="hidden"
+              animate="visible"
+              variants={wordVariants}
+              custom={3}
+              style={{ display: 'inline-block', marginRight: '0.3em' }}
+            >
+              with
+            </motion.span>
+            <AnimatePresence mode="wait">
               <motion.span
-                key={index}
-                custom={index}
-                variants={wordVariants}
-                style={{ display: 'inline-block', marginRight: '0.3em' }}
+                key={currentServiceIndex}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={serviceVariants}
+                style={{ display: 'inline-block' }}
               >
-                {index === 5 || index === 6 ? (
-                  <GradientText>{word}</GradientText>
-                ) : (
-                  word
-                )}
+                <GradientText>{currentService}</GradientText>
               </motion.span>
-            ))}
+            </AnimatePresence>
           </Headline>
 
           <Subheadline variants={itemVariants}>
@@ -313,9 +397,27 @@ function Hero({ onOpenModal }) {
             with cutting-edge AI technology tailored to your business needs.
           </Subheadline>
 
-          <motion.div variants={itemVariants}>
-            <CTAButton
-              onClick={onOpenModal}
+          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <motion.a
+              href="tel:+31634354075"
+              style={{
+                background: 'linear-gradient(135deg, #3B82F6, #10B981)',
+                color: 'white',
+                border: 'none',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                fontSize: '18px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                minWidth: '200px',
+                height: '56px',
+                boxShadow: '0 10px 25px rgba(59, 130, 246, 0.3)'
+              }}
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 15px 35px rgba(59, 130, 246, 0.4)"
@@ -323,8 +425,40 @@ function Hero({ onOpenModal }) {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Get Your Free AI Strategy Guide
-            </CTAButton>
+              Call Us
+            </motion.a>
+
+            <motion.a
+              href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A"
+              style={{
+                background: 'transparent',
+                border: '2px solid #3B82F6',
+                color: '#3B82F6',
+                padding: '1rem 2rem',
+                borderRadius: '12px',
+                fontSize: '18px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                minWidth: '200px',
+                height: '56px',
+                transition: 'all 0.3s ease'
+              }}
+              whileHover={{ 
+                backgroundColor: '#3B82F6',
+                color: 'white',
+                scale: 1.05,
+                boxShadow: "0 15px 35px rgba(59, 130, 246, 0.4)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              Send Us an Email
+            </motion.a>
           </motion.div>
         </motion.div>
       </HeroContent>

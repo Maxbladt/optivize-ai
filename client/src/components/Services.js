@@ -355,7 +355,7 @@ const servicesData = [
   },
   {
     id: 'email-ai',
-    title: 'Mail Agent',
+    title: 'AI Mail Agent',
     icon: Mail,
     description: 'AI email assistant that suggests or automatically sends replies trained on your historic email data to match your personal writing style and decision patterns.',
     primaryColor: '#10B981',
@@ -390,7 +390,7 @@ const servicesData = [
   },
   {
     id: 'product-text',
-    title: 'Product Text Writer with AI',
+    title: 'AI Product Text Writer',
     icon: ShoppingBag,
     description: 'AI-powered product text optimization that rewrites descriptions to be more engaging and SEO-optimized while maintaining your brand voice across all platforms.',
     primaryColor: '#8B5CF6',
@@ -425,7 +425,7 @@ const servicesData = [
   },
   {
     id: 'blog-writer',
-    title: 'Blog Text Writer',
+    title: 'AI Blog Writer',
     icon: FileText,
     description: 'Automated SEO blog creation that targets competitor keywords and reduces advertising costs through strategic content and automated publishing.',
     primaryColor: '#F59E0B',
@@ -459,43 +459,43 @@ const servicesData = [
     ],
   },
   {
-    id: 'seo-optimization',
-    title: 'Automatic SEO Optimization',
-    icon: Search,
-    description: 'AI-powered SEO system that continuously improves search rankings through automated technical optimization, content enhancement, and comprehensive dashboard monitoring.',
+    id: 'linkedin-automation',
+    title: 'AI Linkedin Sales Bot',
+    icon: Target,
+    description: 'Fully automated LinkedIn sales system that identifies prospects, creates personalized campaigns, and converts connections into customers using AI.',
     primaryColor: '#EF4444',
     secondaryColor: '#DC2626',
     steps: [
       { 
-        title: 'Website Analysis & Strategy', 
-        description: 'We begin with a comprehensive analysis of your website\'s current SEO performance, identifying gaps and opportunities. Our AI crawls your entire site to understand your content structure, technical SEO issues, and competitor positioning. We then design a custom optimization strategy tailored to your industry, target audience, and business goals, creating a roadmap for systematic improvements that will drive measurable results.', 
+        title: 'Target Audience Research', 
+        description: 'We begin by identifying your ideal prospects on LinkedIn using advanced search parameters and AI-powered analysis. Our system analyzes company sizes, job titles, industries, and engagement patterns to build comprehensive prospect lists. We research their pain points, interests, and business challenges to create highly targeted outreach strategies that resonate with your specific audience segments.', 
         number: 1 
       },
       { 
-        title: 'LLM-Powered Content Optimization', 
-        description: 'Using advanced Large Language Models, we automatically optimize your existing content and generate new SEO-friendly content. Our AI analyzes top-ranking pages for your target keywords and intelligently rewrites your meta descriptions, title tags, headers, and content to match search intent while maintaining your brand voice. The system continuously generates fresh, keyword-optimized content suggestions and automatically implements approved changes across your site.', 
+        title: 'Campaign Strategy & Hook Development', 
+        description: 'Our team creates compelling campaign strategies tailored to your target audience. We develop multiple sales approaches including free PDF offers, consultation bookings, and direct sales pitches. Each campaign features carefully crafted hooks designed to capture attention and drive engagement. We analyze what resonates with your prospects and create diverse touchpoints to maximize conversion opportunities.', 
         number: 2 
       },
       { 
-        title: 'Technical SEO Automation', 
-        description: 'Our AI system automatically identifies and fixes technical SEO issues including broken links, duplicate content, missing alt tags, slow-loading pages, and schema markup optimization. The system monitors your site\'s Core Web Vitals, mobile responsiveness, and crawlability, making real-time adjustments to improve your search engine visibility. We also implement automated internal linking strategies to boost page authority distribution across your site.', 
+        title: 'Custom LLM Training', 
+        description: 'We train a custom Large Language Model specifically on your previous LinkedIn messages, sales conversations, and communication style. The AI learns your unique voice, tone, and successful messaging patterns to create authentic, personalized outreach that sounds genuinely human. This ensures every message maintains your brand personality while scaling your outreach exponentially.', 
         number: 3 
       },
       { 
-        title: 'Intelligent Backlink Strategy', 
-        description: 'Our AI identifies high-quality backlink opportunities by analyzing your competitors\' link profiles and finding relevant, authoritative websites in your industry. The system automatically reaches out to potential link partners with personalized outreach campaigns, monitors your backlink profile for toxic links, and suggests strategic content collaborations that naturally attract valuable backlinks to boost your domain authority.', 
+        title: 'Automated Campaign Execution & Optimization', 
+        description: 'Our platform launches your campaigns and continuously optimizes performance using real-time data. We monitor connection request acceptance rates, message open rates, and response rates, then fine-tune the AI model to maximize each metric. The system automatically adjusts messaging, timing, and approach based on performance data to drive the highest conversion rates possible.', 
         number: 4 
       },
       { 
-        title: 'Looker Studio Dashboard', 
-        description: 'We create a comprehensive Looker Studio dashboard that provides real-time insights into your SEO performance. The dashboard tracks keyword rankings, organic traffic growth, conversion rates, technical SEO health scores, and competitor analysis. You\'ll receive automated weekly reports showing progress, new opportunities, and actionable recommendations. The dashboard integrates data from Google Analytics, Search Console, and our AI optimization tools to give you a complete view of your SEO success.', 
+        title: 'Multi-Channel Integration & Sales Tracking', 
+        description: 'We expand successful LinkedIn connections to email marketing and create comprehensive follow-up sequences across multiple channels. Our integrated platform tracks the entire customer journey from initial LinkedIn connection to final sale, providing detailed analytics on conversion rates, revenue generated, and ROI. The system automatically creates new campaigns based on successful patterns and continuously scales your sales pipeline.', 
         number: 5 
       }
     ],
   },
   {
     id: 'chatbot',
-    title: 'AI Chatbot & Personal Shopping Assistant',
+    title: 'AI Chatbot',
     icon: MessageCircle,
     description: 'AI chatbot trained on your conversations to replicate your tone and service style, with optional personal shopping features for e-commerce stores.',
     primaryColor: '#06B6D4',
@@ -535,7 +535,7 @@ const servicesData = [
   },
   {
     id: 'tiktok-optimization',
-    title: 'TikTok Viral Comment Domination',
+    title: 'AI TikTok Domination',
     icon: TrendingUp,
     description: 'AI system that identifies viral TikToks, generates perfect comments with hidden CTAs, and boosts them to top positions for maximum viral exposure.',
     primaryColor: '#EC4899',
@@ -575,7 +575,7 @@ const servicesData = [
   },
   {
     id: 'competitor-ads',
-    title: 'Competitor Budget Drain System',
+    title: 'SEA draining bot',
     icon: Target,
     description: 'Strategic click bot system that depletes competitor ad budgets when they target your brand keywords, reducing your cost-per-click.',
     primaryColor: '#84CC16',
@@ -615,7 +615,7 @@ const servicesData = [
   },
   {
     id: 'featured-snippets',
-    title: 'AI SEO (Featured Snippet Optimization)',
+    title: 'AI SEO Intergration',
     icon: Crown,
     description: 'Reverse-engineered Google AI algorithm optimization that ensures your content gets featured prominently in AI-generated search summaries and featured snippets.',
     primaryColor: '#F97316',

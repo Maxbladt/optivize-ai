@@ -1,6 +1,6 @@
 # Optivize AI Website
 
-A modern, responsive website for Optivize AI featuring beautiful animations, interactive components, and a complete backend API.
+A modern, responsive website for Optivize AI featuring beautiful animations and interactive components.
 
 ## 🚀 Features
 
@@ -11,9 +11,7 @@ A modern, responsive website for Optivize AI featuring beautiful animations, int
   - Sticky navigation with smooth scrolling
   - Expandable service cards with infographics
   - Animated client logo slider
-  - CTA modal with form validation
   - Team member cards with hover effects
-- **Backend API**: Flask-powered API for form submissions
 - **Performance Optimized**: Lighthouse score optimized for > 90
 
 ## 🛠 Tech Stack
@@ -25,48 +23,16 @@ A modern, responsive website for Optivize AI featuring beautiful animations, int
 - **Lucide React** - Beautiful icons
 - **Intersection Observer** - Scroll-triggered animations
 
-### Backend
-- **Flask** - Python web framework
-- **Flask-CORS** - Cross-origin resource sharing
-- **Python 3.8+** - Backend runtime
-
 ## 📦 Installation
 
 ### Prerequisites
 - Node.js 16+ and npm
-- Python 3.8+
-- pip (Python package manager)
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-```bash
-cd backend
-```
-
-2. Create a virtual environment (recommended):
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install Python dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Start the Flask server:
-```bash
-python app.py
-```
-
-The backend will run on `http://localhost:5000`
 
 ### Frontend Setup
 
-1. Navigate to the frontend directory:
+1. Navigate to the client directory:
 ```bash
-cd frontend
+cd client
 ```
 
 2. Install Node.js dependencies:
@@ -79,7 +45,7 @@ npm install
 npm start
 ```
 
-The frontend will run on `http://localhost:3000`
+The website will run on `http://localhost:3000`
 
 ## 🚀 Quick Start
 
@@ -92,18 +58,15 @@ cd optivize-ai
 # Run setup script (installs all dependencies)
 ./setup.sh
 
-# Start both servers
+# Start the website
 ./start-website.sh
 ```
 
 ### Option 2: Manual Setup
 1. Clone the repository
 2. Run setup: `./setup.sh`
-3. Start backend: `cd server && source venv/bin/activate && python app.py`
-4. Start frontend: `cd client && npm start`
-5. Visit `http://localhost:3000`
-
-The frontend automatically proxies API calls to the backend.
+3. Start frontend: `cd client && npm start`
+4. Visit `http://localhost:3000`
 
 ## 🎨 Design System
 
@@ -131,7 +94,7 @@ The frontend automatically proxies API calls to the backend.
 ### 1. Hero Section
 - Animated gradient background with particles
 - Typewriter-style headline animation
-- CTA button leading to modal form
+- CTA button for contact
 - Mouse-responsive parallax effects
 
 ### 2. Client Slider
@@ -166,41 +129,8 @@ The frontend automatically proxies API calls to the backend.
 
 ### 7. Footer/Contact
 - Company information and contact details
-- Consultation request form
 - Quick navigation links
 - Legal links and copyright
-
-## 🔧 API Endpoints
-
-### POST /api/submit-form
-Submit CTA modal form for AI strategy guide
-
-**Request Body:**
-```json
-{
-  "name": "string",
-  "company": "string", 
-  "email": "string",
-  "companySize": "string",
-  "interests": ["string"]
-}
-```
-
-### POST /api/schedule-consultation
-Schedule a business consultation
-
-**Request Body:**
-```json
-{
-  "name": "string",
-  "email": "string",
-  "company": "string",
-  "message": "string"
-}
-```
-
-### GET /health
-Health check endpoint for monitoring
 
 ## 🎭 Animations
 
@@ -209,7 +139,6 @@ All animations are powered by Framer Motion and include:
 - **Page Load**: Logo animation with progress bar
 - **Scroll Animations**: Fade-in and slide-up on scroll
 - **Hover Effects**: Scale, glow, and transform animations
-- **Modal Animations**: Scale and fade transitions
 - **Loading States**: Spinner animations for forms
 - **Success Animations**: Confetti and checkmark celebrations
 
@@ -226,16 +155,12 @@ The website is optimized for:
 ### Frontend (Netlify/Vercel)
 1. Build the production version:
 ```bash
-cd frontend && npm run build
+cd client && npm run build
 ```
 
 2. Deploy the `build` folder to your hosting service
 
-### Backend (Heroku/DigitalOcean)
-1. Set up your hosting service
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set environment variables as needed
-4. Run: `python app.py`
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 🤝 Contributing
 
