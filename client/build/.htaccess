@@ -1,0 +1,17 @@
+Options -MultiViews
+RewriteEngine On
+
+# Force HTTPS (if you have SSL)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Handle React Router - serve index.html for all routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Prevent directory browsing
+Options -Indexes
+
+# Handle errors
+ErrorDocument 404 /index.html
