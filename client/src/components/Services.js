@@ -575,7 +575,7 @@ const servicesData = [
   },
   {
     id: 'competitor-ads',
-    title: 'SEA draining bot',
+    title: 'SEA Draining Bot',
     icon: Target,
     description: 'Strategic click bot system that depletes competitor ad budgets when they target your brand keywords, reducing your cost-per-click.',
     primaryColor: '#84CC16',
