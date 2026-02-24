@@ -185,7 +185,6 @@ function Hero() {
     'AI Linkedin Sales Bot',
     'AI Chatbot',
     'AI TikTok Domination',
-    'SEA Draining Bot',
     'AI SEO Intergration'
   ];
 

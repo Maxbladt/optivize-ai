@@ -35,14 +35,17 @@ const SectionTitle = styled(motion.h2)`
 
 const TeamGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
-  justify-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+`;
+
+const GridCell = styled.div`
+  display: flex;
 `;
 
 const TeamCard = styled(motion.div)`
@@ -51,11 +54,13 @@ const TeamCard = styled(motion.div)`
   padding: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 360px;
   text-align: center;
   position: relative;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     transform: translateY(-8px);
@@ -124,6 +129,7 @@ const MemberBio = styled.p`
   color: #64748B;
   margin-bottom: 2rem;
   text-align: left;
+  flex: 1;
 `;
 
 const SocialLinks = styled.div`
@@ -169,22 +175,22 @@ const SkillBadge = styled.span`
 
 const teamMembers = [
   {
-    name: "Willem Bladt",
-    title: "Chief Executive Officer",
-    photo: "/uploads/willem.png",
-    bio: "Willem started multiple ventures and worked as a Data Analyst at Red Concepts, which together with his strong commercial experience primed him to lead this mission and bring AI transformation to all companies in the Netherlands. His unique combination of analytical expertise and entrepreneurial vision drives Optivaize's approach to practical business solutions.",
-    skills: ["Strategy", "Leadership", "Digital Transformation", "AI Implementation"],
-    linkedin: "https://www.linkedin.com/in/willem-bladt-45565b227/",
-    gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)"
+    name: "Geronimo S.",
+    title: "Head of Operations & Marketing",
+    photo: "/uploads/geronimo.png",
+    bio: "Geronimo combines strategic thinking with operational execution. As Head of Operations & Marketing at Optivaize, he builds the organisational and commercial backbone that enables scalable AI-driven growth. From structuring teams and internal processes to driving marketing strategy and positioning, his focus is on turning ambition into structured, measurable results. With a background in policy advisory, political communication and organisational strategy, he brings clarity and discipline to fast-growing environments. He believes that real AI transformation happens when strong technology is matched with strong organisation.",
+    skills: ["Operations", "Marketing Strategy", "Organisational Strategy", "Communication"],
+    linkedin: "https://www.linkedin.com/company/optivaize",
+    gradient: "linear-gradient(135deg, #10B981, #059669)"
   },
   {
     name: "Maximilian Bladt",
-    title: "Chief Technology Officer",
+    title: "Chief Executive Officer",
     photo: "/uploads/max.png",
     bio: "Coming from Elevate Digital as head of AI implementation, starting Optivaize was the next logical step as then companies could be helped to the fullest without barriers. His experience enables him to work fast and train Large Language Models to do what drives revenue and reduces costs. He doesn't believe AI will replace people, but people using AI will replace people not using AI.",
-    skills: ["Cloud Architecture", "AI Engineering", "System Integration", "DevOps"],
+    skills: ["Strategy", "Leadership", "AI Engineering", "Cloud Architecture"],
     linkedin: "https://www.linkedin.com/in/max-bladt/",
-    gradient: "linear-gradient(135deg, #10B981, #059669)"
+    gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)"
   },
   {
     name: "Filip Lysiak",
@@ -242,50 +248,51 @@ function Team() {
         >
           <TeamGrid>
             {teamMembers.map((member, index) => (
-              <TeamCard
-                key={member.name}
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -12,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <ProfileImageContainer>
-                  <GradientBorder />
-                  <ProfileImage
-                    src={member.photo}
-                    alt={member.name}
-                    whileHover={{ 
-                      scale: 1.05,
-                      rotate: 3,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
-                </ProfileImageContainer>
+              <GridCell key={member.name}>
+                <TeamCard
+                  variants={cardVariants}
+                  whileHover={{ 
+                    y: -12,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <ProfileImageContainer>
+                    <GradientBorder />
+                    <ProfileImage
+                      src={member.photo}
+                      alt={member.name}
+                      whileHover={{ 
+                        scale: 1.05,
+                        rotate: 3,
+                        transition: { duration: 0.3 }
+                      }}
+                    />
+                  </ProfileImageContainer>
 
-                <MemberName>{member.name}</MemberName>
-                <MemberTitle>{member.title}</MemberTitle>
-                
-                <SkillBadges>
-                  {member.skills.map((skill, skillIndex) => (
-                    <SkillBadge key={skillIndex}>{skill}</SkillBadge>
-                  ))}
-                </SkillBadges>
+                  <MemberName>{member.name}</MemberName>
+                  <MemberTitle>{member.title}</MemberTitle>
+                  
+                  <SkillBadges>
+                    {member.skills.map((skill, skillIndex) => (
+                      <SkillBadge key={skillIndex}>{skill}</SkillBadge>
+                    ))}
+                  </SkillBadges>
 
-                <MemberBio>{member.bio}</MemberBio>
+                  <MemberBio>{member.bio}</MemberBio>
 
-                <SocialLinks>
-                  <SocialLink
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Linkedin size={20} />
-                  </SocialLink>
-                </SocialLinks>
-              </TeamCard>
+                  <SocialLinks>
+                    <SocialLink
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Linkedin size={20} />
+                    </SocialLink>
+                  </SocialLinks>
+                </TeamCard>
+              </GridCell>
             ))}
           </TeamGrid>
         </motion.div>

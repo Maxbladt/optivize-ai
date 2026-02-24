@@ -1,0 +1,10 @@
+{
+  "name": "optivize-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "docker compose --env-file config.ini up -d --build",
+    "stop": "docker compose down",
+    "logs": "docker compose logs -f"
+  }
+}

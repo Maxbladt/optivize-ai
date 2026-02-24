@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, ArrowRight, CheckCircle, X } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, CheckCircle, X, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 const FooterSection = styled.footer`
   id: contact;
@@ -453,7 +453,7 @@ function Footer() {
               <Logo>
                 <img src="/uploads/optivaize.png" alt="Optivaize" />
               </Logo>
-              <Tagline>"Optimize with Optivaize"</Tagline>
+              <Tagline>"Optimize What Matters"</Tagline>
               
               <ContactInfo>
                 <ContactItem>
@@ -519,6 +519,69 @@ function Footer() {
                   Contact
                 </QuickLink>
               </QuickLinks>
+
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <motion.a
+                  href="https://www.linkedin.com/company/optivaize"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    textDecoration: 'none'
+                  }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin size={20} />
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/optivaize"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    textDecoration: 'none'
+                  }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Instagram size={20} />
+                </motion.a>
+                <motion.a
+                  href="https://x.com/optivaize"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    textDecoration: 'none'
+                  }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Twitter size={20} />
+                </motion.a>
+              </div>
             </CompanyInfo>
 
             <ConsultationSection
@@ -594,7 +657,7 @@ function Footer() {
 
           <FooterBottom>
             <Copyright>
-              © 2025 Optivaize. All rights reserved. • Optimize with Optivaize.
+              © 2026 Optivaize. All rights reserved. • Optimize What Matters.
             </Copyright>
             <LegalLinks>
               <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy Policy</LegalLink>

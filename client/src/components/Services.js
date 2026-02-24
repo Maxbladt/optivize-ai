@@ -574,46 +574,6 @@ const servicesData = [
     ],
   },
   {
-    id: 'competitor-ads',
-    title: 'SEA Draining Bot',
-    icon: Target,
-    description: 'Strategic click bot system that depletes competitor ad budgets when they target your brand keywords, reducing your cost-per-click.',
-    primaryColor: '#84CC16',
-    secondaryColor: '#65A30D',
-    steps: [
-      { 
-        title: 'Brand Protection Keyword Mapping', 
-        description: 'We conduct comprehensive analysis to identify all instances where competitors are bidding on your brand name, trademarked terms, and core business keywords. This includes variations of your company name, product names, and branded search terms. We also map out your primary revenue-generating keywords where competitors are aggressively bidding and driving up your costs. The system continuously monitors for new competitors entering your keyword space and automatically adds them to the targeting list.', 
-        number: 1 
-      },
-      { 
-        title: 'Competitor Ad Intelligence & Budget Analysis', 
-        description: 'Our system performs deep reconnaissance on competitor advertising strategies, analyzing their ad copy, landing pages, bidding patterns, and estimated daily budgets. We identify peak spending hours, budget refresh times, and competitive bidding intensity for each target keyword. This intelligence allows us to time our click campaigns for maximum budget depletion impact, focusing efforts when competitors are most heavily invested in outbidding you for premium positions.', 
-        number: 2 
-      },
-      { 
-        title: 'Advanced Click Bot Network Development', 
-        description: 'We deploy a sophisticated network of residential IP addresses, real device fingerprints, and human-like browsing patterns to create undetectable click traffic. The bots simulate genuine user behavior including search patterns, page dwell time, scroll behavior, and realistic click timing. Each bot operates from different geographic locations with unique browser configurations and search histories to avoid Google\'s click fraud detection algorithms while maximizing the financial impact on competitor budgets.', 
-        number: 3 
-      },
-      { 
-        title: 'Strategic Click Pattern Execution', 
-        description: 'The system executes carefully orchestrated click campaigns that appear completely organic while systematically draining competitor budgets. Clicks are distributed across different times, devices, and search variations to avoid detection patterns. We focus on high-cost keywords where competitors are bidding aggressively, ensuring maximum budget depletion per click. The system automatically adjusts click frequency based on competitor budget levels and bidding behavior to maintain effectiveness without triggering fraud alerts.', 
-        number: 4 
-      },
-      { 
-        title: 'Budget Depletion & Market Position Monitoring', 
-        description: 'We continuously track competitor ad visibility, position changes, and budget exhaustion patterns to measure the effectiveness of our click campaigns. When competitor budgets are depleted, their ads disappear from premium positions, automatically improving your ad rank and reducing your cost-per-click. The system provides real-time reporting on competitor budget drain rates, your improved ad positions, and cost savings achieved through reduced bidding competition.', 
-        number: 5 
-      },
-      { 
-        title: 'ROI Optimization & Defensive Strategy Scaling', 
-        description: 'As competitor budgets are systematically drained, you benefit from dramatically reduced advertising costs and improved ad positions without increasing your own budget. We track your cost-per-click reductions, improved conversion rates from better positions, and overall advertising ROI improvements. The system scales operations based on competitive threats - when new competitors enter your space or existing ones increase budgets, we automatically scale defensive clicking to maintain your market dominance and cost advantages.', 
-        number: 6 
-      }
-    ],
-  },
-  {
     id: 'featured-snippets',
     title: 'AI SEO Intergration',
     icon: Crown,
