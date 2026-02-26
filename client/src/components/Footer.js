@@ -1,9 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
-import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, FileText, X, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 const FooterSection = styled.footer`
   id: contact;
@@ -232,13 +231,6 @@ const PolicyTitle = styled.h2`
   padding-right: 3rem;
 `;
 
-const IframeContainer = styled.div`
-  max-width: 500px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 12px;
-`;
-
 const PolicyContent = styled.div`
   line-height: 1.6;
   color: #1E293B;
@@ -266,16 +258,6 @@ const PolicyContent = styled.div`
 function Footer() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [activePolicy, setActivePolicy] = useState(null);
-  const navigate = useNavigate();
-  const iframeRef = useRef(null);
-  const iframeLoadCount = useRef(0);
-
-  const handleIframeLoad = useCallback(() => {
-    iframeLoadCount.current += 1;
-    if (iframeLoadCount.current > 1) {
-      navigate('/bedankt');
-    }
-  }, [navigate]);
 
   const policies = {
     privacy: {
@@ -493,24 +475,69 @@ function Footer() {
             >
               <ConsultationTitle>Ready to transform your business?</ConsultationTitle>
               <ConsultationSubtitle>
-                Vul het formulier in en we nemen zo snel mogelijk contact met u op
+                Bel ons direct of vul het contactformulier in
               </ConsultationSubtitle>
 
-              <IframeContainer>
-                <iframe
-                  ref={iframeRef}
-                  title="Contact Formulier"
-                  src="https://meeting.teamleader.eu/embed/form/optivaize/formulier-1/"
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px', margin: '0 auto' }}>
+                <motion.a
+                  href="tel:+31642698918"
                   style={{
-                    width: '100%',
-                    height: '600px',
+                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
+                    color: 'white',
                     border: 'none',
-                    borderRadius: '12px',
-                    background: 'rgba(255, 255, 255, 0.05)'
+                    padding: '1rem 2rem',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    minHeight: '56px',
+                    position: 'relative',
+                    overflow: 'hidden'
                   }}
-                  onLoad={handleIframeLoad}
-                />
-              </IframeContainer>
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Phone size={20} />
+                  Bel ons: +31 6 42698918
+                </motion.a>
+
+                <motion.a
+                  href="https://cloud.teamleader.eu/optivaize/forms/formulier-1/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: 'transparent',
+                    border: '2px solid #3B82F6',
+                    color: '#3B82F6',
+                    padding: '1rem 2rem',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    minHeight: '56px',
+                    transition: 'all 0.3s ease'
+                  }}
+                  whileHover={{ 
+                    backgroundColor: '#3B82F6',
+                    color: 'white',
+                    scale: 1.02
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <FileText size={20} />
+                  Vul het formulier in
+                </motion.a>
+              </div>
             </ConsultationSection>
           </FooterContent>
 

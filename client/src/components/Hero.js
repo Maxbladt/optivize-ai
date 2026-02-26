@@ -389,7 +389,14 @@ function Hero() {
             </motion.a>
 
             <motion.a
-              href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A"
+              href="#formulier"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('formulier');
+                if (el) {
+                  window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+                }
+              }}
               style={{
                 background: 'transparent',
                 border: '2px solid #3B82F6',
@@ -417,7 +424,7 @@ function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Send Us an Email
+              Contact Us
             </motion.a>
           </motion.div>
         </motion.div>
