@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Linkedin, ExternalLink } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 const TeamSection = styled.section`
   id: team;
@@ -180,7 +180,7 @@ const teamMembers = [
     photo: "/uploads/geronimo.png",
     bio: "Geronimo combines strategic thinking with operational execution. As Head of Operations & Marketing at Optivaize, he builds the organisational and commercial backbone that enables scalable AI-driven growth. From structuring teams and internal processes to driving marketing strategy and positioning, his focus is on turning ambition into structured, measurable results. With a background in policy advisory, political communication and organisational strategy, he brings clarity and discipline to fast-growing environments. He believes that real AI transformation happens when strong technology is matched with strong organisation.",
     skills: ["Operations", "Marketing Strategy", "Organisational Strategy", "Communication"],
-    linkedin: "https://www.linkedin.com/company/optivaize",
+    linkedin: "https://www.linkedin.com/in/geronimosaija/",
     gradient: "linear-gradient(135deg, #10B981, #059669)"
   },
   {

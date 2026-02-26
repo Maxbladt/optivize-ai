@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   ChevronDown, 
-  ChevronUp, 
-  ExternalLink, 
   TrendingUp, 
   Users, 
   Clock,
@@ -202,11 +200,6 @@ const ResultBadge = styled.span`
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-`;
-
-const ExpandedContent = styled(motion.div)`
-  padding: 0 2rem 2rem;
-  border-top: 1px solid #E2E8F0;
 `;
 
 const DetailedResults = styled.div`

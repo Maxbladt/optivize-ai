@@ -7,15 +7,11 @@ import {
   Mail, 
   ShoppingBag, 
   FileText, 
-  Search, 
   MessageCircle, 
   TrendingUp, 
   Target,
   Crown,
   ChevronDown,
-  ChevronUp,
-  ArrowRight,
-  CheckCircle,
   X
 } from 'lucide-react';
 
@@ -178,13 +174,6 @@ const ServiceDescription = styled.div`
   border-left: 4px solid #3B82F6;
 `;
 
-const CardPreview = styled.p`
-  font-size: 16px;
-  color: #64748B;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-`;
-
 const ExpandButton = styled.div`
   display: flex;
   align-items: center;
@@ -192,11 +181,6 @@ const ExpandButton = styled.div`
   font-size: 14px;
   font-weight: 600;
   color: #3B82F6;
-`;
-
-const ExpandedContent = styled(motion.div)`
-  padding: 0 2rem 2rem;
-  border-top: 1px solid #E2E8F0;
 `;
 
 const InfographicContainer = styled.div`
@@ -274,42 +258,6 @@ const StepDescription = styled.p`
   font-size: 16px;
   color: #64748B;
   line-height: 1.5;
-`;
-
-const RequirementsSection = styled.div`
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #F1F5F9;
-  border-radius: 12px;
-`;
-
-const RequirementsTitle = styled.h4`
-  font-size: 18px;
-  font-weight: 600;
-  color: #0F172A;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const RequirementsList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const RequirementItem = styled.li`
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 14px;
-  color: #475569;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 const servicesData = [

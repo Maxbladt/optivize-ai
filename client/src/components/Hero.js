@@ -120,43 +120,6 @@ const Subheadline = styled(motion.p)`
   }
 `;
 
-const CTAButton = styled(motion.button)`
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  color: white;
-  border: none;
-  padding: 1rem 2.5rem;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  min-width: 280px;
-  height: 56px;
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  &:hover::before {
-    left: 100%;
-  }
-
-  @media (max-width: 480px) {
-    min-width: 240px;
-    font-size: 16px;
-    padding: 0.875rem 2rem;
-  }
-`;
-
 const CircuitPattern = styled(motion.div)`
   position: absolute;
   top: 20%;
@@ -277,8 +240,6 @@ function Hero() {
   };
 
   const currentService = servicesTitles[currentServiceIndex];
-  const baseText = "Transform your business with";
-  const headlineWords = `${baseText} ${currentService}`.split(' ');
 
   return (
     <HeroSection id="home" ref={ref}>
@@ -398,7 +359,7 @@ function Hero() {
 
           <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <motion.a
-              href="tel:+31634354075"
+              href="tel:+31642698918"
               style={{
                 background: 'linear-gradient(135deg, #3B82F6, #10B981)',
                 color: 'white',

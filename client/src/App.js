@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ClientSlider from './components/ClientSlider';
@@ -9,6 +10,7 @@ import Services from './components/Services';
 import Cases from './components/Cases';
 import Team from './components/Team';
 import Footer from './components/Footer';
+import Bedankt from './components/Bedankt';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -62,18 +64,16 @@ const ProgressFill = styled(motion.div)`
   border-radius: 2px;
 `;
 
-function App() {
+function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
-
 
   return (
     <AppContainer>
@@ -115,6 +115,17 @@ function App() {
         </>
       )}
     </AppContainer>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/bedankt" element={<Bedankt />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

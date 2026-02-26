@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, ArrowRight, CheckCircle, X, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 const FooterSection = styled.footer`
   id: contact;
@@ -130,122 +131,6 @@ const ConsultationSubtitle = styled.p`
   margin-right: auto;
 `;
 
-const ConsultationForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
-
-  @media (max-width: 480px) {
-    gap: 0.75rem;
-  }
-`;
-
-const FormInput = styled.input`
-  padding: 1rem;
-  border: 2px solid #334155;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #3B82F6;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  &::placeholder {
-    color: #64748B;
-  }
-`;
-
-const FormTextarea = styled.textarea`
-  padding: 1rem;
-  border: 2px solid #334155;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  font-size: 16px;
-  min-height: 100px;
-  resize: vertical;
-  font-family: inherit;
-  transition: all 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #3B82F6;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  &::placeholder {
-    color: #64748B;
-  }
-`;
-
-const SubmitButton = styled(motion.button)`
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 56px;
-  position: relative;
-  overflow: hidden;
-
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  &:hover:not(:disabled)::before {
-    left: 100%;
-  }
-`;
-
-const LoadingSpinner = styled.div`
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-`;
-
-const SuccessMessage = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: #10B981;
-  font-weight: 600;
-  margin-top: 1rem;
-`;
 
 const FooterBottom = styled.div`
   border-top: 1px solid #334155;
@@ -347,6 +232,13 @@ const PolicyTitle = styled.h2`
   padding-right: 3rem;
 `;
 
+const IframeContainer = styled.div`
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+`;
+
 const PolicyContent = styled.div`
   line-height: 1.6;
   color: #1E293B;
@@ -374,6 +266,16 @@ const PolicyContent = styled.div`
 function Footer() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [activePolicy, setActivePolicy] = useState(null);
+  const navigate = useNavigate();
+  const iframeRef = useRef(null);
+  const iframeLoadCount = useRef(0);
+
+  const handleIframeLoad = useCallback(() => {
+    iframeLoadCount.current += 1;
+    if (iframeLoadCount.current > 1) {
+      navigate('/bedankt');
+    }
+  }, [navigate]);
 
   const policies = {
     privacy: {
@@ -471,7 +373,7 @@ function Footer() {
                     <Phone size={20} />
                   </ContactIcon>
                   <div>
-                    <a href="tel:+31634354075" style={{ color: '#E2E8F0', textDecoration: 'none' }}>+31634354075</a>
+                    <a href="tel:+31642698918" style={{ color: '#E2E8F0', textDecoration: 'none' }}>+31 6 42698918</a>
                     <div style={{ fontSize: '14px', color: '#64748B' }}>Business Hours: 9AM - 6PM CET</div>
                   </div>
                 </ContactItem>
@@ -591,67 +493,24 @@ function Footer() {
             >
               <ConsultationTitle>Ready to transform your business?</ConsultationTitle>
               <ConsultationSubtitle>
-                Get in touch with us to discover how AI can revolutionize your operations
+                Vul het formulier in en we nemen zo snel mogelijk contact met u op
               </ConsultationSubtitle>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px', margin: '0 auto' }}>
-                <motion.a
-                  href="tel:+31634354075"
+              <IframeContainer>
+                <iframe
+                  ref={iframeRef}
+                  title="Contact Formulier"
+                  src="https://meeting.teamleader.eu/embed/form/optivaize/formulier-1/"
                   style={{
-                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
-                    color: 'white',
+                    width: '100%',
+                    height: '600px',
                     border: 'none',
-                    padding: '1rem 2rem',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.5rem',
-                    minHeight: '56px',
-                    position: 'relative',
-                    overflow: 'hidden'
+                    borderRadius: '12px',
+                    background: 'rgba(255, 255, 255, 0.05)'
                   }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Phone size={20} />
-                  Call Us
-                </motion.a>
-
-                <motion.a
-                  href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A"
-                  style={{
-                    background: 'transparent',
-                    border: '2px solid #3B82F6',
-                    color: '#3B82F6',
-                    padding: '1rem 2rem',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.5rem',
-                    minHeight: '56px',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    backgroundColor: '#3B82F6',
-                    color: 'white',
-                    scale: 1.02
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Mail size={20} />
-                  Send Us an Email
-                </motion.a>
-              </div>
+                  onLoad={handleIframeLoad}
+                />
+              </IframeContainer>
             </ConsultationSection>
           </FooterContent>
 

@@ -162,37 +162,6 @@ const StatLabel = styled.p`
   font-weight: 500;
 `;
 
-const CTAButton = styled(motion.button)`
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  &:hover::before {
-    left: 100%;
-  }
-`;
-
 const stats = [
   {
     icon: Zap,
@@ -232,16 +201,7 @@ function PresentationSection() {
     }
   };
 
-  const scrollToServices = () => {
-    const element = document.getElementById('services');
-    if (element) {
-      const offsetTop = element.offsetTop - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
+
 
   return (
     <PresentationContainer ref={ref}>
