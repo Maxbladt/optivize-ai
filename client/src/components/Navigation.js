@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useLanguage, translations } from '../LanguageContext';
 
 const NavContainer = styled(motion.nav)`
   position: fixed;
@@ -60,6 +61,23 @@ const DesktopMenu = styled.div`
 
   @media (max-width: 768px) {
     display: none;
+  }
+`;
+
+const LanguageToggle = styled(motion.button)`
+  background: linear-gradient(135deg, #3B82F6, #10B981);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
 `;
 
@@ -156,18 +174,24 @@ const CloseButton = styled(motion.button)`
   padding: 1rem;
 `;
 
-const menuItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Cases', href: '#cases' },
-  { label: 'Team', href: '#team' },
-  { label: 'Contact', href: '#contact' }
-];
+const MobileLanguageToggle = styled(motion.button)`
+  background: linear-gradient(135deg, #3B82F6, #10B981);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+`;
 
 function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -206,6 +230,14 @@ function Navigation() {
     setMobileMenuOpen(false);
   };
 
+  const menuItems = [
+    { label: t.home, href: '#home' },
+    { label: t.services, href: '#services' },
+    { label: t.cases, href: '#cases' },
+    { label: t.team, href: '#team' },
+    { label: t.contact, href: '#contact' }
+  ];
+
   return (
     <>
       <NavContainer
@@ -235,6 +267,13 @@ function Navigation() {
                 {item.label}
               </NavLink>
             ))}
+            <LanguageToggle
+              onClick={toggleLanguage}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {language === 'nl' ? 'EN' : 'NL'}
+            </LanguageToggle>
           </DesktopMenu>
 
           <MobileMenuButton
@@ -274,6 +313,17 @@ function Navigation() {
                 {item.label}
               </MobileNavLink>
             ))}
+
+            <MobileLanguageToggle
+              onClick={toggleLanguage}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: menuItems.length * 0.1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {language === 'nl' ? 'English' : 'Nederlands'}
+            </MobileLanguageToggle>
           </MobileMenuOverlay>
         )}
       </AnimatePresence>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './LanguageContext';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ClientSlider from './components/ClientSlider';
@@ -120,12 +121,14 @@ function HomePage() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/bedankt" element={<Bedankt />} />
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/bedankt" element={<Bedankt />} />
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

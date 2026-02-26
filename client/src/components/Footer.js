@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, FileText, X, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { useLanguage, translations } from '../LanguageContext';
 
 const FooterSection = styled.footer`
   id: contact;
@@ -258,6 +259,8 @@ const PolicyContent = styled.div`
 function Footer() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [activePolicy, setActivePolicy] = useState(null);
+  const { language } = useLanguage();
+  const t = translations[language].footer;
 
   const policies = {
     privacy: {
@@ -337,7 +340,7 @@ function Footer() {
               <Logo>
                 <img src="/uploads/optivaize.png" alt="Optivaize" />
               </Logo>
-              <Tagline>"Optimize What Matters"</Tagline>
+              <Tagline>{t.tagline}</Tagline>
               
               <ContactInfo>
                 <ContactItem>
@@ -345,8 +348,8 @@ function Footer() {
                     <Mail size={20} />
                   </ContactIcon>
                   <div>
-                    <a href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A" style={{ color: '#E2E8F0', textDecoration: 'none' }}>info@optivaize.nl</a>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>General Inquiries</div>
+                    <a href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A" style={{ color: '#E2E8F0', textDecoration: 'none' }}>{t.email}</a>
+                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.emailLabel}</div>
                   </div>
                 </ContactItem>
                 
@@ -355,8 +358,8 @@ function Footer() {
                     <Phone size={20} />
                   </ContactIcon>
                   <div>
-                    <a href="tel:+31642698918" style={{ color: '#E2E8F0', textDecoration: 'none' }}>+31 6 42698918</a>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>Business Hours: 9AM - 6PM CET</div>
+                    <a href="tel:+31642698918" style={{ color: '#E2E8F0', textDecoration: 'none' }}>{t.phone}</a>
+                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.phoneLabel}</div>
                   </div>
                 </ContactItem>
                 
@@ -365,8 +368,8 @@ function Footer() {
                     <MapPin size={20} />
                   </ContactIcon>
                   <div>
-                    <div>Groenekanseweg 70, De Bilt</div>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>3732AG, Netherlands</div>
+                    <div>{t.address}</div>
+                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.addressDetail}</div>
                   </div>
                 </ContactItem>
               </ContactInfo>
@@ -473,9 +476,9 @@ function Footer() {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
-              <ConsultationTitle>Ready to transform your business?</ConsultationTitle>
+              <ConsultationTitle>{t.ctaTitle}</ConsultationTitle>
               <ConsultationSubtitle>
-                Bel ons direct of vul het contactformulier in
+                {t.ctaSubtitle}
               </ConsultationSubtitle>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px', margin: '0 auto' }}>
@@ -503,11 +506,11 @@ function Footer() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Phone size={20} />
-                  Bel ons: +31 6 42698918
+                  {t.callUs}
                 </motion.a>
 
                 <motion.a
-                  href="https://cloud.teamleader.eu/optivaize/forms/formulier-1/"
+                  href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -535,7 +538,7 @@ function Footer() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <FileText size={20} />
-                  Vul het formulier in
+                  {t.fillForm}
                 </motion.a>
               </div>
             </ConsultationSection>
@@ -543,12 +546,12 @@ function Footer() {
 
           <FooterBottom>
             <Copyright>
-              © 2026 Optivaize. All rights reserved. • Optimize What Matters.
+              {t.copyright}
             </Copyright>
             <LegalLinks>
-              <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy Policy</LegalLink>
-              <LegalLink onClick={() => setActivePolicy('terms')}>Terms of Service</LegalLink>
-              <LegalLink onClick={() => setActivePolicy('cookies')}>Cookie Policy</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('privacy')}>{t.privacyPolicy}</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('terms')}>{t.termsOfService}</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('cookies')}>{t.cookiePolicy}</LegalLink>
             </LegalLinks>
           </FooterBottom>
         </Container>

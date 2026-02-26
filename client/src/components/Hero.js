@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 
 const HeroSection = styled.section`
   id: home;
@@ -138,6 +139,8 @@ function Hero() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  const { language } = useLanguage();
+  const t = translations[language].hero;
 
   // Service titles from Services.js
   const servicesTitles = [
@@ -385,11 +388,11 @@ function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Call Us
+              {t.callUs}
             </motion.a>
 
             <motion.a
-              href="https://cloud.teamleader.eu/optivaize/forms/formulier-1/"
+              href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -419,7 +422,7 @@ function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              Contact Us
+              {t.contactUs}
             </motion.a>
           </motion.div>
         </motion.div>
