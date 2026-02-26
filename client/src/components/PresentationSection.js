@@ -217,12 +217,11 @@ function PresentationSection() {
             animate={inView ? "visible" : "hidden"}
           >
             <Title variants={itemVariants}>
-              Proven Track Record of Success
+              {t.title}
             </Title>
             
             <Description variants={itemVariants}>
-              We've worked with over 30+ companies, integrating AI into their processes and 
-              creating massive revenue streams and cost reductions through intelligent automation. We welcome you to contact our clients as strong references are the best proof of the results we deliver.
+              {t.description}
             </Description>
 
             <StatsGrid variants={itemVariants}>

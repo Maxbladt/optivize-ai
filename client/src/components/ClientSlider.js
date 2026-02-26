@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 
 const SliderSection = styled.section`
   padding: 5rem 0;
@@ -113,6 +114,8 @@ const duplicatedClients = [...clientData, ...clientData];
 
 function ClientSlider() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const { language } = useLanguage();
+  const t = translations[language].clientSlider;
 
   return (
     <SliderSection ref={ref}>
@@ -122,7 +125,7 @@ function ClientSlider() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          Trusted by Forward-Thinking Companies
+          {t.title}
         </SectionTitle>
 
         <SliderContainer>

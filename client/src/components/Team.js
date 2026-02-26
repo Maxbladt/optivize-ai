@@ -174,40 +174,20 @@ const SkillBadge = styled.span`
   font-weight: 500;
 `;
 
-const teamMembers = [
-  {
-    name: "Geronimo S.",
-    title: "Head of Operations & Marketing",
-    photo: "/uploads/geronimo.png",
-    bio: "Geronimo combines strategic thinking with operational execution. As Head of Operations & Marketing at Optivaize, he builds the organisational and commercial backbone that enables scalable AI-driven growth. From structuring teams and internal processes to driving marketing strategy and positioning, his focus is on turning ambition into structured, measurable results. With a background in policy advisory, political communication and organisational strategy, he brings clarity and discipline to fast-growing environments. He believes that real AI transformation happens when strong technology is matched with strong organisation.",
-    skills: ["Operations", "Marketing Strategy", "Organisational Strategy", "Communication"],
-    linkedin: "https://www.linkedin.com/in/geronimosaija/",
-    gradient: "linear-gradient(135deg, #10B981, #059669)"
-  },
-  {
-    name: "Maximilian Bladt",
-    title: "Chief Executive Officer",
-    photo: "/uploads/max.png",
-    bio: "Coming from Elevate Digital as head of AI implementation, starting Optivaize was the next logical step as then companies could be helped to the fullest without barriers. His experience enables him to work fast and train Large Language Models to do what drives revenue and reduces costs. He doesn't believe AI will replace people, but people using AI will replace people not using AI.",
-    skills: ["Strategy", "Leadership", "AI Engineering", "Cloud Architecture"],
-    linkedin: "https://www.linkedin.com/in/max-bladt/",
-    gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)"
-  },
-  {
-    name: "Filip Lysiak",
-    title: "AI & Data Science Lead",
-    photo: "/uploads/filip.png",
-    bio: "Filip combines a strong foundation in finance and consulting with hands-on experience driving innovation at scale. Having advised some of Europe's largest enterprises during his time at a Fortune 500 company, he brings both strategic vision and a deep understanding of complex business challenges. With expertise in quantitative finance, coding, and data analysis, Filip bridges the worlds of business and technology - making him uniquely suited to guide companies through successful AI transformations that deliver real, measurable impact.",
-    skills: ["Machine Learning", "NLP", "Data Science", "Model Training"],
-    linkedin: "https://www.linkedin.com/in/filiplysiak/",
-    gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)"
-  }
+const teamStaticConfig = [
+  { name: "Geronimo S.", photo: "/uploads/geronimo.png", linkedin: "https://www.linkedin.com/in/geronimosaija/", gradient: "linear-gradient(135deg, #10B981, #059669)" },
+  { name: "Maximilian Bladt", photo: "/uploads/max.png", linkedin: "https://www.linkedin.com/in/max-bladt/", gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)" },
+  { name: "Filip Lysiak", photo: "/uploads/filip.png", linkedin: "https://www.linkedin.com/in/filiplysiak/", gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)" }
 ];
 
 function Team() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const { language } = useLanguage();
   const t = translations[language].team;
+  const teamMembers = t.members.map((member, idx) => ({
+    ...teamStaticConfig[idx],
+    ...member
+  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },

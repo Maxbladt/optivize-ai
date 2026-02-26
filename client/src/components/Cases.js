@@ -256,160 +256,10 @@ const CaseDescription = styled.div`
   margin-bottom: 2rem;
 `;
 
-const casesData = [
-  {
-    id: 'fonteyn',
-    title: 'Fonteyn: AI SEO Blog Optimization',
-    company: 'Fonteyn',
-    logo: '/uploads/fonteyn.png',
-    image: '/uploads/fonteyn_showroom.png',
-    preview: 'Transformed SEO strategy for luxury furniture supplier generating 10+ million revenue annually through AI-powered blog optimization.',
-    results: ['Avg ranking increase', '3% Google Ads reduction', '4% conversion boost'],
-    description: `Fonteyn is one of the biggest suppliers of furniture, spas, and everything for luxurious living, generating over 10 million in revenue per year. We implemented our AI-powered blog optimization system to create better posts and achieve higher rankings using organic methods.
-
-    Our comprehensive approach involved competitor analysis using advanced tools like Ahrefs to understand which keywords competitors were ranking for and investing in. We then used sophisticated AI models to identify high-value keywords that were costing Fonteyn significant money in their Google Ads campaigns.
-
-    Instead of continuing to pay premium prices for expensive keywords in advertising, we strategically wrote blog content targeting these costly terms. This allowed them to optimize content for expensive keywords while shifting their paid advertising budget to cheaper, less competitive terms - maximizing their overall marketing ROI.
-
-    We fine-tuned a specialized AI model specifically for Fonteyn's brand and industry, training the AI to seamlessly integrate target keywords into naturally flowing, engaging content that reads authentically. The model learned their brand voice, tone, and messaging style while creating keyword-rich content that didn't feel forced or robotic.
-
-    Our AI SEO integration positioned their content to appear prominently in Google's AI-generated search results and featured snippets. We implemented comprehensive auto-publishing systems that work seamlessly with their platform, publishing optimized blog content on a strategic schedule with complete automation.`,
-    detailedResults: [
-      {
-        icon: TrendingUp,
-        title: 'Google Ranking',
-        description: 'Average ranking position improvement',
-        value: 'Significant increase',
-        color: '#10B981'
-      },
-      {
-        icon: DollarSign,
-        title: 'Google Ads Cost',
-        description: 'Reduced advertising spend',
-        value: '-3%',
-        color: '#3B82F6'
-      },
-      {
-        icon: Target,
-        title: 'Conversion Rate',
-        description: 'Relative conversion increase',
-        value: '+4%',
-        color: '#8B5CF6'
-      },
-      {
-        icon: Zap,
-        title: 'Products Optimized',
-        description: 'Total products enhanced',
-        value: '30,000+',
-        color: '#F59E0B'
-      },
-      {
-        icon: Clock,
-        title: 'Labor Saved',
-        description: 'Hours of manual work eliminated',
-        value: '3,000 hrs',
-        color: '#EF4444'
-      }
-    ]
-  },
-  {
-    id: 'aanhuis',
-    title: 'Aanhuis: AI Presentation & Training',
-    company: 'Aanhuis',
-    logo: '/uploads/aanhuis.png',
-    image: '/uploads/aanhuis_kantoor.png',
-    preview: 'Transformed workplace efficiency through comprehensive AI training presentations and custom GPT implementation.',
-    results: ['20% efficiency boost', 'Custom GPTs built', 'Team-wide adoption'],
-    description: `For Aanhuis.nl, we delivered our comprehensive AI presentation service, focusing on improving work efficiency through strategic AI implementation. We realized a 20% better work efficiency in writing emails by building custom GPTs tailored to their specific needs.
-
-    Our engagement began with an initial session where we discussed time-consuming processes that were hindering efficiency and preventing people from working at their absolute best. We analyzed their workflows and looked for opportunities where they could improve before delivering the presentation and discussed these findings with management.
-
-    We conducted tailored presentations for both management and the core team working at Aanhuis. These weren't just generic AI overviews - we sat with their team for open conversations, actively listening and looking for opportunities while creating alignment. The key was ensuring that stakeholders (the people actually doing the work) felt that AI would help them work more efficiently rather than replace them.
-
-    Following the successful initial presentation, we conducted specialized breakout sessions with different departments. In these focused sessions, we examined their specific processes and identified opportunities to automate them using AI or introduce tools they could start using directly.
-
-    We created a comprehensive guide containing all the insights from our discussions, including detailed instructions on how to use ChatGPT within their organization, how to train custom GPTs for specific tasks, and identification of additional AI opportunities. Later, we provided them with a PDF reference guide they could use whenever they had questions.
-
-    The team expressed enthusiasm about the results and told us they plan to schedule future meetings to make their processes even more efficient. This commitment to continuous improvement shows the lasting impact of our AI integration approach.`,
-    detailedResults: [
-      {
-        icon: TrendingUp,
-        title: 'Email Efficiency',
-        description: 'Improvement in email writing efficiency',
-        value: '+20%',
-        color: '#10B981'
-      },
-      {
-        icon: Zap,
-        title: 'Custom GPTs',
-        description: 'Tailored AI tools created',
-        value: 'Multiple built',
-        color: '#3B82F6'
-      },
-      {
-        icon: Target,
-        title: 'Department Coverage',
-        description: 'Breakout sessions completed',
-        value: 'All depts',
-        color: '#F59E0B'
-      },
-      {
-        icon: Clock,
-        title: 'Follow-up Planned',
-        description: 'Continuous improvement commitment',
-        value: 'Ongoing',
-        color: '#EF4444'
-      }
-    ]
-  },
-  {
-    id: 'blosh',
-    title: 'Blosh: Custom AI Solutions Suite',
-    company: 'Blosh',
-    logo: '/uploads/blosh.png',
-    image: '/uploads/blosh_kantoor.png',
-    preview: 'Comprehensive custom AI solution development including SEO automation, intelligent chatbot, and Shopify price management.',
-    results: ['AI SEO system', 'Custom chatbot', 'Shopify automation'],
-    description: `Blosh approached us with multiple operational challenges that were limiting their growth potential. They needed better search visibility, faster client support, and more efficient e-commerce management. Rather than implementing generic solutions, we developed a completely custom AI suite tailored to their specific business needs.
-
-    We started by building them an advanced AI SEO system that automatically optimizes their content for search engines. This system analyzes competitor strategies, identifies high-value keywords, and generates content that improves their search rankings while reducing advertising costs. The AI continuously monitors search trends and adjusts their content strategy to maintain competitive advantage.
-
-    For their client support challenges, we developed an intelligent chatbot trained specifically on Blosh's historical conversations. The chatbot learned their unique communication patterns, problem-solving approaches, and brand voice to provide instant, personalized responses that maintain the human touch their clients expect. This dramatically improved response times and client satisfaction.
-
-    Finally, we created an intelligent automation system for their Shopify platform that allows them to efficiently manage pricing across their entire product catalog. The system automatically adjusts prices based on market conditions, competitor analysis, inventory levels, and sales performance, saving countless hours of manual work while optimizing revenue.
-
-    These custom solutions demonstrate our approach to building AI products that integrate perfectly with existing workflows and scale with business growth, delivering real measurable value rather than one-size-fits-all solutions.`,
-    detailedResults: [
-      {
-        icon: TrendingUp,
-        title: 'AI SEO System',
-        description: 'Custom search optimization automation',
-        value: 'Deployed',
-        color: '#10B981'
-      },
-      {
-        icon: Users,
-        title: 'Smart Chatbot',
-        description: 'Client support automation with personality',
-        value: 'Active',
-        color: '#3B82F6'
-      },
-      {
-        icon: DollarSign,
-        title: 'Shopify Integration',
-        description: 'Automated price management system',
-        value: 'Operational',
-        color: '#8B5CF6'
-      },
-      {
-        icon: Zap,
-        title: 'Custom Solutions',
-        description: 'Tailored AI products built',
-        value: '3 systems',
-        color: '#F59E0B'
-      },
-    ]
-  }
+const casesStaticConfig = [
+  { id: 'fonteyn', logo: '/uploads/fonteyn.png', image: '/uploads/fonteyn_showroom.png', detailedResultsIcons: [TrendingUp, DollarSign, Target, Zap, Clock] },
+  { id: 'aanhuis', logo: '/uploads/aanhuis.png', image: '/uploads/aanhuis_kantoor.png', detailedResultsIcons: [TrendingUp, Zap, Target, Clock] },
+  { id: 'blosh', logo: '/uploads/blosh.png', image: '/uploads/blosh_kantoor.png', detailedResultsIcons: [TrendingUp, Users, DollarSign, Zap] }
 ];
 
 function Cases() {
@@ -417,6 +267,14 @@ function Cases() {
   const [selectedCase, setSelectedCase] = useState(null);
   const { language } = useLanguage();
   const t = translations[language].cases;
+  const casesData = t.items.map((item) => {
+    const staticConfig = casesStaticConfig.find((s) => s.id === item.id);
+    const detailedResults = item.detailedResults.map((dr, idx) => ({
+      ...dr,
+      icon: staticConfig.detailedResultsIcons[idx]
+    }));
+    return { ...staticConfig, ...item, detailedResults };
+  });
 
   const handleCaseClick = (caseItem) => {
     setSelectedCase(caseItem);
