@@ -9,7 +9,6 @@ import PresentationSection from './components/PresentationSection';
 import Services from './components/Services';
 import Cases from './components/Cases';
 import Team from './components/Team';
-import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import Bedankt from './components/Bedankt';
 
@@ -112,7 +111,6 @@ function HomePage() {
           <Services />
           <Cases />
           <Team />
-          <ContactForm />
           <Footer />
         </>
       )}

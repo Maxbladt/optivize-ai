@@ -389,14 +389,9 @@ function Hero() {
             </motion.a>
 
             <motion.a
-              href="#formulier"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById('formulier');
-                if (el) {
-                  window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
-                }
-              }}
+              href="https://cloud.teamleader.eu/optivaize/forms/formulier-1/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 background: 'transparent',
                 border: '2px solid #3B82F6',
