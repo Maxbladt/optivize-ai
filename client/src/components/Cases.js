@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 import { 
   ChevronDown, 
   TrendingUp, 
@@ -414,6 +415,8 @@ const casesData = [
 function Cases() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedCase, setSelectedCase] = useState(null);
+  const { language } = useLanguage();
+  const t = translations[language].cases;
 
   const handleCaseClick = (caseItem) => {
     setSelectedCase(caseItem);
@@ -432,14 +435,14 @@ function Cases() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           >
-            Success Stories
+            {t.title}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            Real transformations, real results. See how we've revolutionized businesses across industries.
+            {t.subtitle}
           </SectionSubtitle>
         </SectionHeader>
 
@@ -476,7 +479,7 @@ function Cases() {
                 </ResultsPreview>
 
                 <ExpandButton>
-                  <span>View Full Case Study</span>
+                  <span>{t.viewFullCase}</span>
                   <ChevronDown size={20} />
                 </ExpandButton>
               </CaseContent>

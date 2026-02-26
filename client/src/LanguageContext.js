@@ -18,6 +18,11 @@ export const LanguageProvider = ({ children }) => {
     if (savedLanguage) {
       setLanguage(savedLanguage);
     }
+
+    const bountyMessage = "If you found this value you deserve to get 15% off your first AI project. Good job. Call Maximilian Bladt at +31642698918 with code bounty-first-found to claim this.";
+    if (!localStorage.getItem('bounty')) {
+      localStorage.setItem('bounty', bountyMessage);
+    }
   }, []);
 
   const toggleLanguage = () => {
@@ -43,8 +48,29 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
+      headline: 'Transformeer uw bedrijf met',
+      subheadline: 'Wij optimaliseren uw operaties, automatiseren uw workflows en versnellen uw groei met geavanceerde AI-technologie op maat gemaakt voor uw bedrijfsbehoeften.',
       callUs: 'Bel ons',
       contactUs: 'Vul het formulier in'
+    },
+    presentation: {
+      stat1Number: '100+',
+      stat1Label: 'Geautomatiseerde Jobs',
+      stat2Number: '3M',
+      stat2Label: 'Bespaard aan Loonkosten'
+    },
+    services: {
+      title: 'Onze AI Oplossingen',
+      subtitle: 'Klik om te ontdekken hoe elke dienst uw bedrijf transformeert',
+      howItWorks: 'Hoe het werkt'
+    },
+    cases: {
+      title: 'Succesverhalen',
+      subtitle: 'Echte transformaties, echte resultaten. Zie hoe we bedrijven in verschillende sectoren hebben gerevolutioneerd.',
+      viewFullCase: 'Bekijk Volledige Case Study'
+    },
+    team: {
+      title: 'Ontmoet Uw AI Innovatie Partners'
     },
     footer: {
       tagline: '"Optimize What Matters"',
@@ -91,8 +117,29 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
+      headline: 'Transform your business with',
+      subheadline: 'We optimize your operations, automate your workflows, and accelerate your growth with cutting-edge AI technology tailored to your business needs.',
       callUs: 'Call Us',
       contactUs: 'Fill in the Form'
+    },
+    presentation: {
+      stat1Number: '100+',
+      stat1Label: 'Automated Jobs',
+      stat2Number: '3M',
+      stat2Label: 'Saved in Wages'
+    },
+    services: {
+      title: 'Our AI Solutions',
+      subtitle: 'Click to explore how each service transforms your business',
+      howItWorks: 'How it Works'
+    },
+    cases: {
+      title: 'Success Stories',
+      subtitle: 'Real transformations, real results. See how we\'ve revolutionized businesses across industries.',
+      viewFullCase: 'View Full Case Study'
+    },
+    team: {
+      title: 'Meet Your AI Innovation Partners'
     },
     footer: {
       tagline: '"Optimize What Matters"',

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 import { DollarSign, Zap } from 'lucide-react';
 
 const PresentationContainer = styled.section`
@@ -162,21 +163,23 @@ const StatLabel = styled.p`
   font-weight: 500;
 `;
 
-const stats = [
-  {
-    icon: Zap,
-    number: "100+",
-    label: "Automated Jobs",
-  },
-  {
-    icon: DollarSign,
-    number: "3M",
-    label: "Saved in Wages",
-  }
-];
-
 function PresentationSection() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const { language } = useLanguage();
+  const t = translations[language].presentation;
+
+  const stats = [
+    {
+      icon: Zap,
+      number: t.stat1Number,
+      label: t.stat1Label,
+    },
+    {
+      icon: DollarSign,
+      number: t.stat2Number,
+      label: t.stat2Label,
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },

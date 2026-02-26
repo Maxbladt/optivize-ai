@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 import { Linkedin } from 'lucide-react';
 
 const TeamSection = styled.section`
@@ -205,6 +206,8 @@ const teamMembers = [
 
 function Team() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const { language } = useLanguage();
+  const t = translations[language].team;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -238,7 +241,7 @@ function Team() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          Meet Your AI Innovation Partners
+          {t.title}
         </SectionTitle>
 
         <motion.div

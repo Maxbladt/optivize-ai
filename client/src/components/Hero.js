@@ -305,42 +305,18 @@ function Hero() {
           animate={controls}
         >
           <Headline>
-            <motion.span
-              initial="hidden"
-              animate="visible"
-              variants={wordVariants}
-              custom={0}
-              style={{ display: 'inline-block', marginRight: '0.3em' }}
-            >
-              Transform
-            </motion.span>
-            <motion.span
-              initial="hidden"
-              animate="visible"
-              variants={wordVariants}
-              custom={1}
-              style={{ display: 'inline-block', marginRight: '0.3em' }}
-            >
-              your
-            </motion.span>
-            <motion.span
-              initial="hidden"
-              animate="visible"
-              variants={wordVariants}
-              custom={2}
-              style={{ display: 'inline-block', marginRight: '0.3em' }}
-            >
-              business
-            </motion.span>
-            <motion.span
-              initial="hidden"
-              animate="visible"
-              variants={wordVariants}
-              custom={3}
-              style={{ display: 'inline-block', marginRight: '0.3em' }}
-            >
-              with
-            </motion.span>
+            {t.headline.split(' ').map((word, idx) => (
+              <motion.span
+                key={idx}
+                initial="hidden"
+                animate="visible"
+                variants={wordVariants}
+                custom={idx}
+                style={{ display: 'inline-block', marginRight: '0.3em' }}
+              >
+                {word}
+              </motion.span>
+            ))}
             <AnimatePresence mode="wait">
               <motion.span
                 key={currentServiceIndex}
@@ -356,8 +332,7 @@ function Hero() {
           </Headline>
 
           <Subheadline variants={itemVariants}>
-            We optimize your operations, automate your workflows, and accelerate your growth 
-            with cutting-edge AI technology tailored to your business needs.
+            {t.subheadline}
           </Subheadline>
 
           <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

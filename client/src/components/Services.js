@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useLanguage, translations } from '../LanguageContext';
 import { 
   Brain, 
   Mail, 
@@ -571,6 +572,8 @@ const servicesData = [
 function Services() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedService, setSelectedService] = useState(null);
+  const { language } = useLanguage();
+  const t = translations[language].services;
 
   const handleCardClick = (service) => {
     setSelectedService(service);
@@ -589,14 +592,14 @@ function Services() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            Our AI Solutions
+            {t.title}
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
-            Click to explore how each service transforms your business
+            {t.subtitle}
           </SectionSubtitle>
         </SectionHeader>
 
@@ -631,7 +634,7 @@ function Services() {
                       {service.description}
                     </ServiceDescription>
                     <ExpandButton>
-                      How it Works
+                      {t.howItWorks}
                       <ChevronDown size={16} />
                     </ExpandButton>
                   </CardContent>
