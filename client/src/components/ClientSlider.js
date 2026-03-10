@@ -106,6 +106,22 @@ const clientData = [
   {
     name: "Sony",
     logo: "/uploads/sony.png"
+  },
+  {
+    name: "Red Button",
+    logo: "/uploads/red_button_logo.png"
+  },
+  {
+    name: "StakePVP",
+    logo: "/uploads/stakepvp_logo.png"
+  },
+  {
+    name: "Passion Ice Baths",
+    logo: "/uploads/passion_icebaths_logo.png"
+  },
+  {
+    name: "OpenClaw",
+    logo: "/uploads/openclaw_cool.png"
   }
 ];
 

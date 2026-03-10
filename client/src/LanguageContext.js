@@ -48,8 +48,8 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
-      headline: 'Transformeer uw bedrijf met',
-      subheadline: 'Wij stroomlijnen uw processen, automatiseren terugkerend werk en helpen u sneller groeien met slimme AI-oplossingen die passen bij uw organisatie.',
+      headline: 'Transformeer je bedrijf met',
+      subheadline: 'Wij stroomlijnen je processen, automatiseren terugkerend werk en helpen je sneller groeien met slimme AI-oplossingen die passen bij je organisatie.',
       callUs: 'Bel ons',
       contactUs: 'Vul het formulier in'
     },
@@ -58,7 +58,7 @@ export const translations = {
     },
     presentation: {
       title: 'Bewezen resultaten',
-      description: 'Wij hebben bij 30+ organisaties AI geïntegreerd in processen en daarmee nieuwe omzetkansen én stevige kostenbesparingen gerealiseerd via intelligente automatisering. U kunt gerust contact opnemen met onze klanten: sterke referenties zijn het beste bewijs van de resultaten die wij leveren.',
+      description: 'Wij hebben bij 30+ organisaties AI geïntegreerd in processen en daarmee nieuwe omzetkansen én stevige kostenbesparingen gerealiseerd via intelligente automatisering. Je kunt gerust contact opnemen met onze klanten: sterke referenties zijn het beste bewijs van de resultaten die wij leveren.',
       stat1Number: '100+',
       stat1Label: 'Geautomatiseerde taken',
       stat2Number: '3M',
@@ -72,102 +72,102 @@ export const translations = {
         {
           id: 'ai-strategy',
           title: 'AI Presentatie',
-          description: 'Neem uw team mee in de nieuwste AI-trends en tools. We helpen uw organisatie AI beter te begrijpen en gericht toe te passen met een presentatie en sessies op maat.',
+          description: 'Neem je team mee in de nieuwste AI-trends en tools. We helpen je organisatie AI beter te begrijpen en gericht toe te passen met een presentatie en sessies op maat.',
           steps: [
             { title: 'Kick-off sessie', description: 'We brengen in kaart welke tijdrovende processen de efficiëntie drukken en waar teams vastlopen in terugkerend werk.', number: 1 },
             { title: 'Analyse & afstemming met management', description: 'Op basis van de kick-off analyseren we kansen en bespreken we de belangrijkste verbeterpunten met het management voordat we de presentatie geven.', number: 2 },
             { title: 'Presentatie op maat', description: 'We gaan in gesprek met het kernteam en bouwen draagvlak door kansen concreet te maken. Het uitgangspunt: AI helpt mensen sneller en slimmer te werken, niet om ze te vervangen.', number: 3 },
             { title: 'Afdelingssessies', description: 'Per afdeling duiken we in de specifieke werkwijze en identificeren we kansen om stappen te automatiseren met AI of direct toepasbare tools te introduceren.', number: 4 },
-            { title: 'Praktische handleiding', description: 'We bundelen alle inzichten in een duidelijke handleiding: hoe u ChatGPT veilig en effectief inzet, hoe u custom GPT\'s traint voor specifieke taken en welke kansen er nog liggen.', number: 5 },
+            { title: 'Praktische handleiding', description: 'We bundelen alle inzichten in een duidelijke handleiding: hoe je ChatGPT veilig en effectief inzet, hoe je custom GPT\'s traint voor specifieke taken en welke kansen er nog liggen.', number: 5 },
             { title: 'Opvolging', description: 'Na ongeveer een maand plannen we een follow-up om de winst te evalueren, vragen te beantwoorden en verdere optimalisaties door te voeren.', number: 6 }
           ]
         },
         {
           id: 'email-ai',
           title: 'AI Mail Agent',
-          description: 'Een AI‑e-mailassistent die antwoorden voorstelt (of desgewenst automatisch verstuurt), getraind op uw historische e-mails zodat toon, stijl en beslislogica aansluiten bij u.',
+          description: 'Een AI-e-mailassistent die antwoorden voorstelt (of desgewenst automatisch verstuurt), getraind op je historische e-mails zodat toon, stijl en beslislogica aansluiten bij jou.',
           steps: [
-            { title: 'E-mails verzamelen', description: 'Voor training gebruiken we uw historische e-mails, zodat het model uw communicatiestijl leert en antwoorden kan genereren die aanvoelen alsof u ze zelf schreef.', number: 1 },
-            { title: 'Data opschonen & structureren', description: 'We verwijderen ruis (handtekeningen, opmaak, herhalingen) en zetten de data om naar heldere vraag‑antwoordparen (JSON), klaar voor training.', number: 2 },
-            { title: 'Model trainen', description: 'We fine‑tunen een GPT‑model op uw patronen, vocabulaire en antwoordstijl, zodat het consistent e-mails opstelt in uw tone of voice.', number: 3 },
-            { title: 'Valideren', description: 'We testen het model op nieuwe, realistische e-mails om te controleren of de antwoorden kloppen, professioneel blijven en uw toon goed benaderen.', number: 4 },
-            { title: 'In gebruik nemen', description: 'Via een lichte integratie met Outlook, Gmail of andere clients leest het model de thread en stelt een conceptantwoord voor. Uw aanpassingen maken het model steeds beter en besparen tijd.', number: 5 }
+            { title: 'E-mails verzamelen', description: 'Voor training gebruiken we je historische e-mails, zodat het model je communicatiestijl leert en antwoorden kan genereren die aanvoelen alsof je ze zelf schreef.', number: 1 },
+            { title: 'Data opschonen & structureren', description: 'We verwijderen ruis (handtekeningen, opmaak, herhalingen) en zetten de data om naar heldere vraag-antwoordparen (JSON), klaar voor training.', number: 2 },
+            { title: 'Model trainen', description: 'We fine-tunen een GPT-model op je patronen, vocabulaire en antwoordstijl, zodat het consistent e-mails opstelt in je tone of voice.', number: 3 },
+            { title: 'Valideren', description: 'We testen het model op nieuwe, realistische e-mails om te controleren of de antwoorden kloppen, professioneel blijven en je toon goed benaderen.', number: 4 },
+            { title: 'In gebruik nemen', description: 'Via een lichte integratie met Outlook, Gmail of andere clients leest het model de thread en stelt een conceptantwoord voor. Je aanpassingen maken het model steeds beter en besparen tijd.', number: 5 }
           ]
         },
         {
           id: 'product-text',
           title: 'AI Producttekstschrijver',
-          description: 'AI‑gestuurde producttekstoptimalisatie die beschrijvingen herschrijft naar meer overtuigende, SEO‑vriendelijke teksten — met behoud van uw merkstem, overal waar u publiceert.',
+          description: 'AI-gestuurde producttekstoptimalisatie die beschrijvingen herschrijft naar meer overtuigende, SEO-vriendelijke teksten, met behoud van je merkstem, overal waar je publiceert.',
           steps: [
-            { title: 'Productteksten verzamelen', description: 'We verzamelen uw huidige productteksten en exporteren ze naar een CSV (Excel‑formaat). Zo hebben we één overzicht en kunnen we alles consistent verbeteren, ongeacht of u Shopify, WooCommerce of een maatwerkplatform gebruikt.', number: 1 },
-            { title: 'Model trainen op uw merkstem', description: 'We trainen het model op teksten die zijn afgestemd op uw tone of voice. Daardoor klinkt elke nieuwe of herschreven productbeschrijving als “uw merk”.', number: 2 },
-            { title: 'Herschrijven & optimaliseren', description: 'Met het getrainde model herschrijven we alle productteksten: helderder, aantrekkelijker en meer gericht op conversie, zonder uw stijl te verliezen. U ontvangt alles in een bestand om te reviewen.', number: 3 },
+            { title: 'Productteksten verzamelen', description: 'We verzamelen je huidige productteksten en exporteren ze naar een CSV (Excel-formaat). Zo hebben we één overzicht en kunnen we alles consistent verbeteren, ongeacht of je Shopify, WooCommerce of een maatwerkplatform gebruikt.', number: 1 },
+            { title: 'Model trainen op je merkstem', description: 'We trainen het model op teksten die zijn afgestemd op je tone of voice. Daardoor klinkt elke nieuwe of herschreven productbeschrijving als “je merk”.', number: 2 },
+            { title: 'Herschrijven & optimaliseren', description: 'Met het getrainde model herschrijven we alle productteksten: helderder, aantrekkelijker en meer gericht op conversie, zonder je stijl te verliezen. Je ontvangt alles in een bestand om te reviewen.', number: 3 },
             { title: 'SEO verrijken', description: 'We analyseren zoekgedrag (o.a. seizoenspatronen) en verwerken relevante keywords natuurlijk in de tekst. Zo verbeteren vindbaarheid en organisch verkeer, het hele jaar door.', number: 4 },
-            { title: 'Review & live zetten', description: 'Uw team kan de nieuwe teksten controleren. Na akkoord helpen we met het terugplaatsen in uw systeem en zorgen we voor een soepele implementatie.', number: 5 }
+            { title: 'Review & live zetten', description: 'Je team kan de nieuwe teksten controleren. Na akkoord helpen we met het terugplaatsen in je systeem en zorgen we voor een soepele implementatie.', number: 5 }
           ]
         },
         {
           id: 'blog-writer',
           title: 'AI Blogschrijver',
-          description: 'Geautomatiseerde SEO‑blogcreatie waarmee u concurreert op waardevolle zoekwoorden en advertentiekosten verlaagt via slimme content en automatische publicatie.',
+          description: 'Geautomatiseerde SEO-blogcreatie waarmee je concurreert op waardevolle zoekwoorden en advertentiekosten verlaagt via slimme content en automatische publicatie.',
           steps: [
             { title: 'Concurrentieonderzoek', description: 'We analyseren welke zoekwoorden concurrenten targeten (bijv. via Ahrefs) en waar kansen liggen om relevanter te worden voor Google.', number: 1 },
-            { title: 'Zoekwoorden kiezen', description: 'We selecteren zoekwoorden die u nu veel geld kosten in SEA. Door hier organisch op te ranken, kunt u budget verschuiven naar goedkopere, minder competitieve campagnes.', number: 2 },
-            { title: 'Model afstemmen', description: 'We fine‑tunen een model op uw merk en branche, zodat de content natuurlijk leest én uw keywords op een geloofwaardige manier verwerkt.', number: 3 },
-            { title: 'AI‑SEO aanpak', description: 'We richten content zo in dat deze ook goed kan verschijnen in AI‑samenvattingen en featured snippets. Daarvoor passen we structuur en formuleringen strategisch toe.', number: 4 },
-            { title: 'Automatisch publiceren', description: 'We koppelen een auto‑publish flow aan uw platform (maatwerk, Shopify, WordPress of WooCommerce) en publiceren volgens een strategische planning, volledig geautomatiseerd.', number: 5 }
+            { title: 'Zoekwoorden kiezen', description: 'We selecteren zoekwoorden die je nu veel geld kosten in SEA. Door hier organisch op te ranken, kun je budget verschuiven naar goedkopere, minder competitieve campagnes.', number: 2 },
+            { title: 'Model afstemmen', description: 'We fine-tunen een model op je merk en branche, zodat de content natuurlijk leest én je keywords op een geloofwaardige manier verwerkt.', number: 3 },
+            { title: 'AI-SEO aanpak', description: 'We richten content zo in dat deze ook goed kan verschijnen in AI-samenvattingen en featured snippets. Daarvoor passen we structuur en formuleringen strategisch toe.', number: 4 },
+            { title: 'Automatisch publiceren', description: 'We koppelen een auto-publish flow aan je platform (maatwerk, Shopify, WordPress of WooCommerce) en publiceren volgens een strategische planning, volledig geautomatiseerd.', number: 5 }
           ]
         },
         {
           id: 'linkedin-automation',
           title: 'AI LinkedIn Sales Bot',
-          description: 'Een volledig geautomatiseerd LinkedIn‑sales systeem dat prospects vindt, gepersonaliseerde campagnes uitrolt en connecties helpt omzetten naar klanten.',
+          description: 'Een volledig geautomatiseerd LinkedIn-sales systeem dat prospects vindt, gepersonaliseerde campagnes uitrolt en connecties helpt omzetten naar klanten.',
           steps: [
-            { title: 'Prospects bepalen', description: 'We definiëren en vinden uw ideale doelgroep op LinkedIn met slimme filters en AI‑analyse (bedrijfsgrootte, functietitel, branche, engagement).', number: 1 },
+            { title: 'Prospects bepalen', description: 'We definiëren en vinden je ideale doelgroep op LinkedIn met slimme filters en AI-analyse (bedrijfsgrootte, functietitel, branche, engagement).', number: 1 },
             { title: 'Campagnes & hooks', description: 'We bouwen meerdere benaderingen (bijv. waardevolle PDF, intake/consult, of directe pitch) en testen hooks die reacties uitlokken.', number: 2 },
-            { title: 'LLM trainen op uw stijl', description: 'We trainen een model op uw eerdere gesprekken, zodat berichten persoonlijk, consistent en herkenbaar blijven in uw tone of voice.', number: 3 },
+            { title: 'LLM trainen op je stijl', description: 'We trainen een model op je eerdere gesprekken, zodat berichten persoonlijk, consistent en herkenbaar blijven in je tone of voice.', number: 3 },
             { title: 'Automatisch uitvoeren & optimaliseren', description: 'Het systeem draait campagnes en stuurt bij op basis van data (acceptatie, opens, replies). Zo verbeteren resultaten continu zonder extra handwerk.', number: 4 },
-            { title: 'Multi‑channel opvolging', description: 'We koppelen LinkedIn aan e‑mail opvolging en tracken de klantreis van connectie tot klant, met inzicht in conversies en ROI.', number: 5 }
+            { title: 'Multi-channel opvolging', description: 'We koppelen LinkedIn aan e-mail opvolging en tracken de klantreis van connectie tot klant, met inzicht in conversies en ROI.', number: 5 }
           ]
         },
         {
           id: 'chatbot',
           title: 'AI Chatbot',
-          description: 'Een AI‑chatbot die is getraind op uw gesprekken en daardoor uw toon en service‑stijl overneemt. Optioneel met “personal shopper” functies voor webshops.',
+          description: 'Een AI-chatbot die is getraind op je gesprekken en daardoor je toon en service-stijl overneemt. Optioneel met “personal shopper” functies voor webshops.',
           steps: [
-            { title: 'Data verzamelen & analyseren', description: 'We verzamelen historische gesprekken (e-mail, chat, calls, tickets, social) en analyseren patronen: vragen, oplossingen, tone of voice en service‑standaarden.', number: 1 },
-            { title: 'Tone of voice in kaart', description: 'Met NLP leggen we vast hoe u reageert in verschillende situaties en welke formuleringen het beste werken—zodat de bot natuurlijk en passend klinkt.', number: 2 },
-            { title: 'Model trainen & testen', description: 'We fine‑tunen het taalmodel op uw data en testen het met realistische scenario’s tot de kwaliteit en consistentie klopt.', number: 3 },
+            { title: 'Data verzamelen & analyseren', description: 'We verzamelen historische gesprekken (e-mail, chat, calls, tickets, social) en analyseren patronen: vragen, oplossingen, tone of voice en service-standaarden.', number: 1 },
+            { title: 'Tone of voice in kaart', description: 'Met NLP leggen we vast hoe je reageert in verschillende situaties en welke formuleringen het beste werken, zodat de bot natuurlijk en passend klinkt.', number: 2 },
+            { title: 'Model trainen & testen', description: 'We fine-tunen het taalmodel op je data en testen het met realistische scenario\'s tot de kwaliteit en consistentie klopt.', number: 3 },
             { title: 'Personal shopper (optioneel)', description: 'Voor webshops voegen we een assistent toe die op basis van voorkeuren en context producten adviseert en combinaties voorstelt.', number: 4 },
-            { title: 'Integreren in uw kanalen', description: 'We plaatsen de chatbot op uw website en andere kanalen (bijv. Shopify en social), inclusief slimme “handoff” naar een medewerker wanneer nodig.', number: 5 },
+            { title: 'Integreren in je kanalen', description: 'We plaatsen de chatbot op je website en andere kanalen (bijv. Shopify en social), inclusief slimme “handoff” naar een medewerker wanneer nodig.', number: 5 },
             { title: 'Doorlopend verbeteren', description: 'De bot leert bij op basis van feedback, uitkomsten en conversies, zodat prestaties en klanttevredenheid blijven stijgen.', number: 6 }
           ]
         },
         {
           id: 'tiktok-optimization',
-          title: 'AI TikTok‑dominantie',
-          description: 'Een AI‑systeem dat virale TikToks vroeg detecteert, sterke reacties met subtiele CTA’s genereert en ze naar de top boost voor maximale zichtbaarheid.',
+          title: 'AI TikTok-dominantie',
+          description: 'Een AI-systeem dat virale TikToks vroeg detecteert, sterke reacties met subtiele CTA\'s genereert en ze naar de top boost voor maximale zichtbaarheid.',
           steps: [
-            { title: 'Creators met hoge engagement selecteren', description: 'We bouwen een database van creators in uw niche die structureel veel bereik en interactie halen (bijv. 100K+ views per post) en monitoren deze continu.', number: 1 },
-            { title: 'Viraal detecteren (real‑time)', description: 'Monitoring draait 24/7 en pikt nieuwe posts binnen minuten op. Het systeem beoordeelt vroege signalen om virale kans te voorspellen.', number: 2 },
-            { title: 'LLM trainen op top‑reacties', description: 'We trainen een model op grote aantallen best presterende reacties en patronen die engagement aanjagen—zodat reacties echt “native” aanvoelen.', number: 3 },
+            { title: 'Creators met hoge engagement selecteren', description: 'We bouwen een database van creators in je niche die structureel veel bereik en interactie halen (bijv. 100K+ views per post) en monitoren deze continu.', number: 1 },
+            { title: 'Viraal detecteren (real-time)', description: 'Monitoring draait 24/7 en pikt nieuwe posts binnen minuten op. Het systeem beoordeelt vroege signalen om virale kans te voorspellen.', number: 2 },
+            { title: 'LLM trainen op top-reacties', description: 'We trainen een model op grote aantallen best presterende reacties en patronen die engagement aanjagen, zodat reacties echt “native” aanvoelen.', number: 3 },
             { title: 'Reactie + subtiele CTA genereren', description: 'Bij een virale kans analyseert het model video, stijl en sentiment en schrijft het een reactie die engagement triggert en tegelijk een zachte CTA bevat.', number: 4 },
-            { title: 'Boost met strategische likes', description: 'Na plaatsing boosten we de reactie met gecontroleerde like‑patronen die organisch gedrag nabootsen, gericht op toppositie.', number: 5 },
-            { title: 'Bereik × conversie meten', description: 'Als video’s viraal gaan (vaak 1–3M+ views) krijgt uw reactie enorme exposure. We tracken verkeer en resultaat zodat ROI inzichtelijk wordt.', number: 6 }
+            { title: 'Boost met strategische likes', description: 'Na plaatsing boosten we de reactie met gecontroleerde like-patronen die organisch gedrag nabootsen, gericht op toppositie.', number: 5 },
+            { title: 'Bereik × conversie meten', description: 'Als video\'s viraal gaan (vaak 1–3M+ views) krijgt je reactie enorme exposure. We tracken verkeer en resultaat zodat ROI inzichtelijk wordt.', number: 6 }
           ]
         },
         {
           id: 'featured-snippets',
           title: 'AI SEO Integratie',
-          description: 'Optimalisatie voor Google’s AI‑resultaten, zodat uw content vaker wordt opgenomen in AI‑samenvattingen en featured snippets.',
+          description: 'Optimalisatie voor Google\'s AI-resultaten, zodat je content vaker wordt opgenomen in AI-samenvattingen en featured snippets.',
           steps: [
-            { title: 'AI‑algoritme analyseren', description: 'We onderzoeken welke signalen Google’s AI gebruikt om bronnen te selecteren voor samenvattingen en snippets, zodat we gericht kunnen optimaliseren.', number: 1 },
-            { title: 'Vragen & intent in kaart', description: 'We brengen de belangrijkste vragen en zoekintenties van uw doelgroep in kaart—precies daar waar uw oplossing waarde toevoegt.', number: 2 },
-            { title: 'Contentstructuur op autoriteit', description: 'We bouwen een contentaanpak die u positioneert als duidelijke bron, met heldere antwoorden en logische structuur die AI goed kan citeren.', number: 3 },
-            { title: 'Meta & schema optimaliseren', description: 'We optimaliseren meta‑descriptions, headers en structured data zodat uw content eenvoudiger te begrijpen en te gebruiken is voor AI‑extractie.', number: 4 },
-            { title: 'Concurrenten verdringen', description: 'We analyseren wie nu in AI‑resultaten staat en maken een plan om die posities over te nemen met betere, relevantere content.', number: 5 },
-            { title: 'Citeerbare quotes ontwerpen', description: 'We schrijven passages die natuurlijk te citeren zijn, zodat Google’s AI uw merk als bron kan toeschrijven.', number: 6 },
-            { title: 'Meten & opschalen', description: 'We monitoren prestaties (snippets, AI‑citations, CTR) en schalen wat werkt naar meer onderwerpen en zoekclusters.', number: 7 }
+            { title: 'AI-algoritme analyseren', description: 'We onderzoeken welke signalen Google\'s AI gebruikt om bronnen te selecteren voor samenvattingen en snippets, zodat we gericht kunnen optimaliseren.', number: 1 },
+            { title: 'Vragen & intent in kaart', description: 'We brengen de belangrijkste vragen en zoekintenties van je doelgroep in kaart. Precies daar waar je oplossing waarde toevoegt.', number: 2 },
+            { title: 'Contentstructuur op autoriteit', description: 'We bouwen een contentaanpak die je positioneert als duidelijke bron, met heldere antwoorden en logische structuur die AI goed kan citeren.', number: 3 },
+            { title: 'Meta & schema optimaliseren', description: 'We optimaliseren meta-descriptions, headers en structured data zodat je content eenvoudiger te begrijpen en te gebruiken is voor AI-extractie.', number: 4 },
+            { title: 'Concurrenten verdringen', description: 'We analyseren wie nu in AI-resultaten staat en maken een plan om die posities over te nemen met betere, relevantere content.', number: 5 },
+            { title: 'Citeerbare quotes ontwerpen', description: 'We schrijven passages die natuurlijk te citeren zijn, zodat Google\'s AI je merk als bron kan toeschrijven.', number: 6 },
+            { title: 'Meten & opschalen', description: 'We monitoren prestaties (snippets, AI-citations, CTR) en schalen wat werkt naar meer onderwerpen en zoekclusters.', number: 7 }
           ]
         }
       ]
@@ -181,14 +181,14 @@ export const translations = {
           id: 'fonteyn',
           title: 'Fonteyn: AI SEO Blog Optimalisatie',
           company: 'Fonteyn',
-          preview: 'SEO‑aanpak vernieuwd voor een leverancier van luxe meubels (10M+ jaaromzet) met AI‑gestuurde blogoptimalisatie.',
-          results: ['Gem. rankingstijging', '3% minder Google Ads‑kosten', '4% hogere conversie'],
-          description: 'Fonteyn is een van de grootste leveranciers van meubels, spa’s en alles rondom luxe wonen, met meer dan 10 miljoen omzet per jaar. We hebben ons AI‑gedreven blogoptimalisatiesysteem ingezet om betere artikelen te publiceren en organisch hogere posities te behalen.\n\nOnze aanpak startte met een concurrentieanalyse (o.a. via Ahrefs) om te begrijpen op welke zoekwoorden concurrenten inzetten. Daarna gebruikten we AI‑modellen om waardevolle zoekwoorden te vinden die Fonteyn veel geld kostten in Google Ads.\n\nIn plaats van structureel premiumprijzen te blijven betalen voor dure termen, hebben we gerichte content geschreven die juist die zoekwoorden organisch target. Zo konden ze beter scoren op de kostbare keywords en advertentiebudget verschuiven naar goedkopere, minder competitieve termen.\n\nVervolgens hebben we een model afgestemd op de merkstijl van Fonteyn, zodat zoekwoorden natuurlijk verwerkt werden in leesbare, overtuigende content. Met AI‑SEO technieken hebben we de kans vergroot dat hun content ook zichtbaar wordt in AI‑resultaten en featured snippets.',
+          preview: 'Voor Fonteyn, een van de grootste leveranciers van luxe meubels met meer dan 10 miljoen jaaromzet, hebben wij de volledige SEO-aanpak vernieuwd met AI-gestuurde blogoptimalisatie. Door concurrentieanalyse en slimme keyword-targeting realiseerden we lagere advertentiekosten en hogere organische posities.',
+          results: ['Gem. rankingstijging', '3% minder Google Ads-kosten', '4% hogere conversie'],
+          description: 'Fonteyn is een van de grootste leveranciers van meubels, spa\'s en alles rondom luxe wonen, met meer dan 10 miljoen omzet per jaar. We hebben ons AI-gedreven blogoptimalisatiesysteem ingezet om betere artikelen te publiceren en organisch hogere posities te behalen.\n\nOnze aanpak startte met een concurrentieanalyse (o.a. via Ahrefs) om te begrijpen op welke zoekwoorden concurrenten inzetten. Daarna gebruikten we AI-modellen om waardevolle zoekwoorden te vinden die Fonteyn veel geld kostten in Google Ads.\n\nIn plaats van structureel premiumprijzen te blijven betalen voor dure termen, hebben we gerichte content geschreven die juist die zoekwoorden organisch target. Zo konden ze beter scoren op de kostbare keywords en advertentiebudget verschuiven naar goedkopere, minder competitieve termen.\n\nVervolgens hebben we een model afgestemd op de merkstijl van Fonteyn, zodat zoekwoorden natuurlijk verwerkt werden in leesbare, overtuigende content. Met AI-SEO technieken hebben we de kans vergroot dat hun content ook zichtbaar wordt in AI-resultaten en featured snippets.',
           detailedResults: [
-            { title: 'Google‑ranking', description: 'Gemiddelde verbetering in posities', value: 'Significante stijging', color: '#10B981' },
-            { title: 'Google Ads‑kosten', description: 'Lagere advertentie‑uitgaven', value: '-3%', color: '#3B82F6' },
+            { title: 'Google-ranking', description: 'Gemiddelde verbetering in posities', value: 'Significante stijging', color: '#10B981' },
+            { title: 'Google Ads-kosten', description: 'Lagere advertentie-uitgaven', value: '-3%', color: '#3B82F6' },
             { title: 'Conversieratio', description: 'Relatieve stijging in conversie', value: '+4%', color: '#8B5CF6' },
-            { title: 'Geoptimaliseerde producten', description: 'Aantal verbeterde productpagina’s', value: '30.000+', color: '#F59E0B' },
+            { title: 'Geoptimaliseerde producten', description: 'Aantal verbeterde productpagina\'s', value: '30.000+', color: '#F59E0B' },
             { title: 'Bespaarde arbeid', description: 'Uren handmatig werk vervangen', value: '3.000 uur', color: '#EF4444' }
           ]
         },
@@ -196,12 +196,12 @@ export const translations = {
           id: 'aanhuis',
           title: 'Aanhuis: AI Presentatie & Training',
           company: 'Aanhuis',
-          preview: 'Efficiënter werken door AI‑training, praktische implementatie en custom GPT’s voor het team.',
-          results: ['+20% efficiëntie', 'Custom GPT’s gebouwd', 'Adoptie in het hele team'],
-          description: 'Voor Aanhuis.nl leverden we onze AI‑presentatie en training, met als doel: sneller en consistenter werken door slimme AI‑toepassingen. Met custom GPT’s die aansloten op hun behoeften realiseerden we onder andere ongeveer 20% tijdwinst bij e‑mailwerk.\n\nWe startten met een sessie om knelpunten en tijdvreters te identificeren. Daarna analyseerden we workflows en stemden we kansen af met het management.\n\nVervolgens gaven we presentaties op maat aan management en het kernteam. In plaats van een “standaard verhaal” gingen we in gesprek, luisterden we actief en maakten we de kansen concreet. Belangrijk daarbij: het team moest ervaren dat AI ondersteunt en versnelt — niet vervangt.\n\nNa de eerste sessies volgden afdelingsworkshops om specifieke processen door te lichten en direct toepasbare automatiseringen of tools te introduceren. Alle inzichten bundelden we in een praktische handleiding (o.a. veilig ChatGPT‑gebruik en het trainen van custom GPT’s).',
+          preview: 'Voor Aanhuis hebben wij een complete AI-training en implementatie verzorgd. Van management-presentatie tot afdelingsworkshops, inclusief custom GPT\'s voor e-mail en rapportages. Het resultaat: 20% tijdwinst op e-mailwerk en volledige team-adoptie binnen zes weken.',
+          results: ['+20% efficiëntie', 'Custom GPT\'s gebouwd', 'Adoptie in het hele team'],
+          description: 'Voor Aanhuis.nl leverden we onze AI-presentatie en training, met als doel: sneller en consistenter werken door slimme AI-toepassingen. Met custom GPT\'s die aansloten op hun behoeften realiseerden we onder andere ongeveer 20% tijdwinst bij e-mailwerk.\n\nWe startten met een sessie om knelpunten en tijdvreters te identificeren. Daarna analyseerden we workflows en stemden we kansen af met het management.\n\nVervolgens gaven we presentaties op maat aan management en het kernteam. In plaats van een “standaard verhaal” gingen we in gesprek, luisterden we actief en maakten we de kansen concreet. Belangrijk daarbij: het team moest ervaren dat AI ondersteunt en versnelt, niet vervangt.\n\nNa de eerste sessies volgden afdelingsworkshops om specifieke processen door te lichten en direct toepasbare automatiseringen of tools te introduceren. Alle inzichten bundelden we in een praktische handleiding (o.a. veilig ChatGPT-gebruik en het trainen van custom GPT\'s).',
           detailedResults: [
-            { title: 'E‑mail efficiëntie', description: 'Tijdwinst bij e‑mailwerk', value: '+20%', color: '#10B981' },
-            { title: 'Custom GPT’s', description: 'AI‑tools op maat gebouwd', value: 'Meerdere', color: '#3B82F6' },
+            { title: 'E-mail efficiëntie', description: 'Tijdwinst bij e-mailwerk', value: '+20%', color: '#10B981' },
+            { title: 'Custom GPT\'s', description: 'AI-tools op maat gebouwd', value: 'Meerdere', color: '#3B82F6' },
             { title: 'Afdelingen', description: 'Workshops uitgevoerd', value: 'Alle afdelingen', color: '#F59E0B' },
             { title: 'Opvolging', description: 'Continu verbeteren geborgd', value: 'Doorlopend', color: '#EF4444' }
           ]
@@ -210,24 +210,66 @@ export const translations = {
           id: 'blosh',
           title: 'Blosh: Custom AI Oplossingen Suite',
           company: 'Blosh',
-          preview: 'Maatwerk AI‑suite met SEO‑automatisering, een slimme chatbot en automatisering voor Shopify‑prijsbeheer.',
+          preview: 'Voor Blosh ontwikkelden wij een complete maatwerk AI-suite bestaande uit een SEO-automatiseringssysteem, een slimme chatbot getraind op historische gesprekken en een Shopify-prijsbeheermodule. Drie op maat gebouwde systemen die samen hun groei versnellen.',
           results: ['AI SEO systeem', 'Custom chatbot', 'Shopify automatisering'],
-          description: 'Blosh kwam bij ons met meerdere operationele uitdagingen die verdere groei in de weg zaten: betere vindbaarheid, sneller klantcontact en efficiënter e‑commercebeheer. In plaats van one‑size‑fits‑all oplossingen ontwikkelden we een AI‑suite die aansluit op hun manier van werken.\n\nWe startten met een AI‑SEO systeem dat content automatisch optimaliseert voor zoekmachines. Voor klantenservice bouwden we een chatbot die is getraind op historische gesprekken, zodat antwoorden snel én in de juiste toon worden gegeven.\n\nTot slot ontwikkelden we automatisering voor Shopify‑prijsbeheer. Daarmee kunnen prijzen over de volledige catalogus efficiënt worden beheerd en automatisch worden aangepast op basis van marktsignalen, concurrentie en verkoopprestaties.',
+          description: 'Blosh kwam bij ons met meerdere operationele uitdagingen die verdere groei in de weg zaten: betere vindbaarheid, sneller klantcontact en efficiënter e-commercebeheer. In plaats van one-size-fits-all oplossingen ontwikkelden we een AI-suite die aansluit op hun manier van werken.\n\nWe startten met een AI-SEO systeem dat content automatisch optimaliseert voor zoekmachines. Voor klantenservice bouwden we een chatbot die is getraind op historische gesprekken, zodat antwoorden snel én in de juiste toon worden gegeven.\n\nTot slot ontwikkelden we automatisering voor Shopify-prijsbeheer. Daarmee kunnen prijzen over de volledige catalogus efficiënt worden beheerd en automatisch worden aangepast op basis van marktsignalen, concurrentie en verkoopprestaties.',
           detailedResults: [
-            { title: 'AI‑SEO systeem', description: 'Automatische zoekoptimalisatie', value: 'Geïmplementeerd', color: '#10B981' },
+            { title: 'AI-SEO systeem', description: 'Automatische zoekoptimalisatie', value: 'Geïmplementeerd', color: '#10B981' },
             { title: 'Slimme chatbot', description: 'Snellere support met de juiste toon', value: 'Actief', color: '#3B82F6' },
-            { title: 'Shopify‑integratie', description: 'Automatisch prijsbeheer', value: 'Operationeel', color: '#8B5CF6' },
-            { title: 'Maatwerk oplossingen', description: 'Gebouwde AI‑systemen', value: '3 systemen', color: '#F59E0B' }
+            { title: 'Shopify-integratie', description: 'Automatisch prijsbeheer', value: 'Operationeel', color: '#8B5CF6' },
+            { title: 'Maatwerk oplossingen', description: 'Gebouwde AI-systemen', value: '3 systemen', color: '#F59E0B' }
+          ]
+        },
+        {
+          id: 'redbutton',
+          title: 'Red Button: Sage Intacct & Becosoft Integratie',
+          company: 'Red Button / Magic Apparels',
+          preview: 'Voor Magic Apparels en dochtermerk Red Button bouwden wij een volledige real-time integratie tussen boekhoudplatform Sage Intacct en ordersysteem Becosoft. Inclusief synchronisatie van honderden items, automatische Europese BTW-logica en uitgebreide foutafhandeling.',
+          results: ['Volledige sync', 'Factuurregels', 'Europese BTW-logica'],
+          description: 'Red Button is een dochtermerk van Magic Apparels. Ze ontvingen orders via Becosoft maar moesten deze koppelen aan hun boekhoudplatform Sage Intacct. Voor de integratie moesten honderden bestaande items worden gesynchroniseerd, waaronder facturen, klantgegevens en productdata.\n\nEen van de grootste uitdagingen was het correct verwerken van Europese factureringsregels. Wanneer een factuur binnen de EU werd verstuurd, moest deze zonder BTW worden verwerkt. Voor Engelse facturen gold juist wel BTW. Deze regels moesten automatisch worden toegepast op basis van het land van de klant.\n\nWe hebben een robuuste integratie gebouwd die real-time synchroniseert tussen beide systemen, met uitgebreide foutafhandeling en logging zodat het team altijd inzicht heeft in de status van elke synchronisatie.',
+          detailedResults: [
+            { title: 'Synchronisatie', description: 'Bestaande items gesynchroniseerd', value: 'Honderden items', color: '#10B981' },
+            { title: 'Factureringsregels', description: 'Automatische BTW-logica', value: 'EU & UK regels', color: '#3B82F6' },
+            { title: 'Real-time sync', description: 'Orders automatisch verwerkt', value: 'Operationeel', color: '#8B5CF6' },
+            { title: 'Systemen gekoppeld', description: 'Sage Intacct & Becosoft', value: '2 platformen', color: '#F59E0B' }
+          ]
+        },
+        {
+          id: 'stakepvp',
+          title: 'StakePVP: Game Platform & Blockchain Integratie',
+          company: 'StakePVP',
+          preview: 'Wij bouwden een compleet game platform met drie volledig functionele games, blockchain-integratie op de Solana blockchain en crypto wallets via Privy. Een technisch uitdagend project met multi-container hosting, load balancing en real-time multiplayer functionaliteit.',
+          results: ['3 games gebouwd', 'Solana blockchain', 'Multi-container hosting'],
+          description: 'Optivaize heeft een compleet game platform gebouwd inclusief 3 volledig functionele games en een blockchain integratie op de Solana blockchain. Dit project was bijzonder uitdagend omdat het meerdere containers betrof voor elk spel, met hosting, load balancing en crypto functionaliteit.\n\nVoor de wallet-integratie hebben we Privy gebruikt, waarmee spelers eenvoudig crypto wallets konden aanmaken en beheren. De Solana blockchain werd gebruikt voor in-game transacties en beloningen.\n\nDit project laat zien hoe goed Optivaize is in het bouwen van complexe custom software. Van game-architectuur tot blockchain-integratie, van multi-container orchestratie tot real-time multiplayer functionaliteit.',
+          detailedResults: [
+            { title: 'Games', description: 'Volledig functionele games gebouwd', value: '3 games', color: '#10B981' },
+            { title: 'Blockchain', description: 'Solana integratie met Privy wallets', value: 'Volledig operationeel', color: '#3B82F6' },
+            { title: 'Infrastructuur', description: 'Multi-container met load balancing', value: 'Schaalbaar', color: '#8B5CF6' },
+            { title: 'Technologieen', description: 'Privy, Solana, Helius', value: '10+ services', color: '#F59E0B' }
+          ]
+        },
+        {
+          id: 'passion',
+          title: 'Passion Ice Baths: AI SEO & Shopify App',
+          company: 'Passion Ice Baths',
+          preview: 'Voor Passion Ice Baths, het merk van Wim Hof, schrijven wij SEO-geoptimaliseerde blogs op basis van GA4 en Search Console data. Daarnaast hebben we een eigen AI-model getraind op hun merkstijl en bouwen we momenteel een custom Shopify app.',
+          results: ['AI SEO blogs', 'GA4 & Search Console', 'Shopify app'],
+          description: 'Passion Ice Baths, het merk waar Wim Hof aan verbonden is, kwam bij ons voor hulp met hun online vindbaarheid. We hebben SEO-geoptimaliseerde blogs geschreven met behulp van GA4 data en Search Console data om precies te begrijpen welke zoekwoorden het meeste potentieel hadden.\n\nWe hebben een eigen AI model getraind dat specifiek is afgestemd op hun merkstijl en doelgroep. Dit model genereert content die niet alleen technisch geoptimaliseerd is voor zoekmachines, maar ook authentiek aanvoelt voor hun community.\n\nDaarnaast zijn we momenteel een Shopify app aan het bouwen die hun e-commerce ervaring naar een hoger niveau tilt.',
+          detailedResults: [
+            { title: 'AI SEO', description: 'Blogs met GA4 & Search Console data', value: 'Geimplementeerd', color: '#10B981' },
+            { title: 'Custom AI Model', description: 'Getraind op merkstijl', value: 'Operationeel', color: '#3B82F6' },
+            { title: 'Shopify App', description: 'Custom app in ontwikkeling', value: 'In progress', color: '#8B5CF6' },
+            { title: 'Wim Hof', description: 'Merk ambassadeur', value: 'Partnership', color: '#F59E0B' }
           ]
         }
       ]
     },
     team: {
-      title: 'Maak kennis met uw AI‑innovatiepartners',
+      title: 'Maak kennis met je AI-innovatiepartners',
       members: [
-        { name: 'Geronimo S.', title: 'Head of Operations & Marketing', bio: 'Geronimo combineert strategisch denken met sterke uitvoering. Als Head of Operations & Marketing bij Optivaize bouwt hij de organisatorische en commerciële basis die AI‑gedreven groei schaalbaar maakt. Van het inrichten van teams en interne processen tot marketingstrategie en positionering: zijn focus ligt op het vertalen van ambitie naar structuur en meetbare resultaten. Met zijn achtergrond in beleidsadvies, politieke communicatie en organisatiestrategie brengt hij helderheid en discipline in snelgroeiende omgevingen. Hij gelooft dat echte AI‑transformatie pas ontstaat wanneer technologie en organisatie even sterk zijn.', skills: ['Operations', 'Marketingstrategie', 'Organisatiestrategie', 'Communicatie'] },
-        { name: 'Maximilian Bladt', title: 'Chief Executive Officer', bio: 'Na zijn rol als Head of AI Implementation bij Elevate Digital was Optivaize de logische volgende stap: bedrijven zonder belemmeringen van A tot Z helpen met AI. Maximilian werkt snel, bouwt pragmatische oplossingen en traint taalmodellen op taken die omzet verhogen en kosten verlagen. Hij gelooft niet dat AI mensen vervangt — maar wel dat mensen die AI goed inzetten, een voorsprong krijgen op mensen die dat niet doen.', skills: ['Strategie', 'Leiderschap', 'AI Engineering', 'Cloudarchitectuur'] },
-        { name: 'Filip Lysiak', title: 'AI & Data Science Lead', bio: 'Filip combineert een stevige basis in finance en consulting met hands‑on ervaring in innovatie op schaal. Bij een Fortune 500‑bedrijf adviseerde hij enkele van Europa’s grootste organisaties, waardoor hij zowel strategisch inzicht als begrip van complexe business‑vraagstukken meebrengt. Met expertise in kwantitatieve finance, softwareontwikkeling en data‑analyse overbrugt hij business en technologie — en begeleidt hij bedrijven naar AI‑transformaties met concrete, meetbare impact.', skills: ['Machine learning', 'NLP', 'Data science', 'Modeltraining'] }
+        { name: 'Maximilian Bladt', title: 'Chief Executive Officer', bio: 'Na zijn rol als Head of AI Implementation bij Elevate Digital was Optivaize de logische volgende stap: bedrijven zonder belemmeringen van A tot Z helpen met AI. Maximilian bouwt pragmatische AI-oplossingen, traint taalmodellen op taken die omzet verhogen en kosten verlagen en leidt een groeiend internationaal team aan de top van AI-ontwikkeling. Hij gelooft dat mensen die AI goed inzetten een ongrijpbare voorsprong krijgen op wie dat niet doet.', skills: ['Strategie', 'Leiderschap', 'AI Engineering', 'Cloudarchitectuur'] },
+        { name: 'Geronimo Saija', title: 'Marketing & Prompt Engineer', bio: 'Geronimo combineert strategisch denken met sterke uitvoering. Als Marketing & Prompt Engineer bij Optivaize bouwt hij de commerciële groei-machine die AI-gedreven klanten aantrekt en behoudt. Van go-to-market strategie tot performance marketing en prompt engineering: zijn focus ligt op het vertalen van Optivaize\'s geavanceerde AI-technologie naar overtuigende verhalen die klanten bewegen. Hij gelooft dat echte AI-transformatie pas ontstaat wanneer technologie en organisatie even sterk zijn.', skills: ['Marketing', 'Prompt Engineering', 'Groeistrategie', 'Positionering'] },
+        { name: 'Willem Bladt', title: 'Head of Finance', bio: 'Willem bewaakt de financiële gezondheid en schaalbaarheid van Optivaize. Met een scherp oog voor cijfers en structuur zorgt hij dat de snelle groei van het bedrijf wordt ondersteund door een solide financiële basis. Van investeerdersrelaties tot budgetbeheer en financial planning: Willem geeft Optivaize de ruggengraat om ambitieuze AI-projecten verantwoord te kunnen opschalen.', skills: ['Finance', 'Budgetbeheer', 'Investeerdersrelaties', 'Financiële planning'] }
       ]
     },
     footer: {
@@ -238,7 +280,7 @@ export const translations = {
       phoneLabel: 'Openingstijden: 9:00 - 18:00 CET',
       address: 'Groenekanseweg 70, De Bilt',
       addressDetail: '3732AG, Nederland',
-      ctaTitle: 'Klaar om uw bedrijf te transformeren?',
+      ctaTitle: 'Klaar om je bedrijf te transformeren?',
       ctaSubtitle: 'Bel ons direct of vul het contactformulier in',
       callUs: 'Bel ons: +31 6 42698918',
       fillForm: 'Vul het formulier in',
@@ -248,8 +290,8 @@ export const translations = {
       cookiePolicy: 'Cookiebeleid'
     },
     bedankt: {
-      title: 'voor uw bericht!',
-      subtitle: 'Wij hebben uw aanvraag ontvangen en nemen zo snel mogelijk contact met u op. Meestal binnen 24 uur.',
+      title: 'voor je bericht!',
+      subtitle: 'Wij hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op. Meestal binnen 24 uur.',
       directContact: 'Direct contact?',
       callUs: 'Bel ons: +31 6 42698918',
       linkedin: 'Geronimo op LinkedIn',
@@ -257,10 +299,10 @@ export const translations = {
       backHome: 'Terug naar Home',
       geronimo: {
         name: 'Geronimo S.',
-        role: 'Head of Operations & Marketing'
+        role: 'Head of Operations | Prompt Engineer'
       },
       team: {
-        geronimo: 'Operations & Marketing',
+        geronimo: 'Head of Operations | Prompt Engineer',
         max: 'CEO',
         filip: 'AI & Data Science'
       }
@@ -281,7 +323,7 @@ export const translations = {
       contactUs: 'Fill in the Form'
     },
     clientSlider: {
-      title: 'Trusted by Forward-Thinking Companies'
+      title: 'Trusted by forward-thinking companies'
     },
     presentation: {
       title: 'Proven Track Record of Success',
@@ -408,7 +450,7 @@ export const translations = {
           id: 'fonteyn',
           title: 'Fonteyn: AI SEO Blog Optimization',
           company: 'Fonteyn',
-          preview: 'Transformed SEO strategy for luxury furniture supplier generating 10+ million revenue annually through AI-powered blog optimization.',
+          preview: 'For Fonteyn, one of the largest luxury furniture suppliers with over 10 million in annual revenue, we transformed their entire SEO strategy with AI-powered blog optimization. Through competitor analysis and smart keyword targeting we achieved lower ad costs and higher organic rankings.',
           results: ['Avg ranking increase', '3% Google Ads reduction', '4% conversion boost'],
           description: 'Fonteyn is one of the biggest suppliers of furniture, spas, and everything for luxurious living, generating over 10 million in revenue per year. We implemented our AI-powered blog optimization system to create better posts and achieve higher rankings using organic methods.\n\nOur comprehensive approach involved competitor analysis using advanced tools like Ahrefs to understand which keywords competitors were ranking for and investing in. We then used sophisticated AI models to identify high-value keywords that were costing Fonteyn significant money in their Google Ads campaigns.\n\nInstead of continuing to pay premium prices for expensive keywords in advertising, we strategically wrote blog content targeting these costly terms. This allowed them to optimize content for expensive keywords while shifting their paid advertising budget to cheaper, less competitive terms - maximizing their overall marketing ROI.\n\nWe fine-tuned a specialized AI model specifically for Fonteyn\'s brand and industry, training the AI to seamlessly integrate target keywords into naturally flowing, engaging content that reads authentically. The model learned their brand voice, tone, and messaging style while creating keyword-rich content that didn\'t feel forced or robotic.\n\nOur AI SEO integration positioned their content to appear prominently in Google\'s AI-generated search results and featured snippets. We implemented comprehensive auto-publishing systems that work seamlessly with their platform, publishing optimized blog content on a strategic schedule with complete automation.',
           detailedResults: [
@@ -423,7 +465,7 @@ export const translations = {
           id: 'aanhuis',
           title: 'Aanhuis: AI Presentation & Training',
           company: 'Aanhuis',
-          preview: 'Transformed workplace efficiency through comprehensive AI training presentations and custom GPT implementation.',
+          preview: 'For Aanhuis we delivered a complete AI training and implementation programme. From management presentations to department workshops, including custom GPTs for email and reports. The result: 20% time savings on email work and full team-wide adoption within six weeks.',
           results: ['20% efficiency boost', 'Custom GPTs built', 'Team-wide adoption'],
           description: 'For Aanhuis.nl, we delivered our comprehensive AI presentation service, focusing on improving work efficiency through strategic AI implementation. We realized a 20% better work efficiency in writing emails by building custom GPTs tailored to their specific needs.\n\nOur engagement began with an initial session where we discussed time-consuming processes that were hindering efficiency and preventing people from working at their absolute best. We analyzed their workflows and looked for opportunities where they could improve before delivering the presentation and discussed these findings with management.\n\nWe conducted tailored presentations for both management and the core team working at Aanhuis. These weren\'t just generic AI overviews - we sat with their team for open conversations, actively listening and looking for opportunities while creating alignment. The key was ensuring that stakeholders (the people actually doing the work) felt that AI would help them work more efficiently rather than replace them.\n\nFollowing the successful initial presentation, we conducted specialized breakout sessions with different departments. In these focused sessions, we examined their specific processes and identified opportunities to automate them using AI or introduce tools they could start using directly.\n\nWe created a comprehensive guide containing all the insights from our discussions, including detailed instructions on how to use ChatGPT within their organization, how to train custom GPTs for specific tasks, and identification of additional AI opportunities. Later, we provided them with a PDF reference guide they could use whenever they had questions.\n\nThe team expressed enthusiasm about the results and told us they plan to schedule future meetings to make their processes even more efficient. This commitment to continuous improvement shows the lasting impact of our AI integration approach.',
           detailedResults: [
@@ -437,7 +479,7 @@ export const translations = {
           id: 'blosh',
           title: 'Blosh: Custom AI Solutions Suite',
           company: 'Blosh',
-          preview: 'Comprehensive custom AI solution development including SEO automation, intelligent chatbot, and Shopify price management.',
+          preview: 'For Blosh we developed a complete custom AI suite consisting of an SEO automation system, an intelligent chatbot trained on historical conversations, and a Shopify price management module. Three tailored systems that together accelerate their growth.',
           results: ['AI SEO system', 'Custom chatbot', 'Shopify automation'],
           description: 'Blosh approached us with multiple operational challenges that were limiting their growth potential. They needed better search visibility, faster client support, and more efficient e-commerce management. Rather than implementing generic solutions, we developed a completely custom AI suite tailored to their specific business needs.\n\nWe started by building them an advanced AI SEO system that automatically optimizes their content for search engines. This system analyzes competitor strategies, identifies high-value keywords, and generates content that improves their search rankings while reducing advertising costs. The AI continuously monitors search trends and adjusts their content strategy to maintain competitive advantage.\n\nFor their client support challenges, we developed an intelligent chatbot trained specifically on Blosh\'s historical conversations. The chatbot learned their unique communication patterns, problem-solving approaches, and brand voice to provide instant, personalized responses that maintain the human touch their clients expect. This dramatically improved response times and client satisfaction.\n\nFinally, we created an intelligent automation system for their Shopify platform that allows them to efficiently manage pricing across their entire product catalog. The system automatically adjusts prices based on market conditions, competitor analysis, inventory levels, and sales performance, saving countless hours of manual work while optimizing revenue.\n\nThese custom solutions demonstrate our approach to building AI products that integrate perfectly with existing workflows and scale with business growth, delivering real measurable value rather than one-size-fits-all solutions.',
           detailedResults: [
@@ -446,15 +488,57 @@ export const translations = {
             { title: 'Shopify Integration', description: 'Automated price management system', value: 'Operational', color: '#8B5CF6' },
             { title: 'Custom Solutions', description: 'Tailored AI products built', value: '3 systems', color: '#F59E0B' }
           ]
+        },
+        {
+          id: 'redbutton',
+          title: 'Red Button: Sage Intacct & Becosoft Integration',
+          company: 'Red Button / Magic Apparels',
+          preview: 'For Magic Apparels and subsidiary brand Red Button we built a full real-time integration between accounting platform Sage Intacct and order system Becosoft. Including synchronization of hundreds of items, automatic European VAT logic and extensive error handling.',
+          results: ['Full sync', 'Invoice rules', 'European VAT logic'],
+          description: 'Red Button is a subsidiary brand of Magic Apparels. They received orders through Becosoft but needed to connect these to their accounting platform Sage Intacct. Before the integration could go live, hundreds of existing items needed to be synchronized, including invoices, customer data and product information.\n\nOne of the biggest challenges was correctly processing European invoicing rules. When an invoice was sent within the EU, it had to be processed without VAT. For UK invoices, VAT did apply. These rules had to be automatically applied based on the customer\'s country.\n\nWe built a robust integration that synchronizes in real-time between both systems, with extensive error handling and logging so the team always has insight into the status of every synchronization.',
+          detailedResults: [
+            { title: 'Synchronization', description: 'Existing items synchronized', value: 'Hundreds of items', color: '#10B981' },
+            { title: 'Invoice Rules', description: 'Automatic VAT logic', value: 'EU & UK rules', color: '#3B82F6' },
+            { title: 'Real-time Sync', description: 'Orders automatically processed', value: 'Operational', color: '#8B5CF6' },
+            { title: 'Systems Connected', description: 'Sage Intacct & Becosoft', value: '2 platforms', color: '#F59E0B' }
+          ]
+        },
+        {
+          id: 'stakepvp',
+          title: 'StakePVP: Game Platform & Blockchain Integration',
+          company: 'StakePVP',
+          preview: 'We built a complete game platform with three fully functional games, blockchain integration on the Solana blockchain and crypto wallets via Privy. A technically challenging project featuring multi-container hosting, load balancing and real-time multiplayer functionality.',
+          results: ['3 games built', 'Solana blockchain', 'Multi-container hosting'],
+          description: 'Optivaize built a complete game platform including 3 fully functional games and a blockchain integration on the Solana blockchain. This project was particularly challenging as it involved multiple containers for each game, with hosting, load balancing and crypto functionality.\n\nFor wallet integration we used Privy, allowing players to easily create and manage crypto wallets. The Solana blockchain was used for in-game transactions and rewards.\n\nThis project demonstrates how skilled Optivaize is at building complex custom software. From game architecture to blockchain integration, from multi-container orchestration to real-time multiplayer functionality.',
+          detailedResults: [
+            { title: 'Games', description: 'Fully functional games built', value: '3 games', color: '#10B981' },
+            { title: 'Blockchain', description: 'Solana integration with Privy wallets', value: 'Fully operational', color: '#3B82F6' },
+            { title: 'Infrastructure', description: 'Multi-container with load balancing', value: 'Scalable', color: '#8B5CF6' },
+            { title: 'Technologies', description: 'Privy, Solana, Helius', value: '10+ services', color: '#F59E0B' }
+          ]
+        },
+        {
+          id: 'passion',
+          title: 'Passion Ice Baths: AI SEO & Shopify App',
+          company: 'Passion Ice Baths',
+          preview: 'For Passion Ice Baths, the brand of Wim Hof, we write SEO-optimized blogs based on GA4 and Search Console data. We also trained a custom AI model on their brand style and are currently building a custom Shopify app.',
+          results: ['AI SEO blogs', 'GA4 & Search Console', 'Shopify app'],
+          description: 'Passion Ice Baths, the brand associated with Wim Hof, came to us for help with their online visibility. We wrote SEO-optimized blogs using GA4 data and Search Console data to understand exactly which keywords had the most potential.\n\nWe trained a custom AI model specifically tailored to their brand style and target audience. This model generates content that is not only technically optimized for search engines, but also feels authentic to their community.\n\nAdditionally, we are currently building a Shopify app that will take their e-commerce experience to the next level.',
+          detailedResults: [
+            { title: 'AI SEO', description: 'Blogs with GA4 & Search Console data', value: 'Implemented', color: '#10B981' },
+            { title: 'Custom AI Model', description: 'Trained on brand style', value: 'Operational', color: '#3B82F6' },
+            { title: 'Shopify App', description: 'Custom app in development', value: 'In progress', color: '#8B5CF6' },
+            { title: 'Wim Hof', description: 'Brand ambassador', value: 'Partnership', color: '#F59E0B' }
+          ]
         }
       ]
     },
     team: {
       title: 'Meet Your AI Innovation Partners',
       members: [
-        { name: 'Geronimo S.', title: 'Head of Operations & Marketing', bio: 'Geronimo combines strategic thinking with operational execution. As Head of Operations & Marketing at Optivaize, he builds the organisational and commercial backbone that enables scalable AI-driven growth. From structuring teams and internal processes to driving marketing strategy and positioning, his focus is on turning ambition into structured, measurable results. With a background in policy advisory, political communication and organisational strategy, he brings clarity and discipline to fast-growing environments. He believes that real AI transformation happens when strong technology is matched with strong organisation.', skills: ['Operations', 'Marketing Strategy', 'Organisational Strategy', 'Communication'] },
-        { name: 'Maximilian Bladt', title: 'Chief Executive Officer', bio: 'Coming from Elevate Digital as head of AI implementation, starting Optivaize was the next logical step as then companies could be helped to the fullest without barriers. His experience enables him to work fast and train Large Language Models to do what drives revenue and reduces costs. He doesn\'t believe AI will replace people, but people using AI will replace people not using AI.', skills: ['Strategy', 'Leadership', 'AI Engineering', 'Cloud Architecture'] },
-        { name: 'Filip Lysiak', title: 'AI & Data Science Lead', bio: 'Filip combines a strong foundation in finance and consulting with hands-on experience driving innovation at scale. Having advised some of Europe\'s largest enterprises during his time at a Fortune 500 company, he brings both strategic vision and a deep understanding of complex business challenges. With expertise in quantitative finance, coding, and data analysis, Filip bridges the worlds of business and technology - making him uniquely suited to guide companies through successful AI transformations that deliver real, measurable impact.', skills: ['Machine Learning', 'NLP', 'Data Science', 'Model Training'] }
+        { name: 'Maximilian Bladt', title: 'Chief Executive Officer', bio: 'After his role as Head of AI Implementation at Elevate Digital, founding Optivaize was the logical next step, helping companies fully transform with AI, without barriers. Maximilian builds pragmatic AI solutions, trains language models on tasks that drive revenue and cut costs, and leads a growing international team at the frontier of what AI can do. He believes people who master AI gain an insurmountable edge over those who don\'t.', skills: ['Strategy', 'Leadership', 'AI Engineering', 'Cloud Architecture'] },
+        { name: 'Geronimo Saija', title: 'Marketing & Prompt Engineer', bio: 'Geronimo combines strategic thinking with strong execution. As Marketing & Prompt Engineer at Optivaize, he builds the commercial growth engine that attracts and retains AI-driven clients. From go-to-market strategy to performance marketing and prompt engineering, his focus is on translating Optivaize\'s frontier technology into compelling stories that move clients to act. He believes real AI transformation happens when technology and organisation are equally strong.', skills: ['Marketing', 'Prompt Engineering', 'Growth Strategy', 'Positioning'] },
+        { name: 'Willem Bladt', title: 'Head of Finance', bio: 'Willem safeguards the financial health and scalability of Optivaize. With a sharp eye for numbers and structure, he ensures the company\'s rapid growth is supported by a solid financial foundation. From investor relations to budget management and financial planning, Willem gives Optivaize the backbone to scale ambitious AI projects responsibly and sustainably.', skills: ['Finance', 'Budget Management', 'Investor Relations', 'Financial Planning'] }
       ]
     },
     footer: {
@@ -484,10 +568,10 @@ export const translations = {
       backHome: 'Back to Home',
       geronimo: {
         name: 'Geronimo S.',
-        role: 'Head of Operations & Marketing'
+        role: 'Head of Operations | Prompt Engineer'
       },
       team: {
-        geronimo: 'Operations & Marketing',
+        geronimo: 'Head of Operations | Prompt Engineer',
         max: 'CEO',
         filip: 'AI & Data Science'
       }

@@ -1,28 +1,101 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { useLanguage, translations } from '../LanguageContext';
+import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
 
-const NavContainer = styled(motion.nav)`
+const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
+
+const serviceItems = [
+  {
+    label: { nl: 'AI Business', en: 'AI Business' },
+    sublabel: { nl: 'Je hele bedrijf transformeren met AI', en: 'Transform your entire business with AI' },
+    path: '/ai-business', icon: Building2, color: '#EC4899',
+  },
+  {
+    label: { nl: 'AI Training', en: 'AI Training' },
+    sublabel: { nl: 'Je team klaarstomen voor het AI-tijdperk', en: 'Preparing your team for the AI era' },
+    path: '/ai-training', icon: GraduationCap, color: '#F97316',
+  },
+  {
+    label: { nl: 'Custom Software', en: 'Custom Software' },
+    sublabel: { nl: 'AI-first development, 3× sneller bouwen', en: 'AI-first development, 3× faster builds' },
+    path: '/custom-software', icon: Code2, color: '#EF4444',
+  },
+  {
+    label: { nl: 'Automatisering', en: 'Automation' },
+    sublabel: { nl: 'n8n workflows & platform integraties', en: 'n8n workflows & platform integrations' },
+    path: '/automatisering', icon: Zap, color: '#8B5CF6',
+  },
+  {
+    label: { nl: 'AI Sales', en: 'AI Sales' },
+    sublabel: { nl: 'CRM, LinkedIn automation & lead generatie', en: 'CRM, LinkedIn automation & lead generation' },
+    path: '/ai-sales', icon: Target, color: '#F59E0B',
+  },
+  {
+    label: { nl: 'AI Marketing', en: 'AI Marketing' },
+    sublabel: { nl: 'Google Ads, SEO, content & social automatisering', en: 'Google Ads, SEO, content & social automation' },
+    path: '/ai-marketing', icon: TrendingUp, color: '#10B981',
+  },
+  {
+    label: { nl: 'AI Agents', en: 'AI Agents' },
+    sublabel: { nl: 'Autonome agents die taken volledig overnemen', en: 'Autonomous agents that fully take over tasks' },
+    path: '/ai-agenten', icon: Bot, color: '#3B82F6',
+  },
+  {
+    label: { nl: 'AI Chatbot', en: 'AI Chatbot' },
+    sublabel: { nl: 'Chatbots die leren van elk gesprek', en: 'Chatbots that learn from every conversation' },
+    path: '/ai-chatbot', icon: MessageCircle, color: '#06B6D4',
+  },
+  {
+    label: { nl: 'Crypto & Blockchain', en: 'Crypto & Blockchain' },
+    sublabel: { nl: 'Smart contracts & blockchain development', en: 'Smart contracts & blockchain development' },
+    path: '/crypto-blockchain', icon: Blocks, color: '#6366F1',
+  },
+];
+
+const NavWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-  z-index: 9999;
-  transition: all 0.3s ease;
+  z-index: 9000;
+`;
 
-  @media (max-width: 768px) {
-    height: 80px;
+const AnnouncementBar = styled.div`
+  background: ${GRADIENT};
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.01em;
+
+  a {
+    color: white;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-left: 0.5rem;
   }
 
-  ${props => props.scrolled && `
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-  `}
+  @media (max-width: 640px) {
+    font-size: 11px;
+  }
+`;
+
+const NavBar = styled(motion.nav)`
+  height: 76px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
+  transition: box-shadow 0.3s ease;
+  ${props => props.$scrolled && 'box-shadow: 0 2px 24px rgba(0,0,0,0.07);'}
+
+  @media (max-width: 768px) {
+    height: 64px;
+  }
 `;
 
 const NavContent = styled.div`
@@ -39,295 +112,665 @@ const NavContent = styled.div`
   }
 `;
 
-const Logo = styled(motion.div)`
+const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  cursor: pointer;
-  
+  flex-shrink: 0;
+
   img {
-    width: 200px;
-    height: auto;
-    
-    @media (max-width: 768px) {
-      width: 150px;
-    }
+    height: 34px;
+    width: auto;
   }
 `;
 
-const DesktopMenu = styled.div`
+const DesktopLinks = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.125rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;
 
-const LanguageToggle = styled(motion.button)`
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
+const NavLink = styled(Link)`
+  font-size: 15px;
+  font-weight: 500;
+  color: #334155;
+  padding: 0.45rem 0.85rem;
   border-radius: 8px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+
+  &:hover, &.active {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.07);
+  }
+`;
+
+const DienstenBtn = styled.button`
+  font-size: 15px;
+  font-weight: 500;
+  color: ${props => props.$active ? '#3B82F6' : '#334155'};
+  background: ${props => props.$active ? 'rgba(59, 130, 246, 0.07)' : 'transparent'};
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.18s ease;
+
+  &:hover {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.07);
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+    transform: ${props => props.$open ? 'rotate(180deg)' : 'none'};
+  }
+`;
+
+const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+`;
+
+const LangBtn = styled.button`
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748B;
+  background: transparent;
+  border: 1px solid #E2E8F0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+
+  &:hover {
+    border-color: #3B82F6;
+    color: #3B82F6;
+  }
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
+`;
+
+const CTABtn = styled(Link)`
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
+  color: white;
+  background: ${GRADIENT};
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 18px rgba(59, 130, 246, 0.45);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    display: none;
   }
 `;
 
-const NavLink = styled(motion.a)`
-  font-size: 16px;
-  font-weight: 500;
-  color: #1E293B;
-  text-decoration: none;
-  position: relative;
-  cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #3B82F6;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(135deg, #3B82F6, #10B981);
-    transition: width 0.3s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
-  }
-
-  ${props => props.active && `
-    color: #3B82F6;
-    font-weight: 700;
-    
-    &::after {
-      width: 100%;
-    }
-  `}
-`;
-
-const MobileMenuButton = styled(motion.button)`
+const HamburgerBtn = styled.button`
   display: none;
   background: none;
   border: none;
   color: #1E293B;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.4rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 `;
 
-const MobileMenuOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+/* ---- OVER ONS DROPDOWN ---- */
+const OverOnsWrap = styled.div`
+  position: relative;
 `;
 
-const MobileNavLink = styled(motion.a)`
-  font-size: 2rem;
-  font-weight: 600;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
+const OverOnsDropdown = styled(motion.div)`
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: white;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  min-width: 200px;
+  z-index: 9001;
+`;
+
+const OverOnsItem = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 
   &:hover {
+    background: rgba(59, 130, 246, 0.06);
     color: #3B82F6;
   }
 `;
 
-const CloseButton = styled(motion.button)`
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  padding: 1rem;
+const OverOnsIcon = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: ${props => props.$color}18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$color};
+  flex-shrink: 0;
 `;
 
-const MobileLanguageToggle = styled(motion.button)`
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+/* ---- MEGA MENU ---- */
+const MegaWrap = styled(motion.div)`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  z-index: 8999;
+`;
+
+const MegaInner = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 2rem 2.5rem;
+`;
+
+const MegaLabel = styled.p`
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 1.25rem;
+`;
+
+const MegaGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const ServiceTile = styled(Link)`
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  border-radius: 12px;
+  border: 1px solid #F1F5F9;
+  transition: all 0.18s ease;
+
+  &:hover {
+    background: ${props => props.$color}0C;
+    border-color: ${props => props.$color}44;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px ${props => props.$color}18;
+  }
+`;
+
+const TileIcon = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: ${props => props.$color}18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$color};
+  flex-shrink: 0;
+  margin-top: 1px;
+`;
+
+const TileTitle = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 0.2rem;
+`;
+
+const TileSub = styled.div`
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.4;
+`;
+
+/* ---- MOBILE MENU ---- */
+const MobileOverlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+`;
+
+const MobileHead = styled.div`
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid #F1F5F9;
+  flex-shrink: 0;
+`;
+
+const MobileItems = styled.div`
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
+
+const MobileLink = styled(Link)`
+  font-size: 16px;
+  font-weight: 500;
+  color: #1E293B;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  display: block;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: #F8FAFC;
+    color: #3B82F6;
+  }
+`;
+
+const MobileDienstenBtn = styled.button`
+  font-size: 16px;
+  font-weight: 500;
+  color: #1E293B;
+  background: transparent;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { background: #F8FAFC; }
+
+  svg {
+    transition: transform 0.2s ease;
+    transform: ${props => props.$open ? 'rotate(180deg)' : 'none'};
+  }
+`;
+
+const MobileDienstenList = styled(motion.div)`
+  overflow: hidden;
+  padding: 0.25rem 0 0.5rem 1rem;
+`;
+
+const MobileDienstenItem = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #334155;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: #F8FAFC;
+    color: #3B82F6;
+  }
+`;
+
+const MobileDienstenIcon = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: ${props => props.$color}18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$color};
+  flex-shrink: 0;
+`;
+
+const MobileBottom = styled.div`
+  padding: 1rem 1rem 2rem;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+`;
+
+const MobileCTA = styled(Link)`
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+  background: ${GRADIENT};
+  padding: 0.875rem;
+  border-radius: 10px;
+`;
+
+const MobileLang = styled.button`
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748B;
+  background: transparent;
+  border: 1px solid #E2E8F0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 
 function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [overOnsOpen, setOverOnsOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileDiensten, setMobileDiensten] = useState(false);
+  const [mobileOverOns, setMobileOverOns] = useState(false);
+  const megaTimeout = useRef(null);
+  const overOnsTimeout = useRef(null);
   const { language, toggleLanguage } = useLanguage();
-  const t = translations[language].nav;
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      // Update active section based on scroll position
-      const sections = ['home', 'services', 'cases', 'team', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToSection = (href) => {
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      const offsetTop = element.offsetTop - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-    setMobileMenuOpen(false);
+  useEffect(() => {
+    setMobileOpen(false);
+    setMegaOpen(false);
+    setOverOnsOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  const openMega = () => {
+    clearTimeout(megaTimeout.current);
+    setMegaOpen(true);
   };
 
-  const menuItems = [
-    { label: t.home, href: '#home' },
-    { label: t.services, href: '#services' },
-    { label: t.cases, href: '#cases' },
-    { label: t.team, href: '#team' },
-    { label: t.contact, href: '#contact' }
-  ];
+  const closeMega = () => {
+    megaTimeout.current = setTimeout(() => setMegaOpen(false), 120);
+  };
+
+  const openOverOns = () => {
+    clearTimeout(overOnsTimeout.current);
+    setOverOnsOpen(true);
+  };
+
+  const closeOverOns = () => {
+    overOnsTimeout.current = setTimeout(() => setOverOnsOpen(false), 120);
+  };
+
+  const isActive = (path) => location.pathname === path;
+  const isDienstenActive = serviceItems.some(s => location.pathname === s.path);
+  const isOverOnsActive = location.pathname === '/over-ons' || location.pathname === '/hiring';
 
   return (
-    <>
-      <NavContainer
-        scrolled={scrolled}
-        initial={{ y: -100 }}
+    <NavWrapper>
+      <AnnouncementBar>
+        {language === 'nl'
+          ? 'Aan de top van AI-ontwikkeling. Wij bouwen wat anderen nog niet durven.'
+          : 'At the frontier of AI. Building what others haven\'t dared yet.'}
+        <a href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer">
+          {language === 'nl' ? 'Plan gratis gesprek' : 'Book free call'}
+        </a>
+      </AnnouncementBar>
+
+      <NavBar
+        $scrolled={scrolled}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
         <NavContent>
-          <Logo
-            onClick={() => scrollToSection('#home')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img src="/uploads/optivaize.png" alt="Optivize AI" />
+          <Logo to="/">
+            <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
           </Logo>
 
-          <DesktopMenu>
-            {menuItems.map((item) => (
-              <NavLink
-                key={item.label}
-                active={activeSection === item.href.replace('#', '')}
-                onClick={() => scrollToSection(item.href)}
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-            <LanguageToggle
-              onClick={toggleLanguage}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <DesktopLinks>
+            <NavLink to="/" className={isActive('/') ? 'active' : ''}>
+              {language === 'nl' ? 'Home' : 'Home'}
+            </NavLink>
+            <DienstenBtn
+              $active={isDienstenActive}
+              $open={megaOpen}
+              onMouseEnter={openMega}
+              onMouseLeave={closeMega}
             >
+              {language === 'nl' ? 'Diensten' : 'Services'}
+              <ChevronDown size={14} />
+            </DienstenBtn>
+            <NavLink to="/cases" className={isActive('/cases') ? 'active' : ''}>
+              Cases
+            </NavLink>
+            <OverOnsWrap onMouseEnter={openOverOns} onMouseLeave={closeOverOns}>
+              <DienstenBtn
+                $active={isOverOnsActive}
+                $open={overOnsOpen}
+              >
+                {language === 'nl' ? 'Over ons' : 'About'}
+                <ChevronDown size={14} />
+              </DienstenBtn>
+              <AnimatePresence>
+                {overOnsOpen && (
+                  <OverOnsDropdown
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <OverOnsItem to="/over-ons">
+                      <OverOnsIcon $color="#3B82F6"><Users size={15} /></OverOnsIcon>
+                      {language === 'nl' ? 'Over ons' : 'About us'}
+                    </OverOnsItem>
+                    <OverOnsItem to="/hiring">
+                      <OverOnsIcon $color="#10B981"><Briefcase size={15} /></OverOnsIcon>
+                      {language === 'nl' ? 'Vacatures' : 'Careers'}
+                    </OverOnsItem>
+                  </OverOnsDropdown>
+                )}
+              </AnimatePresence>
+            </OverOnsWrap>
+            <NavLink to="/contact" className={isActive('/contact') ? 'active' : ''}>
+              Contact
+            </NavLink>
+          </DesktopLinks>
+
+          <NavActions>
+            <LangBtn onClick={toggleLanguage}>
               {language === 'nl' ? 'EN' : 'NL'}
-            </LanguageToggle>
-          </DesktopMenu>
-
-          <MobileMenuButton
-            onClick={() => setMobileMenuOpen(true)}
-            whileTap={{ scale: 0.9 }}
-          >
-            <Menu size={24} />
-          </MobileMenuButton>
+            </LangBtn>
+            <CTABtn as="a" href="tel:+31642698918">
+              {language === 'nl' ? 'Bel ons' : 'Call us'}
+            </CTABtn>
+            <HamburgerBtn onClick={() => setMobileOpen(true)}>
+              <Menu size={24} />
+            </HamburgerBtn>
+          </NavActions>
         </NavContent>
-      </NavContainer>
+      </NavBar>
 
+      {/* Mega menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <MobileMenuOverlay
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        {megaOpen && (
+          <MegaWrap
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            onMouseEnter={openMega}
+            onMouseLeave={closeMega}
           >
-            <CloseButton
-              onClick={() => setMobileMenuOpen(false)}
-              whileTap={{ scale: 0.9 }}
-            >
-              <X size={32} />
-            </CloseButton>
-
-            {menuItems.map((item, index) => (
-              <MobileNavLink
-                key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-              </MobileNavLink>
-            ))}
-
-            <MobileLanguageToggle
-              onClick={toggleLanguage}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: menuItems.length * 0.1 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {language === 'nl' ? 'English' : 'Nederlands'}
-            </MobileLanguageToggle>
-          </MobileMenuOverlay>
+            <MegaInner>
+              <MegaLabel>
+                {language === 'nl' ? 'Onze diensten' : 'Our services'}
+              </MegaLabel>
+              <MegaGrid>
+                {serviceItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <ServiceTile key={item.path} to={item.path} $color={item.color}>
+                      <TileIcon $color={item.color}>
+                        <Icon size={18} />
+                      </TileIcon>
+                      <div>
+                        <TileTitle>{item.label[language]}</TileTitle>
+                        <TileSub>{item.sublabel[language]}</TileSub>
+                      </div>
+                    </ServiceTile>
+                  );
+                })}
+              </MegaGrid>
+            </MegaInner>
+          </MegaWrap>
         )}
       </AnimatePresence>
-    </>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <MobileOverlay
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <MobileHead>
+              <Logo to="/" onClick={() => setMobileOpen(false)}>
+                <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+              </Logo>
+              <button
+                onClick={() => setMobileOpen(false)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1E293B', padding: '0.4rem' }}
+              >
+                <X size={24} />
+              </button>
+            </MobileHead>
+
+            <MobileItems>
+              <MobileLink to="/">{language === 'nl' ? 'Home' : 'Home'}</MobileLink>
+
+              <MobileDienstenBtn
+                $open={mobileDiensten}
+                onClick={() => setMobileDiensten(!mobileDiensten)}
+              >
+                {language === 'nl' ? 'Diensten' : 'Services'}
+                <ChevronDown size={18} />
+              </MobileDienstenBtn>
+
+              <AnimatePresence>
+                {mobileDiensten && (
+                  <MobileDienstenList
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.22 }}
+                  >
+                    {serviceItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <MobileDienstenItem key={item.path} to={item.path}>
+                          <MobileDienstenIcon $color={item.color}>
+                            <Icon size={15} />
+                          </MobileDienstenIcon>
+                          {item.label[language]}
+                        </MobileDienstenItem>
+                      );
+                    })}
+                  </MobileDienstenList>
+                )}
+              </AnimatePresence>
+
+              <MobileLink to="/cases">Cases</MobileLink>
+
+              <MobileDienstenBtn
+                $open={mobileOverOns}
+                onClick={() => setMobileOverOns(!mobileOverOns)}
+              >
+                {language === 'nl' ? 'Over ons' : 'About'}
+                <ChevronDown size={18} />
+              </MobileDienstenBtn>
+
+              <AnimatePresence>
+                {mobileOverOns && (
+                  <MobileDienstenList
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.22 }}
+                  >
+                    <MobileDienstenItem to="/over-ons">
+                      <MobileDienstenIcon $color="#3B82F6"><Users size={15} /></MobileDienstenIcon>
+                      {language === 'nl' ? 'Over ons' : 'About us'}
+                    </MobileDienstenItem>
+                    <MobileDienstenItem to="/hiring">
+                      <MobileDienstenIcon $color="#10B981"><Briefcase size={15} /></MobileDienstenIcon>
+                      {language === 'nl' ? 'Vacatures' : 'Careers'}
+                    </MobileDienstenItem>
+                  </MobileDienstenList>
+                )}
+              </AnimatePresence>
+
+              <MobileLink to="/contact">Contact</MobileLink>
+            </MobileItems>
+
+            <MobileBottom>
+              <MobileCTA as="a" href="tel:+31642698918">
+                {language === 'nl' ? 'Bel ons' : 'Call us'}
+              </MobileCTA>
+              <MobileLang onClick={toggleLanguage}>
+                {language === 'nl' ? 'Switch to English' : 'Naar Nederlands'}
+              </MobileLang>
+            </MobileBottom>
+          </MobileOverlay>
+        )}
+      </AnimatePresence>
+    </NavWrapper>
   );
 }
 

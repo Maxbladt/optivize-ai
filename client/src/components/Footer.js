@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, FileText, X, Linkedin, Instagram, Twitter } from 'lucide-react';
-import { useLanguage, translations } from '../LanguageContext';
+import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
+
+const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
 const FooterSection = styled.footer`
-  id: contact;
   background: #0F172A;
   color: white;
   padding: 5rem 0 2rem;
@@ -22,118 +24,128 @@ const Container = styled.div`
   }
 `;
 
-const FooterContent = styled.div`
+const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
   margin-bottom: 4rem;
-  align-items: flex-start;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 `;
 
-const CompanyInfo = styled(motion.div)`
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-`;
+const Brand = styled(motion.div)``;
 
-const Logo = styled.div`
-  margin-bottom: 0.75rem;
-  display: flex; /* Add this like in Navigation */
-  align-items: center; /* Add this like in Navigation */
-  
+const FooterLogo = styled.div`
+  margin-bottom: 1rem;
   img {
-    width: 200px; /* Use width instead of height */
-    height: auto; /* Auto height instead */
+    height: 32px;
+    width: auto;
     filter: brightness(0) invert(1);
-    
-    @media (max-width: 768px) {
-      width: 150px; /* Adjust width for mobile */
-      height: auto;
-    }
   }
 `;
 
 const Tagline = styled.p`
-  font-size: 16px;
+  font-size: 15px;
   color: #94A3B8;
+  line-height: 1.6;
   margin-bottom: 1.5rem;
-  font-style: italic;
-  line-height: 1.4;
-  max-width: 400px;
+  max-width: 280px;
 `;
 
-const ContactInfo = styled.div`
+const SocialRow = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.625rem;
+`;
+
+const SocialIcon = styled(motion.a)`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${GRADIENT};
+    color: white;
+    transform: translateY(-2px);
+  }
+`;
+
+const FooterCol = styled(motion.div)``;
+
+const ColTitle = styled.h4`
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F1F5F9;
+  margin-bottom: 1.25rem;
+`;
+
+const FooterLink = styled(Link)`
+  display: block;
+  font-size: 14px;
+  color: #64748B;
+  margin-bottom: 0.75rem;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #10B981;
+  }
 `;
 
 const ContactItem = styled.div`
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #E2E8F0;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 `;
 
 const ContactIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #3B82F6, #10B981);
+  background: ${GRADIENT};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-top: 2px;
 `;
 
-const QuickLinks = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 2rem;
-`;
+const ContactText = styled.div`
+  font-size: 14px;
 
-const QuickLink = styled(motion.a)`
-  color: #94A3B8;
-  text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #3B82F6;
+  a {
+    color: #E2E8F0;
+    display: block;
+    transition: color 0.2s ease;
+    &:hover { color: #10B981; }
   }
-`;
 
-const ConsultationSection = styled(motion.div)`
-  text-align: center;
-`;
-
-const ConsultationTitle = styled.h3`
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #F1F5F9;
-`;
-
-const ConsultationSubtitle = styled.p`
-  font-size: 16px;
-  color: #94A3B8;
-  margin-bottom: 2rem;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  span {
+    display: block;
+    font-size: 12px;
+    color: #475569;
+    margin-top: 1px;
+  }
 `;
 
 
 const FooterBottom = styled.div`
-  border-top: 1px solid #334155;
+  border-top: 1px solid #1E293B;
   padding-top: 2rem;
   display: flex;
   justify-content: space-between;
@@ -141,47 +153,39 @@ const FooterBottom = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     flex-direction: column;
     text-align: center;
   }
 `;
 
 const Copyright = styled.p`
-  color: #64748B;
-  font-size: 14px;
+  color: #334155;
+  font-size: 13px;
 `;
 
 const LegalLinks = styled.div`
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
 `;
 
-const LegalLink = styled.a`
-  color: #64748B;
-  text-decoration: none;
-  font-size: 14px;
+const LegalLink = styled.button`
+  color: #334155;
+  background: none;
+  border: none;
+  font-size: 13px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
+  font-family: inherit;
 
-  &:hover {
-    color: #94A3B8;
-  }
+  &:hover { color: #64748B; }
 `;
 
-const PolicyModalOverlay = styled(motion.div)`
+const PolicyOverlay = styled(motion.div)`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   z-index: 10001;
   display: flex;
   align-items: center;
@@ -189,25 +193,19 @@ const PolicyModalOverlay = styled(motion.div)`
   padding: 1rem;
 `;
 
-const PolicyModalContainer = styled(motion.div)`
+const PolicyBox = styled(motion.div)`
   background: white;
   border-radius: 20px;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 580px;
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
   color: #1E293B;
-
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
 `;
 
-const PolicyCloseButton = styled(motion.button)`
+const PolicyCloseBtn = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -215,343 +213,153 @@ const PolicyCloseButton = styled(motion.button)`
   border: none;
   color: #64748B;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.4rem;
   border-radius: 50%;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background: #F1F5F9;
-  }
+  transition: background 0.2s ease;
+  &:hover { background: #F1F5F9; }
 `;
 
 const PolicyTitle = styled.h2`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #0F172A;
-  margin-bottom: 1.5rem;
-  padding-right: 3rem;
+  margin-bottom: 1.25rem;
+  padding-right: 2.5rem;
 `;
 
 const PolicyContent = styled.div`
-  line-height: 1.6;
-  color: #1E293B;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #475569;
 
   h3 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    margin: 1.5rem 0 0.75rem 0;
     color: #0F172A;
+    margin: 1.25rem 0 0.5rem;
   }
 
-  p {
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    margin: 0.5rem 0 1rem 1.5rem;
-  }
-
-  li {
-    margin-bottom: 0.5rem;
-  }
+  p { margin-bottom: 0.75rem; }
+  ul { margin: 0.5rem 0 0.75rem 1.25rem; }
+  li { margin-bottom: 0.4rem; }
 `;
 
+const policies = {
+  privacy: {
+    title: 'Privacy Policy',
+    content: `<h3>Gegevens die we verzamelen</h3><p>Wij verzamelen informatie die je direct aan ons verstrekt, zoals wanneer je contact met ons opneemt of gebruik maakt van onze diensten.</p><h3>Gebruik van informatie</h3><p>Wij gebruiken de informatie die wij verzamelen om onze diensten te leveren, te onderhouden en te verbeteren en om met je te communiceren.</p><h3>Delen van informatie</h3><p>Wij verkopen, verhandelen of dragen je persoonlijke informatie niet over aan derden zonder je toestemming.</p><h3>Contact</h3><p>Vragen over dit privacybeleid? Stuur een e-mail naar info@optivaize.nl</p>`
+  },
+  terms: {
+    title: 'Algemene Voorwaarden',
+    content: `<h3>Aanvaarding van voorwaarden</h3><p>Door onze website te bezoeken, ga je akkoord met deze gebruiksvoorwaarden.</p><h3>Gebruikslicentie</h3><p>Toestemming wordt verleend om tijdelijk één kopie van onze materialen te downloaden voor persoonlijk, niet-commercieel gebruik.</p><h3>Aansprakelijkheid</h3><p>In geen geval is Optivaize aansprakelijk voor schade die voortvloeit uit het gebruik van onze materialen.</p>`
+  },
+  cookies: {
+    title: 'Cookiebeleid',
+    content: `<h3>Wat zijn cookies</h3><p>Cookies zijn kleine tekstbestanden die op je apparaat worden opgeslagen wanneer je onze website bezoekt.</p><h3>Hoe wij cookies gebruiken</h3><p>Wij gebruiken cookies om je browse-ervaring te verbeteren en websiteverkeer te analyseren.</p><h3>Beheer van cookies</h3><p>Je kunt cookies beheren en verwijderen via je browserinstellingen.</p>`
+  }
+};
+
 function Footer() {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
   const [activePolicy, setActivePolicy] = useState(null);
   const { language } = useLanguage();
-  const t = translations[language].footer;
-
-  const policies = {
-    privacy: {
-      title: "Privacy Policy",
-      content: `
-        <h3>Information We Collect</h3>
-        <p>We collect information you provide directly to us, such as when you contact us or use our services.</p>
-        
-        <h3>How We Use Your Information</h3>
-        <p>We use the information we collect to provide, maintain, and improve our services and communicate with you.</p>
-        
-        <h3>Information Sharing</h3>
-        <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent.</p>
-        
-        <h3>Contact Us</h3>
-        <p>If you have questions about this Privacy Policy, please contact us at info@optivaize.nl</p>
-      `
-    },
-    terms: {
-      title: "Terms of Service",
-      content: `
-        <h3>Acceptance of Terms</h3>
-        <p>By accessing our website, you agree to be bound by these terms of service.</p>
-        
-        <h3>Use License</h3>
-        <p>Permission is granted to temporarily download one copy of our materials for personal, non-commercial transitory viewing only.</p>
-        
-        <h3>Disclaimer</h3>
-        <p>The materials on our website are provided on an 'as is' basis. We make no warranties, expressed or implied.</p>
-        
-        <h3>Limitations</h3>
-        <p>In no event shall Optivaize be liable for any damages arising out of the use or inability to use our materials.</p>
-      `
-    },
-    cookies: {
-      title: "Cookie Policy",
-      content: `
-        <h3>What Are Cookies</h3>
-        <p>Cookies are small text files stored on your device when you visit our website.</p>
-        
-        <h3>How We Use Cookies</h3>
-        <p>We use cookies to improve your browsing experience and analyze website traffic.</p>
-        
-        <h3>Types of Cookies</h3>
-        <ul>
-          <li>Essential cookies - Required for website functionality</li>
-          <li>Analytics cookies - Help us understand how you use our site</li>
-        </ul>
-        
-        <h3>Managing Cookies</h3>
-        <p>You can control and delete cookies through your browser settings.</p>
-      `
-    }
-  };
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.offsetTop - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <>
-      <FooterSection id="contact" ref={ref}>
+      <FooterSection ref={ref} id="contact">
         <Container>
-          <FooterContent>
-            <CompanyInfo
-              initial={{ opacity: 0, x: -50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          <FooterGrid>
+            <Brand
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
             >
-              <Logo>
-                <img src="/uploads/optivaize.png" alt="Optivaize" />
-              </Logo>
-              <Tagline>{t.tagline}</Tagline>
-              
-              <ContactInfo>
-                <ContactItem>
-                  <ContactIcon>
-                    <Mail size={20} />
-                  </ContactIcon>
-                  <div>
-                    <a href="mailto:info@optivaize.nl?subject=Beste Optivaize&body=Beste Optivaize,%0A%0AIk had een vraag over het volgende:%0A%0A" style={{ color: '#E2E8F0', textDecoration: 'none' }}>{t.email}</a>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.emailLabel}</div>
-                  </div>
-                </ContactItem>
-                
-                <ContactItem>
-                  <ContactIcon>
-                    <Phone size={20} />
-                  </ContactIcon>
-                  <div>
-                    <a href="tel:+31642698918" style={{ color: '#E2E8F0', textDecoration: 'none' }}>{t.phone}</a>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.phoneLabel}</div>
-                  </div>
-                </ContactItem>
-                
-                <ContactItem>
-                  <ContactIcon>
-                    <MapPin size={20} />
-                  </ContactIcon>
-                  <div>
-                    <div>{t.address}</div>
-                    <div style={{ fontSize: '14px', color: '#64748B' }}>{t.addressDetail}</div>
-                  </div>
-                </ContactItem>
-              </ContactInfo>
+              <FooterLogo>
+                <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+              </FooterLogo>
+              <Tagline>
+                {language === 'nl'
+                  ? 'Aan de top van AI-ontwikkeling. Wij bouwen intelligente systemen die je bedrijf versnellen.'
+                  : 'At the frontier of AI. We build intelligent systems that accelerate your business.'}
+              </Tagline>
+              <SocialRow>
+                <SocialIcon href="https://www.linkedin.com/company/optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
+                  <Linkedin size={16} />
+                </SocialIcon>
+                <SocialIcon href="https://www.instagram.com/optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
+                  <Instagram size={16} />
+                </SocialIcon>
+                <SocialIcon href="https://x.com/optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
+                  <Twitter size={16} />
+                </SocialIcon>
+              </SocialRow>
+            </Brand>
 
-              <QuickLinks>
-                <QuickLink 
-                  onClick={() => scrollToSection('home')}
-                  whileHover={{ x: 5 }}
-                >
-                  Home
-                </QuickLink>
-                <QuickLink 
-                  onClick={() => scrollToSection('services')}
-                  whileHover={{ x: 5 }}
-                >
-                  Services
-                </QuickLink>
-                <QuickLink 
-                  onClick={() => scrollToSection('cases')}
-                  whileHover={{ x: 5 }}
-                >
-                  Cases
-                </QuickLink>
-                <QuickLink 
-                  onClick={() => scrollToSection('team')}
-                  whileHover={{ x: 5 }}
-                >
-                  Team
-                </QuickLink>
-                <QuickLink 
-                  onClick={() => scrollToSection('contact')}
-                  whileHover={{ x: 5 }}
-                >
-                  Contact
-                </QuickLink>
-              </QuickLinks>
-
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <motion.a
-                  href="https://www.linkedin.com/company/optivaize"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    textDecoration: 'none'
-                  }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Linkedin size={20} />
-                </motion.a>
-                <motion.a
-                  href="https://www.instagram.com/optivaize"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    textDecoration: 'none'
-                  }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Instagram size={20} />
-                </motion.a>
-                <motion.a
-                  href="https://x.com/optivaize"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    textDecoration: 'none'
-                  }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Twitter size={20} />
-                </motion.a>
-              </div>
-            </CompanyInfo>
-
-            <ConsultationSection
-              initial={{ opacity: 0, x: 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            <FooterCol
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <ConsultationTitle>{t.ctaTitle}</ConsultationTitle>
-              <ConsultationSubtitle>
-                {t.ctaSubtitle}
-              </ConsultationSubtitle>
+              <ColTitle>{language === 'nl' ? 'Diensten' : 'Services'}</ColTitle>
+              <FooterLink to="/ai-agenten">AI Agents</FooterLink>
+              <FooterLink to="/ai-marketing">AI Marketing</FooterLink>
+              <FooterLink to="/ai-sales">AI Sales</FooterLink>
+              <FooterLink to="/automatisering">{language === 'nl' ? 'Automatisering' : 'Automation'}</FooterLink>
+              <FooterLink to="/custom-software">Custom Software</FooterLink>
+              <FooterLink to="/ai-business">AI Business</FooterLink>
+            </FooterCol>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px', margin: '0 auto' }}>
-                <motion.a
-                  href="tel:+31642698918"
-                  style={{
-                    background: 'linear-gradient(135deg, #3B82F6, #10B981)',
-                    color: 'white',
-                    border: 'none',
-                    padding: '1rem 2rem',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.5rem',
-                    minHeight: '56px',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Phone size={20} />
-                  {t.callUs}
-                </motion.a>
+            <FooterCol
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <ColTitle>{language === 'nl' ? 'Bedrijf' : 'Company'}</ColTitle>
+              <FooterLink to="/">{language === 'nl' ? 'Home' : 'Home'}</FooterLink>
+              <FooterLink to="/cases">Cases</FooterLink>
+              <FooterLink to="/over-ons">{language === 'nl' ? 'Over ons' : 'About'}</FooterLink>
+              <FooterLink to="/hiring">{language === 'nl' ? 'Vacatures' : 'Careers'}</FooterLink>
+              <FooterLink to="/contact">Contact</FooterLink>
+            </FooterCol>
 
-                <motion.a
-                  href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: 'transparent',
-                    border: '2px solid #3B82F6',
-                    color: '#3B82F6',
-                    padding: '1rem 2rem',
-                    borderRadius: '8px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.5rem',
-                    minHeight: '56px',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ 
-                    backgroundColor: '#3B82F6',
-                    color: 'white',
-                    scale: 1.02
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <FileText size={20} />
-                  {t.fillForm}
-                </motion.a>
-              </div>
-            </ConsultationSection>
-          </FooterContent>
+            <FooterCol
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <ColTitle>Contact</ColTitle>
+              <ContactItem>
+                <ContactIcon><Mail size={15} /></ContactIcon>
+                <ContactText>
+                  <a href="mailto:info@optivaize.nl">info@optivaize.nl</a>
+                  <span>{language === 'nl' ? 'Stuur ons een bericht' : 'Send us a message'}</span>
+                </ContactText>
+              </ContactItem>
+              <ContactItem>
+                <ContactIcon><Phone size={15} /></ContactIcon>
+                <ContactText>
+                  <a href="tel:+31642698918">+31 6 42 69 89 18</a>
+                  <span>{language === 'nl' ? 'Ma–Vr, 9:00–18:00' : 'Mon–Fri, 9:00–18:00'}</span>
+                </ContactText>
+              </ContactItem>
+              <ContactItem>
+                <ContactIcon><MapPin size={15} /></ContactIcon>
+                <ContactText>
+                  <a href="https://maps.google.com/?q=Groenekanseweg+70+de+Bilt" target="_blank" rel="noopener noreferrer">Groenekanseweg 70, De Bilt</a>
+                  <span>3732 AG, Nederland</span>
+                </ContactText>
+              </ContactItem>
+            </FooterCol>
+          </FooterGrid>
 
           <FooterBottom>
             <Copyright>
-              {t.copyright}
+              &copy; {new Date().getFullYear()} Optivaize. {language === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.'}
             </Copyright>
             <LegalLinks>
-              <LegalLink onClick={() => setActivePolicy('privacy')}>{t.privacyPolicy}</LegalLink>
-              <LegalLink onClick={() => setActivePolicy('terms')}>{t.termsOfService}</LegalLink>
-              <LegalLink onClick={() => setActivePolicy('cookies')}>{t.cookiePolicy}</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('terms')}>{language === 'nl' ? 'Voorwaarden' : 'Terms'}</LegalLink>
+              <LegalLink onClick={() => setActivePolicy('cookies')}>Cookies</LegalLink>
             </LegalLinks>
           </FooterBottom>
         </Container>
@@ -559,30 +367,25 @@ function Footer() {
 
       <AnimatePresence>
         {activePolicy && (
-          <PolicyModalOverlay
+          <PolicyOverlay
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActivePolicy(null)}
           >
-            <PolicyModalContainer
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              onClick={(e) => e.stopPropagation()}
+            <PolicyBox
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={e => e.stopPropagation()}
             >
-              <PolicyCloseButton
-                onClick={() => setActivePolicy(null)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
+              <PolicyCloseBtn onClick={() => setActivePolicy(null)}>
                 <X size={20} />
-              </PolicyCloseButton>
-              
-              <PolicyTitle>{policies[activePolicy]?.title}</PolicyTitle>
-              <PolicyContent dangerouslySetInnerHTML={{ __html: policies[activePolicy]?.content }} />
-            </PolicyModalContainer>
-          </PolicyModalOverlay>
+              </PolicyCloseBtn>
+              <PolicyTitle>{policies[activePolicy].title}</PolicyTitle>
+              <PolicyContent dangerouslySetInnerHTML={{ __html: policies[activePolicy].content }} />
+            </PolicyBox>
+          </PolicyOverlay>
         )}
       </AnimatePresence>
     </>

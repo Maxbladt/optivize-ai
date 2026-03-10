@@ -303,7 +303,7 @@ function Bedankt() {
           onClick={() => navigate('/')}
           style={{ cursor: 'pointer' }}
         >
-          <Logo src="/uploads/optivaize.png" alt="Optivaize" />
+          <Logo src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
         </motion.div>
       </NavBar>
 
@@ -337,7 +337,7 @@ function Bedankt() {
               <TeamMemberTitle>{t.team.geronimo}</TeamMemberTitle>
             </TeamMemberCard>
             <TeamMemberCard>
-              <TeamPhoto src="/uploads/max.png" alt="Maximilian Bladt" />
+              <TeamPhoto src="/uploads/foto_max.png" alt="Maximilian Bladt" />
               <TeamMemberName>Maximilian B.</TeamMemberName>
               <TeamMemberTitle>{t.team.max}</TeamMemberTitle>
             </TeamMemberCard>

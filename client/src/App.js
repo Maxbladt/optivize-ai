@@ -1,130 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './LanguageContext';
-import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import ClientSlider from './components/ClientSlider';
-import PresentationSection from './components/PresentationSection';
-import Services from './components/Services';
-import Cases from './components/Cases';
-import Team from './components/Team';
-import Footer from './components/Footer';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import AIAgentsPage from './pages/AIAgentsPage';
+import MarketingPage from './pages/MarketingPage';
+import SalesPage from './pages/SalesPage';
+import AutomationPage from './pages/AutomationPage';
+import SoftwarePage from './pages/SoftwarePage';
+import AIBusinessPage from './pages/AIBusinessPage';
+import CasesPage from './pages/CasesPage';
+import CaseDetailPage from './pages/CaseDetailPage';
+import TeamPage from './pages/TeamPage';
+import ContactPage from './pages/ContactPage';
+import ChatbotPage from './pages/ChatbotPage';
+import TrainingPage from './pages/TrainingPage';
+import SubsidyPage from './pages/SubsidyPage';
+import HiringPage from './pages/HiringPage';
 import Bedankt from './components/Bedankt';
 
-const AppContainer = styled.div`
-  min-height: 100vh;
-  background: #ffffff;
-  color: #1E293B;
-  overflow-x: hidden;
-`;
-
-const LoadingScreen = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #3B82F6, #10B981);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-`;
-
-const LoadingLogo = styled(motion.div)`
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  img {
-    width: 300px;
-    height: auto;
-    filter: brightness(0) invert(1);
-    
-    @media (max-width: 768px) {
-      width: 220px;
-    }
-  }
-`;
-
-const ProgressBar = styled(motion.div)`
-  width: 300px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
-  overflow: hidden;
-`;
-
-const ProgressFill = styled(motion.div)`
-  height: 100%;
-  background: white;
-  border-radius: 2px;
-`;
-
-function HomePage() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <AppContainer>
-      <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LoadingLogo
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <img src="/uploads/optivaize.png" alt="Optivaize" />
-            </LoadingLogo>
-            <ProgressBar>
-              <ProgressFill
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              />
-            </ProgressBar>
-          </LoadingScreen>
-        )}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <>
-          <Navigation />
-          <Hero />
-          <ClientSlider />
-          <PresentationSection />
-          <Services />
-          <Cases />
-          <Team />
-          <Footer />
-        </>
-      )}
-    </AppContainer>
-  );
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
 }
 
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Layout><HomePage /></Layout>} />
+          <Route path="/ai-agenten" element={<Layout><AIAgentsPage /></Layout>} />
+          <Route path="/ai-marketing" element={<Layout><MarketingPage /></Layout>} />
+          <Route path="/ai-sales" element={<Layout><SalesPage /></Layout>} />
+          <Route path="/automatisering" element={<Layout><AutomationPage /></Layout>} />
+          <Route path="/custom-software" element={<Layout><SoftwarePage /></Layout>} />
+          <Route path="/ai-business" element={<Layout><AIBusinessPage /></Layout>} />
+          <Route path="/cases" element={<Layout><CasesPage /></Layout>} />
+          <Route path="/cases/:slug" element={<Layout><CaseDetailPage /></Layout>} />
+          <Route path="/over-ons" element={<Layout><TeamPage /></Layout>} />
+          <Route path="/hiring" element={<Layout><HiringPage /></Layout>} />
+          <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
+          <Route path="/ai-chatbot" element={<Layout><ChatbotPage /></Layout>} />
+          <Route path="/ai-training" element={<Layout><TrainingPage /></Layout>} />
+          <Route path="/crypto-blockchain" element={<Layout><SubsidyPage /></Layout>} />
           <Route path="/bedankt" element={<Bedankt />} />
         </Routes>
       </BrowserRouter>

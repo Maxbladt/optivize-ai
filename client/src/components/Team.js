@@ -175,9 +175,9 @@ const SkillBadge = styled.span`
 `;
 
 const teamStaticConfig = [
-  { name: "Geronimo S.", photo: "/uploads/geronimo.png", linkedin: "https://www.linkedin.com/in/geronimosaija/", gradient: "linear-gradient(135deg, #10B981, #059669)" },
-  { name: "Maximilian Bladt", photo: "/uploads/max.png", linkedin: "https://www.linkedin.com/in/max-bladt/", gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)" },
-  { name: "Filip Lysiak", photo: "/uploads/filip.png", linkedin: "https://www.linkedin.com/in/filiplysiak/", gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)" }
+  { name: "Maximilian Bladt", photo: "/uploads/foto_max.png", linkedin: "https://www.linkedin.com/in/max-bladt/", gradient: "linear-gradient(135deg, #3B82F6, #1D4ED8)" },
+  { name: "Geronimo Saija", photo: "/uploads/geronimo.png", linkedin: "https://www.linkedin.com/in/geronimosaija/", gradient: "linear-gradient(135deg, #10B981, #059669)" },
+  { name: "Willem Bladt", photo: "/uploads/willem.png", linkedin: "https://www.linkedin.com/in/willem-bladt/", gradient: "linear-gradient(135deg, #F59E0B, #D97706)" }
 ];
 
 function Team() {
