@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase, Phone } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 
@@ -203,6 +203,9 @@ const LangBtn = styled.button`
 `;
 
 const CTABtn = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 14px;
   font-weight: 600;
   color: white;
@@ -626,6 +629,7 @@ function Navigation() {
               {language === 'nl' ? 'EN' : 'NL'}
             </LangBtn>
             <CTABtn as="a" href="tel:+31642698918">
+              <Phone size={14} />
               {language === 'nl' ? 'Bel ons' : 'Call us'}
             </CTABtn>
             <HamburgerBtn onClick={() => setMobileOpen(true)}>

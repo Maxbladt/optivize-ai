@@ -260,12 +260,12 @@ const TypingIndicator = styled(motion.div)`
 
 const CHAT_SCRIPT_NL = [
   { role: 'user', text: 'Hoi, ik zoek een goede jacuzzi voor in mijn tuin. Budget rond \u20AC3.000.' },
-  { role: 'bot', text: 'Welkom bij Fonteyn! Wij verkopen geen Jacuzzi\u00AE (dat is een geregistreerd merk), maar we hebben prachtige buitenspa\'s die minstens zo goed zijn. Voor hoeveel personen zoekt u?' },
+  { role: 'bot', text: 'Welkom bij Fonteyn! Wij verkopen geen Jacuzzi\u00AE (dat is een geregistreerd merk), maar we hebben prachtige buitenspa\'s die minstens zo goed zijn. Voor hoeveel personen zoek je?' },
   { role: 'user', text: '4 personen, en liefst compact want mijn tuin is niet heel groot.' },
   { role: 'bot', text: 'Dan is de Spa Believe van Devine Spas ideaal! Compact (155\u00D7155cm), 40 hydrotherapie jets, LED-verlichting en Bluetooth audio. Nu van \u20AC5.990 voor \u20AC2.900!' },
   { role: 'product', text: '' },
   { role: 'user', text: 'Dat klinkt goed! Zijn er nog extra aanbiedingen?' },
-  { role: 'bot', text: 'We hebben even gekeken en speciaal voor u kunnen we een extra korting regelen op deze spa!' },
+  { role: 'bot', text: 'We hebben even gekeken en speciaal voor je kunnen we een extra korting regelen op deze spa!' },
   { role: 'discount', text: '' },
 ];
 
@@ -755,7 +755,7 @@ function ChatbotPage() {
                   'A/B-testvragen voor maximale conversie',
                   'Automatische kortingen op basis van klantgedrag',
                   'Conversie-tracking over meerdere sessies',
-                  'Koppeling aan alle kanalen die u gebruikt',
+                  'Koppeling aan alle kanalen die je gebruikt',
                 ] : [
                   'Over-the-air training on real customer conversations',
                   'A/B test questions for maximum conversion',

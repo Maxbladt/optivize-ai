@@ -841,7 +841,7 @@ function AutomationPage() {
   const isNL = language === 'nl';
 
   const features = [
-    { icon: RefreshCw, color: '#8B5CF6', title: isNL ? 'Platform sync' : 'Platform sync', desc: isNL ? 'Verbind al uw tools en synchroniseer data automatisch in real-time.' : 'Connect all your tools and sync data automatically in real-time.' },
+    { icon: RefreshCw, color: '#8B5CF6', title: isNL ? 'Platform sync' : 'Platform sync', desc: isNL ? 'Verbind al je tools en synchroniseer data automatisch in real-time.' : 'Connect all your tools and sync data automatically in real-time.' },
     { icon: GitBranch, color: '#3B82F6', title: isNL ? 'Complexe flows' : 'Complex flows', desc: isNL ? 'Bouw workflows met condities, vertakkingen en foutafhandeling.' : 'Build workflows with conditions, branches and error handling.' },
     { icon: Clock, color: '#10B981', title: isNL ? 'Tijdgebaseerd' : 'Time-based', desc: isNL ? 'Plan taken op specifieke momenten of intervallen , geheel automatisch.' : 'Schedule tasks at specific times or intervals , fully automatically.' },
     { icon: Database, color: '#F59E0B', title: isNL ? 'Data mapping' : 'Data mapping', desc: isNL ? 'Transformeer data van het ene formaat naar het andere zonder handmatig werk.' : 'Transform data from one format to another without manual work.' },
@@ -997,7 +997,7 @@ function AutomationPage() {
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Mogelijkheden' : 'Capabilities'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Alles wat u nodig heeft' : 'Everything you need'}</SectionTitle></FadeIn>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Alles wat je nodig hebt' : 'Everything you need'}</SectionTitle></FadeIn>
           </div>
           <FeatureGrid>
             {features.map((f, i) => {
@@ -1109,7 +1109,7 @@ function AutomationPage() {
             </BridgeTitle></FadeIn>
             <FadeIn delay={0.05}><BridgeSub>
               {isNL
-                ? 'Of het nu maatwerk software is of visuele tools als N8N – wij kiezen de beste aanpak voor uw situatie.'
+                ? 'Of het nu maatwerk software is of visuele tools als N8N – wij kiezen de beste aanpak voor je situatie.'
                 : 'Whether it\'s custom software or visual tools like N8N – we choose the best approach for your situation.'}
             </BridgeSub></FadeIn>
           </div>
@@ -1187,10 +1187,10 @@ function AutomationPage() {
           <TwoCol>
             <FadeIn>
               <SectionLabel>{isNL ? 'Hosting & beheer' : 'Hosting & management'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Wij hosten uw n8n-omgeving' : 'We host your n8n environment'}</SectionTitle>
+              <SectionTitle>{isNL ? 'Wij hosten je n8n-omgeving' : 'We host your n8n environment'}</SectionTitle>
               <SectionText>
                 {isNL
-                  ? 'Naast het bouwen van automatiseringen hosten en beheren wij ook uw volledige n8n-omgeving. U heeft altijd een betrouwbare, veilige en schaalbare infrastructuur voor uw automatisering.'
+                  ? 'Naast het bouwen van automatiseringen hosten en beheren wij ook je volledige n8n-omgeving. Je hebt altijd een betrouwbare, veilige en schaalbare infrastructuur voor je automatisering.'
                   : 'In addition to building automations, we also host and manage your complete n8n environment. You always have reliable, secure and scalable infrastructure for your automation.'}
               </SectionText>
               <Checks>
@@ -1212,8 +1212,8 @@ function AutomationPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Welk proces wilt u automatiseren?' : 'Which process do you want to automate?'}</h2>
-              <p>{isNL ? 'Beschrijf uw situatie en wij bouwen de oplossing. Gratis adviesgesprek, geen verplichtingen.' : 'Describe your situation and we\'ll build the solution. Free consultation, no obligations.'}</p>
+              <h2>{isNL ? 'Welk proces wil je automatiseren?' : 'Which process do you want to automate?'}</h2>
+              <p>{isNL ? 'Beschrijf je situatie en wij bouwen de oplossing. Gratis adviesgesprek, geen verplichtingen.' : 'Describe your situation and we\'ll build the solution. Free consultation, no obligations.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                   {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />

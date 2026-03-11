@@ -10,17 +10,21 @@ const GlobeOuter = styled.div`
   max-width: 520px;
   aspect-ratio: 1;
   margin: 0 auto;
+  min-width: 280px;
 `;
 
 const CanvasWrap = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 0;
+  padding-bottom: 100%;
 
   canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 1;
     display: block;
   }
 `;
@@ -31,7 +35,6 @@ const LOCATIONS = {
   utrecht: [52.0907, 5.1214],
   manila: [14.5995, 120.9842],
   mumbai: [19.0760, 72.8777],
-  raleigh: [35.7796, -78.6382],
 };
 
 function makeArcMarkers(start, end, n = 30) {
@@ -48,12 +51,10 @@ function makeArcMarkers(start, end, n = 30) {
 
 const globeMarkers = [
   { location: LOCATIONS.utrecht, size: 0.08 },
-  { location: LOCATIONS.manila, size: 0.06 },
   { location: LOCATIONS.mumbai, size: 0.06 },
-  { location: LOCATIONS.raleigh, size: 0.06 },
-  ...makeArcMarkers(LOCATIONS.utrecht, LOCATIONS.manila),
+  { location: LOCATIONS.manila, size: 0.06 },
   ...makeArcMarkers(LOCATIONS.utrecht, LOCATIONS.mumbai),
-  ...makeArcMarkers(LOCATIONS.utrecht, LOCATIONS.raleigh),
+  ...makeArcMarkers(LOCATIONS.utrecht, LOCATIONS.manila),
 ];
 
 /* ─── Main Component ────────────────────────────── */
@@ -130,10 +131,12 @@ export default function InteractiveGlobe() {
     };
     window.addEventListener('resize', onResize);
 
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     globeRef.current = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: width * 2,
-      height: width * 2,
+      devicePixelRatio: dpr,
+      width: width * dpr,
+      height: width * dpr,
       phi: 0.3,
       theta: 0.2,
       dark: 1,
@@ -148,8 +151,8 @@ export default function InteractiveGlobe() {
         if (pointerInteracting.current === null) phiRef.current += 0.003;
         state.phi = phiRef.current + pointerInteractionMovement.current / 200;
         state.theta = thetaRef.current;
-        state.width = width * 2;
-        state.height = width * 2;
+        state.width = width * dpr;
+        state.height = width * dpr;
       },
     });
 

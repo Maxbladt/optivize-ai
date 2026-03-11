@@ -258,15 +258,6 @@ function ContactPage() {
                   : 'Book a free consultation. No obligations, just concrete insights into what AI can do for your business.'}
               </Sub>
             </div>
-            <HeroCallBtn
-              href="tel:+31642698918"
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Phone size={16} />
-              {isNL ? 'Bel ons' : 'Call us'}
-            </HeroCallBtn>
           </HeroInner>
         </Container>
       </PageHero>

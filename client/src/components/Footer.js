@@ -36,8 +36,16 @@ const FooterGrid = styled.div`
   }
 
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    text-align: center;
+
+    & > *:first-child {
+      grid-column: 1 / -1;
+    }
+    & > *:last-child {
+      grid-column: 1 / -1;
+    }
   }
 `;
 
@@ -45,6 +53,7 @@ const Brand = styled(motion.div)``;
 
 const FooterLogo = styled.div`
   margin-bottom: 1rem;
+  @media (max-width: 640px) { display: flex; justify-content: center; }
   img {
     height: 32px;
     width: auto;
@@ -58,11 +67,13 @@ const Tagline = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
   max-width: 280px;
+  @media (max-width: 640px) { max-width: 100%; }
 `;
 
 const SocialRow = styled.div`
   display: flex;
   gap: 0.625rem;
+  @media (max-width: 640px) { justify-content: center; }
 `;
 
 const SocialIcon = styled(motion.a)`
@@ -84,6 +95,13 @@ const SocialIcon = styled(motion.a)`
 `;
 
 const FooterCol = styled(motion.div)``;
+
+const ContactColInner = styled.div`
+  @media (max-width: 640px) {
+    display: inline-block;
+    text-align: left;
+  }
+`;
 
 const ColTitle = styled.h4`
   font-size: 13px;
@@ -111,6 +129,7 @@ const ContactItem = styled.div`
   align-items: flex-start;
   gap: 0.75rem;
   margin-bottom: 1rem;
+  text-align: left;
 `;
 
 const ContactIcon = styled.div`
@@ -249,10 +268,6 @@ const policies = {
     title: 'Privacy Policy',
     content: `<h3>Gegevens die we verzamelen</h3><p>Wij verzamelen informatie die je direct aan ons verstrekt, zoals wanneer je contact met ons opneemt of gebruik maakt van onze diensten.</p><h3>Gebruik van informatie</h3><p>Wij gebruiken de informatie die wij verzamelen om onze diensten te leveren, te onderhouden en te verbeteren en om met je te communiceren.</p><h3>Delen van informatie</h3><p>Wij verkopen, verhandelen of dragen je persoonlijke informatie niet over aan derden zonder je toestemming.</p><h3>Contact</h3><p>Vragen over dit privacybeleid? Stuur een e-mail naar info@optivaize.nl</p>`
   },
-  terms: {
-    title: 'Algemene Voorwaarden',
-    content: `<h3>Aanvaarding van voorwaarden</h3><p>Door onze website te bezoeken, ga je akkoord met deze gebruiksvoorwaarden.</p><h3>Gebruikslicentie</h3><p>Toestemming wordt verleend om tijdelijk één kopie van onze materialen te downloaden voor persoonlijk, niet-commercieel gebruik.</p><h3>Aansprakelijkheid</h3><p>In geen geval is Optivaize aansprakelijk voor schade die voortvloeit uit het gebruik van onze materialen.</p>`
-  },
   cookies: {
     title: 'Cookiebeleid',
     content: `<h3>Wat zijn cookies</h3><p>Cookies zijn kleine tekstbestanden die op je apparaat worden opgeslagen wanneer je onze website bezoekt.</p><h3>Hoe wij cookies gebruiken</h3><p>Wij gebruiken cookies om je browse-ervaring te verbeteren en websiteverkeer te analyseren.</p><h3>Beheer van cookies</h3><p>Je kunt cookies beheren en verwijderen via je browserinstellingen.</p>`
@@ -328,27 +343,29 @@ function Footer() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <ColTitle>Contact</ColTitle>
-              <ContactItem>
-                <ContactIcon><Mail size={15} /></ContactIcon>
-                <ContactText>
-                  <a href="mailto:info@optivaize.nl">info@optivaize.nl</a>
-                  <span>{language === 'nl' ? 'Stuur ons een bericht' : 'Send us a message'}</span>
-                </ContactText>
-              </ContactItem>
-              <ContactItem>
-                <ContactIcon><Phone size={15} /></ContactIcon>
-                <ContactText>
-                  <a href="tel:+31642698918">+31 6 42 69 89 18</a>
-                  <span>{language === 'nl' ? 'Ma–Vr, 9:00–18:00' : 'Mon–Fri, 9:00–18:00'}</span>
-                </ContactText>
-              </ContactItem>
-              <ContactItem>
-                <ContactIcon><MapPin size={15} /></ContactIcon>
-                <ContactText>
-                  <a href="https://maps.google.com/?q=Groenekanseweg+70+de+Bilt" target="_blank" rel="noopener noreferrer">Groenekanseweg 70, De Bilt</a>
-                  <span>3732 AG, Nederland</span>
-                </ContactText>
-              </ContactItem>
+              <ContactColInner>
+                <ContactItem>
+                  <ContactIcon><Mail size={15} /></ContactIcon>
+                  <ContactText>
+                    <a href="mailto:info@optivaize.nl">info@optivaize.nl</a>
+                    <span>{language === 'nl' ? 'Stuur ons een bericht' : 'Send us a message'}</span>
+                  </ContactText>
+                </ContactItem>
+                <ContactItem>
+                  <ContactIcon><Phone size={15} /></ContactIcon>
+                  <ContactText>
+                    <a href="tel:+31642698918">+31 6 42 69 89 18</a>
+                    <span>{language === 'nl' ? 'Ma–Vr, 9:00–18:00' : 'Mon–Fri, 9:00–18:00'}</span>
+                  </ContactText>
+                </ContactItem>
+                <ContactItem>
+                  <ContactIcon><MapPin size={15} /></ContactIcon>
+                  <ContactText>
+                    <a href="https://maps.google.com/?q=Groenekanseweg+70+de+Bilt" target="_blank" rel="noopener noreferrer">Groenekanseweg 70, De Bilt</a>
+                    <span>3732 AG, Nederland</span>
+                  </ContactText>
+                </ContactItem>
+              </ContactColInner>
             </FooterCol>
           </FooterGrid>
 
@@ -358,8 +375,10 @@ function Footer() {
             </Copyright>
             <LegalLinks>
               <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy</LegalLink>
-              <LegalLink onClick={() => setActivePolicy('terms')}>{language === 'nl' ? 'Voorwaarden' : 'Terms'}</LegalLink>
               <LegalLink onClick={() => setActivePolicy('cookies')}>Cookies</LegalLink>
+              <LegalLink as="a" href="/uploads/Algemene Voorwaarden.pdf" download style={{ textDecoration: 'none' }}>
+                {language === 'nl' ? 'Algemene Voorwaarden' : 'Terms & Conditions'}
+              </LegalLink>
             </LegalLinks>
           </FooterBottom>
         </Container>

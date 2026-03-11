@@ -271,17 +271,15 @@ const CtaBtn = styled(motion.a)`
 /* ──── Locations Data ──── */
 
 const locationsNL = [
-  { city: 'Utrecht', country: 'Nederland', desc: 'Hoofdkantoor - Strategie, sales & management', flag: '🇳🇱' },
-  { city: 'Manila', country: 'Filipijnen', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
+  { city: 'Utrecht', country: 'Nederland', desc: 'AI Research & Hoofdkantoor - Strategie, sales & management', flag: '🇳🇱' },
   { city: 'Mumbai', country: 'India', desc: 'Development - Machine learning & data science', flag: '🇮🇳' },
-  { city: 'Raleigh', country: 'North Carolina, VS', desc: 'R&D - Cloud infrastructure & AI deployment', flag: '🇺🇸' },
+  { city: 'Manila', country: 'Filipijnen', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
 ];
 
 const locationsEN = [
-  { city: 'Utrecht', country: 'Netherlands', desc: 'Headquarters - Strategy, sales & management', flag: '🇳🇱' },
-  { city: 'Manila', country: 'Philippines', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
+  { city: 'Utrecht', country: 'Netherlands', desc: 'AI Research & Headquarters - Strategy, sales & management', flag: '🇳🇱' },
   { city: 'Mumbai', country: 'India', desc: 'Development - Machine learning & data science', flag: '🇮🇳' },
-  { city: 'Raleigh', country: 'North Carolina, US', desc: 'R&D - Cloud infrastructure & AI deployment', flag: '🇺🇸' },
+  { city: 'Manila', country: 'Philippines', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
 ];
 
 /* ──── Globe is now in components/InteractiveGlobe.js ──── */
@@ -304,8 +302,8 @@ function TeamPage() {
             </H1>
             <Sub initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
               {isNL
-                ? 'Wij helpen bedrijven slimmer werken met AI. Van chatbots en automatisering tot complete AI-transformaties, met een team van 15+ specialisten in 4 landen.'
-                : 'We help businesses work smarter with AI. From chatbots and automation to complete AI transformations, with a team of 15+ specialists in 4 countries.'}
+                ? 'Wij helpen bedrijven slimmer werken met AI. Van chatbots en automatisering tot complete AI-transformaties, met een team van 15+ specialisten in 3 landen.'
+                : 'We help businesses work smarter with AI. From chatbots and automation to complete AI transformations, with a team of 15+ specialists in 3 countries.'}
             </Sub>
           </HeroContent>
         </Container>
@@ -339,12 +337,12 @@ function TeamPage() {
               <FadeIn>
                 <SectionLabel $light>{isNL ? 'Onze internationale workforce' : 'Our international workforce'}</SectionLabel>
                 <SectionTitle $light>
-                  {isNL ? 'Ons team werkt vanuit 4 landen' : 'Our team works from 4 countries'}
+                  {isNL ? 'Ons team werkt vanuit 3 landen' : 'Our team works from 3 countries'}
                 </SectionTitle>
                 <SectionText $light>
                   {isNL
-                    ? 'In het gebied van AI zit de expertise niet louter in Nederland. Wij maken gebruik van het talent dat zich wereldwijd aandient, van development in Manila tot development in Mumbai.'
-                    : 'In AI, expertise isn\'t limited to one country. We tap into the talent available worldwide, from development in Manila to development in Mumbai.'}
+                    ? 'AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.'
+                    : 'AI research and project management are based in the Netherlands. Development takes place in Mumbai and Manila, where we have access to exceptional talent. This allows us to significantly reduce development costs without compromising quality. Direction and final responsibility always remain with our Dutch team.'}
                 </SectionText>
               </FadeIn>
               <LocationsList>

@@ -58,7 +58,9 @@ const HeroGrid = styled.div`
   @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 3rem; }
 `;
 
-const HeroLeft = styled(motion.div)``;
+const HeroLeft = styled(motion.div)`
+  @media (max-width: 1024px) { text-align: center; }
+`;
 
 const Badge = styled(motion.div)`
   display: inline-flex;
@@ -89,6 +91,7 @@ const HeroSub = styled(motion.p)`
   color: #475569;
   margin-bottom: 2.5rem;
   max-width: 520px;
+  @media (max-width: 1024px) { margin-left: auto; margin-right: auto; }
   @media (max-width: 768px) { font-size: 17px; }
 `;
 
@@ -97,6 +100,8 @@ const HeroStats = styled(motion.div)`
   gap: 2.5rem;
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  @media (max-width: 1024px) { justify-content: center; }
+  @media (max-width: 640px) { display: none; }
   @media (max-width: 480px) { gap: 1.5rem; }
 `;
 
@@ -117,6 +122,7 @@ const HeroBtns = styled(motion.div)`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  @media (max-width: 1024px) { justify-content: center; }
 `;
 
 const BtnPrimary = styled(motion.a)`
@@ -163,6 +169,8 @@ const BtnCall = styled.a`
   cursor: pointer;
   &:hover { border-color: #3B82F6; color: #3B82F6; transform: scale(1.02); }
   &:active { transform: scale(0.98); }
+  .call-label { @media (max-width: 640px) { display: none; } }
+  @media (max-width: 640px) { padding: 0.875rem; }
 `;
 
 /* ─── Hero Video ──────────────────────────────── */
@@ -479,7 +487,7 @@ const ServiceGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 580px) { grid-template-columns: 1fr; }
+  @media (max-width: 580px) { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
 `;
 
 const ServiceCard = styled(motion(Link))`
@@ -759,7 +767,10 @@ const WimHofLogoWrap = styled.div`
   img { height: 32px; width: auto; display: block; }
 `;
 
-const WimHofContent = styled(motion.div)`position: relative;`;
+const WimHofContent = styled(motion.div)`
+  position: relative;
+  @media (max-width: 1024px) { text-align: center; }
+`;
 
 const WimHofLabel = styled.div`
   font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
@@ -777,6 +788,7 @@ const WimHofText = styled.p`
 
 const WimHofBadges = styled.div`
   display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem;
+  @media (max-width: 1024px) { justify-content: center; }
 `;
 
 const WimHofBadge = styled.div`
@@ -801,7 +813,7 @@ const AboutPreviewGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 2rem; }
+  @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
 `;
 
 /* ─── Globe Section (Home) ────────────────────── */
@@ -823,7 +835,7 @@ const HomeGlobeLayout = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 3rem; }
+  @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
 `;
 
 const HomeGlobeCanvasWrap = styled.div`
@@ -873,6 +885,7 @@ const HomeLocCard = styled(motion.div)`
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
   transition: all 0.3s ease;
+  text-align: left;
   &:hover { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.2); }
 `;
 
@@ -951,7 +964,7 @@ const IntakeGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 580px) { grid-template-columns: 1fr; }
+  @media (max-width: 580px) { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
 `;
 
 const IntakeCard = styled(motion.div)`
@@ -1038,49 +1051,42 @@ function AutoplayVideo({ src }) {
   );
 }
 
-/* Click-to-play video component */
+/* Click-to-play video — copies the working HeroVideo pattern exactly */
 function ClickVideo({ src, thumbnail }) {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [paused, setPaused] = useState(false);
 
-  const start = (e) => {
-    e.stopPropagation();
+  const start = () => {
     setPlaying(true);
-    setTimeout(() => videoRef.current && videoRef.current.play(), 50);
+    setTimeout(() => {
+      if (videoRef.current) videoRef.current.play();
+    }, 50);
   };
 
-  const toggle = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) { v.play(); setPaused(false); }
-    else { v.pause(); setPaused(true); }
-  };
+  const videoSrc = process.env.PUBLIC_URL + src;
+  const thumbSrc = process.env.PUBLIC_URL + thumbnail;
 
   return (
-    <VideoCard>
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0D1117', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}>
       {!playing && (
-        <ThumbOverlay onClick={start}>
-          <img src={thumbnail} alt="Video thumbnail" />
+        <ThumbOverlay onClick={start} style={{ borderRadius: 0 }}>
+          <img src={thumbSrc} alt="Video thumbnail" />
           <PlayBtn>
-            <div style={{ width: 0, height: 0, borderTop: '12px solid transparent', borderBottom: '12px solid transparent', borderLeft: '20px solid #3B82F6', marginLeft: 4 }} />
+            <div style={{ width: 0, height: 0, borderTop: '14px solid transparent', borderBottom: '14px solid transparent', borderLeft: '22px solid #3B82F6', marginLeft: 4 }} />
           </PlayBtn>
         </ThumbOverlay>
       )}
-      <video ref={videoRef} style={{ width: '100%', display: 'block', cursor: 'pointer' }} onClick={playing ? toggle : undefined}>
-        <source src={src} type="video/mp4" />
+      <video
+        ref={videoRef}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        poster={thumbSrc}
+        style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+      >
+        <source src={videoSrc} type="video/mp4" />
       </video>
-      {playing && (
-        <VideoPauseOverlay onClick={toggle}>
-          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {paused
-              ? <div style={{ width: 0, height: 0, borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '16px solid #3B82F6', marginLeft: 3 }} />
-              : <div style={{ display: 'flex', gap: 4 }}><div style={{ width: 5, height: 18, background: '#3B82F6', borderRadius: 2 }} /><div style={{ width: 5, height: 18, background: '#3B82F6', borderRadius: 2 }} /></div>
-            }
-          </div>
-        </VideoPauseOverlay>
-      )}
-    </VideoCard>
+    </div>
   );
 }
 
@@ -1269,7 +1275,7 @@ function HomePage() {
                 </BtnPrimary>
                 <BtnCall href="tel:+31642698918">
                   <Phone size={16} />
-                  {language === 'nl' ? 'Bel ons' : 'Call us'}
+                  <span className="call-label">{language === 'nl' ? 'Bel ons' : 'Call us'}</span>
                 </BtnCall>
               </HeroBtns>
             </HeroLeft>
@@ -1366,7 +1372,7 @@ function HomePage() {
             </FadeIn>
           </SectionHeader>
           <HomeCasesGrid>
-            {translations[language].cases.items.slice(0, 3).map((caseItem, i) => (
+            {translations[language].cases.items.filter(c => ['fonteyn', 'redbutton', 'blosh'].includes(c.id)).map((caseItem, i) => (
               <HomeCaseCard key={caseItem.id} to={`/cases/${caseIdToSlug[caseItem.id]}`}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -1398,9 +1404,6 @@ function HomePage() {
               transition={{ duration: 0.7 }}
             >
               <img src="/uploads/wimhof.png" alt="Wim Hof - Passion Ice Baths" loading="lazy" />
-              <WimHofLogoWrap>
-                <img src="/uploads/passion_icebaths_logo.png" alt="Passion Ice Baths" />
-              </WimHofLogoWrap>
             </WimHofImageWrap>
 
             <WimHofContent
@@ -1483,6 +1486,32 @@ function HomePage() {
         </Container>
       </ServicesSection>
 
+      {/* ── OPENCLAW VIDEO ── */}
+      <WimHofSection>
+        <Container>
+          <WimHofGrid>
+            <FadeIn>
+              <ClickVideo src="/uploads/Openclaw intro.mp4" thumbnail="/uploads/openclaw_cool.png" />
+            </FadeIn>
+            <WimHofContent initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}>
+              <WimHofLabel>{language === 'nl' ? 'Bekijk de video' : 'Watch the video'}</WimHofLabel>
+              <WimHofTitle>
+                {language === 'nl' ? 'Hoe AI agents werken' : 'How AI agents work'}
+              </WimHofTitle>
+              <WimHofText>
+                {language === 'nl'
+                  ? 'In deze 1 minuut durende video legt Max uit hoe AI agents werken en hoe jij ze aanstuurt. Ontdek hoe OpenClaw agents 24/7 taken overnemen via WhatsApp, Slack en Teams.'
+                  : 'In this 1-minute video, Max explains how AI agents work and how you control them. Discover how OpenClaw agents take over tasks 24/7 via WhatsApp, Slack, and Teams.'}
+              </WimHofText>
+              <WimHofCta to="/ai-agenten" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+                {language === 'nl' ? 'Meer over AI Agents' : 'More about AI Agents'}
+                <ArrowRight size={16} />
+              </WimHofCta>
+            </WimHofContent>
+          </WimHofGrid>
+        </Container>
+      </WimHofSection>
+
       {/* ── ABOUT PREVIEW ── */}
       <section style={{ padding: '5rem 0', background: 'white' }}>
         <Container>
@@ -1495,10 +1524,10 @@ function HomePage() {
                     ? <>Gestart vanuit passie voor AI, gegroeid tot een <GradientText>internationaal team</GradientText></>
                     : <>Started from a passion for AI, grown into an <GradientText>international team</GradientText></>}
                 </IdentityHeadline>
-                <IdentitySub style={{ margin: '0 0 1.5rem 0', textAlign: 'left' }}>
+                <IdentitySub style={{ margin: '0 0 1.5rem 0' }}>
                   {language === 'nl'
-                    ? 'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In korte tijd hebben we een sterk internationaal team en fantastische klanten.'
-                    : 'Maximilian Bladt started Optivaize after seeing the first AI models emerge in 2020. After 2 years at Elevate Digital, a Business bachelor, Econometrics premaster and a master in Quantitative Finance at UvA, founding Optivaize was the logical next step. In a short time we built a strong international team and fantastic clients.'}
+                    ? 'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In de afgelopen vijf jaar hebben we tientallen AI-tools en platformen gebouwd die onze klanten een echte voorsprong geven op hun concurrentie. Van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen — we hebben inmiddels een sterk internationaal team en fantastische klanten over de hele wereld.'
+                    : 'Maximilian Bladt started Optivaize after seeing the first AI models emerge in 2020. After 2 years at Elevate Digital, a Business bachelor, Econometrics premaster and a master in Quantitative Finance at UvA, founding Optivaize was the logical next step. Over the past five years we have built dozens of AI tools and platforms that give our clients a real edge over their competition. From automations saving thousands of hours to complete AI systems driving revenue — we now have a strong international team and fantastic clients around the world.'}
                 </IdentitySub>
                 <BtnSecondary to="/over-ons" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   {language === 'nl' ? 'Meer over ons' : 'More about us'} <ArrowRight size={15} />
@@ -1523,21 +1552,20 @@ function HomePage() {
                 <HomeGlobeLabel>{language === 'nl' ? 'Onze internationale workforce' : 'Our international workforce'}</HomeGlobeLabel>
                 <HomeGlobeTitle>
                   {language === 'nl'
-                    ? 'Ons team werkt vanuit 4 landen'
-                    : 'Our team works from 4 countries'}
+                    ? 'Ons team werkt vanuit 3 landen'
+                    : 'Our team works from 3 countries'}
                 </HomeGlobeTitle>
                 <HomeGlobeText>
                   {language === 'nl'
-                    ? 'In het gebied van AI zit de expertise niet louter in Nederland. Wij maken gebruik van het talent dat zich wereldwijd aandient, van development in Manila tot development in Mumbai.'
-                    : 'In AI, expertise isn\'t limited to one country. We tap into the talent available worldwide, from development in Manila to AI research in Mumbai.'}
+                    ? 'AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.'
+                    : 'AI research and project management are based in the Netherlands. Development takes place in Mumbai and Manila, where we have access to exceptional talent. This allows us to significantly reduce development costs without compromising quality. Direction and final responsibility always remain with our Dutch team.'}
                 </HomeGlobeText>
               </FadeIn>
               <HomeLocations>
                 {[
-                  { flag: '🇳🇱', city: 'Utrecht', role: { nl: 'Hoofdkantoor', en: 'Headquarters' } },
-                  { flag: '🇵🇭', city: 'Manila', role: { nl: 'Development', en: 'Development' } },
+                  { flag: '🇳🇱', city: 'Utrecht', role: { nl: 'AI Research & Hoofdkantoor', en: 'AI Research & HQ' } },
                   { flag: '🇮🇳', city: 'Mumbai', role: { nl: 'Development', en: 'Development' } },
-                  { flag: '🇺🇸', city: 'Raleigh, NC', role: { nl: 'R&D', en: 'R&D' } },
+                  { flag: '🇵🇭', city: 'Manila', role: { nl: 'Development', en: 'Development' } },
                 ].map((loc, i) => (
                   <FadeIn key={loc.city} delay={i * 0.08}>
                     <HomeLocCard whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>

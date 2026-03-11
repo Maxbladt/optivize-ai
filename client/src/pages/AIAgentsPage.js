@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -944,6 +944,89 @@ function AgentDemo({ isNL }) {
   );
 }
 
+/* ─── Video Section ──────────────────────────── */
+const VideoCard = styled.div`
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  position: relative;
+  background: #0F172A;
+  video { width: 100%; display: block; }
+`;
+
+const VideoPauseOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(0,0,0,0.2);
+  transition: opacity 0.2s;
+  cursor: pointer;
+  &:hover { opacity: 1; }
+`;
+
+const ThumbOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+`;
+
+const PlayBtn = styled.div`
+  position: relative;
+  z-index: 3;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  ${ThumbOverlay}:hover & { transform: scale(1.08); }
+`;
+
+function ClickVideo({ src, thumbnail }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const start = () => {
+    setPlaying(true);
+    setTimeout(() => {
+      if (videoRef.current) videoRef.current.play();
+    }, 50);
+  };
+
+  const videoSrc = process.env.PUBLIC_URL + src;
+  const thumbSrc = process.env.PUBLIC_URL + thumbnail;
+
+  return (
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0D1117', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}>
+      {!playing && (
+        <ThumbOverlay onClick={start} style={{ borderRadius: 0 }}>
+          <img src={thumbSrc} alt="Video thumbnail" />
+          <PlayBtn>
+            <div style={{ width: 0, height: 0, borderTop: '14px solid transparent', borderBottom: '14px solid transparent', borderLeft: '22px solid #3B82F6', marginLeft: 4 }} />
+          </PlayBtn>
+        </ThumbOverlay>
+      )}
+      <video
+        ref={videoRef}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        poster={thumbSrc}
+        style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }}
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
+
 function AIAgentsPage() {
   const { language } = useLanguage();
   const isNL = language === 'nl';
@@ -1128,12 +1211,12 @@ function AIAgentsPage() {
         </Container>
       </Section>
 
-      {/* Image section */}
+      {/* Video section */}
       <Section $gray>
         <Container>
           <TwoCol>
             <FadeIn delay={0.1}>
-              <img src="/uploads/openclaw_cool.png" alt="OpenClaw AI Agents" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <ClickVideo src="/uploads/Openclaw intro.mp4" thumbnail="/uploads/openclaw_cool.png" />
             </FadeIn>
             <FadeIn>
               <SectionLabel>{isNL ? 'Voor je bedrijf' : 'For your business'}</SectionLabel>
@@ -1182,7 +1265,7 @@ function AIAgentsPage() {
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <SectionLabel style={{ justifyContent: 'center', display: 'flex' }}>{isNL ? 'Toepassingen' : 'Applications'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wat kunnen onze agents voor u doen?' : 'What can our agents do for you?'}</SectionTitle></FadeIn>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wat kunnen onze agents voor je doen?' : 'What can our agents do for you?'}</SectionTitle></FadeIn>
           </div>
           <UseCaseGrid>
             {useCases.map((uc, i) => {

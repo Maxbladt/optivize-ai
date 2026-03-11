@@ -836,7 +836,7 @@ function SoftwarePage() {
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
               <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Self-hosting' : 'Self-hosting'}</SectionLabel>
               <SectionTitle $light style={{ textAlign: 'center' }}>
-                {isNL ? 'Software die u zelf kunt hosten' : 'Software you can host yourself'}
+                {isNL ? 'Software die je zelf kunt hosten' : 'Software you can host yourself'}
               </SectionTitle>
               <SectionText $light style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto' }}>
                 {isNL
@@ -895,7 +895,7 @@ function SoftwarePage() {
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
               <h2>{isNL ? 'Klaar om te bouwen?' : 'Ready to build?'}</h2>
-              <p>{isNL ? 'Vertel ons wat u nodig heeft. Wij sturen u binnen 24 uur een concreet voorstel.' : 'Tell us what you need. We\'ll send you a concrete proposal within 24 hours.'}</p>
+              <p>{isNL ? 'Vertel ons wat je nodig hebt. Wij sturen je binnen 24 uur een concreet voorstel.' : 'Tell us what you need. We\'ll send you a concrete proposal within 24 hours.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                   {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />

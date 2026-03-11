@@ -594,14 +594,14 @@ function SalesPage() {
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
               {isNL
-                ? 'Wij bouwen AI-systemen die uw salesproces schalen zonder extra headcount. Van prospecting tot closing , AI doet het zware werk terwijl uw team deals sluit.'
+                ? 'Wij bouwen AI-systemen die je salesproces schalen zonder extra headcount. Van prospecting tot closing, AI doet het zware werk terwijl je team deals sluit.'
                 : 'We build AI systems that scale your sales process without extra headcount. From prospecting to closing , AI does the heavy lifting while your team closes deals.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Schaal uw sales' : 'Scale your sales'} <ArrowRight size={17} />
+              {isNL ? 'Schaal je sales' : 'Scale your sales'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -683,7 +683,7 @@ function SalesPage() {
             <FadeIn delay={0.05}>
               <SectionText $light style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto' }}>
                 {isNL
-                  ? 'Onze AI Sales Agent gebruikt uw Chrome browser om LinkedIn-profielen te analyseren, e-mails te versturen, CRM bij te werken en meetings te plannen.'
+                  ? 'Onze AI Sales Agent gebruikt je Chrome browser om LinkedIn-profielen te analyseren, e-mails te versturen, CRM bij te werken en meetings te plannen.'
                   : 'Our AI Sales Agent uses your Chrome browser to analyse LinkedIn profiles, send emails, update CRM and schedule meetings.'}
               </SectionText>
             </FadeIn>
@@ -725,7 +725,7 @@ function SalesPage() {
                 <Monitor size={32} color="#FCD34D" />
               </AgentCircle>
               <AgentName>AI Sales Agent</AgentName>
-              <AgentSub>{isNL ? 'Bestuurt uw Chrome browser' : 'Controls your Chrome browser'}</AgentSub>
+              <AgentSub>{isNL ? 'Bestuurt je Chrome browser' : 'Controls your Chrome browser'}</AgentSub>
             </div>
           </FadeIn>
 
@@ -741,7 +741,7 @@ function SalesPage() {
                 { icon: Send, color: '#0A66C2', title: isNL ? 'LinkedIn outreach' : 'LinkedIn outreach', sub: isNL ? 'Gepersonaliseerde berichten' : 'Personalised messages' },
                 { icon: Mail, color: '#EA4335', title: isNL ? 'E-mail follow-up' : 'Email follow-up', sub: isNL ? 'Automatische sequences' : 'Automated sequences' },
                 { icon: Database, color: '#8B5CF6', title: isNL ? 'CRM bijwerken' : 'Update CRM', sub: isNL ? 'Alle data gesynchroniseerd' : 'All data synchronised' },
-                { icon: Calendar, color: '#10B981', title: isNL ? 'Meetings plannen' : 'Schedule meetings', sub: isNL ? 'Direct in uw agenda' : 'Directly in your calendar' },
+                { icon: Calendar, color: '#10B981', title: isNL ? 'Meetings plannen' : 'Schedule meetings', sub: isNL ? 'Direct in je agenda' : 'Directly in your calendar' },
               ].map((action, i) => {
                 const Icon = action.icon;
                 return (
@@ -838,8 +838,8 @@ function SalesPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar om uw sales te schalen?' : 'Ready to scale your sales?'}</h2>
-              <p>{isNL ? 'Laat AI het zware werk doen terwijl uw team zich richt op het sluiten van deals.' : 'Let AI do the heavy lifting while your team focuses on closing deals.'}</p>
+              <h2>{isNL ? 'Klaar om je sales te schalen?' : 'Ready to scale your sales?'}</h2>
+              <p>{isNL ? 'Laat AI het zware werk doen terwijl je team zich richt op het sluiten van deals.' : 'Let AI do the heavy lifting while your team focuses on closing deals.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                   {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
