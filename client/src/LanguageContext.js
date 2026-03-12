@@ -144,19 +144,6 @@ export const translations = {
           ]
         },
         {
-          id: 'tiktok-optimization',
-          title: 'AI TikTok-dominantie',
-          description: 'Een AI-systeem dat virale TikToks vroeg detecteert, sterke reacties met subtiele CTA\'s genereert en ze naar de top boost voor maximale zichtbaarheid.',
-          steps: [
-            { title: 'Creators met hoge engagement selecteren', description: 'We bouwen een database van creators in je niche die structureel veel bereik en interactie halen (bijv. 100K+ views per post) en monitoren deze continu.', number: 1 },
-            { title: 'Viraal detecteren (real-time)', description: 'Monitoring draait 24/7 en pikt nieuwe posts binnen minuten op. Het systeem beoordeelt vroege signalen om virale kans te voorspellen.', number: 2 },
-            { title: 'LLM trainen op top-reacties', description: 'We trainen een model op grote aantallen best presterende reacties en patronen die engagement aanjagen, zodat reacties echt “native” aanvoelen.', number: 3 },
-            { title: 'Reactie + subtiele CTA genereren', description: 'Bij een virale kans analyseert het model video, stijl en sentiment en schrijft het een reactie die engagement triggert en tegelijk een zachte CTA bevat.', number: 4 },
-            { title: 'Boost met strategische likes', description: 'Na plaatsing boosten we de reactie met gecontroleerde like-patronen die organisch gedrag nabootsen, gericht op toppositie.', number: 5 },
-            { title: 'Bereik × conversie meten', description: 'Als video\'s viraal gaan (vaak 1–3M+ views) krijgt je reactie enorme exposure. We tracken verkeer en resultaat zodat ROI inzichtelijk wordt.', number: 6 }
-          ]
-        },
-        {
           id: 'featured-snippets',
           title: 'AI SEO Integratie',
           description: 'Optimalisatie voor Google\'s AI-resultaten, zodat je content vaker wordt opgenomen in AI-samenvattingen en featured snippets.',
@@ -410,19 +397,6 @@ export const translations = {
             { title: 'E-commerce Personal Shopping Integration (Optional)', description: 'For online stores, we integrate an AI personal shopping assistant that analyzes customer preferences, browsing history, and conversation context to provide personalized product recommendations. The AI can suggest outfit combinations, recommend complementary items, help with sizing questions, and even create styled looks based on customer preferences. It presents recommendations in beautifully formatted cards with images, descriptions, and direct purchase links, significantly increasing average order value.', number: 4 },
             { title: 'Seamless Platform Integration', description: 'We deploy your custom chatbot across all your customer touchpoints including your website, Shopify store, social media platforms, and mobile apps. The integration includes a sophisticated handoff system that seamlessly transfers complex queries to human agents when needed, complete with full conversation context. The chatbot maintains consistent personality and knowledge across all platforms while adapting to each platform\'s unique interface and user behavior patterns.', number: 5 },
             { title: 'Continuous Learning & Optimization', description: 'The chatbot continuously improves through machine learning, analyzing customer feedback, successful conversation outcomes, and conversion rates. We implement a feedback system where customers can rate interactions, and the AI learns from both positive and negative responses. Regular performance reports show conversation success rates, customer satisfaction scores, and areas for improvement. The system automatically updates its knowledge base with new products, policies, and frequently asked questions.', number: 6 }
-          ]
-        },
-        {
-          id: 'tiktok-optimization',
-          title: 'AI TikTok Domination',
-          description: 'AI system that identifies viral TikToks, generates perfect comments with hidden CTAs, and boosts them to top positions for maximum viral exposure.',
-          steps: [
-            { title: 'High-Engagement Creator Database Building', description: 'We deploy specialized bots to identify and continuously monitor TikTok creators in your target niche who consistently achieve substantial views and engagement (typically 100K+ views per post). Our system builds a comprehensive database of these creators, analyzing their posting patterns, peak engagement times, and audience demographics. We track creators across multiple niches to ensure we capture viral content the moment it\'s posted, giving us the crucial early positioning advantage before videos explode.', number: 1 },
-            { title: 'Real-Time Viral Detection & Response System', description: 'Our advanced monitoring bots scan the feeds of identified creators 24/7, instantly detecting new posts within minutes of publication. The system analyzes early engagement signals (initial like-to-view ratios, comment velocity, share rates) to predict which posts will go viral. When a potentially viral video is detected, our system immediately triggers the comment generation process, ensuring we\'re among the first to comment before the video gains massive traction and competition increases.', number: 2 },
-            { title: 'Custom LLM Training for Contextual Comment Generation', description: 'We train a specialized Large Language Model specifically on millions of top-performing TikTok comments, analyzing what makes comments go viral (humor patterns, emotional triggers, trending phrases, perfect timing). This custom LLM learns to craft comments that feel completely natural and engaging while strategically incorporating hidden calls-to-action for your product or service. The AI adapts to current trends, slang, and platform-specific communication styles to ensure maximum engagement and authenticity.', number: 3 },
-            { title: 'AI-Powered Comment Creation & CTA Integration', description: 'When a viral-potential video is detected, our LLM analyzes the content, creator\'s style, audience sentiment, and current trends to generate the perfect comment. The AI crafts responses that appear genuinely engaged with the content while subtly weaving in calls-to-action that don\'t feel promotional. These CTAs are designed as natural conversation starters, curiosity gaps, or helpful suggestions that drive viewers to your profile or website without triggering TikTok\'s promotional content detection systems.', number: 4 },
-            { title: 'Strategic Botnet Like Deployment', description: 'Once the perfect comment is posted, we deploy our sophisticated botnet system to strategically boost the comment with artificial likes. The system uses carefully timed like deployment patterns that mimic organic engagement to avoid detection. We scale the likes based on the video\'s performance - if a video hits 100K views, we ensure your comment gets proportional likes to reach the top position. The timing and velocity of likes are optimized to appear completely natural while guaranteeing top placement.', number: 5 },
-            { title: 'Massive View Multiplication & ROI Tracking', description: 'As the targeted videos go viral (often reaching 1-3M+ views), your top-positioned comment receives massive exposure - typically 15-30% of the video\'s total views see your comment prominently. This translates to 500K-1M+ impressions of your hidden CTA for just the cost of strategic like deployment. We provide detailed analytics showing comment performance, click-through rates to your profile/website, and conversion tracking. The system continues monitoring for weeks as videos can resurge in virality, providing ongoing value.', number: 6 }
           ]
         },
         {

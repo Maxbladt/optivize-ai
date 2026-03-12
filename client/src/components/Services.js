@@ -268,7 +268,6 @@ const servicesStaticConfig = [
   { id: 'blog-writer', icon: FileText, primaryColor: '#F59E0B', secondaryColor: '#D97706' },
   { id: 'linkedin-automation', icon: Target, primaryColor: '#EF4444', secondaryColor: '#DC2626' },
   { id: 'chatbot', icon: MessageCircle, primaryColor: '#06B6D4', secondaryColor: '#0891B2' },
-  { id: 'tiktok-optimization', icon: TrendingUp, primaryColor: '#EC4899', secondaryColor: '#DB2777' },
   { id: 'featured-snippets', icon: Crown, primaryColor: '#F97316', secondaryColor: '#EA580C' }
 ];
 

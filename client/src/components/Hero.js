@@ -150,8 +150,7 @@ function Hero() {
     'AI Blog Writer',
     'AI Linkedin Sales Bot',
     'AI Chatbot',
-    'AI TikTok Domination',
-    'AI SEO Intergration'
+    'AI SEO Integration'
   ];
 
   useEffect(() => {

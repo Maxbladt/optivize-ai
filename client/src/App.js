@@ -17,6 +17,7 @@ import ChatbotPage from './pages/ChatbotPage';
 import TrainingPage from './pages/TrainingPage';
 import SubsidyPage from './pages/SubsidyPage';
 import HiringPage from './pages/HiringPage';
+import PresentationPage from './pages/PresentationPage';
 import Bedankt from './components/Bedankt';
 
 function ScrollToTop() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/ai-chatbot" element={<Layout><ChatbotPage /></Layout>} />
           <Route path="/ai-training" element={<Layout><TrainingPage /></Layout>} />
           <Route path="/crypto-blockchain" element={<Layout><SubsidyPage /></Layout>} />
+          <Route path="/presentatie" element={<PresentationPage />} />
           <Route path="/bedankt" element={<Bedankt />} />
         </Routes>
       </BrowserRouter>
