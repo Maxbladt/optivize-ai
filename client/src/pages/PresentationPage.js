@@ -805,10 +805,10 @@ const slideVariants = {
   exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
 };
 
-function PresentationPage() {
+function PresentationPage({ skipAuth = false }) {
   const [presLang, setPresLang] = useState('nl');
   const isNL = presLang === 'nl';
-  const [screen, setScreen] = useState('password');
+  const [screen, setScreen] = useState(skipAuth ? 'presentation' : 'password');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');

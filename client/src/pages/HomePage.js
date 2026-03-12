@@ -1095,8 +1095,10 @@ const caseImages = {
   fonteyn: '/uploads/fonteyn_dashboard.png',
   aanhuis: '/uploads/aanhuis_voorkant.png',
   blosh: '/uploads/blosh_office.png',
+  'red-button': '/uploads/magic_apparels_dashboard.png',
   redbutton: '/uploads/magic_apparels_dashboard.png',
   stakepvp: '/uploads/stakepvp_logo.png',
+  'passion-ice-baths': '/uploads/passion_icebaths.png',
   passion: '/uploads/passion_icebaths.png',
 };
 
@@ -1227,6 +1229,17 @@ const intakeSteps = [
 
 function HomePage() {
   const { language } = useLanguage();
+  const [homeCases, setHomeCases] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/cases')
+      .then(r => r.json())
+      .then(cases => {
+        const featured = cases.filter(c => ['fonteyn', 'red-button', 'blosh'].includes(c.slug));
+        setHomeCases(featured);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <>
@@ -1372,15 +1385,15 @@ function HomePage() {
             </FadeIn>
           </SectionHeader>
           <HomeCasesGrid>
-            {translations[language].cases.items.filter(c => ['fonteyn', 'redbutton', 'blosh'].includes(c.id)).map((caseItem, i) => (
-              <HomeCaseCard key={caseItem.id} to={`/cases/${caseIdToSlug[caseItem.id]}`}
+            {homeCases.map((c, i) => (
+              <HomeCaseCard key={c.slug} to={`/cases/${c.slug}`}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <img src={caseImages[caseItem.id]} alt={caseItem.company} loading="lazy" />
+                <img src={c.image || caseImages[c.slug] || caseImages[c.slug.replace('-', '')]} alt={language === 'nl' ? c.title_nl : c.title_en} loading="lazy" />
                 <CaseOverlay>
-                  <CaseClient>{caseItem.company}</CaseClient>
-                  <CaseTitle>{caseItem.title}</CaseTitle>
+                  <CaseClient>{language === 'nl' ? c.title_nl : c.title_en}</CaseClient>
+                  <CaseTitle>{language === 'nl' ? c.preview_nl : c.preview_en}</CaseTitle>
                 </CaseOverlay>
               </HomeCaseCard>
             ))}

@@ -1,39 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useLanguage, translations } from '../LanguageContext';
+import { useLanguage } from '../LanguageContext';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
-
-/* ── Slug ↔ ID mapping ── */
-const slugToId = {
-  'fonteyn': 'fonteyn',
-  'aanhuis': 'aanhuis',
-  'blosh': 'blosh',
-  'red-button': 'redbutton',
-  'stakepvp': 'stakepvp',
-  'passion-ice-baths': 'passion',
-};
-
-export const idToSlug = {
-  fonteyn: 'fonteyn',
-  aanhuis: 'aanhuis',
-  blosh: 'blosh',
-  redbutton: 'red-button',
-  stakepvp: 'stakepvp',
-  passion: 'passion-ice-baths',
-};
-
-const caseStaticConfig = {
-  fonteyn: { logo: '/uploads/fonteyn_logo.png', image: '/uploads/fonteyn_dashboard.png', partnerLogos: [] },
-  aanhuis: { logo: '/uploads/aanhuis.png', image: '/uploads/aanhuis_voorkant.png', partnerLogos: [] },
-  blosh: { logo: '/uploads/blosh.png', image: '/uploads/blosh_office.png', partnerLogos: [] },
-  redbutton: { logo: '/uploads/red_button_logo.png', image: '/uploads/magic_apparels_dashboard.png', partnerLogos: ['/uploads/sage_intacct_logo.png', '/uploads/becosoft_logo.png'] },
-  stakepvp: { logo: '/uploads/stakepvp_logo.png', image: '/uploads/stakepvp_logo.png', partnerLogos: ['/uploads/privy_logo.png', '/uploads/helius_logo.png'] },
-  passion: { logo: '/uploads/passion_icebaths_logo.png', image: '/uploads/passion_icebaths.png', partnerLogos: [] },
-};
 
 /* ──── Styled Components ──── */
 
@@ -119,10 +91,7 @@ const FeaturedImage = styled.img`
   height: 420px;
   object-fit: cover;
   display: block;
-
-  @media (max-width: 768px) {
-    height: 260px;
-  }
+  @media (max-width: 768px) { height: 260px; }
 `;
 
 const FeaturedOverlay = styled.div`
@@ -140,12 +109,7 @@ const FeaturedLogo = styled.div`
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   backdrop-filter: blur(8px);
-
-  img {
-    height: 32px;
-    width: auto;
-    display: block;
-  }
+  img { height: 32px; width: auto; display: block; }
 `;
 
 /* Article */
@@ -163,10 +127,14 @@ const ArticleBody = styled.div`
   font-size: 18px;
   color: #334155;
   line-height: 1.85;
-
-  p {
-    margin-bottom: 1.5rem;
-  }
+  p { margin-bottom: 1.5rem; }
+  h1, h2, h3 { color: #0F172A; margin: 2rem 0 0.75rem; }
+  h2 { font-size: 24px; font-weight: 700; }
+  h3 { font-size: 20px; font-weight: 700; }
+  ul, ol { margin: 0.5rem 0 1.25rem 1.5rem; }
+  li { margin-bottom: 0.5rem; }
+  img { max-width: 100%; border-radius: 12px; margin: 1.5rem 0; }
+  a { color: #3B82F6; }
 `;
 
 const Divider = styled.hr`
@@ -183,47 +151,6 @@ const SectionLabel = styled.div`
   text-transform: uppercase;
   color: #3B82F6;
   margin-bottom: 0.75rem;
-`;
-
-const SectionHeading = styled.h2`
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  font-weight: 800;
-  color: #0F172A;
-  margin-bottom: 1.75rem;
-  line-height: 1.2;
-`;
-
-/* Deliverables */
-const DeliverablesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  @media (max-width: 600px) { grid-template-columns: 1fr; }
-`;
-
-const DeliverableCard = styled(motion.div)`
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-  background: #FAFBFC;
-  transition: all 0.2s;
-  &:hover {
-    border-color: rgba(59,130,246,0.25);
-    box-shadow: 0 4px 20px rgba(59,130,246,0.06);
-  }
-`;
-
-const DeliverableTitle = styled.h4`
-  font-size: 15px;
-  font-weight: 700;
-  color: #0F172A;
-  margin-bottom: 0.35rem;
-`;
-
-const DeliverableDesc = styled.p`
-  font-size: 14px;
-  color: #64748B;
-  line-height: 1.55;
 `;
 
 /* Tech Stack */
@@ -316,20 +243,30 @@ function CaseDetailPage() {
   const { slug } = useParams();
   const { language } = useLanguage();
   const isNL = language === 'nl';
+  const [caseData, setCaseData] = useState(null);
+  const [notFound, setNotFound] = useState(false);
 
-  const caseId = slugToId[slug];
-  if (!caseId) return <Navigate to="/cases" replace />;
+  useEffect(() => {
+    fetch(`/api/cases/${slug}`)
+      .then(r => {
+        if (!r.ok) { setNotFound(true); return null; }
+        return r.json();
+      })
+      .then(data => data && setCaseData(data))
+      .catch(() => setNotFound(true));
+  }, [slug]);
 
-  const t = translations[language].cases;
-  const caseData = t.items.find(item => item.id === caseId);
-  const config = caseStaticConfig[caseId];
+  if (notFound) return <Navigate to="/cases" replace />;
+  if (!caseData) return null;
 
-  if (!caseData || !config) return <Navigate to="/cases" replace />;
+  const title = isNL ? caseData.title_nl : caseData.title_en;
+  const preview = isNL ? caseData.preview_nl : caseData.preview_en;
+  const description = isNL ? caseData.description_nl : caseData.description_en;
+  const partnerLogos = caseData.partner_logos || [];
 
-  /* Split description into readable paragraphs */
-  const paragraphs = caseData.description
-    .split(/(?<=\.)\s+(?=[A-Z])/)
-    .filter(Boolean);
+  // Detect if description contains HTML tags
+  const isHTML = /<[a-z][\s\S]*>/i.test(description);
+  const paragraphs = !isHTML ? description.split(/\n\n+/).filter(Boolean) : [];
 
   return (
     <>
@@ -342,7 +279,7 @@ function CaseDetailPage() {
         </Container>
       </BackBar>
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <HeroSection>
         <Container>
           <HeroInner>
@@ -358,20 +295,20 @@ function CaseDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.05 }}
             >
-              {caseData.title}
+              {title}
             </HeroTitle>
             <HeroIntro
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              {caseData.preview}
+              {preview}
             </HeroIntro>
           </HeroInner>
         </Container>
       </HeroSection>
 
-      {/* ── Featured Image ── */}
+      {/* Featured Image */}
       <FeaturedImageWrap>
         <Container>
           <FeaturedImageInner
@@ -379,40 +316,44 @@ function CaseDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <FeaturedImage src={config.image} alt={caseData.company} />
+            <FeaturedImage src={caseData.image} alt={caseData.company} />
             <FeaturedOverlay />
             <FeaturedLogo>
-              <img src={config.logo} alt={caseData.company} />
+              <img src={caseData.logo} alt={caseData.company} />
             </FeaturedLogo>
           </FeaturedImageInner>
         </Container>
       </FeaturedImageWrap>
 
-      {/* ── Article ── */}
+      {/* Article */}
       <ArticleSection>
         <Container>
           <ArticleWrap>
             <ArticleBody>
-              {paragraphs.map((p, i) => (
-                <motion.p
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                >
-                  {p}
-                </motion.p>
-              ))}
+              {isHTML ? (
+                <div dangerouslySetInnerHTML={{ __html: description }} />
+              ) : (
+                paragraphs.map((p, i) => (
+                  <motion.p
+                    key={i}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.05 }}
+                  >
+                    {p}
+                  </motion.p>
+                ))
+              )}
             </ArticleBody>
 
-            {config.partnerLogos.length > 0 && (
+            {partnerLogos.length > 0 && (
               <>
                 <Divider />
                 <TechBox>
                   <SectionLabel>Tech Stack</SectionLabel>
                   <TechLogos>
-                    {config.partnerLogos.map((logo, i) => (
+                    {partnerLogos.map((logo, i) => (
                       <img key={i} src={logo} alt="Technology" />
                     ))}
                   </TechLogos>
@@ -420,34 +361,11 @@ function CaseDetailPage() {
               </>
             )}
 
-            <Divider />
-
-            <SectionLabel>
-              {isNL ? 'WAT WIJ HEBBEN OPGELEVERD' : 'WHAT WE DELIVERED'}
-            </SectionLabel>
-            <SectionHeading>
-              {isNL ? 'Resultaten & opleveringen' : 'Results & deliverables'}
-            </SectionHeading>
-
-            <DeliverablesGrid>
-              {caseData.detailedResults.map((result, i) => (
-                <DeliverableCard
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.07 }}
-                >
-                  <DeliverableTitle>{result.title}</DeliverableTitle>
-                  <DeliverableDesc>{result.description}</DeliverableDesc>
-                </DeliverableCard>
-              ))}
-            </DeliverablesGrid>
           </ArticleWrap>
         </Container>
       </ArticleSection>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <CtaSection>
         <Container>
           <CtaInner>

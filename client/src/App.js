@@ -17,8 +17,18 @@ import ChatbotPage from './pages/ChatbotPage';
 import TrainingPage from './pages/TrainingPage';
 import SubsidyPage from './pages/SubsidyPage';
 import HiringPage from './pages/HiringPage';
-import PresentationPage from './pages/PresentationPage';
+import BlogListPage from './pages/BlogListPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import Bedankt from './components/Bedankt';
+import AdminLogin from './admin/AdminLogin';
+import AdminLayout from './admin/AdminLayout';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminCasesList from './admin/AdminCasesList';
+import AdminCaseForm from './admin/AdminCaseForm';
+import AdminBlogsList from './admin/AdminBlogsList';
+import AdminBlogForm from './admin/AdminBlogForm';
+import AdminPresentation from './admin/AdminPresentation';
+import ProtectedRoute from './admin/ProtectedRoute';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,6 +42,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
+          {/* Public routes */}
           <Route path="/" element={<Layout><HomePage /></Layout>} />
           <Route path="/ai-agenten" element={<Layout><AIAgentsPage /></Layout>} />
           <Route path="/ai-marketing" element={<Layout><MarketingPage /></Layout>} />
@@ -47,8 +58,24 @@ function App() {
           <Route path="/ai-chatbot" element={<Layout><ChatbotPage /></Layout>} />
           <Route path="/ai-training" element={<Layout><TrainingPage /></Layout>} />
           <Route path="/crypto-blockchain" element={<Layout><SubsidyPage /></Layout>} />
-          <Route path="/presentatie" element={<PresentationPage />} />
           <Route path="/bedankt" element={<Bedankt />} />
+
+          {/* Blog routes */}
+          <Route path="/blog" element={<Layout><BlogListPage /></Layout>} />
+          <Route path="/blog/:slug" element={<Layout><BlogDetailPage /></Layout>} />
+
+          {/* Admin routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="cases" element={<AdminCasesList />} />
+            <Route path="cases/new" element={<AdminCaseForm />} />
+            <Route path="cases/:id/edit" element={<AdminCaseForm />} />
+            <Route path="blogs" element={<AdminBlogsList />} />
+            <Route path="blogs/new" element={<AdminBlogForm />} />
+            <Route path="blogs/:id/edit" element={<AdminBlogForm />} />
+            <Route path="presentation" element={<AdminPresentation />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

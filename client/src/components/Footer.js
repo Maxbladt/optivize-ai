@@ -332,6 +332,7 @@ function Footer() {
               <ColTitle>{language === 'nl' ? 'Bedrijf' : 'Company'}</ColTitle>
               <FooterLink to="/">{language === 'nl' ? 'Home' : 'Home'}</FooterLink>
               <FooterLink to="/cases">Cases</FooterLink>
+              <FooterLink to="/blog">Blog</FooterLink>
               <FooterLink to="/over-ons">{language === 'nl' ? 'Over ons' : 'About'}</FooterLink>
               <FooterLink to="/hiring">{language === 'nl' ? 'Vacatures' : 'Careers'}</FooterLink>
               <FooterLink to="/contact">Contact</FooterLink>

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage, translations } from '../LanguageContext';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { idToSlug } from '../pages/CaseDetailPage';
 
 const CasesSection = styled.section`
   padding: 6rem 0;
@@ -124,24 +123,20 @@ const ViewLink = styled.div`
   font-size: 15px;
 `;
 
-const casesStaticConfig = [
-  { id: 'fonteyn', logo: '/uploads/fonteyn_logo.png', image: '/uploads/fonteyn_dashboard.png' },
-  { id: 'aanhuis', logo: '/uploads/aanhuis.png', image: '/uploads/aanhuis_voorkant.png' },
-  { id: 'blosh', logo: '/uploads/blosh.png', image: '/uploads/blosh_office.png' },
-  { id: 'redbutton', logo: '/uploads/red_button_logo.png', image: '/uploads/magic_apparels_dashboard.png' },
-  { id: 'stakepvp', logo: '/uploads/stakepvp_logo.png', image: '/uploads/stakepvp_logo.png' },
-  { id: 'passion', logo: '/uploads/passion_icebaths_logo.png', image: '/uploads/passion_icebaths.png' },
-];
-
 function Cases() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const { language } = useLanguage();
   const t = translations[language].cases;
+  const [cases, setCases] = useState([]);
 
-  const casesData = t.items.map((item) => {
-    const staticConfig = casesStaticConfig.find((s) => s.id === item.id);
-    return { ...staticConfig, ...item };
-  });
+  useEffect(() => {
+    fetch('/api/cases')
+      .then(r => r.json())
+      .then(setCases)
+      .catch(() => {});
+  }, []);
+
+  const isNL = language === 'nl';
 
   return (
     <CasesSection id="cases" ref={ref}>
@@ -164,10 +159,10 @@ function Cases() {
         </SectionHeader>
 
         <CasesGrid>
-          {casesData.map((caseItem, index) => (
+          {cases.map((caseItem, index) => (
             <CaseCard
               key={caseItem.id}
-              to={`/cases/${idToSlug[caseItem.id]}`}
+              to={`/cases/${caseItem.slug}`}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -186,8 +181,8 @@ function Cases() {
               </CaseHeader>
 
               <CaseContent>
-                <CaseTitle>{caseItem.title}</CaseTitle>
-                <CasePreview>{caseItem.preview}</CasePreview>
+                <CaseTitle>{isNL ? caseItem.title_nl : caseItem.title_en}</CaseTitle>
+                <CasePreview>{isNL ? caseItem.preview_nl : caseItem.preview_en}</CasePreview>
                 <ViewLink>
                   <span>{t.viewFullCase}</span>
                   <ArrowRight size={16} />
