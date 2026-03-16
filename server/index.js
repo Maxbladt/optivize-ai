@@ -12,6 +12,11 @@ const PORT = 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'optivaize-secret-key-change-in-production';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Groenekanseweg12!';
 
+// Teamleader config
+const TEAMLEADER_CLIENT_ID = process.env.TEAMLEADER_CLIENT_ID;
+const TEAMLEADER_CLIENT_SECRET = process.env.TEAMLEADER_CLIENT_SECRET;
+const TEAMLEADER_REDIRECT_URI = process.env.TEAMLEADER_REDIRECT_URI || 'https://optivaize.nl/api/teamleader/callback';
+
 // Database connection
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
@@ -308,6 +313,467 @@ app.delete('/api/admin/blogs/:id', authenticate, async (req, res) => {
 app.post('/api/admin/upload', authenticate, upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
   res.json({ url: `/uploads/${req.file.filename}` });
+});
+
+// ─── TEAMLEADER INTEGRATION ───
+
+async function refreshTeamleaderToken(refreshToken) {
+  const resp = await fetch('https://focus.teamleader.eu/oauth2/access_token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      client_id: TEAMLEADER_CLIENT_ID,
+      client_secret: TEAMLEADER_CLIENT_SECRET,
+      refresh_token: refreshToken,
+      grant_type: 'refresh_token',
+    }),
+  });
+  if (!resp.ok) {
+    const text = await resp.text();
+    console.error('Token refresh failed:', resp.status, text);
+    return null;
+  }
+  const data = await resp.json();
+  const newExpiresAt = new Date(Date.now() + data.expires_in * 1000);
+  await pool.query(
+    'UPDATE teamleader_tokens SET access_token = $1, refresh_token = $2, expires_at = $3, updated_at = NOW() WHERE id = 1',
+    [data.access_token, data.refresh_token, newExpiresAt]
+  );
+  return data.access_token;
+}
+
+async function getValidToken() {
+  const result = await pool.query('SELECT * FROM teamleader_tokens WHERE id = 1');
+  if (result.rows.length === 0) return null;
+
+  const row = result.rows[0];
+  const expiresAt = new Date(row.expires_at);
+  const now = new Date();
+
+  // Refresh if expired or expiring within 5 minutes
+  if (expiresAt.getTime() - now.getTime() < 5 * 60 * 1000) {
+    try {
+      return await refreshTeamleaderToken(row.refresh_token);
+    } catch (err) {
+      console.error('Token refresh error:', err);
+      return null;
+    }
+  }
+
+  return row.access_token;
+}
+
+async function teamleaderRequest(endpoint, body = {}) {
+  const token = await getValidToken();
+  if (!token) return { error: 'not_connected' };
+
+  let resp = await fetch(`https://api.focus.teamleader.eu/${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  // If 401, try one more refresh and retry the request
+  if (resp.status === 401) {
+    const row = (await pool.query('SELECT refresh_token FROM teamleader_tokens WHERE id = 1')).rows[0];
+    if (!row) return { error: 'not_connected' };
+    const newToken = await refreshTeamleaderToken(row.refresh_token);
+    if (!newToken) return { error: 'not_connected' };
+    resp = await fetch(`https://api.focus.teamleader.eu/${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${newToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+  }
+
+  if (!resp.ok) {
+    const text = await resp.text();
+    console.error(`Teamleader API error (${endpoint}):`, resp.status, text);
+    return { error: 'api_error', status: resp.status, details: text };
+  }
+
+  return resp.json();
+}
+
+// OAuth: start authorization
+app.get('/api/teamleader/authorize', (req, res) => {
+  const params = new URLSearchParams({
+    client_id: TEAMLEADER_CLIENT_ID,
+    response_type: 'code',
+    redirect_uri: TEAMLEADER_REDIRECT_URI,
+  });
+  res.redirect(`https://focus.teamleader.eu/oauth2/authorize?${params}`);
+});
+
+// OAuth: callback
+app.get('/api/teamleader/callback', async (req, res) => {
+  const { code, error } = req.query;
+  if (error || !code) {
+    return res.status(400).json({ error: error || 'No authorization code received' });
+  }
+
+  try {
+    const resp = await fetch('https://focus.teamleader.eu/oauth2/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: TEAMLEADER_CLIENT_ID,
+        client_secret: TEAMLEADER_CLIENT_SECRET,
+        code,
+        grant_type: 'authorization_code',
+        redirect_uri: TEAMLEADER_REDIRECT_URI,
+      }),
+    });
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      console.error('Token exchange failed:', text);
+      return res.status(400).json({ error: 'Token exchange failed' });
+    }
+
+    const data = await resp.json();
+    const expiresAt = new Date(Date.now() + data.expires_in * 1000);
+
+    await pool.query(
+      `INSERT INTO teamleader_tokens (id, access_token, refresh_token, expires_at)
+       VALUES (1, $1, $2, $3)
+       ON CONFLICT (id) DO UPDATE SET access_token = $1, refresh_token = $2, expires_at = $3, updated_at = NOW()`,
+      [data.access_token, data.refresh_token, expiresAt]
+    );
+
+    res.redirect('/stats/123121221213213?connected=true');
+  } catch (err) {
+    console.error('OAuth callback error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Connection status
+app.get('/api/teamleader/status', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT expires_at FROM teamleader_tokens WHERE id = 1');
+    res.json({ connected: result.rows.length > 0 });
+  } catch {
+    res.json({ connected: false });
+  }
+});
+
+// Invoices for current month
+app.get('/api/teamleader/invoices', async (req, res) => {
+  try {
+    const now = new Date();
+    const firstDay = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const lastDayStr = `${lastDay.getFullYear()}-${String(lastDay.getMonth() + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}`;
+
+    const allInvoices = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const data = await teamleaderRequest('invoices.list', {
+        filter: {
+          invoice_date_after: firstDay,
+          invoice_date_before: lastDayStr,
+        },
+        page: { size: 100, number: page },
+      });
+
+      if (data.error) {
+        return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      }
+
+      allInvoices.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 10) break; // safety limit
+    }
+
+    res.json({ data: allInvoices });
+  } catch (err) {
+    console.error('Invoices error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Open deals
+app.get('/api/teamleader/deals', async (req, res) => {
+  try {
+    const data = await teamleaderRequest('deals.list', {
+      filter: { status: ['open'] },
+      sort: [{ field: 'weighted_value', order: 'desc' }],
+      page: { size: 50, number: 1 },
+      include: 'lead.customer,responsible_user',
+    });
+    if (data.error) {
+      return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+    }
+    res.json(data);
+  } catch (err) {
+    console.error('Deals error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Running projects
+app.get('/api/teamleader/projects', async (req, res) => {
+  try {
+    const data = await teamleaderRequest('projects-v2/projects.list', {
+      filter: { status: 'running' },
+      sort: [{ field: 'end_date', order: 'asc' }],
+      page: { size: 50, number: 1 },
+    });
+    if (data.error) {
+      return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+    }
+    res.json(data);
+  } catch (err) {
+    console.error('Projects error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Incomplete tasks (including overdue from past months)
+app.get('/api/teamleader/tasks', async (req, res) => {
+  try {
+    const now = new Date();
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const lastDayStr = `${lastDay.getFullYear()}-${String(lastDay.getMonth() + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}`;
+
+    const allTasks = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const data = await teamleaderRequest('tasks.list', {
+        filter: {
+          completed: false,
+          due_by: lastDayStr,
+        },
+        sort: [{ field: 'due_on', order: 'asc' }],
+        page: { size: 100, number: page },
+      });
+
+      if (data.error) {
+        return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      }
+
+      allTasks.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 5) break;
+    }
+
+    res.json({ data: allTasks });
+  } catch (err) {
+    console.error('Tasks error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Team members
+app.get('/api/teamleader/users', async (req, res) => {
+  try {
+    const data = await teamleaderRequest('users.list', {
+      page: { size: 100, number: 1 },
+    });
+    if (data.error) {
+      return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+    }
+    res.json(data);
+  } catch (err) {
+    console.error('Users error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Year-to-date invoices
+app.get('/api/teamleader/invoices-ytd', async (req, res) => {
+  try {
+    const now = new Date();
+    const firstDay = `${now.getFullYear()}-01-01`;
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+    const allInvoices = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const data = await teamleaderRequest('invoices.list', {
+        filter: {
+          invoice_date_after: firstDay,
+          invoice_date_before: today,
+        },
+        page: { size: 100, number: page },
+      });
+
+      if (data.error) {
+        return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      }
+
+      allInvoices.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 20) break;
+    }
+
+    res.json({ data: allInvoices });
+  } catch (err) {
+    console.error('Invoices YTD error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Completed tasks (broader range to capture tasks completed recently regardless of due date)
+app.get('/api/teamleader/tasks-completed', async (req, res) => {
+  try {
+    const now = new Date();
+    // Go back 3 months to capture tasks completed this month that had earlier due dates
+    const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+    const firstDay = `${threeMonthsAgo.getFullYear()}-${String(threeMonthsAgo.getMonth() + 1).padStart(2, '0')}-01`;
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const lastDayStr = `${lastDay.getFullYear()}-${String(lastDay.getMonth() + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}`;
+
+    const allTasks = [];
+    let page = 1;
+    let hasMore = true;
+    while (hasMore) {
+      const data = await teamleaderRequest('tasks.list', {
+        filter: { completed: true, due_from: firstDay, due_by: lastDayStr },
+        page: { size: 100, number: page },
+      });
+      if (data.error) return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      allTasks.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 10) break;
+    }
+
+    // Filter client-side: only keep tasks completed this month (using completed_at)
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const filtered = allTasks.filter(t => {
+      if (!t.completed_at) return false;
+      return new Date(t.completed_at) >= monthStart;
+    });
+
+    res.json({ data: filtered });
+  } catch (err) {
+    console.error('Completed tasks error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Time tracking this week
+app.get('/api/teamleader/time-tracking-week', async (req, res) => {
+  try {
+    const now = new Date();
+    const dayOfWeek = now.getDay();
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - ((dayOfWeek + 6) % 7));
+    monday.setHours(0, 0, 0, 0);
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+    sunday.setHours(23, 59, 59, 0);
+
+    const mondayStr = `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, '0')}-${String(monday.getDate()).padStart(2, '0')}T00:00:00+00:00`;
+    const sundayStr = `${sunday.getFullYear()}-${String(sunday.getMonth() + 1).padStart(2, '0')}-${String(sunday.getDate()).padStart(2, '0')}T23:59:59+00:00`;
+
+    const allEntries = [];
+    let page = 1;
+    let hasMore = true;
+    while (hasMore) {
+      const data = await teamleaderRequest('timeTracking.list', {
+        filter: { started_after: mondayStr, started_before: sundayStr },
+        page: { size: 100, number: page },
+      });
+      if (data.error) return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      allEntries.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 5) break;
+    }
+    res.json({ data: allEntries });
+  } catch (err) {
+    console.error('Time tracking week error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Deal phases (pipeline columns)
+app.get('/api/teamleader/deal-phases', async (req, res) => {
+  try {
+    // First get all pipelines
+    const pipelinesResp = await teamleaderRequest('pipelines.list', {});
+    if (pipelinesResp.error) {
+      return res.status(pipelinesResp.error === 'not_connected' ? 401 : 502).json(pipelinesResp);
+    }
+    const pipelines = pipelinesResp.data || [];
+
+    // Then get phases for each pipeline
+    const allPhases = [];
+    for (const pl of pipelines) {
+      const phasesResp = await teamleaderRequest('dealPhases.list', {
+        filter: { pipeline_id: pl.id },
+      });
+      if (phasesResp.data) {
+        allPhases.push(...phasesResp.data);
+      }
+    }
+    res.json({ data: allPhases });
+  } catch (err) {
+    console.error('Deal phases error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Time tracking this month
+app.get('/api/teamleader/time-tracking', async (req, res) => {
+  try {
+    const now = new Date();
+    const firstDay = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01T00:00:00+00:00`;
+    const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+    const lastDayStr = `${lastDay.getFullYear()}-${String(lastDay.getMonth() + 1).padStart(2, '0')}-${String(lastDay.getDate()).padStart(2, '0')}T23:59:59+00:00`;
+
+    const allEntries = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const data = await teamleaderRequest('timeTracking.list', {
+        filter: {
+          started_after: firstDay,
+          started_before: lastDayStr,
+        },
+        page: { size: 100, number: page },
+      });
+
+      if (data.error) {
+        return res.status(data.error === 'not_connected' ? 401 : 502).json(data);
+      }
+
+      allEntries.push(...(data.data || []));
+      const meta = data.meta;
+      hasMore = meta && meta.page && (meta.page.number * meta.page.size < meta.matches);
+      page++;
+      if (page > 10) break;
+    }
+
+    res.json({ data: allEntries });
+  } catch (err) {
+    console.error('Time tracking error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 // Start server
