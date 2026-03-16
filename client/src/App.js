@@ -20,6 +20,7 @@ import HiringPage from './pages/HiringPage';
 import BlogListPage from './pages/BlogListPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import Bedankt from './components/Bedankt';
+import StatsDashboard from './pages/StatsDashboard';
 import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
@@ -63,6 +64,9 @@ function App() {
           {/* Blog routes */}
           <Route path="/blog" element={<Layout><BlogListPage /></Layout>} />
           <Route path="/blog/:slug" element={<Layout><BlogDetailPage /></Layout>} />
+
+          {/* Stats dashboard (hidden) */}
+          <Route path="/stats/123121221213213" element={<StatsDashboard />} />
 
           {/* Admin routes */}
           <Route path="/admin/login" element={<AdminLogin />} />

@@ -28,6 +28,9 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      TEAMLEADER_CLIENT_ID: ${TEAMLEADER_CLIENT_ID}
+      TEAMLEADER_CLIENT_SECRET: ${TEAMLEADER_CLIENT_SECRET}
+      TEAMLEADER_REDIRECT_URI: ${TEAMLEADER_REDIRECT_URI}
     volumes:
       - ./pictures_good:/app/pictures_good
     depends_on:
