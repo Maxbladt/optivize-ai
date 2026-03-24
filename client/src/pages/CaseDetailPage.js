@@ -119,7 +119,7 @@ const ArticleSection = styled.section`
 `;
 
 const ArticleWrap = styled.div`
-  max-width: 720px;
+  max-width: 810px;
   margin: 0 auto;
 `;
 
@@ -135,6 +135,13 @@ const ArticleBody = styled.div`
   li { margin-bottom: 0.5rem; }
   img { max-width: 100%; border-radius: 12px; margin: 1.5rem 0; }
   a { color: #3B82F6; }
+
+  .dark-section {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+  }
 `;
 
 const Divider = styled.hr`

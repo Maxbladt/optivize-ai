@@ -89,7 +89,7 @@ const ArticleSection = styled.section`
 `;
 
 const ArticleWrap = styled.div`
-  max-width: 720px;
+  max-width: 810px;
   margin: 0 auto;
 `;
 
@@ -121,6 +121,13 @@ const ArticleContent = styled.div`
   code { background: #F1F5F9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
   pre { background: #0F172A; color: #E2E8F0; padding: 1.25rem; border-radius: 12px; overflow-x: auto; margin: 1.5rem 0; }
   pre code { background: none; padding: 0; color: inherit; }
+
+  .dark-section {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
+  }
 `;
 
 const CtaSection = styled.section`

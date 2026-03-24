@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 import Navigation from './Navigation';
 import Footer from './Footer';
 
@@ -62,110 +60,16 @@ const AppContainer = styled.div`
   overflow-x: hidden;
 `;
 
-const LoadingScreen = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-`;
-
-const LoadingLogoWrap = styled(motion.div)`
-  margin-bottom: 3rem;
-
-  img {
-    width: 180px;
-    height: auto;
-  }
-`;
-
-const LoadingBarTrack = styled.div`
-  width: 220px;
-  height: 2px;
-  background: #E2E8F0;
-  border-radius: 1px;
-  overflow: hidden;
-`;
-
-const LoadingBarFill = styled(motion.div)`
-  height: 100%;
-  background: linear-gradient(90deg, #3B82F6, #10B981);
-  border-radius: 1px;
-`;
-
-const LoadingCaption = styled(motion.p)`
-  margin-top: 1.25rem;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #CBD5E1;
-  font-family: 'DM Sans', sans-serif;
-`;
 
 function Layout({ children }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    const hasLoaded = sessionStorage.getItem('optivaize_loaded');
-    if (!hasLoaded && location.pathname === '/') {
-      setIsLoading(true);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        sessionStorage.setItem('optivaize_loaded', 'true');
-      }, 2400);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   return (
     <>
       <GlobalStyle />
-      <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-          >
-            <LoadingLogoWrap
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-            >
-              <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
-            </LoadingLogoWrap>
-            <LoadingBarTrack>
-              <LoadingBarFill
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 2.2, ease: 'easeInOut' }}
-              />
-            </LoadingBarTrack>
-            <LoadingCaption
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              AI voor je bedrijf
-            </LoadingCaption>
-          </LoadingScreen>
-        )}
-      </AnimatePresence>
-
-      {!isLoading && (
-        <AppContainer>
-          <Navigation />
-          {children}
-          <Footer />
-        </AppContainer>
-      )}
+      <AppContainer>
+        <Navigation />
+        {children}
+        <Footer />
+      </AppContainer>
     </>
   );
 }
