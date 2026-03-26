@@ -1,5 +1,7 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import Link from '../components/Link';
+import { useParams, useRouter } from '../hooks';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
@@ -173,12 +175,15 @@ const CtaBtn = styled(motion.a)`
 `;
 
 export default function BlogDetailPage() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug;
+  const router = useRouter();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    if (!slug) return;
     fetch(`/api/blogs/${slug}`)
       .then(r => {
         if (!r.ok) { setNotFound(true); return null; }
@@ -189,25 +194,24 @@ export default function BlogDetailPage() {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  if (notFound) return <Navigate to="/blog" replace />;
+  useEffect(() => {
+    if (notFound) router.replace('/blog');
+  }, [notFound, router]);
+  if (notFound) return null;
   if (loading || !blog) return null;
 
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-  const canonicalUrl = `${window.location.origin}/blog/${blog.slug}`;
+  const canonicalUrl = `https://optivaize.nl/blog/${blog.slug}`;
   const ogImage = blog.featured_image ? `${window.location.origin}${blog.featured_image}` : null;
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: blog.title,
     description: blog.meta_description || blog.excerpt,
     image: ogImage,
-    author: { '@type': 'Organization', name: blog.author || 'Optivaize' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Optivaize',
-      logo: { '@type': 'ImageObject', url: `${window.location.origin}/uploads/optivaize_logo_new.png` },
-    },
+    author: { '@type': 'Person', name: blog.author || 'Optivaize' },
+    publisher: { '@id': 'https://optivaize.nl/#organization' },
     datePublished: blog.published_at,
     dateModified: blog.updated_at || blog.published_at,
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
@@ -223,6 +227,11 @@ export default function BlogDetailPage() {
         ogImage={ogImage}
         canonicalUrl={canonicalUrl}
         jsonLd={jsonLd}
+        breadcrumbs={[
+          {name:'Home',url:'https://optivaize.nl'},
+          {name:'Blog',url:'https://optivaize.nl/blog'},
+          {name:blog.title,url:`https://optivaize.nl/blog/${blog.slug}`}
+        ]}
       />
 
       <BackBar>

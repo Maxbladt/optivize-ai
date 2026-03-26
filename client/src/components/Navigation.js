@@ -1,8 +1,10 @@
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase, Phone } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from './Link';
+import { useLocation } from '../hooks';
 import { useLanguage } from '../LanguageContext';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';

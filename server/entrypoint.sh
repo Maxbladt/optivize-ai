@@ -9,8 +9,7 @@ node migrate.js
 echo "Running database seed..."
 node seed.js
 
-echo "Starting API server..."
-node index.js &
+cd /app
 
-echo "Starting Nginx..."
-nginx -g 'daemon off;'
+echo "Starting Next.js server..."
+node_modules/.bin/next start -p 3000

@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { Zap, ArrowRight, CheckCircle, RefreshCw, Database, Mail, Package, ChevronRight, GitBranch, Clock, BarChart3, Cpu, Server, Layers, XCircle, ArrowDown, Code2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #8B5CF6, #3B82F6)';
@@ -851,6 +853,16 @@ function AutomationPage() {
 
   return (
     <>
+      <SEOHead
+        title="Automatisering met AI | Optivaize, De Bilt"
+        description="Bespaar tijd en kosten met slimme automatisering. Optivaize integreert AI in je bedrijfsprocessen vanuit De Bilt, voor heel Nederland."
+        canonicalUrl="https://optivaize.nl/automatisering"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'Automatisering', url: 'https://optivaize.nl/automatisering' }
+        ]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

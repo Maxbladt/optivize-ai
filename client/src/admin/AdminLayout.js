@@ -1,5 +1,7 @@
+'use client';
 import React from 'react';
-import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { LayoutDashboard, Briefcase, FileText, Presentation, LogOut, ArrowLeft } from 'lucide-react';
 import { useAuth } from './useAuth';
@@ -38,7 +40,7 @@ const Nav = styled.div`
   padding: 1rem 0;
 `;
 
-const SideLink = styled(NavLink)`
+const SideLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -103,24 +105,24 @@ const BackToAdmin = styled.button`
   &:hover { color: white; background: rgba(15, 23, 42, 0.95); }
 `;
 
-export default function AdminLayout() {
+export default function AdminLayout({ children }) {
   const { logout } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isPresentation = location.pathname === '/admin/presentation';
+  const router = useRouter();
+  const pathname = usePathname();
+  const isPresentation = pathname === '/admin/presentation';
 
   const handleLogout = () => {
     logout();
-    navigate('/admin/login');
+    router.push('/admin/login');
   };
 
   if (isPresentation) {
     return (
       <FullscreenWrap>
-        <BackToAdmin onClick={() => navigate('/admin')}>
+        <BackToAdmin onClick={() => router.push('/admin')}>
           <ArrowLeft size={14} /> Terug naar admin
         </BackToAdmin>
-        <Outlet />
+        {children}
       </FullscreenWrap>
     );
   }
@@ -130,15 +132,15 @@ export default function AdminLayout() {
       <Sidebar>
         <Logo>Optivaize <span>Admin</span></Logo>
         <Nav>
-          <SideLink to="/admin" end><LayoutDashboard size={18} /> Dashboard</SideLink>
-          <SideLink to="/admin/cases"><Briefcase size={18} /> Cases</SideLink>
-          <SideLink to="/admin/blogs"><FileText size={18} /> Blogs</SideLink>
-          <SideLink to="/admin/presentation"><Presentation size={18} /> Presentatie</SideLink>
+          <SideLink href="/admin" className={pathname === '/admin' ? 'active' : ''}><LayoutDashboard size={18} /> Dashboard</SideLink>
+          <SideLink href="/admin/cases" className={pathname.startsWith('/admin/cases') ? 'active' : ''}><Briefcase size={18} /> Cases</SideLink>
+          <SideLink href="/admin/blogs" className={pathname.startsWith('/admin/blogs') ? 'active' : ''}><FileText size={18} /> Blogs</SideLink>
+          <SideLink href="/admin/presentation" className={pathname === '/admin/presentation' ? 'active' : ''}><Presentation size={18} /> Presentatie</SideLink>
         </Nav>
         <LogoutBtn onClick={handleLogout}><LogOut size={18} /> Uitloggen</LogoutBtn>
       </Sidebar>
       <Main>
-        <Outlet />
+        {children}
       </Main>
     </Wrapper>
   );

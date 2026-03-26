@@ -1,14 +1,16 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import {
   ArrowRight, Code2, CheckCircle, Blocks,
   Zap, TrendingUp, Shield, Server,
   Layers, Coins, Wallet, Gamepad2
 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #6366F1, #3B82F6)';
 
@@ -1008,6 +1010,13 @@ export default function SubsidyPage() {
 
   return (
     <>
+      <SEOHead
+        title="Crypto en Blockchain Ontwikkeling | Optivaize, De Bilt"
+        description="Blockchain-oplossingen en crypto-integraties voor bedrijven. Smart contracts, DeFi en Web3 ontwikkeling door Optivaize vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/crypto-blockchain"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Crypto & Blockchain",url:"https://optivaize.nl/crypto-blockchain"}]}
+      />
       {/* ── HERO ── */}
       <HeroWrap>
         <HeroBg />
@@ -1072,7 +1081,7 @@ export default function SubsidyPage() {
                 {isNL ? 'Plan een gesprek' : 'Schedule a call'}
                 <ArrowRight size={17} />
               </BtnPrimary>
-              <BtnSecondary to="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 {isNL ? 'Bekijk onze cases' : 'View our cases'}
               </BtnSecondary>
             </HeroBtns>

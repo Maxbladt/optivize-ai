@@ -1,8 +1,10 @@
+'use client';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 import { ArrowRight, MapPin, Clock, Briefcase, Brain, Eye, Layout, Code2, Cpu, ChevronDown, Send } from 'lucide-react';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -418,6 +420,13 @@ function HiringPage() {
 
   return (
     <>
+      <SEOHead
+        title="Werken bij Optivaize | Vacatures AI-bureau De Bilt"
+        description="Wil je werken aan de toekomst van AI? Bekijk onze vacatures bij Optivaize in De Bilt. Wij zoeken developers, designers en AI-specialisten."
+        canonicalUrl="https://optivaize.nl/hiring"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Vacatures",url:"https://optivaize.nl/hiring"}]}
+      />
       <PageHero>
         <Container>
           <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>

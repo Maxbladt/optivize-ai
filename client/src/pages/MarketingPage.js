@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { TrendingUp, Search, FileText, BarChart3, Target, ArrowRight, CheckCircle, ChevronRight, Image } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #10B981, #3B82F6)';
@@ -536,6 +538,16 @@ function MarketingPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI Marketing Automatisering | Optivaize, De Bilt"
+        description="Versterk je marketing met AI. Van SEO en content tot social media automatisering. Optivaize helpt bedrijven groeien vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-marketing"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Marketing', url: 'https://optivaize.nl/ai-marketing' }
+        ]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

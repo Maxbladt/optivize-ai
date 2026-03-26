@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { Building2, Search, Cpu, Rocket, TrendingUp, Users, Shield, ArrowRight, CheckCircle, ChevronRight, BarChart3 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #EC4899, #8B5CF6)';
@@ -411,6 +413,16 @@ function AIBusinessPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI voor Bedrijven | Optivaize, De Bilt"
+        description="AI-strategie en implementatie voor je bedrijf. Optivaize helpt organisaties in heel Nederland met AI-transformatie vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-business"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Business', url: 'https://optivaize.nl/ai-business' }
+        ]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

@@ -1,9 +1,10 @@
+'use client';
 import { useState, useCallback } from 'react';
 
 const TOKEN_KEY = 'optivaize_admin_token';
 
 export function useAuth() {
-  const [token, setToken] = useState(() => localStorage.getItem(TOKEN_KEY));
+  const [token, setToken] = useState(() => typeof window !== 'undefined' ? localStorage.getItem(TOKEN_KEY) : null);
 
   const login = useCallback(async (password) => {
     const res = await fetch('/api/auth/login', {

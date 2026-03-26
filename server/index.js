@@ -9,8 +9,13 @@ const fs = require('fs');
 const app = express();
 const PORT = 5000;
 
-const JWT_SECRET = process.env.JWT_SECRET || 'optivaize-secret-key-change-in-production';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Groenekanseweg12!';
+const JWT_SECRET = process.env.JWT_SECRET;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+if (!JWT_SECRET || !ADMIN_PASSWORD) {
+  console.error('FATAL: JWT_SECRET and ADMIN_PASSWORD environment variables are required');
+  process.exit(1);
+}
 
 // Teamleader config
 const TEAMLEADER_CLIENT_ID = process.env.TEAMLEADER_CLIENT_ID;
@@ -773,6 +778,60 @@ app.get('/api/teamleader/time-tracking', async (req, res) => {
   } catch (err) {
     console.error('Time tracking error:', err);
     res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ─── SITEMAP ───
+
+app.get('/api/sitemap.xml', async (req, res) => {
+  const staticRoutes = [
+    { loc: '/', priority: '1.0', changefreq: 'weekly' },
+    { loc: '/ai-agenten', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/ai-marketing', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/ai-sales', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/automatisering', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/custom-software', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/ai-business', priority: '0.8', changefreq: 'monthly' },
+    { loc: '/ai-chatbot', priority: '0.8', changefreq: 'monthly' },
+    { loc: '/ai-training', priority: '0.8', changefreq: 'monthly' },
+    { loc: '/crypto-blockchain', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/cases', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/over-ons', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/contact', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/hiring', priority: '0.6', changefreq: 'monthly' },
+  ];
+
+  try {
+    const [casesResult, blogsResult] = await Promise.all([
+      pool.query('SELECT slug, updated_at FROM cases WHERE published = true ORDER BY created_at DESC'),
+      pool.query('SELECT slug, updated_at FROM blogs WHERE published = true ORDER BY published_at DESC'),
+    ]);
+
+    const base = 'https://optivaize.nl';
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+    for (const r of staticRoutes) {
+      xml += `  <url>\n    <loc>${base}${r.loc}</loc>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>\n`;
+    }
+
+    for (const c of casesResult.rows) {
+      const lastmod = c.updated_at ? new Date(c.updated_at).toISOString().split('T')[0] : '';
+      xml += `  <url>\n    <loc>${base}/cases/${c.slug}</loc>\n${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+    }
+
+    for (const b of blogsResult.rows) {
+      const lastmod = b.updated_at ? new Date(b.updated_at).toISOString().split('T')[0] : '';
+      xml += `  <url>\n    <loc>${base}/blog/${b.slug}</loc>\n${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+    }
+
+    xml += '</urlset>';
+    res.set('Content-Type', 'application/xml');
+    res.send(xml);
+  } catch (err) {
+    console.error('Sitemap error:', err);
+    res.status(500).send('Error generating sitemap');
   }
 });
 

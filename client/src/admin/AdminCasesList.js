@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { useAuth } from './useAuth';
@@ -121,7 +122,7 @@ export default function AdminCasesList() {
     <>
       <Header>
         <Title>Cases</Title>
-        <AddBtn to="/admin/cases/new"><Plus size={16} /> Nieuwe case</AddBtn>
+        <AddBtn href="/admin/cases/new"><Plus size={16} /> Nieuwe case</AddBtn>
       </Header>
       <Table>
         <thead>
@@ -142,7 +143,7 @@ export default function AdminCasesList() {
               <Td>{c.sort_order}</Td>
               <Td>
                 <Actions>
-                  <IconBtn to={`/admin/cases/${c.id}/edit`}><Edit2 size={15} /></IconBtn>
+                  <IconBtn href={`/admin/cases/${c.id}/edit`}><Edit2 size={15} /></IconBtn>
                   <DeleteBtn onClick={() => handleDelete(c.id, c.company)}><Trash2 size={15} /></DeleteBtn>
                 </Actions>
               </Td>

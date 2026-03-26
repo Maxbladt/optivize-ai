@@ -1,9 +1,10 @@
+'use client';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from './Link';
 import { useLanguage } from '../LanguageContext';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -373,6 +374,7 @@ function Footer() {
           <FooterBottom>
             <Copyright>
               &copy; {new Date().getFullYear()} Optivaize. {language === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.'}
+              {' | KvK: 97569186 | BTW: NL868115769B01'}
             </Copyright>
             <LegalLinks>
               <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy</LegalLink>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /stats/
+Disallow: /bedankt
+Disallow: /api/
+
+Sitemap: https://optivaize.nl/sitemap.xml

@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import createGlobe from 'cobe';

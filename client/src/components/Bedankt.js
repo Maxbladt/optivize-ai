@@ -1,9 +1,11 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Phone, Linkedin, ArrowLeft, CheckCircle, Mail } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../hooks';
 import { useLanguage, translations } from '../LanguageContext';
+import SEOHead from './SEOHead';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -296,6 +298,11 @@ function Bedankt() {
 
   return (
     <PageContainer>
+      <SEOHead
+        title="Bedankt | Optivaize"
+        description="Bedankt voor je bericht. We nemen zo snel mogelijk contact op."
+        noindex={true}
+      />
       <NavBar>
         <motion.div
           whileHover={{ scale: 1.05 }}

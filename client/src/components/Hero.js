@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -137,7 +138,9 @@ const CircuitPattern = styled(motion.div)`
 function Hero() {
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const shapesRef = useRef(null);
+  const circuitRef = useRef(null);
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const { language } = useLanguage();
   const t = translations[language].hero;
@@ -159,17 +162,26 @@ function Hero() {
     }
   }, [controls, inView]);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100
-      });
-    };
+  const handleMouseMove = useCallback((e) => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    mouseRef.current = { x, y };
 
+    if (shapesRef.current) {
+      const shapes = shapesRef.current.querySelectorAll('[data-float]');
+      shapes.forEach(el => {
+        el.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
+      });
+    }
+    if (circuitRef.current) {
+      circuitRef.current.style.transform = `translate(${x * 0.03}px, ${y * 0.03}px)`;
+    }
+  }, []);
+
+  useEffect(() => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [handleMouseMove]);
 
   // Cycle through services every 3 seconds
   useEffect(() => {
@@ -245,19 +257,19 @@ function Hero() {
 
   return (
     <HeroSection id="home" ref={ref}>
-      <AnimatedBackground>
+      <AnimatedBackground ref={shapesRef}>
         <ParticleCanvas />
-        
+
         {/* Floating geometric shapes */}
         {[...Array(6)].map((_, i) => (
           <FloatingShape
             key={i}
+            data-float
             style={{
               width: `${60 + i * 20}px`,
               height: `${60 + i * 20}px`,
               top: `${10 + i * 15}%`,
               left: `${5 + i * 15}%`,
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
             }}
             animate={{
               y: [0, -20, 0],
@@ -272,11 +284,7 @@ function Hero() {
         ))}
 
         {/* Circuit pattern */}
-        <CircuitPattern
-          style={{
-            transform: `translate(${mousePosition.x * 0.03}px, ${mousePosition.y * 0.03}px)`
-          }}
-        >
+        <CircuitPattern ref={circuitRef}>
           <svg viewBox="0 0 200 200" fill="none">
             <motion.path
               d="M50 50 L150 50 L150 150 L50 150 Z M100 50 L100 150 M50 100 L150 100"

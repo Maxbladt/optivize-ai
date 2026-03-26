@@ -1,9 +1,12 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import Link from '../components/Link';
+import { useParams, useRouter } from '../hooks';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -247,13 +250,16 @@ const CtaBtn = styled(motion.a)`
 /* ──── Component ──── */
 
 function CaseDetailPage() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug;
+  const router = useRouter();
   const { language } = useLanguage();
   const isNL = language === 'nl';
   const [caseData, setCaseData] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    if (!slug) return;
     fetch(`/api/cases/${slug}`)
       .then(r => {
         if (!r.ok) { setNotFound(true); return null; }
@@ -263,7 +269,10 @@ function CaseDetailPage() {
       .catch(() => setNotFound(true));
   }, [slug]);
 
-  if (notFound) return <Navigate to="/cases" replace />;
+  useEffect(() => {
+    if (notFound) router.replace('/cases');
+  }, [notFound, router]);
+  if (notFound) return null;
   if (!caseData) return null;
 
   const title = isNL ? caseData.title_nl : caseData.title_en;
@@ -277,6 +286,13 @@ function CaseDetailPage() {
 
   return (
     <>
+      <SEOHead
+        title={`${caseData.title_nl || caseData.title_en} | Optivaize Cases`}
+        description={caseData.preview_nl || caseData.preview_en || ''}
+        canonicalUrl={`https://optivaize.nl/cases/${caseData.slug}`}
+        ogImage={caseData.image ? `https://optivaize.nl${caseData.image}` : "https://optivaize.nl/uploads/optivaize_logo_new.png"}
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Cases",url:"https://optivaize.nl/cases"},{name: caseData.title_nl || caseData.title_en, url:`https://optivaize.nl/cases/${caseData.slug}`}]}
+      />
       <BackBar>
         <Container>
           <BackLink to="/cases">

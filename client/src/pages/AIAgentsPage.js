@@ -1,10 +1,13 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { Bot, MessageCircle, Zap, Target, TrendingUp, CheckCircle, ArrowRight, Users, Globe, ChevronRight, BarChart3 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
+import VideoPlayer from '../components/VideoPlayer';
 
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -1000,8 +1003,8 @@ function ClickVideo({ src, thumbnail }) {
     }, 50);
   };
 
-  const videoSrc = process.env.PUBLIC_URL + src;
-  const thumbSrc = process.env.PUBLIC_URL + thumbnail;
+  const videoSrc = src;
+  const thumbSrc = thumbnail;
 
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0D1117', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}>
@@ -1068,6 +1071,16 @@ function AIAgentsPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI Agents Bouwen | Optivaize, AI-bureau De Bilt"
+        description="Laat slimme AI-agents bouwen die taken automatiseren, e-mails schrijven en data analyseren. Optivaize ontwikkelt op maat gemaakte AI-agents in De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-agenten"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Agents', url: 'https://optivaize.nl/ai-agenten' }
+        ]}
+      />
       <PageHero>
         <Container>
           <PageHeroInner>
@@ -1216,7 +1229,7 @@ function AIAgentsPage() {
         <Container>
           <TwoCol>
             <FadeIn delay={0.1}>
-              <ClickVideo src="/uploads/Openclaw intro.mp4" thumbnail="/uploads/openclaw_cool.png" />
+              <VideoPlayer src="/uploads/Openclaw intro.mp4" />
             </FadeIn>
             <FadeIn>
               <SectionLabel>{isNL ? 'Voor je bedrijf' : 'For your business'}</SectionLabel>

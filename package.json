@@ -1,10 +1,30 @@
 {
-  "name": "optivize-ai",
+  "name": "optivaize",
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
     "start": "docker compose up -d --build",
     "stop": "docker compose down",
-    "logs": "docker compose logs -f"
+    "migrate": "node server/migrate.js",
+    "seed": "node server/seed.js",
+    "docker:start": "docker compose up -d --build",
+    "docker:stop": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "dependencies": {
+    "next": "^14.2.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.7",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.284.0",
+    "react-intersection-observer": "^9.5.2",
+    "cobe": "^0.6.5",
+    "pg": "^8.12.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "bcryptjs": "^2.4.3"
   }
 }

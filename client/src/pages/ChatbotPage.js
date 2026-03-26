@@ -1,13 +1,15 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import {
   MessageCircle, ArrowRight, CheckCircle, Zap, TrendingUp, RefreshCw,
   Star, Bot, Target, BarChart3, Mail, MapPin, ShoppingBag, Globe, Code2
 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #06B6D4, #3B82F6)';
@@ -686,6 +688,16 @@ function ChatbotPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI Chatbot Ontwikkeling | Optivaize, De Bilt"
+        description="Laat een slimme AI-chatbot bouwen voor klantenservice en leadgeneratie. Meertalig, 24/7 beschikbaar. Optivaize, AI-bureau in De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-chatbot"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Chatbot', url: 'https://optivaize.nl/ai-chatbot' }
+        ]}
+      />
       {/* ── HERO ── */}
       <PageHero>
         <Container>
@@ -718,7 +730,7 @@ function ChatbotPage() {
                   {isNL ? 'Gratis chatbot demo' : 'Free chatbot demo'}
                   <ArrowRight size={16} />
                 </BtnPrimary>
-                <BtnSecondary to="/cases" whileHover={{ scale: 1.02 }}>
+                <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }}>
                   {isNL ? 'Bekijk resultaten' : 'View results'}
                 </BtnSecondary>
               </HeroBtns>

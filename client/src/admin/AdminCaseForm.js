@@ -1,5 +1,7 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'next/navigation';
+import { useNavigate } from '../hooks';
 import styled from 'styled-components';
 import { ArrowLeft, Save } from 'lucide-react';
 import { useAuth } from './useAuth';

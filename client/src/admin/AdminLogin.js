@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { Lock } from 'lucide-react';
 import { useAuth } from './useAuth';
@@ -89,7 +90,7 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,7 +98,7 @@ export default function AdminLogin() {
     setLoading(true);
     try {
       await login(password);
-      navigate('/admin');
+      router.push('/admin');
     } catch (err) {
       setError('Onjuist wachtwoord. Probeer het opnieuw.');
     } finally {

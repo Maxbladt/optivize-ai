@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { Target, MessageSquare, Users, TrendingUp, Mail, ArrowRight, CheckCircle, ChevronRight, Zap, BarChart3, Monitor, Cpu, Database, Send, Globe, Calendar, ArrowDown } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #F59E0B, #EF4444)';
@@ -574,6 +576,16 @@ function SalesPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI Sales Automatisering | Optivaize, De Bilt"
+        description="Automatiseer je salesproces met AI. LinkedIn outreach, lead generatie en CRM-integraties. Optivaize bouwt slimme sales tools in De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-sales"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Sales', url: 'https://optivaize.nl/ai-sales' }
+        ]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

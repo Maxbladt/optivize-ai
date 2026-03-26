@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { useAuth } from './useAuth';
@@ -130,7 +131,7 @@ export default function AdminBlogsList() {
     <>
       <Header>
         <Title>Blogs</Title>
-        <AddBtn to="/admin/blogs/new"><Plus size={16} /> Nieuwe blog</AddBtn>
+        <AddBtn href="/admin/blogs/new"><Plus size={16} /> Nieuwe blog</AddBtn>
       </Header>
       {blogs.length === 0 ? (
         <Empty>Nog geen blogs. Maak je eerste blog aan.</Empty>
@@ -156,7 +157,7 @@ export default function AdminBlogsList() {
                 <Td>{formatDate(b.published_at)}</Td>
                 <Td>
                   <Actions>
-                    <IconBtn to={`/admin/blogs/${b.id}/edit`}><Edit2 size={15} /></IconBtn>
+                    <IconBtn href={`/admin/blogs/${b.id}/edit`}><Edit2 size={15} /></IconBtn>
                     <DeleteBtn onClick={() => handleDelete(b.id, b.title)}><Trash2 size={15} /></DeleteBtn>
                   </Actions>
                 </Td>

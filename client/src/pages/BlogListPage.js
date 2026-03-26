@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
@@ -151,10 +152,12 @@ export default function BlogListPage() {
   return (
     <>
       <SEOHead
-        title="Blog | Optivaize - AI Insights & Nieuws"
-        description="Lees de laatste inzichten over AI, automatisering en digitale transformatie. Tips, trends en praktische kennis van het Optivaize team."
+        title="Blog | Optivaize, AI-bureau De Bilt"
+        description="Lees de laatste inzichten over AI, automatisering en digitale transformatie. Tips, trends en praktische kennis van het Optivaize team in De Bilt."
         keywords="AI blog, automatisering, machine learning, digitale transformatie, Optivaize"
-        canonicalUrl={window.location.origin + '/blog'}
+        canonicalUrl="https://optivaize.nl/blog"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:'Home',url:'https://optivaize.nl'},{name:'Blog',url:'https://optivaize.nl/blog'}]}
       />
 
       <HeroSection>
@@ -185,7 +188,7 @@ export default function BlogListPage() {
               {blogs.map((blog, i) => (
                 <BlogCard
                   key={blog.id}
-                  to={`/blog/${blog.slug}`}
+                  href={`/blog/${blog.slug}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}

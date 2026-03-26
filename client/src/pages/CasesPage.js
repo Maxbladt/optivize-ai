@@ -1,8 +1,10 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
 import Cases from '../components/Cases';
+import SEOHead from '../components/SEOHead';
 
 const PageHero = styled.section`
   padding: 140px 0 60px;
@@ -49,6 +51,13 @@ function CasesPage() {
 
   return (
     <>
+      <SEOHead
+        title="Cases en Projecten | Optivaize, AI-bureau De Bilt"
+        description="Bekijk onze AI-projecten en klantcases. Van automatisering tot custom software, ontdek wat Optivaize heeft gebouwd voor bedrijven in Nederland."
+        canonicalUrl="https://optivaize.nl/cases"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Cases",url:"https://optivaize.nl/cases"}]}
+      />
       <PageHero>
         <Container>
           <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>

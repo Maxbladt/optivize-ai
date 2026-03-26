@@ -1,12 +1,14 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import {
   GraduationCap, ArrowRight, CheckCircle, RefreshCw
 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #F97316, #EF4444)';
@@ -445,6 +447,16 @@ function TrainingPage() {
 
   return (
     <>
+      <SEOHead
+        title="AI Training en Workshops | Optivaize, De Bilt"
+        description="AI-trainingen en workshops voor teams. Leer effectief werken met AI-tools. Optivaize verzorgt praktische AI-cursussen vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/ai-training"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'AI Training', url: 'https://optivaize.nl/ai-training' }
+        ]}
+      />
       {/* ── HERO ── */}
       <PageHero>
         <Container>
@@ -477,7 +489,7 @@ function TrainingPage() {
                   {isNL ? 'Plan gratis intake' : 'Book free intake'}
                   <ArrowRight size={16} />
                 </BtnPrimary>
-                <BtnSecondary to="/cases" whileHover={{ scale: 1.02 }}>
+                <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }}>
                   {isNL ? 'Bekijk cases' : 'View cases'}
                 </BtnSecondary>
               </HeroBtns>

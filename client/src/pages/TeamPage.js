@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -6,6 +7,7 @@ import { useLanguage } from '../LanguageContext';
 import { ArrowRight, MapPin } from 'lucide-react';
 import Team from '../components/Team';
 import InteractiveGlobe from '../components/InteractiveGlobe';
+import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -293,6 +295,13 @@ function TeamPage() {
 
   return (
     <>
+      <SEOHead
+        title="Over Ons | Optivaize, AI-bureau De Bilt"
+        description="Maak kennis met het team van Optivaize. Wij zijn een AI-bureau in De Bilt dat bedrijven helpt met automatisering, software en AI-oplossingen."
+        canonicalUrl="https://optivaize.nl/over-ons"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Over Ons",url:"https://optivaize.nl/over-ons"}]}
+      />
       {/* ── Hero ── */}
       <PageHero>
         <Container>
@@ -329,7 +338,7 @@ function TeamPage() {
       {/* ── Team ── */}
       <Team />
 
-      {/* ── 3D Globe — Wereldwijd Netwerk ── */}
+      {/* ── 3D Globe, Wereldwijd Netwerk ── */}
       <GlobeSection>
         <Container>
           <GlobeLayout>

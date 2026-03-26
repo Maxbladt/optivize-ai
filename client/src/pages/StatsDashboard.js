@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import styled, { keyframes, createGlobalStyle, css } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';

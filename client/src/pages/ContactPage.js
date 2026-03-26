@@ -1,9 +1,11 @@
+'use client';
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, ArrowRight, Linkedin, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -245,6 +247,13 @@ function ContactPage() {
 
   return (
     <>
+      <SEOHead
+        title="Contact | Optivaize, AI-bureau De Bilt"
+        description="Neem contact op met Optivaize. Bezoek ons op Groenekanseweg 70 in De Bilt of bel +31 6 42 69 89 18 voor een vrijblijvend gesprek over AI."
+        canonicalUrl="https://optivaize.nl/contact"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Contact",url:"https://optivaize.nl/contact"}]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

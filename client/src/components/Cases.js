@@ -1,10 +1,11 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage, translations } from '../LanguageContext';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from './Link';
 
 const CasesSection = styled.section`
   padding: 6rem 0;
@@ -162,7 +163,7 @@ function Cases() {
           {cases.map((caseItem, index) => (
             <CaseCard
               key={caseItem.id}
-              to={`/cases/${caseItem.slug}`}
+              href={`/cases/${caseItem.slug}`}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{

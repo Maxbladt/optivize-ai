@@ -1,0 +1,11 @@
+export const dynamic = 'force-dynamic';
+import { pool } from '@lib/db';
+
+export async function GET() {
+  try {
+    await pool.query('SELECT 1');
+    return Response.json({ status: 'ok', database: 'connected' });
+  } catch {
+    return Response.json({ status: 'error', database: 'disconnected' }, { status: 500 });
+  }
+}

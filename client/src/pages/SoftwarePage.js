@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import SEOHead from '../components/SEOHead';
 
 
 const GRADIENT = 'linear-gradient(135deg, #EF4444, #F59E0B)';
@@ -636,6 +638,16 @@ function SoftwarePage() {
 
   return (
     <>
+      <SEOHead
+        title="Custom Software Ontwikkeling | Optivaize, De Bilt"
+        description="Op maat gemaakte software en webapplicaties. Optivaize ontwikkelt dashboards, APIs en platforms met AI-integratie vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/custom-software"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://optivaize.nl' },
+          { name: 'Custom Software', url: 'https://optivaize.nl/custom-software' }
+        ]}
+      />
       <PageHero>
         <Container>
           <HeroInner>

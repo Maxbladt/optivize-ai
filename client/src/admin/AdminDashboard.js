@@ -1,5 +1,6 @@
+'use client';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Briefcase, FileText, Presentation } from 'lucide-react';
 import { useAuth } from './useAuth';
@@ -76,17 +77,17 @@ export default function AdminDashboard() {
       <Title>Dashboard</Title>
       <Subtitle>Beheer je cases, blogs en presentatie</Subtitle>
       <Grid>
-        <Card to="/admin/cases">
+        <Card href="/admin/cases">
           <CardIcon bg="linear-gradient(135deg, #3B82F6, #2563EB)"><Briefcase size={20} /></CardIcon>
           <CardTitle>Cases</CardTitle>
           <CardCount>{counts.cases} cases</CardCount>
         </Card>
-        <Card to="/admin/blogs">
+        <Card href="/admin/blogs">
           <CardIcon bg="linear-gradient(135deg, #10B981, #059669)"><FileText size={20} /></CardIcon>
           <CardTitle>Blogs</CardTitle>
           <CardCount>{counts.blogs} blogs</CardCount>
         </Card>
-        <Card to="/admin/presentation">
+        <Card href="/admin/presentation">
           <CardIcon bg="linear-gradient(135deg, #8B5CF6, #7C3AED)"><Presentation size={20} /></CardIcon>
           <CardTitle>Presentatie</CardTitle>
           <CardCount>Bekijk de presentatie</CardCount>

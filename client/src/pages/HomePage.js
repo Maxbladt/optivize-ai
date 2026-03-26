@@ -1,8 +1,9 @@
+'use client';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import {
   ArrowRight, Bot, TrendingUp, Target, Zap, Code2, Building2,
   MessageCircle, Cpu, GraduationCap, Blocks, ClipboardList,
@@ -10,7 +11,9 @@ import {
 } from 'lucide-react';
 import { useLanguage, translations } from '../LanguageContext';
 import ClientSlider from '../components/ClientSlider';
-import InteractiveGlobe from '../components/InteractiveGlobe';
+import SEOHead from '../components/SEOHead';
+import VideoPlayer from '../components/VideoPlayer';
+const InteractiveGlobe = React.lazy(() => import('../components/InteractiveGlobe'));
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -1051,7 +1054,7 @@ function AutoplayVideo({ src }) {
   );
 }
 
-/* Click-to-play video — copies the working HeroVideo pattern exactly */
+/* Click-to-play video, copies the working HeroVideo pattern exactly */
 function ClickVideo({ src, thumbnail }) {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -1063,8 +1066,8 @@ function ClickVideo({ src, thumbnail }) {
     }, 50);
   };
 
-  const videoSrc = process.env.PUBLIC_URL + src;
-  const thumbSrc = process.env.PUBLIC_URL + thumbnail;
+  const videoSrc = src;
+  const thumbSrc = thumbnail;
 
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0D1117', borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}>
@@ -1127,8 +1130,8 @@ function HeroVideo({ src, thumbnail, isLogo }) {
     }, 50);
   };
 
-  const videoSrc = process.env.PUBLIC_URL + src;
-  const thumbSrc = process.env.PUBLIC_URL + thumbnail;
+  const videoSrc = src;
+  const thumbSrc = thumbnail;
 
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0D1117' }}>
@@ -1243,6 +1246,13 @@ function HomePage() {
 
   return (
     <>
+      <SEOHead
+        title="Optivaize | AI-bureau De Bilt, Automatisering, Marketing en Software"
+        description="Optivaize is een AI-bureau in De Bilt. Wij bouwen AI-agents, automatisering, marketing en custom software voor bedrijven in heel Nederland."
+        canonicalUrl="https://optivaize.nl"
+        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        breadcrumbs={[{name:'Home',url:'https://optivaize.nl'}]}
+      />
       {/* ── HERO ── */}
       <HeroWrap>
         <HeroBg />
@@ -1298,7 +1308,7 @@ function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <HeroVideo src="/uploads/optivaize_intro_vid.mp4" thumbnail="/uploads/optivaize_logo_new.png" isLogo />
+              <VideoPlayer src="/uploads/optivaize_intro_vid.mp4" poster="/uploads/optivaize_logo_new.png" isLogo />
             </HeroVideoWrap>
           </HeroGrid>
         </Container>
@@ -1386,7 +1396,7 @@ function HomePage() {
           </SectionHeader>
           <HomeCasesGrid>
             {homeCases.map((c, i) => (
-              <HomeCaseCard key={c.slug} to={`/cases/${c.slug}`}
+              <HomeCaseCard key={c.slug} href={`/cases/${c.slug}`}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
@@ -1399,7 +1409,7 @@ function HomePage() {
             ))}
           </HomeCasesGrid>
           <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-            <BtnSecondary to="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               {language === 'nl' ? 'Bekijk alle cases' : 'View all cases'} <ArrowRight size={15} />
             </BtnSecondary>
           </div>
@@ -1449,7 +1459,7 @@ function HomePage() {
                 <WimHofBadge>{language === 'nl' ? 'Custom AI model' : 'Custom AI model'}</WimHofBadge>
                 <WimHofBadge>Shopify app</WimHofBadge>
               </WimHofBadges>
-              <WimHofCta to="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+              <WimHofCta href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 {language === 'nl' ? 'Bekijk alle cases' : 'View all cases'}
                 <ArrowRight size={16} />
               </WimHofCta>
@@ -1482,7 +1492,7 @@ function HomePage() {
               const Icon = item.icon;
               const copy = item[language];
               return (
-                <ServiceCard key={item.path} to={item.path} $color={item.color}
+                <ServiceCard key={item.path} href={item.path} $color={item.color}
                   initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: i * 0.05, duration: 0.5 }}
                 >
@@ -1504,7 +1514,7 @@ function HomePage() {
         <Container>
           <WimHofGrid>
             <FadeIn>
-              <ClickVideo src="/uploads/Openclaw intro.mp4" thumbnail="/uploads/openclaw_cool.png" />
+              <VideoPlayer src="/uploads/Openclaw intro.mp4" />
             </FadeIn>
             <WimHofContent initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}>
               <WimHofLabel>{language === 'nl' ? 'Bekijk de video' : 'Watch the video'}</WimHofLabel>
@@ -1516,7 +1526,7 @@ function HomePage() {
                   ? 'In deze 1 minuut durende video legt Max uit hoe AI agents werken en hoe jij ze aanstuurt. Ontdek hoe OpenClaw agents 24/7 taken overnemen via WhatsApp, Slack en Teams.'
                   : 'In this 1-minute video, Max explains how AI agents work and how you control them. Discover how OpenClaw agents take over tasks 24/7 via WhatsApp, Slack, and Teams.'}
               </WimHofText>
-              <WimHofCta to="/ai-agenten" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+              <WimHofCta href="/ai-agenten" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 {language === 'nl' ? 'Meer over AI Agents' : 'More about AI Agents'}
                 <ArrowRight size={16} />
               </WimHofCta>
@@ -1539,10 +1549,10 @@ function HomePage() {
                 </IdentityHeadline>
                 <IdentitySub style={{ margin: '0 0 1.5rem 0' }}>
                   {language === 'nl'
-                    ? 'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In de afgelopen vijf jaar hebben we tientallen AI-tools en platformen gebouwd die onze klanten een echte voorsprong geven op hun concurrentie. Van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen — we hebben inmiddels een sterk internationaal team en fantastische klanten over de hele wereld.'
-                    : 'Maximilian Bladt started Optivaize after seeing the first AI models emerge in 2020. After 2 years at Elevate Digital, a Business bachelor, Econometrics premaster and a master in Quantitative Finance at UvA, founding Optivaize was the logical next step. Over the past five years we have built dozens of AI tools and platforms that give our clients a real edge over their competition. From automations saving thousands of hours to complete AI systems driving revenue — we now have a strong international team and fantastic clients around the world.'}
+                    ? 'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In de afgelopen vijf jaar hebben we tientallen AI-tools en platformen gebouwd die onze klanten een echte voorsprong geven op hun concurrentie. Van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen. We hebben inmiddels een sterk internationaal team en fantastische klanten over de hele wereld.'
+                    : 'Maximilian Bladt started Optivaize after seeing the first AI models emerge in 2020. After 2 years at Elevate Digital, a Business bachelor, Econometrics premaster and a master in Quantitative Finance at UvA, founding Optivaize was the logical next step. Over the past five years we have built dozens of AI tools and platforms that give our clients a real edge over their competition. From automations saving thousands of hours to complete AI systems driving revenue. We now have a strong international team and fantastic clients around the world.'}
                 </IdentitySub>
-                <BtnSecondary to="/over-ons" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <BtnSecondary href="/over-ons" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   {language === 'nl' ? 'Meer over ons' : 'More about us'} <ArrowRight size={15} />
                 </BtnSecondary>
               </div>
@@ -1593,7 +1603,7 @@ function HomePage() {
               </HomeLocations>
               <FadeIn delay={0.4}>
                 <div style={{ marginTop: '1.5rem' }}>
-                  <BtnSecondary to="/hiring" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+                  <BtnSecondary href="/hiring" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
                     {language === 'nl' ? 'Bekijk vacatures' : 'View open positions'} <ArrowRight size={15} />
                   </BtnSecondary>
                 </div>
@@ -1601,7 +1611,9 @@ function HomePage() {
             </div>
             <HomeGlobeCanvasWrap>
               <FadeIn delay={0.2}>
-                <InteractiveGlobe />
+                <React.Suspense fallback={<div style={{ height: 400 }} />}>
+                  <InteractiveGlobe />
+                </React.Suspense>
               </FadeIn>
             </HomeGlobeCanvasWrap>
           </HomeGlobeLayout>
