@@ -315,8 +315,28 @@ app.delete('/api/admin/blogs/:id', authenticate, async (req, res) => {
 
 // ─── FILE UPLOAD ───
 
-app.post('/api/admin/upload', authenticate, upload.single('file'), (req, res) => {
+app.post('/api/admin/upload', authenticate, upload.single('file'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+
+  const ext = path.extname(req.file.filename).toLowerCase();
+  const imageExts = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff'];
+
+  // Auto-convert images to WebP
+  if (imageExts.includes(ext)) {
+    try {
+      const sharp = require('sharp');
+      const baseName = req.file.filename.slice(0, -ext.length);
+      const webpName = `${baseName}.webp`;
+      const webpPath = path.join(uploadsDir, webpName);
+      await sharp(req.file.path).webp({ quality: 80 }).toFile(webpPath);
+      // Remove the original
+      fs.unlinkSync(req.file.path);
+      return res.json({ url: `/uploads/${webpName}` });
+    } catch (err) {
+      console.error('WebP conversion failed, using original:', err.message);
+    }
+  }
+
   res.json({ url: `/uploads/${req.file.filename}` });
 });
 

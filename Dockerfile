@@ -23,12 +23,13 @@ COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/jsconfig.json ./
 COPY --from=builder /app/lib ./lib
 
-# Migration and seed scripts
+# Migration, seed, and image conversion scripts
 COPY server/migrate.js ./server/migrate.js
 COPY server/seed.js ./server/seed.js
+COPY server/convert-images.js ./server/convert-images.js
 
 # Uploads directory
-RUN mkdir -p /app/public/uploads
+RUN mkdir -p /app/pictures_good
 
 # Entrypoint
 COPY server/entrypoint.sh /app/entrypoint.sh

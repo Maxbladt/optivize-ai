@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 import { verifyToken, unauthorized } from '@lib/auth';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
+const IMAGE_EXTS = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff'];
 
 export async function POST(request) {
   if (!verifyToken(request)) return unauthorized();
@@ -12,17 +13,26 @@ export async function POST(request) {
     if (!file) return Response.json({ error: 'No file uploaded' }, { status: 400 });
 
     const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    let buffer = Buffer.from(bytes);
 
-    const ext = path.extname(file.name);
-    const name = file.name.replace(ext, '').replace(/[^a-zA-Z0-9_-]/g, '_');
-    const filename = `${name}_${Date.now()}${ext}`;
+    const ext = path.extname(file.name).toLowerCase();
+    const name = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_');
 
-    // Write to pictures_good/ which is served via /uploads/ rewrite
     const uploadsDir = path.join(process.cwd(), 'pictures_good');
     await mkdir(uploadsDir, { recursive: true });
-    await writeFile(path.join(uploadsDir, filename), buffer);
 
+    // Auto-convert images to WebP for faster loading
+    if (IMAGE_EXTS.includes(ext)) {
+      const filename = `${name}_${Date.now()}.webp`;
+      const sharp = (await import('sharp')).default;
+      buffer = await sharp(buffer).webp({ quality: 80 }).toBuffer();
+      await writeFile(path.join(uploadsDir, filename), buffer);
+      return Response.json({ url: `/uploads/${filename}` });
+    }
+
+    // Non-image files (PDF, etc.) saved as-is
+    const filename = `${name}_${Date.now()}${ext}`;
+    await writeFile(path.join(uploadsDir, filename), buffer);
     return Response.json({ url: `/uploads/${filename}` });
   } catch (err) {
     console.error('Upload error:', err);
