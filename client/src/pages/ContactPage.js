@@ -3,7 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, ArrowRight, Linkedin, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, Linkedin, ExternalLink, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
 import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
@@ -222,6 +223,20 @@ const OfficeOverlay = styled.div`
   font-weight: 600;
 `;
 
+const MapEmbed = styled.div`
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+  iframe {
+    width: 100%;
+    height: 260px;
+    border: 0;
+    display: block;
+  }
+`;
+
 const AvailabilityBar = styled.div`
   display: flex;
   align-items: center;
@@ -251,7 +266,7 @@ function ContactPage() {
         title="Contact | Optivaize, AI-bureau De Bilt"
         description="Neem contact op met Optivaize. Bezoek ons op Groenekanseweg 70 in De Bilt of bel +31 6 42 69 89 18 voor een vrijblijvend gesprek over AI."
         canonicalUrl="https://optivaize.nl/contact"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Contact",url:"https://optivaize.nl/contact"}]}
       />
       <PageHero>
@@ -319,6 +334,14 @@ function ContactPage() {
                       <div className="value">{isNL ? 'Volg ons' : 'Follow us'}</div>
                     </ItemText>
                   </ContactItem>
+
+                  <ContactItem href="https://wa.me/31642698918" target="_blank" rel="noopener noreferrer">
+                    <ItemIcon $bg="rgba(37,211,102,0.08)" $color="#25D366"><MessageCircle size={18} /></ItemIcon>
+                    <ItemText>
+                      <div className="label">WhatsApp</div>
+                      <div className="value">{isNL ? 'Stuur een bericht' : 'Send a message'}</div>
+                    </ItemText>
+                  </ContactItem>
                 </ContactList>
 
                 <AvailabilityBar>
@@ -336,16 +359,30 @@ function ContactPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.7 }}
                 >
-                  <OfficeImage
-                    src="/uploads/optivaize_office_outside.png"
+                  <Image
+                    src="/images/optivaize_office_outside.webp"
                     alt={isNL ? 'Optivaize kantoor' : 'Optivaize office'}
-                    loading="eager"
+                    width={800}
+                    height={500}
+                    style={{ width: '100%', height: 'auto', minHeight: '440px', objectFit: 'cover', display: 'block' }}
+                    priority
                   />
                   <OfficeOverlay>
                     <MapPin size={15} />
                     Groenekanseweg 70, 3732 AG De Bilt
                   </OfficeOverlay>
                 </OfficeImageWrap>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <MapEmbed>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2451.5!2d5.1833!3d52.1167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sGroenekanseweg+70%2C+3732+AG+De+Bilt!5e0!3m2!1snl!2snl!4v1"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Optivaize kantoor locatie"
+                  />
+                </MapEmbed>
               </FadeIn>
             </RightCol>
           </ContentGrid>

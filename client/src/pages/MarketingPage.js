@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
+import NextImage from 'next/image';
 import { TrendingUp, Search, FileText, BarChart3, Target, ArrowRight, CheckCircle, ChevronRight, Image } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
@@ -542,7 +543,7 @@ function MarketingPage() {
         title="AI Marketing Automatisering | Optivaize, De Bilt"
         description="Versterk je marketing met AI. Van SEO en content tot social media automatisering. Optivaize helpt bedrijven groeien vanuit De Bilt."
         canonicalUrl="https://optivaize.nl/ai-marketing"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Marketing', url: 'https://optivaize.nl/ai-marketing' }
@@ -649,7 +650,7 @@ function MarketingPage() {
               </ResultsBar>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/fonteyn_dashboard.png" alt="Fonteyn SEO dashboard" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <NextImage src="/images/fonteyn_dashboard.webp" alt="Fonteyn SEO dashboard" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>
@@ -732,7 +733,7 @@ function MarketingPage() {
         <Container>
           <TwoCol>
             <FadeIn delay={0.1}>
-              <img src="/uploads/max_ai_presentatie_2.png" alt="AI Marketing presentatie" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <NextImage src="/images/max_ai_presentatie_2.webp" alt="AI Marketing presentatie" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
             <FadeIn>
               <SectionLabel>{isNL ? 'Case Study' : 'Case Study'}</SectionLabel>
@@ -772,7 +773,7 @@ function MarketingPage() {
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="https://cdn.prod.website-files.com/621ceace3251175ba0fe61f9/643d156d65a741346cbdccf1_BvprPfyGOec9pyXEYDTUBzz9_KcTWBrE9iulta0Znbc.jpeg" alt="Elevate Digital samenwerking" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <NextImage src="https://cdn.prod.website-files.com/621ceace3251175ba0fe61f9/643d156d65a741346cbdccf1_BvprPfyGOec9pyXEYDTUBzz9_KcTWBrE9iulta0Znbc.jpeg" alt="Elevate Digital samenwerking" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>

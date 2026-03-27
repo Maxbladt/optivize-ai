@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter, MessageCircle, Youtube } from 'lucide-react';
 import Link from './Link';
 import { useLanguage } from '../LanguageContext';
+import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -291,7 +292,7 @@ function Footer() {
               transition={{ duration: 0.6 }}
             >
               <FooterLogo>
-                <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+                <Image src="/images/optivaize_logo_new.webp" alt="Optivaize" width={128} height={32} loading="lazy" />
               </FooterLogo>
               <Tagline>
                 {language === 'nl'
@@ -307,6 +308,9 @@ function Footer() {
                 </SocialIcon>
                 <SocialIcon href="https://x.com/optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
                   <Twitter size={16} />
+                </SocialIcon>
+                <SocialIcon href="https://www.youtube.com/@Optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
+                  <Youtube size={16} />
                 </SocialIcon>
               </SocialRow>
             </Brand>
@@ -367,6 +371,13 @@ function Footer() {
                     <span>3732 AG, Nederland</span>
                   </ContactText>
                 </ContactItem>
+                <ContactItem>
+                  <ContactIcon><MessageCircle size={15} /></ContactIcon>
+                  <ContactText>
+                    <a href="https://wa.me/31642698918" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <span>{language === 'nl' ? 'Stuur een bericht' : 'Send a message'}</span>
+                  </ContactText>
+                </ContactItem>
               </ContactColInner>
             </FooterCol>
           </FooterGrid>
@@ -379,7 +390,7 @@ function Footer() {
             <LegalLinks>
               <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy</LegalLink>
               <LegalLink onClick={() => setActivePolicy('cookies')}>Cookies</LegalLink>
-              <LegalLink as="a" href="/uploads/Algemene Voorwaarden.pdf" download style={{ textDecoration: 'none' }}>
+              <LegalLink as="a" href="/images/Algemene Voorwaarden.pdf" download style={{ textDecoration: 'none' }}>
                 {language === 'nl' ? 'Algemene Voorwaarden' : 'Terms & Conditions'}
               </LegalLink>
             </LegalLinks>

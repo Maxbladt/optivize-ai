@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import HomePage from '@/pages/HomePage';
 import Layout from '@/components/Layout';
 
@@ -10,10 +11,17 @@ export const metadata = {
     description: 'Wij bouwen AI-agents, automatisering, marketing en custom software voor bedrijven in heel Nederland.',
     url: 'https://optivaize.nl',
     type: 'website',
-    images: ['/uploads/optivaize_logo_new.png'],
+    images: ['/images/optivaize_logo_new.webp'],
   },
 };
 
-export default function Page() {
-  return <Layout><HomePage /></Layout>;
+export default async function Page() {
+  let cases = [];
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/cases`, { cache: 'no-store' });
+    if (res.ok) cases = await res.json();
+  } catch {}
+
+  return <Layout><HomePage initialCases={cases} /></Layout>;
 }

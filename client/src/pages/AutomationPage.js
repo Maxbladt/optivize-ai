@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import Link from '../components/Link';
 import { Zap, ArrowRight, CheckCircle, RefreshCw, Database, Mail, Package, ChevronRight, GitBranch, Clock, BarChart3, Cpu, Server, Layers, XCircle, ArrowDown, Code2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
@@ -857,7 +858,7 @@ function AutomationPage() {
         title="Automatisering met AI | Optivaize, De Bilt"
         description="Bespaar tijd en kosten met slimme automatisering. Optivaize integreert AI in je bedrijfsprocessen vanuit De Bilt, voor heel Nederland."
         canonicalUrl="https://optivaize.nl/automatisering"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'Automatisering', url: 'https://optivaize.nl/automatisering' }
@@ -1213,7 +1214,7 @@ function AutomationPage() {
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/n8n_banner.png" alt="n8n automation" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/n8n_banner.webp" alt="n8n automation" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>

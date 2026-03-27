@@ -862,15 +862,15 @@ function PresentationPage({ skipAuth = false }) {
   ];
 
   const cases = [
-    { company: 'Fonteyn', img: '/uploads/fonteyn_showroom.png', title: isNL ? 'AI SEO Blog Optimalisatie' : 'AI SEO Blog Optimization', results: [isNL ? '-3% Ads kosten' : '-3% Ad costs', isNL ? '+4% conversie' : '+4% conversion', '30.000+ products'] },
-    { company: 'Aanhuis', img: '/uploads/aanhuis_voorkant.png', title: isNL ? 'AI Training & Custom GPTs' : 'AI Training & Custom GPTs', results: [isNL ? '+20% efficiëntie' : '+20% efficiency', 'Custom GPTs', isNL ? 'Volledige adoptie' : 'Full adoption'] },
-    { company: 'Blosh', img: '/uploads/blosh_office.png', title: isNL ? 'Complete AI Suite' : 'Complete AI Suite', results: ['AI SEO', 'AI Chatbot', isNL ? 'Shopify automatisering' : 'Shopify automation'] },
+    { company: 'Fonteyn', img: '/images/fonteyn_showroom.webp', title: isNL ? 'AI SEO Blog Optimalisatie' : 'AI SEO Blog Optimization', results: [isNL ? '-3% Ads kosten' : '-3% Ad costs', isNL ? '+4% conversie' : '+4% conversion', '30.000+ products'] },
+    { company: 'Aanhuis', img: '/images/aanhuis_voorkant.webp', title: isNL ? 'AI Training & Custom GPTs' : 'AI Training & Custom GPTs', results: [isNL ? '+20% efficiëntie' : '+20% efficiency', 'Custom GPTs', isNL ? 'Volledige adoptie' : 'Full adoption'] },
+    { company: 'Blosh', img: '/images/blosh_office.webp', title: isNL ? 'Complete AI Suite' : 'Complete AI Suite', results: ['AI SEO', 'AI Chatbot', isNL ? 'Shopify automatisering' : 'Shopify automation'] },
   ];
 
   const team = [
-    { name: 'Maximilian Bladt', role: 'CEO', img: '/uploads/foto_max.png', bio: isNL ? 'AI-strateeg en ondernemer. Leidt de visie en klantrelaties.' : 'AI strategist and entrepreneur. Leads vision and client relationships.' },
-    { name: 'Geronimo Saija', role: 'Head of Operations', img: '/uploads/geronimo.png', bio: isNL ? 'Operationeel leider. Stuurt implementatie en projectmanagement aan.' : 'Operational leader. Drives implementation and project management.' },
-    { name: 'Willem Bladt', role: 'Head of Finance', img: '/uploads/willem.png', bio: isNL ? 'Financieel strateeg. Bewaakt groei en duurzaamheid.' : 'Financial strategist. Oversees growth and sustainability.' },
+    { name: 'Maximilian Bladt', role: 'CEO', img: '/images/foto_max.webp', bio: isNL ? 'AI-strateeg en ondernemer. Leidt de visie en klantrelaties.' : 'AI strategist and entrepreneur. Leads vision and client relationships.' },
+    { name: 'Geronimo Saija', role: 'Head of Operations', img: '/images/geronimo.webp', bio: isNL ? 'Operationeel leider. Stuurt implementatie en projectmanagement aan.' : 'Operational leader. Drives implementation and project management.' },
+    { name: 'Willem Bladt', role: 'Head of Finance', img: '/images/willem.webp', bio: isNL ? 'Financieel strateeg. Bewaakt groei en duurzaamheid.' : 'Financial strategist. Oversees growth and sustainability.' },
   ];
 
   const painPoints = isNL
@@ -988,7 +988,7 @@ function PresentationPage({ skipAuth = false }) {
           <div style={{ marginTop: '0.75rem' }}>
             <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.35rem' }}>{isNL ? 'En meer vertrouwd door' : 'And more trusted by'}</div>
             <LogoStrip>
-              <LogoImg src="/uploads/fonteyn_logo.png" alt="Fonteyn" /><LogoImg src="/uploads/aanhuis.png" alt="Aanhuis" /><LogoImg src="/uploads/blosh.png" alt="Blosh" /><LogoImg src="/uploads/sony.png" alt="Sony" /><LogoImg src="/uploads/passion_icebaths_logo.png" alt="Passion Ice Baths" /><LogoImg src="/uploads/red_button_logo.png" alt="Red Button" /><LogoImg src="/uploads/marie_stella_maris.png" alt="Marie-Stella-Maris" />
+              <LogoImg src="/images/fonteyn_logo.webp" alt="Fonteyn" /><LogoImg src="/images/aanhuis.webp" alt="Aanhuis" /><LogoImg src="/images/blosh.webp" alt="Blosh" /><LogoImg src="/images/sony.webp" alt="Sony" /><LogoImg src="/images/passion_icebaths_logo.webp" alt="Passion Ice Baths" /><LogoImg src="/images/red_button_logo.webp" alt="Red Button" /><LogoImg src="/images/marie_stella_maris.webp" alt="Marie-Stella-Maris" />
             </LogoStrip>
           </div>
         </SlideContent>
@@ -1058,7 +1058,7 @@ function PresentationPage({ skipAuth = false }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
-          <GateLogo src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+          <GateLogo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
           <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
             <LangBtn $active={presLang === 'nl'} onClick={() => setPresLang('nl')}>NL</LangBtn>
             <LangBtn $active={presLang === 'en'} onClick={() => setPresLang('en')}>EN</LangBtn>
@@ -1103,7 +1103,7 @@ function PresentationPage({ skipAuth = false }) {
 
       {/* Top bar with logo + slide counter + lang */}
       <TopBar>
-        <TopLogo src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+        <TopLogo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
         <SlideCounter>{activeSlide + 1} / {totalSlides}</SlideCounter>
         <TopLangRow>
           <LangBtn $active={presLang === 'nl'} onClick={() => setPresLang('nl')}>NL</LangBtn>

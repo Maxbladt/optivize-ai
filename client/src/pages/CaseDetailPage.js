@@ -1,16 +1,15 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from '../components/Link';
-import { useParams, useRouter } from '../hooks';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
-import SEOHead from '../components/SEOHead';
+import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
-/* ──── Styled Components ──── */
+/* Styled Components */
 
 const BackBar = styled.div`
   padding: 110px 0 0;
@@ -87,13 +86,7 @@ const FeaturedImageInner = styled(motion.div)`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-`;
-
-const FeaturedImage = styled.img`
-  width: 100%;
   height: 420px;
-  object-fit: cover;
-  display: block;
   @media (max-width: 768px) { height: 260px; }
 `;
 
@@ -101,6 +94,7 @@ const FeaturedOverlay = styled.div`
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.6) 100%);
+  z-index: 1;
 `;
 
 const FeaturedLogo = styled.div`
@@ -112,6 +106,7 @@ const FeaturedLogo = styled.div`
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   backdrop-filter: blur(8px);
+  z-index: 2;
   img { height: 32px; width: auto; display: block; }
 `;
 
@@ -247,32 +242,12 @@ const CtaBtn = styled(motion.a)`
   &:hover { box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
 `;
 
-/* ──── Component ──── */
+/* Component */
 
-function CaseDetailPage() {
-  const params = useParams();
-  const slug = params?.slug;
-  const router = useRouter();
+function CaseDetailPage({ caseData }) {
   const { language } = useLanguage();
   const isNL = language === 'nl';
-  const [caseData, setCaseData] = useState(null);
-  const [notFound, setNotFound] = useState(false);
 
-  useEffect(() => {
-    if (!slug) return;
-    fetch(`/api/cases/${slug}`)
-      .then(r => {
-        if (!r.ok) { setNotFound(true); return null; }
-        return r.json();
-      })
-      .then(data => data && setCaseData(data))
-      .catch(() => setNotFound(true));
-  }, [slug]);
-
-  useEffect(() => {
-    if (notFound) router.replace('/cases');
-  }, [notFound, router]);
-  if (notFound) return null;
   if (!caseData) return null;
 
   const title = isNL ? caseData.title_nl : caseData.title_en;
@@ -280,19 +255,11 @@ function CaseDetailPage() {
   const description = isNL ? caseData.description_nl : caseData.description_en;
   const partnerLogos = caseData.partner_logos || [];
 
-  // Detect if description contains HTML tags
   const isHTML = /<[a-z][\s\S]*>/i.test(description);
   const paragraphs = !isHTML ? description.split(/\n\n+/).filter(Boolean) : [];
 
   return (
     <>
-      <SEOHead
-        title={`${caseData.title_nl || caseData.title_en} | Optivaize Cases`}
-        description={caseData.preview_nl || caseData.preview_en || ''}
-        canonicalUrl={`https://optivaize.nl/cases/${caseData.slug}`}
-        ogImage={caseData.image ? `https://optivaize.nl${caseData.image}` : "https://optivaize.nl/uploads/optivaize_logo_new.png"}
-        breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Cases",url:"https://optivaize.nl/cases"},{name: caseData.title_nl || caseData.title_en, url:`https://optivaize.nl/cases/${caseData.slug}`}]}
-      />
       <BackBar>
         <Container>
           <BackLink to="/cases">
@@ -339,7 +306,14 @@ function CaseDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <FeaturedImage src={caseData.image} alt={caseData.company} />
+            <Image
+              src={caseData.image}
+              alt={caseData.company}
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 1000px"
+              priority
+            />
             <FeaturedOverlay />
             <FeaturedLogo>
               <img src={caseData.logo} alt={caseData.company} />

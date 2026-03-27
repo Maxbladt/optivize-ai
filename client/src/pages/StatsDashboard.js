@@ -674,7 +674,7 @@ function StatsDashboard() {
 
   if (status === false) return (
     <><GlobalStyle /><ConnectWrap initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-      <Logo src="/uploads/optivaize_logo_new.png" style={{ height: 44 }} alt="Optivaize" />
+      <Logo src="/images/optivaize_logo_new.webp" style={{ height: 44 }} alt="Optivaize" />
       <div style={{ fontSize: 22, fontWeight: 800 }}>Teamleader Verbinden</div>
       <div style={{ fontSize: 14, color: '#64748B', maxWidth: 360, lineHeight: 1.6, textAlign: 'center' }}>
         Verbind je Teamleader Focus account voor realtime inzicht in deals, projecten en team.
@@ -956,7 +956,7 @@ function StatsDashboard() {
       <Page>
         <GradBar />
         <Header>
-          <Logo src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+          <Logo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
           <Nav>{VIEWS.map((v, i) => <NavBtn key={v.id} $on={i === view} onClick={() => switchView(i)}><v.icon /> {v.label}</NavBtn>)}</Nav>
           <Right>
             <Clk>{time.toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short' })}</Clk>

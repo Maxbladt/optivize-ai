@@ -92,8 +92,8 @@ function getCaseSeedData() {
         { title: 'Products Optimized', description: 'Total products enhanced', value: '30,000+', color: '#F59E0B' },
         { title: 'Labor Saved', description: 'Hours of manual work eliminated', value: '3,000 hrs', color: '#EF4444' }
       ],
-      logo: '/uploads/fonteyn_logo.png',
-      image: '/uploads/fonteyn_dashboard.png',
+      logo: '/images/fonteyn_logo.webp',
+      image: '/images/fonteyn_dashboard.webp',
       partner_logos: [],
     },
     {
@@ -119,8 +119,8 @@ function getCaseSeedData() {
         { title: 'Department Coverage', description: 'Breakout sessions completed', value: 'All depts', color: '#F59E0B' },
         { title: 'Follow-up Planned', description: 'Continuous improvement commitment', value: 'Ongoing', color: '#EF4444' }
       ],
-      logo: '/uploads/aanhuis.png',
-      image: '/uploads/aanhuis_voorkant.png',
+      logo: '/images/aanhuis.webp',
+      image: '/images/aanhuis_voorkant.webp',
       partner_logos: [],
     },
     {
@@ -146,8 +146,8 @@ function getCaseSeedData() {
         { title: 'Shopify Integration', description: 'Automated price management system', value: 'Operational', color: '#8B5CF6' },
         { title: 'Custom Solutions', description: 'Tailored AI products built', value: '3 systems', color: '#F59E0B' }
       ],
-      logo: '/uploads/blosh.png',
-      image: '/uploads/blosh_office.png',
+      logo: '/images/blosh.webp',
+      image: '/images/blosh_office.webp',
       partner_logos: [],
     },
     {
@@ -173,9 +173,9 @@ function getCaseSeedData() {
         { title: 'Real-time Sync', description: 'Orders automatically processed', value: 'Operational', color: '#8B5CF6' },
         { title: 'Systems Connected', description: 'Sage Intacct & Becosoft', value: '2 platforms', color: '#F59E0B' }
       ],
-      logo: '/uploads/red_button_logo.png',
-      image: '/uploads/magic_apparels_dashboard.png',
-      partner_logos: ['/uploads/sage_intacct_logo.png', '/uploads/becosoft_logo.png'],
+      logo: '/images/red_button_logo.webp',
+      image: '/images/magic_apparels_dashboard.webp',
+      partner_logos: ['/images/sage_intacct_logo.webp', '/images/becosoft_logo.webp'],
     },
     {
       slug: 'stakepvp',
@@ -200,9 +200,9 @@ function getCaseSeedData() {
         { title: 'Infrastructure', description: 'Multi-container with load balancing', value: 'Scalable', color: '#8B5CF6' },
         { title: 'Technologies', description: 'Privy, Solana, Helius', value: '10+ services', color: '#F59E0B' }
       ],
-      logo: '/uploads/stakepvp_logo.png',
-      image: '/uploads/stakepvp_logo.png',
-      partner_logos: ['/uploads/privy_logo.png', '/uploads/helius_logo.png'],
+      logo: '/images/stakepvp_logo.webp',
+      image: '/images/stakepvp_logo.webp',
+      partner_logos: ['/images/privy_logo.webp', '/images/helius_logo.webp'],
     },
     {
       slug: 'passion-ice-baths',
@@ -227,8 +227,8 @@ function getCaseSeedData() {
         { title: 'Shopify App', description: 'Custom app in development', value: 'In progress', color: '#8B5CF6' },
         { title: 'Wim Hof', description: 'Brand ambassador', value: 'Partnership', color: '#F59E0B' }
       ],
-      logo: '/uploads/passion_icebaths_logo.png',
-      image: '/uploads/passion_icebaths.png',
+      logo: '/images/passion_icebaths_logo.webp',
+      image: '/images/passion_icebaths.webp',
       partner_logos: [],
     },
   ];

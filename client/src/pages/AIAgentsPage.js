@@ -772,21 +772,21 @@ const DemoAction = styled.div`
 
 const AGENT_TOOLS = [
   { name: 'WhatsApp', slug: 'whatsapp', bg: '#25D366' },
-  { name: 'Slack', slug: null, customIcon: '/uploads/slack_logo.svg', bg: '#4A154B' },
+  { name: 'Slack', slug: null, customIcon: '/images/slack_logo.svg', bg: '#4A154B' },
   { name: 'Telegram', slug: 'telegram', bg: '#26A5E4' },
   { name: 'Discord', slug: 'discord', bg: '#5865F2' },
   { name: 'n8n', slug: 'n8n', bg: '#EA4B71' },
-  { name: 'OpenAI', slug: null, customIcon: '/uploads/chatgpt_logo.svg', bg: '#000000' },
+  { name: 'OpenAI', slug: null, customIcon: '/images/chatgpt_logo.svg', bg: '#000000' },
   { name: 'Anthropic', slug: 'anthropic', bg: '#D97706' },
   { name: 'Google', slug: 'google', bg: '#4285F4' },
 ];
 
 const CHANNELS_DATA = [
   { name: 'WhatsApp', slug: 'whatsapp', color: '#25D366', bg: '#25D366', customIcon: null },
-  { name: 'Slack', slug: 'slack', color: '#4A154B', bg: '#4A154B', customIcon: '/uploads/slack_logo.svg' },
+  { name: 'Slack', slug: 'slack', color: '#4A154B', bg: '#4A154B', customIcon: '/images/slack_logo.svg' },
   { name: 'Telegram', slug: 'telegram', color: '#26A5E4', bg: '#26A5E4', customIcon: null },
   { name: 'Discord', slug: 'discord', color: '#5865F2', bg: '#5865F2', customIcon: null },
-  { name: 'Teams', slug: 'microsoftteams', color: '#6264A7', bg: '#6264A7', customIcon: '/uploads/teams_logo.svg' },
+  { name: 'Teams', slug: 'microsoftteams', color: '#6264A7', bg: '#6264A7', customIcon: '/images/teams_logo.svg' },
   { name: 'Gmail', slug: 'gmail', color: '#EA4335', bg: '#EA4335', customIcon: null },
   { name: 'Jira', slug: 'jira', color: '#0052CC', bg: '#0052CC', customIcon: null },
   { name: 'Notion', slug: 'notion', color: '#000000', bg: '#000000', customIcon: null },
@@ -1075,7 +1075,7 @@ function AIAgentsPage() {
         title="AI Agents Bouwen | Optivaize, AI-bureau De Bilt"
         description="Laat slimme AI-agents bouwen die taken automatiseren, e-mails schrijven en data analyseren. Optivaize ontwikkelt op maat gemaakte AI-agents in De Bilt."
         canonicalUrl="https://optivaize.nl/ai-agenten"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Agents', url: 'https://optivaize.nl/ai-agenten' }
@@ -1229,7 +1229,7 @@ function AIAgentsPage() {
         <Container>
           <TwoCol>
             <FadeIn delay={0.1}>
-              <VideoPlayer src="/uploads/Openclaw intro.mp4" />
+              <VideoPlayer src="/videos/Openclaw intro.mp4" />
             </FadeIn>
             <FadeIn>
               <SectionLabel>{isNL ? 'Voor je bedrijf' : 'For your business'}</SectionLabel>

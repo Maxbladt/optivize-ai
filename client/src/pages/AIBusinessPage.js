@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import Link from '../components/Link';
 import { Building2, Search, Cpu, Rocket, TrendingUp, Users, Shield, ArrowRight, CheckCircle, ChevronRight, BarChart3 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
@@ -417,7 +418,7 @@ function AIBusinessPage() {
         title="AI voor Bedrijven | Optivaize, De Bilt"
         description="AI-strategie en implementatie voor je bedrijf. Optivaize helpt organisaties in heel Nederland met AI-transformatie vanuit De Bilt."
         canonicalUrl="https://optivaize.nl/ai-business"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Business', url: 'https://optivaize.nl/ai-business' }
@@ -512,7 +513,7 @@ function AIBusinessPage() {
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/optivaize_office_outside.png" alt="Optivaize office" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/optivaize_office_outside.webp" alt="Optivaize office" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>
@@ -625,7 +626,7 @@ function AIBusinessPage() {
         <Container>
           <TwoCol>
             <FadeIn delay={0.1}>
-              <img src="/uploads/max_ai_presentatie.png" alt="AI implementatie" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/max_ai_presentatie.webp" alt="AI implementatie" width={800} height={500} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
             <FadeIn>
               <SectionLabel>{isNL ? 'Toepassingsgebieden' : 'Areas of application'}</SectionLabel>

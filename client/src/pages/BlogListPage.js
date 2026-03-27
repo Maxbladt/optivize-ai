@@ -1,10 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from '../components/Link';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -135,31 +134,11 @@ const Empty = styled.div`
   font-size: 17px;
 `;
 
-export default function BlogListPage() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api/blogs')
-      .then(r => r.json())
-      .then(setBlogs)
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
+export default function BlogListPage({ blogs = [] }) {
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
   return (
     <>
-      <SEOHead
-        title="Blog | Optivaize, AI-bureau De Bilt"
-        description="Lees de laatste inzichten over AI, automatisering en digitale transformatie. Tips, trends en praktische kennis van het Optivaize team in De Bilt."
-        keywords="AI blog, automatisering, machine learning, digitale transformatie, Optivaize"
-        canonicalUrl="https://optivaize.nl/blog"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
-        breadcrumbs={[{name:'Home',url:'https://optivaize.nl'},{name:'Blog',url:'https://optivaize.nl/blog'}]}
-      />
-
       <HeroSection>
         <Container>
           <HeroTitle
@@ -181,7 +160,7 @@ export default function BlogListPage() {
 
       <BlogSection>
         <Container>
-          {loading ? null : blogs.length === 0 ? (
+          {blogs.length === 0 ? (
             <Empty>Binnenkort verschijnen hier onze eerste blogposts.</Empty>
           ) : (
             <BlogGrid>

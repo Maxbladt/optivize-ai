@@ -299,7 +299,7 @@ function TeamPage() {
         title="Over Ons | Optivaize, AI-bureau De Bilt"
         description="Maak kennis met het team van Optivaize. Wij zijn een AI-bureau in De Bilt dat bedrijven helpt met automatisering, software en AI-oplossingen."
         canonicalUrl="https://optivaize.nl/over-ons"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Over Ons",url:"https://optivaize.nl/over-ons"}]}
       />
       {/* ── Hero ── */}
@@ -327,7 +327,7 @@ function TeamPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <HeroImage
-              src="/uploads/optivaize_office_outside.png"
+              src="/images/optivaize_office_outside.webp"
               alt={isNL ? 'Optivaize kantoor' : 'Optivaize office'}
               loading="eager"
             />

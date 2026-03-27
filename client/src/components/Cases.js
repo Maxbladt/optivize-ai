@@ -1,11 +1,12 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage, translations } from '../LanguageContext';
 import { ArrowRight } from 'lucide-react';
 import Link from './Link';
+import Image from 'next/image';
 
 const CasesSection = styled.section`
   padding: 6rem 0;
@@ -72,12 +73,15 @@ const CaseHeader = styled.div`
   overflow: hidden;
 `;
 
-const CaseImage = styled.img`
+const CaseImageWrap = styled.div`
+  position: relative;
   width: 100%;
   height: 250px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  ${CaseCard}:hover & { transform: scale(1.05); }
+  overflow: hidden;
+  img {
+    transition: transform 0.3s ease;
+  }
+  ${CaseCard}:hover & img { transform: scale(1.05); }
 `;
 
 const CaseOverlay = styled.div`
@@ -124,18 +128,11 @@ const ViewLink = styled.div`
   font-size: 15px;
 `;
 
-function Cases() {
+function Cases({ initialCases = [] }) {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const { language } = useLanguage();
   const t = translations[language].cases;
-  const [cases, setCases] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/cases')
-      .then(r => r.json())
-      .then(setCases)
-      .catch(() => {});
-  }, []);
+  const cases = initialCases;
 
   const isNL = language === 'nl';
 
@@ -175,7 +172,16 @@ function Cases() {
               whileTap={{ scale: 0.98 }}
             >
               <CaseHeader>
-                <CaseImage src={caseItem.image} alt={caseItem.company} />
+                <CaseImageWrap>
+                  <Image
+                    src={caseItem.image}
+                    alt={caseItem.company}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                  />
+                </CaseImageWrap>
                 <CaseOverlay>
                   <CompanyLogo src={caseItem.logo} alt={caseItem.company} />
                 </CaseOverlay>

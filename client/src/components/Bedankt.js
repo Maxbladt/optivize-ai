@@ -310,7 +310,7 @@ function Bedankt() {
           onClick={() => navigate('/')}
           style={{ cursor: 'pointer' }}
         >
-          <Logo src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+          <Logo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
         </motion.div>
       </NavBar>
 
@@ -339,17 +339,17 @@ function Bedankt() {
 
           <TeamPhotos variants={itemVariants}>
             <TeamMemberCard>
-              <TeamPhoto src="/uploads/geronimo.png" alt="Geronimo S." />
+              <TeamPhoto src="/images/geronimo.webp" alt="Geronimo S." />
               <TeamMemberName>{t.geronimo.name}</TeamMemberName>
               <TeamMemberTitle>{t.team.geronimo}</TeamMemberTitle>
             </TeamMemberCard>
             <TeamMemberCard>
-              <TeamPhoto src="/uploads/foto_max.png" alt="Maximilian Bladt" />
+              <TeamPhoto src="/images/foto_max.webp" alt="Maximilian Bladt" />
               <TeamMemberName>Maximilian B.</TeamMemberName>
               <TeamMemberTitle>{t.team.max}</TeamMemberTitle>
             </TeamMemberCard>
             <TeamMemberCard>
-              <TeamPhoto src="/uploads/filip.png" alt="Filip Lysiak" />
+              <TeamPhoto src="/images/filip.webp" alt="Filip Lysiak" />
               <TeamMemberName>Filip L.</TeamMemberName>
               <TeamMemberTitle>{t.team.filip}</TeamMemberTitle>
             </TeamMemberCard>
@@ -359,7 +359,7 @@ function Bedankt() {
             <ContactCardTitle>{t.directContact}</ContactCardTitle>
 
             <GeronimSection>
-              <GeronimPhoto src="/uploads/geronimo.png" alt="Geronimo S." />
+              <GeronimPhoto src="/images/geronimo.webp" alt="Geronimo S." />
               <GeronimInfo>
                 <GeronimName>{t.geronimo.name}</GeronimName>
                 <GeronimRole>{t.geronimo.role}</GeronimRole>

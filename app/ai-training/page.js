@@ -9,10 +9,35 @@ export const metadata = {
     title: 'AI Training & Presentaties | Optivaize',
     description: 'AI training en workshops voor uw team.',
     url: 'https://optivaize.nl/ai-training',
-    images: ['/uploads/optivaize_logo_new.png'],
+    images: ['/images/optivaize_logo_new.webp'],
   },
 };
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://optivaize.nl' },
+    { '@type': 'ListItem', position: 2, name: 'AI Training', item: 'https://optivaize.nl/ai-training' },
+  ],
+};
+
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Training & Presentaties',
+  description: 'AI training, workshops en presentaties op maat voor uw team en organisatie.',
+  provider: { '@id': 'https://optivaize.nl/#organization' },
+  areaServed: { '@type': 'Country', name: 'Netherlands' },
+  url: 'https://optivaize.nl/ai-training',
+};
+
 export default function Page() {
-  return <Layout><TrainingPage /></Layout>;
+  return (
+    <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <TrainingPage />
+    </Layout>
+  );
 }

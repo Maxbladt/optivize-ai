@@ -9,10 +9,24 @@ export const metadata = {
     title: 'Vacatures | Optivaize',
     description: 'Werk bij Optivaize, AI-bureau in De Bilt.',
     url: 'https://optivaize.nl/hiring',
-    images: ['/uploads/optivaize_logo_new.png'],
+    images: ['/images/optivaize_logo_new.webp'],
   },
 };
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://optivaize.nl' },
+    { '@type': 'ListItem', position: 2, name: 'Vacatures', item: 'https://optivaize.nl/hiring' },
+  ],
+};
+
 export default function Page() {
-  return <Layout><HiringPage /></Layout>;
+  return (
+    <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <HiringPage />
+    </Layout>
+  );
 }

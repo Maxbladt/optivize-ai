@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import Link from '../components/Link';
 import {
   MessageCircle, ArrowRight, CheckCircle, Zap, TrendingUp, RefreshCw,
@@ -692,7 +693,7 @@ function ChatbotPage() {
         title="AI Chatbot Ontwikkeling | Optivaize, De Bilt"
         description="Laat een slimme AI-chatbot bouwen voor klantenservice en leadgeneratie. Meertalig, 24/7 beschikbaar. Optivaize, AI-bureau in De Bilt."
         canonicalUrl="https://optivaize.nl/ai-chatbot"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Chatbot', url: 'https://optivaize.nl/ai-chatbot' }
@@ -783,7 +784,7 @@ function ChatbotPage() {
               </CheckList>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/passion_icebaths.png" alt="Passion Ice Baths chatbot" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/passion_icebaths.webp" alt="Passion Ice Baths chatbot" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>
@@ -843,7 +844,7 @@ function ChatbotPage() {
               </ChannelStrip>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/wimhof.png" alt="Wim Hof" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/wimhof.webp" alt="Wim Hof" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>

@@ -549,7 +549,7 @@ const CRM_TOOLS = [
   { name: 'LinkedIn Sales', slug: null, customIcon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/3840px-LinkedIn_icon.svg.png', bg: '#0A66C2' },
   { name: 'n8n', slug: 'n8n', bg: '#EA4B71' },
   { name: 'Gmail', slug: 'gmail', bg: '#EA4335' },
-  { name: 'Slack', slug: null, customIcon: '/uploads/slack_logo.svg', bg: '#4A154B' },
+  { name: 'Slack', slug: null, customIcon: '/images/slack_logo.svg', bg: '#4A154B' },
   { name: 'ActiveCampaign', slug: null, bg: '#356AE6', label: 'AC' },
 ];
 
@@ -580,7 +580,7 @@ function SalesPage() {
         title="AI Sales Automatisering | Optivaize, De Bilt"
         description="Automatiseer je salesproces met AI. LinkedIn outreach, lead generatie en CRM-integraties. Optivaize bouwt slimme sales tools in De Bilt."
         canonicalUrl="https://optivaize.nl/ai-sales"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Sales', url: 'https://optivaize.nl/ai-sales' }
@@ -705,7 +705,7 @@ function SalesPage() {
             <AgentToolsRow>
               {[
                 { name: 'LinkedIn', bg: '#0A66C2', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/3840px-LinkedIn_icon.svg.png' },
-                { name: 'Gmail', bg: '#EA4335', logo: '/uploads/gmail.png' },
+                { name: 'Gmail', bg: '#EA4335', logo: '/images/gmail.webp' },
                 { name: 'Salesforce', bg: '#00A1E0', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg' },
                 { name: 'HubSpot', bg: '#FF7A59', logo: 'https://cdn.simpleicons.org/hubspot/FFFFFF' },
                 { name: 'Calendar', bg: '#4285F4', icon: Calendar },

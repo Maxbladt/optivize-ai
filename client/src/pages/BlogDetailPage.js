@@ -1,11 +1,10 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from '../components/Link';
-import { useParams, useRouter } from '../hooks';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
-import SEOHead from '../components/SEOHead';
+import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -75,13 +74,8 @@ const FeaturedImageInner = styled(motion.div)`
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-`;
-
-const FeaturedImage = styled.img`
-  width: 100%;
+  position: relative;
   height: 420px;
-  object-fit: cover;
-  display: block;
   @media (max-width: 768px) { height: 260px; }
 `;
 
@@ -174,66 +168,13 @@ const CtaBtn = styled(motion.a)`
   box-shadow: 0 4px 20px rgba(59,130,246,0.35);
 `;
 
-export default function BlogDetailPage() {
-  const params = useParams();
-  const slug = params?.slug;
-  const router = useRouter();
-  const [blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    if (!slug) return;
-    fetch(`/api/blogs/${slug}`)
-      .then(r => {
-        if (!r.ok) { setNotFound(true); return null; }
-        return r.json();
-      })
-      .then(data => data && setBlog(data))
-      .catch(() => setNotFound(true))
-      .finally(() => setLoading(false));
-  }, [slug]);
-
-  useEffect(() => {
-    if (notFound) router.replace('/blog');
-  }, [notFound, router]);
-  if (notFound) return null;
-  if (loading || !blog) return null;
+export default function BlogDetailPage({ blog }) {
+  if (!blog) return null;
 
   const formatDate = (d) => d ? new Date(d).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-  const canonicalUrl = `https://optivaize.nl/blog/${blog.slug}`;
-  const ogImage = blog.featured_image ? `${window.location.origin}${blog.featured_image}` : null;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: blog.title,
-    description: blog.meta_description || blog.excerpt,
-    image: ogImage,
-    author: { '@type': 'Person', name: blog.author || 'Optivaize' },
-    publisher: { '@id': 'https://optivaize.nl/#organization' },
-    datePublished: blog.published_at,
-    dateModified: blog.updated_at || blog.published_at,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
-    url: canonicalUrl,
-  };
 
   return (
     <>
-      <SEOHead
-        title={`${blog.title} | Optivaize Blog`}
-        description={blog.meta_description || blog.excerpt}
-        keywords={blog.meta_keywords}
-        ogImage={ogImage}
-        canonicalUrl={canonicalUrl}
-        jsonLd={jsonLd}
-        breadcrumbs={[
-          {name:'Home',url:'https://optivaize.nl'},
-          {name:'Blog',url:'https://optivaize.nl/blog'},
-          {name:blog.title,url:`https://optivaize.nl/blog/${blog.slug}`}
-        ]}
-      />
-
       <BackBar>
         <Container>
           <BackLink to="/blog"><ArrowLeft size={16} /> Terug naar blog</BackLink>
@@ -270,7 +211,14 @@ export default function BlogDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
             >
-              <FeaturedImage src={blog.featured_image} alt={blog.title} />
+              <Image
+                src={blog.featured_image}
+                alt={blog.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 1000px"
+                priority
+              />
             </FeaturedImageInner>
           </Container>
         </FeaturedImageWrap>

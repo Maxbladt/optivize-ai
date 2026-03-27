@@ -9,10 +9,24 @@ export const metadata = {
     title: 'Crypto & Blockchain | Optivaize',
     description: 'Web3 en blockchain oplossingen voor bedrijven.',
     url: 'https://optivaize.nl/crypto-blockchain',
-    images: ['/uploads/optivaize_logo_new.png'],
+    images: ['/images/optivaize_logo_new.webp'],
   },
 };
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://optivaize.nl' },
+    { '@type': 'ListItem', position: 2, name: 'Crypto & Blockchain', item: 'https://optivaize.nl/crypto-blockchain' },
+  ],
+};
+
 export default function Page() {
-  return <Layout><SubsidyPage /></Layout>;
+  return (
+    <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <SubsidyPage />
+    </Layout>
+  );
 }

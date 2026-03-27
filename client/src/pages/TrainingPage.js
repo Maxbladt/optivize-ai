@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import Link from '../components/Link';
 import {
   GraduationCap, ArrowRight, CheckCircle, RefreshCw
@@ -435,9 +436,9 @@ function TrainingPage() {
   const tools = [
     { name: 'ChatGPT', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/960px-ChatGPT-Logo.svg.png', bg: '#10A37F' },
     { name: 'Claude', logo: 'https://cdn.simpleicons.org/anthropic/FFFFFF', bg: '#D97706' },
-    { name: 'Copilot', logo: '/uploads/copilot_logo.jpg', bg: '#0078D4' },
+    { name: 'Copilot', logo: '/images/copilot_logo.jpg', bg: '#0078D4' },
     { name: 'Perplexity', logo: 'https://cdn.simpleicons.org/perplexity/FFFFFF', bg: '#1C1C1E' },
-    { name: 'Midjourney', logo: '/uploads/midjourney_logo.png', bg: '#1A1A2E' },
+    { name: 'Midjourney', logo: '/images/midjourney_logo.webp', bg: '#1A1A2E' },
     { name: 'Notion AI', logo: 'https://cdn.simpleicons.org/notion/FFFFFF', bg: '#000000' },
     { name: 'n8n', logo: 'https://cdn.simpleicons.org/n8n/FFFFFF', bg: '#EA4B71' },
     { name: 'Make', logo: 'https://cdn.simpleicons.org/make/FFFFFF', bg: '#6D28D9' },
@@ -451,7 +452,7 @@ function TrainingPage() {
         title="AI Training en Workshops | Optivaize, De Bilt"
         description="AI-trainingen en workshops voor teams. Leer effectief werken met AI-tools. Optivaize verzorgt praktische AI-cursussen vanuit De Bilt."
         canonicalUrl="https://optivaize.nl/ai-training"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'AI Training', url: 'https://optivaize.nl/ai-training' }
@@ -566,7 +567,7 @@ function TrainingPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <img src="/uploads/max_ai_presentatie_2.png" alt="AI Training sessie" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/max_ai_presentatie_2.webp" alt="AI Training sessie" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
             <FadeIn delay={0.15}>
               <SectionLabel>{isNL ? 'Wat we doen' : 'What we do'}</SectionLabel>
@@ -706,7 +707,7 @@ function TrainingPage() {
               </CheckList>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/aanhuis_voorkant.png" alt="Aanhuis AI training" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/aanhuis_voorkant.webp" alt="Aanhuis AI training" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>

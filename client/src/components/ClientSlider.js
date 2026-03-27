@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage, translations } from '../LanguageContext';
+import Image from 'next/image';
 
 const SliderSection = styled.section`
   padding: 5rem 0;
@@ -69,13 +70,6 @@ const LogoItem = styled.div`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   padding: 1rem;
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: grayscale(100%);
-  }
-
   @media (max-width: 768px) {
     width: 140px;
     height: 60px;
@@ -86,43 +80,43 @@ const LogoItem = styled.div`
 const clientData = [
   {
     name: "Aanhuis",
-    logo: "/uploads/aanhuis.png"
+    logo: "/images/aanhuis.webp"
   },
   {
     name: "Blosh",
-    logo: "/uploads/blosh.png"
+    logo: "/images/blosh.webp"
   },
   {
     name: "Fonteyn",
-    logo: "/uploads/fonteyn.png"
+    logo: "/images/fonteyn.webp"
   },
   {
     name: "Freebird",
-    logo: "/uploads/freebird.png"
+    logo: "/images/freebird.webp"
   },
   {
     name: "Marie Stella Maris",
-    logo: "/uploads/marie_stella_maris.png"
+    logo: "/images/marie_stella_maris.webp"
   },
   {
     name: "Sony",
-    logo: "/uploads/sony.png"
+    logo: "/images/sony.webp"
   },
   {
     name: "Red Button",
-    logo: "/uploads/red_button_logo.png"
+    logo: "/images/red_button_logo.webp"
   },
   {
     name: "StakePVP",
-    logo: "/uploads/stakepvp_logo.png"
+    logo: "/images/stakepvp_logo.webp"
   },
   {
     name: "Passion Ice Baths",
-    logo: "/uploads/passion_icebaths_logo.png"
+    logo: "/images/passion_icebaths_logo.webp"
   },
   {
     name: "OpenClaw",
-    logo: "/uploads/openclaw_cool.png"
+    logo: "/images/openclaw_cool.webp"
   }
 ];
 
@@ -158,7 +152,7 @@ function ClientSlider() {
           >
             {duplicatedClients.map((client, index) => (
               <LogoItem key={`${client.name}-${index}`}>
-                <img src={client.logo} alt={client.name} />
+                <Image src={client.logo} alt={client.name} width={140} height={60} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'grayscale(100%)' }} loading="lazy" />
               </LogoItem>
             ))}
           </SliderTrack>

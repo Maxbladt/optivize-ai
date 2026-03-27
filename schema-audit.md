@@ -1,380 +1,545 @@
-# Schema.org Structured Data Audit - optivaize.nl
+# Optivaize.nl - Schema / Structured Data Audit
 
-**Date:** 2026-03-26
-**Site type:** React SPA (client-side rendered, no SSR)
+**Date:** 2026-03-27
+**Site:** https://optivaize.nl
+**Business type:** AI Agency (LocalBusiness), De Bilt, Netherlands
+**Framework:** Next.js (App Router with server-side rendering)
 
 ---
 
-## 1. Detection Results
+## Executive Summary
 
-### HTML Shell (`client/public/index.html`)
-- **JSON-LD:** None
-- **Microdata:** None
-- **RDFa:** None
-- **Verdict:** The HTML shell contains zero structured data. Since this is a client-rendered SPA, Google may not execute JavaScript reliably enough to pick up dynamically injected schema.
+The site has a single global JSON-LD block injected via `app/layout.js` containing LocalBusiness, WebSite, and SiteNavigationElement schema. This identical block appears on all 8 audited pages. There are zero page-specific schemas anywhere on the site.
 
-### Existing Schema (injected via JavaScript)
+The global schema is well-structured and valid JSON-LD. However, the site is missing significant schema opportunities on service pages, blog posts, case studies, and informational pages. Adding page-specific structured data would unlock rich result eligibility (breadcrumbs, article cards) and strengthen AI/LLM discoverability.
 
-**BlogDetailPage.js** - Article schema (injected dynamically via SEOHead component):
+**Findings summary:**
+- Critical (missing high-impact schema): 4
+- Warning (improvements to existing schema): 4
+- Info (nice-to-have additions): 3
+
+---
+
+## 1. Global Schema Validation (All Pages)
+
+All 8 audited pages contain the same JSON-LD block from `app/layout.js`. This block uses a `@graph` array with three entities.
+
+### 1.1 LocalBusiness
+
+**Validation: PASS with warnings**
+
+| Check | Result |
+|-------|--------|
+| @context is "https://schema.org" | PASS |
+| @type is valid and not deprecated | PASS |
+| @id uses fragment identifier | PASS |
+| Required: name | PASS - "Optivaize" |
+| Required: address (PostalAddress) | PASS |
+| Recommended: telephone | PASS - "+31642698918" |
+| Recommended: openingHoursSpecification | PASS |
+| Recommended: geo (GeoCoordinates) | PASS |
+| Recommended: sameAs | PASS - 3 profiles |
+| Recommended: logo | PASS (string URL) |
+| URLs are absolute | PASS |
+| No placeholder text | PASS |
+| Dates are ISO 8601 | N/A |
+
+**Warnings:**
+
+- **W-01: `logo` is a plain string.** Google recommends `ImageObject` with `url`, `width`, and `height` properties for the logo. The current string URL works but is less optimal.
+
+- **W-02: Missing `addressRegion`.** The PostalAddress is missing `addressRegion`. For the Netherlands, add `"addressRegion": "Utrecht"` (the province where De Bilt is located).
+
+- **W-03: Missing `areaServed`.** For a business serving all of the Netherlands, adding `areaServed` signals the geographic service area to search engines and AI systems.
+
+- **W-04: Missing `foundingDate` and `numberOfEmployees`.** These are recommended properties for LocalBusiness that strengthen business credibility signals and feed AI knowledge panels.
+
+### 1.2 WebSite
+
+**Validation: PASS**
+
+| Check | Result |
+|-------|--------|
+| @type is valid | PASS |
+| @id uses fragment identifier | PASS |
+| Required: name | PASS |
+| Required: url | PASS |
+| Recommended: publisher | PASS - references @id |
+| Recommended: inLanguage | PASS - "nl-NL" |
+| potentialAction (SearchAction) | PASS |
+| SearchAction target format | PASS |
+
+**Note:** The SearchAction points to `https://optivaize.nl/blog?q={search_term_string}`. Verify that this URL actually returns search results. If the blog page does not support query-parameter-based search, Google may eventually drop the sitelinks search box. If it does not work, remove the `potentialAction` block.
+
+### 1.3 SiteNavigationElement
+
+**Validation: PASS**
+
+| Check | Result |
+|-------|--------|
+| @type is valid | PASS |
+| URLs are absolute | PASS |
+| All nav items present | PASS - 9 items |
+
+SiteNavigationElement does not produce Google rich results but helps AI/LLM systems understand site structure. No issues found.
+
+---
+
+## 2. Page-by-Page Analysis
+
+### 2.1 Homepage (https://optivaize.nl)
+
+**Existing schema:** LocalBusiness, WebSite, SiteNavigationElement (global)
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| Info | `WebPage` with `speakable` | Helps voice assistants identify key homepage content |
+
+The homepage is adequately covered by the global LocalBusiness and WebSite schema. No critical gaps.
+
+---
+
+### 2.2 AI Agenten - Service Page (https://optivaize.nl/ai-agenten)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `Service` | Describes the AI agents service offering, connects it to the LocalBusiness entity |
+| **Critical** | `BreadcrumbList` | Enables breadcrumb rich results in Google SERPs. The page has visual breadcrumbs in the UI but no matching schema. |
+
+**Note:** The same gaps apply to all 5 service pages: `/ai-agenten`, `/ai-marketing`, `/ai-sales`, `/automatisering`, `/custom-software`.
+
+---
+
+### 2.3 Blog Listing (https://optivaize.nl/blog)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results |
+| Info | `CollectionPage` | Identifies this as a blog index/listing page |
+
+---
+
+### 2.4 Blog Post (https://optivaize.nl/blog/ai-statistieken-nederland-2026)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `BlogPosting` | Enables article rich results with headline, image, date, and author in SERPs. This is the single highest-value missing schema. |
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results (Home > Blog > Post Title) |
+
+**Note on FAQPage:** Since Optivaize is a commercial site (not government or healthcare), FAQPage schema will not produce Google rich results as of August 2023. It could benefit AI/LLM citation if GEO is a priority, but is not recommended for Google benefit.
+
+**Data availability:** The `app/blog/[slug]/page.js` file already fetches blog data (title, published_at, author, featured_image, meta_description, excerpt) in `generateMetadata`. This same data can be used to generate BlogPosting JSON-LD server-side.
+
+---
+
+### 2.5 Cases Listing (https://optivaize.nl/cases)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results |
+| Info | `CollectionPage` | Identifies this as a collection/listing page |
+
+---
+
+### 2.6 Case Study - Fonteyn (https://optivaize.nl/cases/fonteyn)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `Article` | Enables article rich results for the case study content |
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results (Home > Cases > Fonteyn) |
+
+**Data availability:** The `app/cases/[slug]/page.js` file already fetches case data (title_nl, company, preview_nl, image, published_at) in `generateMetadata`.
+
+---
+
+### 2.7 Contact (https://optivaize.nl/contact)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results |
+| Warning | `ContactPage` (WebPage subtype) | Identifies this as a contact page for search engines and AI |
+
+---
+
+### 2.8 Over Ons / About (https://optivaize.nl/over-ons)
+
+**Existing schema:** Global only
+**Page-specific schema:** None
+
+**Missing opportunities:**
+
+| Priority | Schema Type | Benefit |
+|----------|-------------|---------|
+| **Critical** | `BreadcrumbList` | Breadcrumb rich results |
+| Warning | `AboutPage` (WebPage subtype) | Identifies this as an about page |
+| Info | `Person` entries for team members | Strengthens E-E-A-T signals, helps Google connect authors to their content |
+
+---
+
+## 3. Site-Wide Issues
+
+### Issue 1: No BreadcrumbList on any page (Critical)
+
+Every inner page is missing BreadcrumbList schema. This is one of the highest-value schema types because Google actively renders breadcrumb trails in search results. The AI Agenten page even has visual breadcrumbs in the UI (built with a `Breadcrumb` styled component) but no corresponding structured data.
+
+### Issue 2: No BlogPosting schema on blog posts (Critical)
+
+Blog posts have proper OpenGraph metadata (article type, publishedTime, author) but zero Article/BlogPosting structured data. This means blog posts are ineligible for article rich results (headline, image, date display in SERPs). The data needed to generate BlogPosting schema is already available server-side in `generateMetadata`.
+
+### Issue 3: No Service schema on any service page (Critical)
+
+The site has 5 service pages and none have Service schema. Adding Service schema connects the service offerings to the LocalBusiness entity and strengthens topical relevance signals.
+
+### Issue 4: Identical schema on every page (Warning)
+
+Every page outputs the exact same JSON-LD block from `layout.js`. This is not harmful, but it means Google sees the same LocalBusiness + WebSite block on every URL. The global block should remain, but page-specific schema should be added alongside it in each page's component.
+
+---
+
+## 4. Recommended JSON-LD Additions
+
+### 4A. Enhanced LocalBusiness (update in `app/layout.js`)
+
+Replace the current `logo` string and add missing recommended properties:
+
+```javascript
+{
+  '@type': 'LocalBusiness',
+  '@id': 'https://optivaize.nl/#organization',
+  name: 'Optivaize',
+  url: 'https://optivaize.nl',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://optivaize.nl/uploads/optivaize_logo_new.png',
+    width: 600,
+    height: 60,
+  },
+  image: 'https://optivaize.nl/uploads/optivaize_logo_new.png',
+  description: 'AI-bureau gespecialiseerd in AI-agents, automatisering, marketing en custom software voor bedrijven in Nederland.',
+  telephone: '+31642698918',
+  email: 'info@optivaize.nl',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Groenekanseweg 70',
+    addressLocality: 'De Bilt',
+    addressRegion: 'Utrecht',
+    postalCode: '3732 AG',
+    addressCountry: 'NL',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 52.1167, longitude: 5.1833 },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '18:00',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'NL',
+  },
+  knowsLanguage: ['nl', 'en'],
+  sameAs: [
+    'https://www.linkedin.com/company/optivaize',
+    'https://www.instagram.com/optivaize',
+    'https://x.com/optivaize',
+  ],
+  priceRange: '$$',
+}
+```
+
+**Changes from current:**
+- `logo` upgraded from string to ImageObject with width/height (update width/height to actual logo dimensions)
+- Added `addressRegion: "Utrecht"`
+- Added `areaServed` for geographic coverage
+- Added `knowsLanguage` for multilingual signaling
+
+### 4B. BreadcrumbList Component (create new reusable component)
+
+Create a reusable component that can be included in each page:
+
+```jsx
+// components/BreadcrumbJsonLd.js
+export default function BreadcrumbJsonLd({ items }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+```
+
+Usage example in `app/ai-agenten/page.js`:
+
+```jsx
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
+
+export default function Page() {
+  return (
+    <>
+      <BreadcrumbJsonLd items={[
+        { name: 'Home', url: 'https://optivaize.nl' },
+        { name: 'AI Agents', url: 'https://optivaize.nl/ai-agenten' },
+      ]} />
+      <Layout><AIAgentsPage /></Layout>
+    </>
+  );
+}
+```
+
+**Breadcrumb mappings for all pages:**
+
+| Page | Breadcrumb trail |
+|------|-----------------|
+| /ai-agenten | Home > AI Agents |
+| /ai-marketing | Home > AI Marketing |
+| /ai-sales | Home > AI Sales |
+| /automatisering | Home > Automatisering |
+| /custom-software | Home > Custom Software |
+| /blog | Home > Blog |
+| /blog/[slug] | Home > Blog > [Post Title] |
+| /cases | Home > Cases |
+| /cases/[slug] | Home > Cases > [Company Name] |
+| /over-ons | Home > Over Ons |
+| /contact | Home > Contact |
+
+### 4C. BlogPosting Schema (add to `app/blog/[slug]/page.js`)
+
+Since `generateMetadata` already fetches the blog data, add a server component that generates the JSON-LD. Restructure the page to pass data to both metadata and the JSON-LD script:
+
+```jsx
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  let blog = null;
+  try {
+    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' });
+    if (res.ok) blog = await res.json();
+  } catch {}
+
+  const blogPostingJsonLd = blog ? {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.meta_description || blog.excerpt,
+    url: `https://optivaize.nl/blog/${slug}`,
+    datePublished: blog.published_at,
+    dateModified: blog.updated_at || blog.published_at,
+    author: {
+      '@type': 'Person',
+      name: blog.author || 'Optivaize',
+      url: 'https://optivaize.nl/over-ons',
+    },
+    publisher: {
+      '@id': 'https://optivaize.nl/#organization',
+    },
+    image: blog.featured_image || 'https://optivaize.nl/uploads/optivaize_logo_new.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://optivaize.nl/blog/${slug}`,
+    },
+    isPartOf: {
+      '@id': 'https://optivaize.nl/#website',
+    },
+    inLanguage: 'nl-NL',
+  } : null;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://optivaize.nl' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://optivaize.nl/blog' },
+      ...(blog ? [{ '@type': 'ListItem', position: 3, name: blog.title, item: `https://optivaize.nl/blog/${slug}` }] : []),
+    ],
+  };
+
+  return (
+    <>
+      {blogPostingJsonLd && (
+        <script type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }} />
+      )}
+      <script type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <Layout><BlogDetailPage /></Layout>
+    </>
+  );
+}
+```
+
+### 4D. Article Schema for Case Studies (add to `app/cases/[slug]/page.js`)
+
+Follow the same pattern as BlogPosting:
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "[blog.title]",
-  "description": "[blog.meta_description || blog.excerpt]",
-  "image": "[ogImage]",
-  "author": { "@type": "Organization", "name": "[blog.author || 'Optivaize']" },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Optivaize",
-    "logo": { "@type": "ImageObject", "url": "[origin]/uploads/optivaize_logo_new.png" }
+  "headline": "[caseData.title_nl or caseData.company + ' Case Study']",
+  "description": "[caseData.preview_nl]",
+  "url": "https://optivaize.nl/cases/[slug]",
+  "datePublished": "[caseData.published_at or caseData.created_at]",
+  "author": {
+    "@id": "https://optivaize.nl/#organization"
   },
-  "datePublished": "[blog.published_at]",
-  "dateModified": "[blog.updated_at || blog.published_at]",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "[canonicalUrl]" },
-  "url": "[canonicalUrl]"
-}
-```
-
-**Validation of existing Article schema:**
-- PASS: @context is "https://schema.org"
-- PASS: @type is valid (Article)
-- PASS: Required properties present (headline, image, datePublished, author, publisher)
-- INFO: author is typed as Organization, not Person. If blog posts have individual author names, consider using Person type instead.
-- WARN: publisher.logo as ImageObject is technically valid but Google now prefers a simple URL string for logo.
-- CRITICAL: This schema is injected via client-side JavaScript only. Googlebot may or may not render it. It should also exist in the static HTML or be server-rendered.
-
-### Pages Using SEOHead Component
-- BlogListPage.js - SEOHead for meta tags only, no jsonLd prop
-- BlogDetailPage.js - SEOHead with jsonLd (Article schema)
-- All other pages (HomePage, service pages, TeamPage, ContactPage, CasesPage, CaseDetailPage) - No SEOHead usage at all
-
----
-
-## 2. Missing Schema Opportunities (Priority Order)
-
-### CRITICAL - Must Implement in Static HTML
-
-#### A. Organization + LocalBusiness (homepage, static index.html)
-**Why:** This is the single most important schema for any business website. It tells Google who you are, where you are, and how to reach you. Enables Knowledge Panel eligibility.
-
-#### B. WebSite with SearchAction (homepage, static index.html)
-**Why:** Enables sitelinks search box in Google results.
-
-#### C. BreadcrumbList (all pages)
-**Why:** Enables breadcrumb rich results. Particularly valuable for service pages and blog posts.
-
-### HIGH - Should Implement
-
-#### D. Service (each service page)
-**Why:** Describes your service offerings with structured data. While Service does not trigger a specific rich result type, it strengthens topical relevance and feeds AI/LLM systems.
-
-#### E. BlogPosting (upgrade from Article)
-**Why:** BlogPosting is more specific than Article and better matches the content type. The existing Article schema works but BlogPosting is semantically more accurate.
-
-### MODERATE - Good to Have
-
-#### F. ProfilePage (team page /over-ons)
-**Why:** Strengthens E-E-A-T signals by connecting team members to the organization.
-
-#### G. FAQPage
-**INFO:** Since August 2023, Google restricts FAQ rich results to government and healthcare sites. Optivaize is a commercial AI agency, so FAQPage markup will NOT produce Google rich results. However, it can still benefit AI/LLM citation and discoverability (GEO). Only recommended if you prioritize AI discoverability over pure SEO ROI.
-
-### NOT APPLICABLE
-- HowTo: Deprecated (rich results removed September 2023). Do not use.
-- Product/Offer: Not an e-commerce site. Not applicable.
-- VideoObject: No video content detected on the site.
-- JobPosting: The /hiring page could use this if there are specific open positions with structured data (salary, location, etc.).
-
----
-
-## 3. SPA-Specific Implementation Guidance
-
-Since optivaize.nl is a React SPA without SSR, dynamically injected JSON-LD via the SEOHead component has a significant reliability problem: Googlebot's JavaScript rendering is delayed (days to weeks) and not guaranteed.
-
-**Recommended approach (in order of preference):**
-
-1. **Best: Add critical schemas to the static `index.html`** - Organization, LocalBusiness, and WebSite schema should go directly in the HTML shell since they apply site-wide and do not depend on dynamic data.
-
-2. **Better: Server-side inject via Express middleware** - The Express server (`server/index.js`) already serves the React app. Add middleware that injects page-specific JSON-LD into the HTML before sending it to the client. This gives you static, crawlable schema for every page.
-
-3. **Acceptable: Keep SEOHead for dynamic content** - For blog posts and case studies where data comes from the database, the current SEOHead approach is reasonable as a supplement, but should not be the only schema delivery method.
-
----
-
-## 4. Ready-to-Use JSON-LD
-
-### 4A. Organization + LocalBusiness (add to index.html)
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://optivaize.nl/#organization",
-  "name": "Optivaize",
-  "alternateName": "Optivize AI",
-  "description": "AI agency specializing in intelligent automation, AI agents, marketing, sales, and custom software solutions for businesses.",
-  "url": "https://optivaize.nl",
-  "logo": "https://optivaize.nl/uploads/optivaize_logo_new.png",
-  "image": "https://optivaize.nl/uploads/optivaize_logo_new.png",
-  "telephone": "+31642698918",
-  "email": "info@optivaize.nl",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Groenekanseweg 70",
-    "addressLocality": "De Bilt",
-    "addressCountry": "NL"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 52.1188,
-    "longitude": 5.1736
-  },
-  "sameAs": [
-    "https://www.instagram.com/optivaize",
-    "https://www.linkedin.com/company/optivaize",
-    "https://x.com/optivaize"
-  ],
-  "knowsAbout": [
-    "Artificial Intelligence",
-    "AI Agents",
-    "Marketing Automation",
-    "Sales Automation",
-    "Business Process Automation",
-    "AI Chatbots",
-    "Custom Software Development",
-    "AI Training",
-    "Blockchain"
-  ],
-  "foundingDate": "2024",
-  "numberOfEmployees": {
-    "@type": "QuantitativeValue",
-    "value": 3
-  },
-  "priceRange": "$$"
-}
-```
-
-### 4B. WebSite with SearchAction (add to index.html)
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://optivaize.nl/#website",
-  "name": "Optivaize",
-  "url": "https://optivaize.nl",
   "publisher": {
     "@id": "https://optivaize.nl/#organization"
+  },
+  "image": "[caseData.image or fallback logo]",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://optivaize.nl/cases/[slug]"
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "[caseData.company]"
   },
   "inLanguage": "nl-NL"
 }
 ```
 
-Note: SearchAction (sitelinks search box) is omitted because the site does not have a search results page. If you add site search in the future, add this property:
-```json
-"potentialAction": {
-  "@type": "SearchAction",
-  "target": {
-    "@type": "EntryPoint",
-    "urlTemplate": "https://optivaize.nl/search?q={search_term_string}"
-  },
-  "query-input": "required name=search_term_string"
-}
-```
+### 4E. Service Schema (add to each service page)
 
-### 4C. BreadcrumbList (example for service pages)
+Example for `app/ai-agenten/page.js`:
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://optivaize.nl"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "AI Agenten",
-      "item": "https://optivaize.nl/ai-agenten"
-    }
-  ]
-}
-```
-
-Breadcrumb mappings for all service pages:
-| Page | Breadcrumb name | URL path |
-|------|----------------|----------|
-| AI Agenten | AI Agenten | /ai-agenten |
-| AI Marketing | AI Marketing | /ai-marketing |
-| AI Sales | AI Sales | /ai-sales |
-| Automatisering | Automatisering | /automatisering |
-| Custom Software | Custom Software | /custom-software |
-| AI Business | AI Business | /ai-business |
-| AI Chatbot | AI Chatbot | /ai-chatbot |
-| AI Training | AI Training | /ai-training |
-| Crypto & Blockchain | Crypto & Blockchain | /crypto-blockchain |
-| Cases | Cases | /cases |
-| Blog | Blog | /blog |
-| Over Ons | Over Ons | /over-ons |
-| Contact | Contact | /contact |
-
-For blog detail pages, add a 3-level breadcrumb: Home > Blog > [Post Title].
-
-### 4D. Service Schema (one per service page)
-
-Example for AI Agenten:
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "AI Agenten",
-  "description": "Custom AI agents that automate complex business processes, handle customer interactions, and make intelligent decisions.",
+  "@id": "https://optivaize.nl/ai-agenten#service",
+  "name": "AI Agents Bouwen",
+  "description": "Custom AI-agents die uw bedrijfsprocessen automatiseren. Van e-mail agents tot data-analyse, wij ontwikkelen AI op maat.",
+  "url": "https://optivaize.nl/ai-agenten",
   "provider": {
     "@id": "https://optivaize.nl/#organization"
   },
-  "url": "https://optivaize.nl/ai-agenten",
+  "serviceType": "AI Agent Development",
   "areaServed": {
     "@type": "Country",
     "name": "NL"
-  },
-  "serviceType": "AI Agent Development"
+  }
 }
 ```
 
-Repeat this pattern for each service page, updating name, description, url, and serviceType.
+Repeat for each service page with appropriate name, description, and serviceType:
 
-### 4E. Improved BlogPosting (upgrade for BlogDetailPage.js)
+| Page | Service name | serviceType |
+|------|-------------|-------------|
+| /ai-agenten | AI Agents Bouwen | AI Agent Development |
+| /ai-marketing | AI Marketing | AI Marketing Services |
+| /ai-sales | AI Sales | AI Sales Automation |
+| /automatisering | Automatisering | Business Process Automation |
+| /custom-software | Custom Software | Custom Software Development |
 
-Replace the existing Article jsonLd object with:
-```javascript
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  'headline': blog.title,
-  'description': blog.meta_description || blog.excerpt,
-  'image': ogImage,
-  'author': {
-    '@type': 'Person',
-    'name': blog.author || 'Optivaize Team'
-  },
-  'publisher': {
-    '@id': 'https://optivaize.nl/#organization'
-  },
-  'datePublished': blog.published_at,
-  'dateModified': blog.updated_at || blog.published_at,
-  'mainEntityOfPage': {
-    '@type': 'WebPage',
-    '@id': canonicalUrl
-  },
-  'url': canonicalUrl,
-  'isPartOf': {
-    '@id': 'https://optivaize.nl/#website'
-  }
-};
-```
+### 4F. ContactPage and AboutPage (add to respective pages)
 
-Changes from current implementation:
-- Article upgraded to BlogPosting (more specific)
-- author changed from Organization to Person (more accurate for named authors)
-- publisher uses @id reference to the Organization defined in index.html (avoids duplication)
-- isPartOf links back to WebSite entity
+**Contact page (`app/contact/page.js`):**
 
----
-
-## 5. Implementation Plan
-
-### Step 1: Static index.html (do first)
-Add a combined JSON-LD script block to `client/public/index.html` containing Organization/LocalBusiness and WebSite as a `@graph`:
-
-```html
-<script type="application/ld+json">
+```json
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://optivaize.nl/#organization",
-      "name": "Optivaize",
-      "alternateName": "Optivize AI",
-      "description": "AI agency specializing in intelligent automation, AI agents, marketing, sales, and custom software solutions for businesses.",
-      "url": "https://optivaize.nl",
-      "logo": "https://optivaize.nl/uploads/optivaize_logo_new.png",
-      "image": "https://optivaize.nl/uploads/optivaize_logo_new.png",
-      "telephone": "+31642698918",
-      "email": "info@optivaize.nl",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Groenekanseweg 70",
-        "addressLocality": "De Bilt",
-        "addressCountry": "NL"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 52.1188,
-        "longitude": 5.1736
-      },
-      "sameAs": [
-        "https://www.instagram.com/optivaize",
-        "https://www.linkedin.com/company/optivaize",
-        "https://x.com/optivaize"
-      ],
-      "knowsAbout": [
-        "Artificial Intelligence",
-        "AI Agents",
-        "Marketing Automation",
-        "Sales Automation",
-        "Business Process Automation",
-        "AI Chatbots",
-        "Custom Software Development",
-        "AI Training",
-        "Blockchain"
-      ],
-      "priceRange": "$$"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://optivaize.nl/#website",
-      "name": "Optivaize",
-      "url": "https://optivaize.nl",
-      "publisher": {
-        "@id": "https://optivaize.nl/#organization"
-      },
-      "inLanguage": "nl-NL"
-    }
-  ]
+  "@type": "ContactPage",
+  "name": "Contact Optivaize",
+  "description": "Neem contact op met Optivaize. Bel +31 6 42698918 of vul het formulier in.",
+  "url": "https://optivaize.nl/contact",
+  "mainEntity": {
+    "@id": "https://optivaize.nl/#organization"
+  }
 }
-</script>
 ```
 
-### Step 2: Update BlogDetailPage.js
-Upgrade the existing Article to BlogPosting with the improved structure from section 4E.
+**About page (`app/over-ons/page.js`):**
 
-### Step 3: Add BreadcrumbList to SEOHead
-Extend the SEOHead component to accept a `breadcrumbs` prop and generate BreadcrumbList schema. Add breadcrumbs to every page that uses SEOHead.
-
-### Step 4: Add SEOHead to all pages
-Currently only BlogListPage and BlogDetailPage use SEOHead. Add it to every page, including all service pages with Service schema and breadcrumbs.
-
-### Step 5: Validate
-After deployment, test every page with:
-- Google Rich Results Test (https://search.google.com/test/rich-results)
-- Schema.org Validator (https://validator.schema.org)
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Over Optivaize",
+  "description": "Maak kennis met het Optivaize team. AI-bureau in De Bilt.",
+  "url": "https://optivaize.nl/over-ons",
+  "mainEntity": {
+    "@id": "https://optivaize.nl/#organization"
+  }
+}
+```
 
 ---
 
-## 6. Summary Table
+## 5. Implementation Priority
 
-| Schema Type | Status | Priority | Rich Result Eligible | Location |
-|-------------|--------|----------|---------------------|----------|
-| Organization/LocalBusiness | Missing | CRITICAL | Knowledge Panel | index.html (static) |
-| WebSite | Missing | CRITICAL | Sitelinks | index.html (static) |
-| BreadcrumbList | Missing | CRITICAL | Breadcrumb trail | All pages |
-| BlogPosting | Partial (Article exists) | HIGH | Article rich result | BlogDetailPage.js |
-| Service | Missing | HIGH | None (topical signal) | Each service page |
-| ProfilePage | Missing | MODERATE | None (E-E-A-T signal) | /over-ons |
-| FAQPage | Missing | LOW | Not eligible (commercial site) | N/A |
+| Priority | Action | Pages affected | Effort | Impact |
+|----------|--------|----------------|--------|--------|
+| 1 | Add BreadcrumbList schema | All inner pages (10+) | Medium - create reusable component | High - breadcrumb rich results |
+| 2 | Add BlogPosting schema | Blog post pages (dynamic) | Medium - use existing blog data | High - article rich results |
+| 3 | Add Service schema | 5 service pages | Low - static JSON-LD per page | Medium - topical relevance |
+| 4 | Add Article schema to case studies | Case study pages (dynamic) | Medium - use existing case data | Medium - article rich results |
+| 5 | Enhance LocalBusiness (logo ImageObject, areaServed, addressRegion) | Global layout.js | Low - edit existing object | Low-Medium |
+| 6 | Add ContactPage/AboutPage types | 2 pages | Low - static JSON-LD | Low |
+| 7 | Add Person schema for team members on /over-ons | 1 page | Low-Medium | Low (E-E-A-T signal) |
+
+---
+
+## 6. Schema Types NOT Recommended
+
+- **HowTo** - Rich results removed by Google in September 2023. Do not add.
+- **FAQPage** - Google rich results restricted to government/healthcare sites since August 2023. Optivaize is a commercial site, so no Google benefit. Only consider if AI/LLM discoverability (GEO) is a priority.
+- **SpecialAnnouncement** - Deprecated July 31, 2025.
+- **CourseInfo / LearningVideo** - Retired June 2025.
+
+---
+
+## 7. Post-Implementation Validation
+
+After deploying schema changes, validate every page with:
+1. **Google Rich Results Test** - https://search.google.com/test/rich-results
+2. **Schema.org Validator** - https://validator.schema.org
+3. **Google Search Console** - Monitor the "Enhancements" section for new rich result types appearing
+
+Focus validation on:
+- BreadcrumbList producing breadcrumb-eligible results
+- BlogPosting producing article-eligible results
+- No errors or warnings in the structured data reports

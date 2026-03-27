@@ -2,22 +2,23 @@ export const dynamic = 'force-dynamic';
 import { pool } from '@lib/db';
 
 export default async function sitemap() {
+  const now = new Date();
   const staticRoutes = [
-    { url: 'https://optivaize.nl', changeFrequency: 'weekly', priority: 1.0 },
-    { url: 'https://optivaize.nl/ai-agenten', changeFrequency: 'monthly', priority: 0.9 },
-    { url: 'https://optivaize.nl/ai-marketing', changeFrequency: 'monthly', priority: 0.9 },
-    { url: 'https://optivaize.nl/ai-sales', changeFrequency: 'monthly', priority: 0.9 },
-    { url: 'https://optivaize.nl/automatisering', changeFrequency: 'monthly', priority: 0.9 },
-    { url: 'https://optivaize.nl/custom-software', changeFrequency: 'monthly', priority: 0.9 },
-    { url: 'https://optivaize.nl/ai-business', changeFrequency: 'monthly', priority: 0.8 },
-    { url: 'https://optivaize.nl/ai-chatbot', changeFrequency: 'monthly', priority: 0.8 },
-    { url: 'https://optivaize.nl/ai-training', changeFrequency: 'monthly', priority: 0.8 },
-    { url: 'https://optivaize.nl/crypto-blockchain', changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://optivaize.nl/cases', changeFrequency: 'weekly', priority: 0.8 },
-    { url: 'https://optivaize.nl/blog', changeFrequency: 'weekly', priority: 0.8 },
-    { url: 'https://optivaize.nl/over-ons', changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://optivaize.nl/contact', changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://optivaize.nl/hiring', changeFrequency: 'monthly', priority: 0.6 },
+    { url: 'https://optivaize.nl', lastModified: now },
+    { url: 'https://optivaize.nl/ai-agenten', lastModified: now },
+    { url: 'https://optivaize.nl/ai-marketing', lastModified: now },
+    { url: 'https://optivaize.nl/ai-sales', lastModified: now },
+    { url: 'https://optivaize.nl/automatisering', lastModified: now },
+    { url: 'https://optivaize.nl/custom-software', lastModified: now },
+    { url: 'https://optivaize.nl/ai-business', lastModified: now },
+    { url: 'https://optivaize.nl/ai-chatbot', lastModified: now },
+    { url: 'https://optivaize.nl/ai-training', lastModified: now },
+    { url: 'https://optivaize.nl/crypto-blockchain', lastModified: now },
+    { url: 'https://optivaize.nl/cases', lastModified: now },
+    { url: 'https://optivaize.nl/blog', lastModified: now },
+    { url: 'https://optivaize.nl/over-ons', lastModified: now },
+    { url: 'https://optivaize.nl/contact', lastModified: now },
+    { url: 'https://optivaize.nl/hiring', lastModified: now },
   ];
 
   try {
@@ -27,21 +28,18 @@ export default async function sitemap() {
     ]);
 
     const caseRoutes = casesResult.rows.map((c) => ({
-      url: `https://optivaize.nl/cases/${c.slug}`,
+      url: `https://optivaize.nl/cases/${c.slug.trim()}`,
       lastModified: c.updated_at ? new Date(c.updated_at) : undefined,
-      changeFrequency: 'monthly',
-      priority: 0.7,
     }));
 
     const blogRoutes = blogsResult.rows.map((b) => ({
-      url: `https://optivaize.nl/blog/${b.slug}`,
+      url: `https://optivaize.nl/blog/${b.slug.trim()}`,
       lastModified: b.updated_at ? new Date(b.updated_at) : undefined,
-      changeFrequency: 'monthly',
-      priority: 0.7,
     }));
 
     return [...staticRoutes, ...caseRoutes, ...blogRoutes];
-  } catch {
+  } catch (err) {
+    console.error('Sitemap: failed to fetch dynamic routes', err);
     return staticRoutes;
   }
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import Link from '../components/Link';
 import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
@@ -573,7 +574,7 @@ const DEV_TOOLS = [
   { name: 'Node.js', slug: 'nodedotjs', bg: '#339933' },
   { name: 'Python', slug: 'python', bg: '#3776AB' },
   { name: 'Docker', slug: 'docker', bg: '#2496ED' },
-  { name: 'AWS', slug: null, customIcon: '/uploads/aws_logo.svg', bg: '#FF9900' },
+  { name: 'AWS', slug: null, customIcon: '/images/aws_logo.svg', bg: '#FF9900' },
   { name: 'Vercel', slug: 'vercel', bg: '#000000' },
   { name: 'PostgreSQL', slug: 'postgresql', bg: '#4169E1' },
 ];
@@ -583,7 +584,7 @@ const PIPELINE_NODES = [
   { name: 'Cursor IDE', descNL: 'AI-assisted coding', descEN: 'AI-assisted coding', slug: null, bg: '#1A1A1A', label: 'CS', color: '#94A3B8' },
   { name: 'GitHub', descNL: 'Code review + CI', descEN: 'Code review + CI', slug: 'github', bg: '#181717', color: '#6366F1' },
   { name: 'Testing', descNL: 'Automatische tests', descEN: 'Automated tests', slug: null, bg: '#059669', label: 'QA', color: '#10B981' },
-  { name: 'Deploy', descNL: 'AWS / Vercel live', descEN: 'AWS / Vercel live', slug: null, customIcon: '/uploads/aws_logo.svg', bg: '#FF9900', color: '#F59E0B' },
+  { name: 'Deploy', descNL: 'AWS / Vercel live', descEN: 'AWS / Vercel live', slug: null, customIcon: '/images/aws_logo.svg', bg: '#FF9900', color: '#F59E0B' },
 ];
 
 function SoftwarePage() {
@@ -600,10 +601,10 @@ function SoftwarePage() {
   ];
 
   const examples = [
-    { tag: isNL ? 'Automatisering Platform' : 'Automation Platform', title: 'Magic Apparels', desc: isNL ? 'Volledig geautomatiseerd orderplatform tussen Becosoft en Sage Intacct, honderden orders per dag.' : 'Fully automated order platform between Becosoft and Sage Intacct, hundreds of orders daily.', img: '/uploads/magic_apparels_dashboard.png', alt: 'Magic Apparels dashboard' },
-    { tag: 'OpenClaw', title: isNL ? 'Multi-agent platform' : 'Multi-agent platform', desc: isNL ? 'Custom multi-agent implementatie voor volledige bedrijfsautomatisering via berichtenplatforms.' : 'Custom multi-agent implementation for complete business automation via messaging platforms.', img: '/uploads/openclaw_cool.png', alt: 'OpenClaw platform' },
-    { tag: isNL ? 'AI-Integratie' : 'AI Integration', title: 'Passion Ice Baths', desc: isNL ? 'AI-gedreven SEO systeem en custom Shopify app voor het merk van Wim Hof.' : 'AI-driven SEO system and custom Shopify app for the Wim Hof brand.', img: '/uploads/passion_icebaths.png', alt: 'Passion Ice Baths' },
-    { tag: isNL ? 'Automatisering' : 'Automation', title: isNL ? 'n8n Workflow Platform' : 'n8n Workflow Platform', desc: isNL ? 'Low-code automatiseringen en custom integraties voor complexe bedrijfsprocessen.' : 'Low-code automations and custom integrations for complex business processes.', img: '/uploads/n8n_flow.png', alt: 'n8n workflow automation' },
+    { tag: isNL ? 'Automatisering Platform' : 'Automation Platform', title: 'Magic Apparels', desc: isNL ? 'Volledig geautomatiseerd orderplatform tussen Becosoft en Sage Intacct, honderden orders per dag.' : 'Fully automated order platform between Becosoft and Sage Intacct, hundreds of orders daily.', img: '/images/magic_apparels_dashboard.webp', alt: 'Magic Apparels dashboard' },
+    { tag: 'OpenClaw', title: isNL ? 'Multi-agent platform' : 'Multi-agent platform', desc: isNL ? 'Custom multi-agent implementatie voor volledige bedrijfsautomatisering via berichtenplatforms.' : 'Custom multi-agent implementation for complete business automation via messaging platforms.', img: '/images/openclaw_cool.webp', alt: 'OpenClaw platform' },
+    { tag: isNL ? 'AI-Integratie' : 'AI Integration', title: 'Passion Ice Baths', desc: isNL ? 'AI-gedreven SEO systeem en custom Shopify app voor het merk van Wim Hof.' : 'AI-driven SEO system and custom Shopify app for the Wim Hof brand.', img: '/images/passion_icebaths.webp', alt: 'Passion Ice Baths' },
+    { tag: isNL ? 'Automatisering' : 'Automation', title: isNL ? 'n8n Workflow Platform' : 'n8n Workflow Platform', desc: isNL ? 'Low-code automatiseringen en custom integraties voor complexe bedrijfsprocessen.' : 'Low-code automations and custom integrations for complex business processes.', img: '/images/n8n_flow.webp', alt: 'n8n workflow automation' },
   ];
 
   const checks = isNL ? [
@@ -642,7 +643,7 @@ function SoftwarePage() {
         title="Custom Software Ontwikkeling | Optivaize, De Bilt"
         description="Op maat gemaakte software en webapplicaties. Optivaize ontwikkelt dashboards, APIs en platforms met AI-integratie vanuit De Bilt."
         canonicalUrl="https://optivaize.nl/custom-software"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
           { name: 'Custom Software', url: 'https://optivaize.nl/custom-software' }
@@ -789,7 +790,7 @@ function SoftwarePage() {
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
-              <img src="/uploads/magic_apparels_db.png" alt="Custom software development" style={{ width: '100%', borderRadius: '20px', display: 'block' }} loading="lazy" />
+              <Image src="/images/magic_apparels_db.webp" alt="Custom software development" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
           </TwoCol>
         </Container>
@@ -828,7 +829,7 @@ function SoftwarePage() {
             {examples.map((ex, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <ExCard whileHover={{ y: -4 }}>
-                  <img src={ex.img} alt={ex.alt} style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                  <Image src={ex.img} alt={ex.alt} width={800} height={200} style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} loading="lazy" />
                   <ExContent>
                     <div className="tag">{ex.tag}</div>
                     <div className="title">{ex.title}</div>

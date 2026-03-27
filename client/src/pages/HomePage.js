@@ -13,6 +13,7 @@ import { useLanguage, translations } from '../LanguageContext';
 import ClientSlider from '../components/ClientSlider';
 import SEOHead from '../components/SEOHead';
 import VideoPlayer from '../components/VideoPlayer';
+import Image from 'next/image';
 const InteractiveGlobe = React.lazy(() => import('../components/InteractiveGlobe'));
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -1095,14 +1096,14 @@ function ClickVideo({ src, thumbnail }) {
 
 /* Image mapping for cases */
 const caseImages = {
-  fonteyn: '/uploads/fonteyn_dashboard.png',
-  aanhuis: '/uploads/aanhuis_voorkant.png',
-  blosh: '/uploads/blosh_office.png',
-  'red-button': '/uploads/magic_apparels_dashboard.png',
-  redbutton: '/uploads/magic_apparels_dashboard.png',
-  stakepvp: '/uploads/stakepvp_logo.png',
-  'passion-ice-baths': '/uploads/passion_icebaths.png',
-  passion: '/uploads/passion_icebaths.png',
+  fonteyn: '/images/fonteyn_dashboard.webp',
+  aanhuis: '/images/aanhuis_voorkant.webp',
+  blosh: '/images/blosh_office.webp',
+  'red-button': '/images/magic_apparels_dashboard.webp',
+  redbutton: '/images/magic_apparels_dashboard.webp',
+  stakepvp: '/images/stakepvp_logo.webp',
+  'passion-ice-baths': '/images/passion_icebaths.webp',
+  passion: '/images/passion_icebaths.webp',
 };
 
 const caseStatColors = ['#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EF4444', '#EC4899'];
@@ -1230,19 +1231,9 @@ const intakeSteps = [
 /* ─── Page ───────────────────────────────────── */
 /* ─── Globe is now in components/InteractiveGlobe.js ── */
 
-function HomePage() {
+function HomePage({ initialCases = [] }) {
   const { language } = useLanguage();
-  const [homeCases, setHomeCases] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/cases')
-      .then(r => r.json())
-      .then(cases => {
-        const featured = cases.filter(c => ['fonteyn', 'red-button', 'blosh'].includes(c.slug));
-        setHomeCases(featured);
-      })
-      .catch(() => {});
-  }, []);
+  const homeCases = initialCases.filter(c => ['fonteyn', 'red-button', 'blosh'].includes(c.slug));
 
   return (
     <>
@@ -1250,7 +1241,7 @@ function HomePage() {
         title="Optivaize | AI-bureau De Bilt, Automatisering, Marketing en Software"
         description="Optivaize is een AI-bureau in De Bilt. Wij bouwen AI-agents, automatisering, marketing en custom software voor bedrijven in heel Nederland."
         canonicalUrl="https://optivaize.nl"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[{name:'Home',url:'https://optivaize.nl'}]}
       />
       {/* ── HERO ── */}
@@ -1308,7 +1299,7 @@ function HomePage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <VideoPlayer src="/uploads/optivaize_intro_vid.mp4" poster="/uploads/optivaize_logo_new.png" isLogo />
+              <VideoPlayer src="/videos/optivaize_intro_vid.mp4" poster="/images/optivaize_logo_new.webp" isLogo />
             </HeroVideoWrap>
           </HeroGrid>
         </Container>
@@ -1400,7 +1391,7 @@ function HomePage() {
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <img src={c.image || caseImages[c.slug] || caseImages[c.slug.replace('-', '')]} alt={language === 'nl' ? c.title_nl : c.title_en} loading="lazy" />
+                <Image src={c.image || caseImages[c.slug] || caseImages[c.slug.replace('-', '')]} alt={language === 'nl' ? c.title_nl : c.title_en} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" />
                 <CaseOverlay>
                   <CaseClient>{language === 'nl' ? c.title_nl : c.title_en}</CaseClient>
                   <CaseTitle>{language === 'nl' ? c.preview_nl : c.preview_en}</CaseTitle>
@@ -1426,7 +1417,7 @@ function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <img src="/uploads/wimhof.png" alt="Wim Hof - Passion Ice Baths" loading="lazy" />
+              <Image src="/images/wimhof.webp" alt="Wim Hof - Passion Ice Baths" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '20px' }} loading="lazy" />
             </WimHofImageWrap>
 
             <WimHofContent
@@ -1514,7 +1505,7 @@ function HomePage() {
         <Container>
           <WimHofGrid>
             <FadeIn>
-              <VideoPlayer src="/uploads/Openclaw intro.mp4" />
+              <VideoPlayer src="/videos/Openclaw intro.mp4" />
             </FadeIn>
             <WimHofContent initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}>
               <WimHofLabel>{language === 'nl' ? 'Bekijk de video' : 'Watch the video'}</WimHofLabel>
@@ -1559,7 +1550,7 @@ function HomePage() {
             </FadeIn>
             <FadeIn delay={0.15}>
               <div style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 16px 48px rgba(0,0,0,0.12)' }}>
-                <img src="/uploads/max_bladt_upclose.png" alt="Maximilian Bladt" style={{ width: '100%', display: 'block' }} loading="lazy" />
+                <Image src="/images/max_bladt_upclose.webp" alt="Maximilian Bladt" width={600} height={800} style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
               </div>
             </FadeIn>
           </AboutPreviewGrid>

@@ -424,7 +424,7 @@ function HiringPage() {
         title="Werken bij Optivaize | Vacatures AI-bureau De Bilt"
         description="Wil je werken aan de toekomst van AI? Bekijk onze vacatures bij Optivaize in De Bilt. Wij zoeken developers, designers en AI-specialisten."
         canonicalUrl="https://optivaize.nl/hiring"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Vacatures",url:"https://optivaize.nl/hiring"}]}
       />
       <PageHero>

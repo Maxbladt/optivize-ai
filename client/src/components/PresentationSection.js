@@ -253,7 +253,7 @@ function PresentationSection() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
             <PresentationImage
-              src="/uploads/presentation.png"
+              src="/images/presentation.webp"
               alt="AI Transformation Presentation"
               whileHover={{ 
                 scale: 1.05,

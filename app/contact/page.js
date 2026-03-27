@@ -9,10 +9,24 @@ export const metadata = {
     title: 'Contact | Optivaize',
     description: 'Neem contact op met Optivaize, AI-bureau in De Bilt.',
     url: 'https://optivaize.nl/contact',
-    images: ['/uploads/optivaize_logo_new.png'],
+    images: ['/images/optivaize_logo_new.webp'],
   },
 };
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://optivaize.nl' },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://optivaize.nl/contact' },
+  ],
+};
+
 export default function Page() {
-  return <Layout><ContactPage /></Layout>;
+  return (
+    <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <ContactPage />
+    </Layout>
+  );
 }

@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, M
 import Link from './Link';
 import { useLocation } from '../hooks';
 import { useLanguage } from '../LanguageContext';
+import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
@@ -80,6 +81,7 @@ const AnnouncementBar = styled.div`
     text-decoration: underline;
     text-underline-offset: 2px;
     margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
   }
 
   @media (max-width: 640px) {
@@ -234,7 +236,9 @@ const HamburgerBtn = styled.button`
   border: none;
   color: #1E293B;
   cursor: pointer;
-  padding: 0.4rem;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0.5rem;
 
   @media (max-width: 1100px) {
     display: flex;
@@ -574,7 +578,7 @@ function Navigation() {
       >
         <NavContent>
           <Logo to="/">
-            <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+            <Image src="/images/optivaize_logo_new.webp" alt="Optivaize" width={136} height={34} priority />
           </Logo>
 
           <DesktopLinks>
@@ -688,11 +692,11 @@ function Navigation() {
           >
             <MobileHead>
               <Logo to="/" onClick={() => setMobileOpen(false)}>
-                <img src="/uploads/optivaize_logo_new.png" alt="Optivaize" />
+                <Image src="/images/optivaize_logo_new.webp" alt="Optivaize" width={136} height={34} priority />
               </Logo>
               <button
                 onClick={() => setMobileOpen(false)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1E293B', padding: '0.4rem' }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1E293B', padding: '0.75rem', minWidth: '48px', minHeight: '48px' }}
               >
                 <X size={24} />
               </button>

@@ -18,7 +18,8 @@ export async function POST(request) {
     const name = file.name.replace(ext, '').replace(/[^a-zA-Z0-9_-]/g, '_');
     const filename = `${name}_${Date.now()}${ext}`;
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    // Write to pictures_good/ which is served via /uploads/ rewrite
+    const uploadsDir = path.join(process.cwd(), 'pictures_good');
     await mkdir(uploadsDir, { recursive: true });
     await writeFile(path.join(uploadsDir, filename), buffer);
 

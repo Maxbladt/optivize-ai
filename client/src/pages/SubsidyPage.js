@@ -1014,7 +1014,7 @@ export default function SubsidyPage() {
         title="Crypto en Blockchain Ontwikkeling | Optivaize, De Bilt"
         description="Blockchain-oplossingen en crypto-integraties voor bedrijven. Smart contracts, DeFi en Web3 ontwikkeling door Optivaize vanuit De Bilt."
         canonicalUrl="https://optivaize.nl/crypto-blockchain"
-        ogImage="https://optivaize.nl/uploads/optivaize_logo_new.png"
+        ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[{name:"Home",url:"https://optivaize.nl"},{name:"Crypto & Blockchain",url:"https://optivaize.nl/crypto-blockchain"}]}
       />
       {/* ── HERO ── */}
@@ -1248,7 +1248,7 @@ export default function SubsidyPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img src="/uploads/stakepvp_logo.png" alt="StakePVP" />
+              <img src="/images/stakepvp_logo.webp" alt="StakePVP" />
               <CaseVisualChains>
                 <img src="https://cdn.simpleicons.org/solana/A5B4FC" alt="Solana" />
                 <img src="https://cdn.simpleicons.org/ethereum/A5B4FC" alt="Ethereum" />
@@ -1269,9 +1269,9 @@ export default function SubsidyPage() {
                 </CaseResults>
                 <CasePartners>
                   <span className="label">Tech stack</span>
-                  <img src="/uploads/privy_logo.png" alt="Privy" />
-                  <img src="/uploads/helius_logo.png" alt="Helius" />
-                  <img src="/uploads/stakepvp_logo.png" alt="StakePVP" />
+                  <img src="/images/privy_logo.webp" alt="Privy" />
+                  <img src="/images/helius_logo.webp" alt="Helius" />
+                  <img src="/images/stakepvp_logo.webp" alt="StakePVP" />
                 </CasePartners>
               </FadeIn>
             </CaseInfo>
