@@ -31,6 +31,7 @@ services:
       TEAMLEADER_CLIENT_ID: ${TEAMLEADER_CLIENT_ID}
       TEAMLEADER_CLIENT_SECRET: ${TEAMLEADER_CLIENT_SECRET}
       TEAMLEADER_REDIRECT_URI: ${TEAMLEADER_REDIRECT_URI}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
     volumes:
       - ./pictures_good:/app/pictures_good
     depends_on:

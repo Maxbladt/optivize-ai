@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import ChatWidget from './ChatWidget';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -70,6 +71,7 @@ function Layout({ children }) {
         <Navigation />
         {children}
         <Footer />
+        <ChatWidget />
       </AppContainer>
     </>
   );
