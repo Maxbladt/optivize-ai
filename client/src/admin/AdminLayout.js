@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { LayoutDashboard, Briefcase, FileText, Presentation, LogOut, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, Briefcase, FileText, Presentation, MessageSquare, LogOut, ArrowLeft } from 'lucide-react';
 import { useAuth } from './useAuth';
 
 const Wrapper = styled.div`
@@ -135,6 +135,7 @@ export default function AdminLayout({ children }) {
           <SideLink href="/admin" className={pathname === '/admin' ? 'active' : ''}><LayoutDashboard size={18} /> Dashboard</SideLink>
           <SideLink href="/admin/cases" className={pathname.startsWith('/admin/cases') ? 'active' : ''}><Briefcase size={18} /> Cases</SideLink>
           <SideLink href="/admin/blogs" className={pathname.startsWith('/admin/blogs') ? 'active' : ''}><FileText size={18} /> Blogs</SideLink>
+          <SideLink href="/admin/conversations" className={pathname.startsWith('/admin/conversations') ? 'active' : ''}><MessageSquare size={18} /> Gesprekken</SideLink>
           <SideLink href="/admin/presentation" className={pathname === '/admin/presentation' ? 'active' : ''}><Presentation size={18} /> Presentatie</SideLink>
         </Nav>
         <LogoutBtn onClick={handleLogout}><LogOut size={18} /> Uitloggen</LogoutBtn>

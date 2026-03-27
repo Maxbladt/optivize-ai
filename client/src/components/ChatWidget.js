@@ -36,12 +36,16 @@ const TEAM = [
 
 // ─── HELPERS ───
 
+function generateSessionId() {
+  return 'sess_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
 function loadStorage() {
-  if (typeof window === 'undefined') return { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max' };
+  if (typeof window === 'undefined') return { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max', sessionId: null };
   try {
     const d = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return d || { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max' };
-  } catch { return { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max' }; }
+    return d || { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max', sessionId: null };
+  } catch { return { conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max', sessionId: null }; }
 }
 
 function saveStorage(data) {
@@ -49,10 +53,36 @@ function saveStorage(data) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
 }
 
-function getReturningInfo(storage) {
-  if (!storage.lastVisit) return null;
-  const days = Math.floor((Date.now() - new Date(storage.lastVisit).getTime()) / 86400000);
-  return days >= 1 ? { daysSince: days, visitCount: storage.visitCount || 1 } : null;
+function getLastMessageTime(convos, agentId) {
+  const msgs = convos[agentId] || [];
+  for (let i = msgs.length - 1; i >= 0; i--) {
+    if (msgs[i].timestamp) return msgs[i].timestamp;
+  }
+  return null;
+}
+
+function getDeviceInfo() {
+  if (typeof window === 'undefined') return {};
+  const ua = navigator.userAgent;
+  const isMobile = /Mobile|Android|iPhone|iPad/i.test(ua);
+  return {
+    userAgent: ua,
+    device: isMobile ? 'mobile' : 'desktop',
+    pageUrl: window.location.pathname,
+    referrer: document.referrer || null,
+    screenWidth: window.screen?.width,
+    screenHeight: window.screen?.height,
+    language: navigator.language,
+  };
+}
+
+function saveToDb(sessionId, agentId, messages) {
+  if (!sessionId || !messages.length) return;
+  fetch('/api/chat/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sessionId, agentId, messages, meta: getDeviceInfo() }),
+  }).catch(() => {});
 }
 
 function stripHtml(html) {
@@ -74,7 +104,10 @@ function renderMd(text) {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/\n/g, '<br/>')
-    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#3B82F6;text-decoration:underline">$1</a>')
+    // Markdown links [text](url) first
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#3B82F6;text-decoration:underline">$1</a>')
+    // Then bare URLs that aren't already inside an href
+    .replace(/(?<!href=")(https?:\/\/[^\s<"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#3B82F6;text-decoration:underline">$1</a>')
     .replace(/(\+\d[\d\s]{8,})/g, '<a href="tel:$1" style="color:#3B82F6;text-decoration:underline">$1</a>');
 }
 
@@ -310,7 +343,8 @@ function ChatWidget() {
   const [tipText, setTipText] = useState('');
   const [tipAgentId, setTipAgentId] = useState('max');
   const [tipStreaming, setTipStreaming] = useState(false);
-  const [storageData, setStorageData] = useState({ conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max' });
+  const [storageData, setStorageData] = useState({ conversations: {}, lastVisit: null, visitCount: 0, lastAgent: 'max', sessionId: null });
+  const [sessionId, setSessionId] = useState(null);
   const [inited, setInited] = useState({});
   const [showCTA, setShowCTA] = useState(false);
   const [apiOnline, setApiOnline] = useState(true);
@@ -335,6 +369,8 @@ function ChatWidget() {
   useEffect(() => {
     const data = loadStorage();
     setStorageData(data);
+    const sid = data.sessionId || generateSessionId();
+    setSessionId(sid);
     const lastAgent = data.lastAgent || 'max';
     setAgentId(lastAgent);
     setTipAgentId(lastAgent);
@@ -346,7 +382,7 @@ function ChatWidget() {
       }
       setInited(init);
     }
-    saveStorage({ ...data, lastVisit: new Date().toISOString(), visitCount: (data.visitCount || 0) + 1 });
+    saveStorage({ ...data, sessionId: sid, lastVisit: new Date().toISOString(), visitCount: (data.visitCount || 0) + 1 });
   }, []);
 
   // ─── SAVE convos to localStorage ───
@@ -458,16 +494,24 @@ function ChatWidget() {
   // ─── GREETING ───
   const getGreeting = useCallback((aid) => {
     const a = TEAM.find(t => t.id === aid);
-    const ret = getReturningInfo(storageData);
-    if (ret && ret.daysSince >= 7) {
+    // Check time since last message for this agent
+    const lastTime = getLastMessageTime(convos, aid);
+    const hoursSince = lastTime ? (Date.now() - lastTime) / 3600000 : Infinity;
+
+    if (hoursSince >= 168) { // 7+ days
       return language === 'nl'
         ? `Hey, lang niet gezien! Ik ben ${a.name}, ${a.role.nl} bij Optivaize. Fijn dat je er weer bent, kan ik je ergens mee helpen?`
         : `Hey, long time no see! I'm ${a.name}, ${a.role.en} at Optivaize. Great to have you back, can I help with anything?`;
     }
-    if (ret && ret.daysSince >= 1) {
+    if (hoursSince >= 24) { // 1+ days
       return language === 'nl'
         ? `Hé, leuk je weer te zien! Ik ben ${a.name}. Waar kan ik je mee helpen vandaag?`
         : `Hey, good to see you again! I'm ${a.name}. How can I help you today?`;
+    }
+    if (hoursSince >= 1) { // 1+ hour
+      return language === 'nl'
+        ? `Hey, welkom terug! Ik ben ${a.name}. Kan ik je nog ergens mee helpen?`
+        : `Hey, welcome back! I'm ${a.name}. Can I help you with anything?`;
     }
     return language === 'nl'
       ? `Hi, mijn naam is ${a.name}, ${a.role.nl} bij Optivaize. Heb je een vraag over AI, automatisering of software? Stel hem gerust!`
@@ -495,29 +539,37 @@ function ChatWidget() {
     }
   }, [inited, getGreeting]);
 
-  // ─── TIP CLICK: append to conversation ───
+  // ─── TIP CLICK: append to conversation and open chat ───
   const handleTipClick = useCallback(() => {
     if (tipAutoHide.current) clearTimeout(tipAutoHide.current);
-    if (tipAbortRef.current && tipStreaming) tipAbortRef.current.abort();
-    if (tipText) {
-      const aid = tipAgentId;
-      setConvos(prev => ({
-        ...prev,
-        [aid]: [...(prev[aid] || []), { role: 'assistant', content: tipText }],
-      }));
-      setInited(prev => ({ ...prev, [aid]: true }));
-      setAgentId(aid);
-      saveStorage({ ...loadStorage(), lastAgent: aid });
-    }
+    const aid = tipAgentId;
+    const currentTipText = tipText;
+
     setShowTip(false);
     setTipStreaming(false);
+    if (tipAbortRef.current) { tipAbortRef.current.abort(); tipAbortRef.current = null; }
+
+    // Switch to the tip agent and append the tip message
+    setAgentId(aid);
+    setInited(prev => ({ ...prev, [aid]: true }));
+    saveStorage({ ...loadStorage(), lastAgent: aid });
+
+    if (currentTipText) {
+      setConvos(prev => {
+        const existing = prev[aid] || [];
+        return { ...prev, [aid]: [...existing, { role: 'assistant', content: currentTipText }] };
+      });
+    }
+
+    // Open chat directly (don't go through openChat which would add a greeting)
     setIsOpen(true);
-  }, [tipText, tipAgentId, tipStreaming]);
+  }, [tipText, tipAgentId]);
 
   // ─── SEND MESSAGE ───
   const sendMessage = useCallback(async (text) => {
     if (!text.trim() || streaming) return;
-    const userMsg = { role: 'user', content: text.trim() };
+    const now = Date.now();
+    const userMsg = { role: 'user', content: text.trim(), timestamp: now };
     setConvos(prev => ({ ...prev, [agentId]: [...(prev[agentId] || []), userMsg] }));
     setMessage('');
     setStreaming(true);
@@ -539,7 +591,6 @@ function ChatWidget() {
           messages: apiMsgs,
           agentId,
           currentPage: pathname,
-          returningInfo: getReturningInfo(storageData),
         }),
         signal: controller.signal,
       });
@@ -555,11 +606,15 @@ function ChatWidget() {
         });
       });
 
+      const assistantMsg = { role: 'assistant', content: fullText, timestamp: Date.now() };
       setConvos(prev => {
         const msgs = [...(prev[agentId] || [])];
-        msgs[msgs.length - 1] = { role: 'assistant', content: fullText };
+        msgs[msgs.length - 1] = assistantMsg;
         return { ...prev, [agentId]: msgs };
       });
+
+      // Save to database
+      saveToDb(sessionId, agentId, [userMsg, assistantMsg]);
     } catch (err) {
       if (err.name === 'AbortError') return;
       setApiOnline(false);
@@ -568,14 +623,14 @@ function ChatWidget() {
         : `Sorry, something went wrong. Feel free to call ${PHONE} or send a WhatsApp!`;
       setConvos(prev => {
         const msgs = [...(prev[agentId] || [])];
-        msgs[msgs.length - 1] = { role: 'assistant', content: fallback };
+        msgs[msgs.length - 1] = { role: 'assistant', content: fallback, timestamp: Date.now() };
         return { ...prev, [agentId]: msgs };
       });
     } finally {
       setStreaming(false);
       abortRef.current = null;
     }
-  }, [streaming, agentId, convos, pathname, storageData, language]);
+  }, [streaming, agentId, convos, pathname, language, sessionId]);
 
   const handleSubmit = useCallback(e => { e.preventDefault(); sendMessage(message); }, [message, sendMessage]);
 
@@ -657,21 +712,25 @@ function ChatWidget() {
             </TeamSelector>
 
             <ChatArea ref={chatRef}>
-              {currentMsgs.map((msg, i) => (
-                <MsgRow key={`${agentId}-${i}`} $u={msg.role==='user'}
-                  initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}>
-                  {msg.role !== 'user' && (
-                    <MsgAvatar>
-                      <Image src={agent.avatar} alt={agent.name} width={34} height={34} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                    </MsgAvatar>
-                  )}
-                  <MsgBubble $u={msg.role==='user'} dangerouslySetInnerHTML={{ __html: renderMd(msg.content) }} />
-                  {msg.streaming && <Cursor $l={msg.role==='user'} />}
-                </MsgRow>
-              ))}
+              {currentMsgs.map((msg, i) => {
+                // Skip rendering the empty placeholder bubble (typing dots handle it)
+                if (msg.streaming && !msg.content) return null;
+                return (
+                  <MsgRow key={`${agentId}-${i}`} $u={msg.role==='user'}
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}>
+                    {msg.role !== 'user' && (
+                      <MsgAvatar>
+                        <Image src={agent.avatar} alt={agent.name} width={34} height={34} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                      </MsgAvatar>
+                    )}
+                    <MsgBubble $u={msg.role==='user'} dangerouslySetInnerHTML={{ __html: renderMd(msg.content) }} />
+                    {msg.streaming && msg.content && <Cursor $l={msg.role==='user'} />}
+                  </MsgRow>
+                );
+              })}
 
-              {streaming && currentMsgs.length > 0 && currentMsgs[currentMsgs.length-1]?.content === '' && (
+              {streaming && currentMsgs.length > 0 && (!currentMsgs[currentMsgs.length-1]?.content) && (
                 <TypingRow initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <MsgAvatar>
                     <Image src={agent.avatar} alt={agent.name} width={34} height={34} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
@@ -713,7 +772,7 @@ function ChatWidget() {
       </AnimatePresence>
 
       <Fab $g={agent.gradient} whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.92 }}
-        onClick={isOpen ? () => setIsOpen(false) : openChat}>
+        onClick={isOpen ? () => setIsOpen(false) : (showTip && tipText) ? handleTipClick : openChat}>
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </Fab>
     </Wrapper>

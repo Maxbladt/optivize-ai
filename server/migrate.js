@@ -90,11 +90,44 @@ const migrations = [
       `);
     },
   },
-  // Add new migrations here:
-  // {
-  //   id: '003_your_migration_name',
-  //   up: async (client) => { ... },
-  // },
+  {
+    id: '003_chat_messages',
+    up: async (client) => {
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS chat_sessions (
+          id SERIAL PRIMARY KEY,
+          session_id VARCHAR(255) UNIQUE NOT NULL,
+          user_agent TEXT,
+          device VARCHAR(20),
+          page_url VARCHAR(500),
+          referrer VARCHAR(500),
+          screen_width INTEGER,
+          screen_height INTEGER,
+          language VARCHAR(10),
+          created_at TIMESTAMP DEFAULT NOW(),
+          last_active TIMESTAMP DEFAULT NOW()
+        );
+      `);
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS chat_messages (
+          id SERIAL PRIMARY KEY,
+          session_id VARCHAR(255) NOT NULL,
+          agent_id VARCHAR(50) NOT NULL,
+          role VARCHAR(20) NOT NULL,
+          content TEXT NOT NULL,
+          created_at TIMESTAMP DEFAULT NOW()
+        );
+      `);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_chat_session ON chat_messages(session_id, created_at)`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_chat_agent ON chat_messages(agent_id)`);
+    },
+  },
+  {
+    id: '004_chat_sessions_ip',
+    up: async (client) => {
+      await client.query(`ALTER TABLE chat_sessions ADD COLUMN IF NOT EXISTS ip VARCHAR(45)`);
+    },
+  },
 ];
 
 async function migrate() {
