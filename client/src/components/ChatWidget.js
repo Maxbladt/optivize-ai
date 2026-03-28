@@ -268,7 +268,7 @@ const InputArea = styled.form`
 
 const Input = styled.input`
   flex:1;border:1.5px solid #E2E8F0;border-radius:24px;padding:11px 18px;
-  font-size:14px;outline:none;font-family:inherit;transition:all 0.2s;background:#FAFBFC;
+  font-size:16px;outline:none;font-family:inherit;transition:all 0.2s;background:#FAFBFC;
   &:focus{border-color:#3B82F6;background:white;box-shadow:0 0 0 3px rgba(59,130,246,0.08);}
   &::placeholder{color:#94A3B8;}
 `;
@@ -458,7 +458,7 @@ function ChatWidget() {
 
       // Read fresh from localStorage to avoid stale closure
       const freshData = loadStorage();
-      const contextMsgs = (freshData.conversations?.[aid] || []).slice(-4).map(m => ({ role: m.role, content: m.content }));
+      const contextMsgs = (freshData.conversations?.[aid] || []).slice(-8).map(m => ({ role: m.role, content: m.content }));
 
       const res = await fetch('/api/chat', {
         method: 'POST',
