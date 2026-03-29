@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 import BlogListPage from '@/pages/BlogListPage';
 import Layout from '@/components/Layout';
 
@@ -18,7 +18,7 @@ export default async function Page() {
   let blogs = [];
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/blogs`, { cache: 'no-store' });
+    const res = await fetch(`${baseUrl}/api/blogs`, { next: { revalidate: 3600 } });
     if (res.ok) blogs = await res.json();
   } catch {}
 
