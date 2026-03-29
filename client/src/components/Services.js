@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 import { 
   Brain, 
   Mail, 
@@ -262,25 +261,121 @@ const StepDescription = styled.p`
   line-height: 1.5;
 `;
 
-const servicesStaticConfig = [
-  { id: 'ai-strategy', icon: Brain, primaryColor: '#3B82F6', secondaryColor: '#1D4ED8' },
-  { id: 'email-ai', icon: Mail, primaryColor: '#10B981', secondaryColor: '#059669' },
-  { id: 'product-text', icon: ShoppingBag, primaryColor: '#8B5CF6', secondaryColor: '#7C3AED' },
-  { id: 'blog-writer', icon: FileText, primaryColor: '#F59E0B', secondaryColor: '#D97706' },
-  { id: 'linkedin-automation', icon: Target, primaryColor: '#EF4444', secondaryColor: '#DC2626' },
-  { id: 'chatbot', icon: MessageCircle, primaryColor: '#06B6D4', secondaryColor: '#0891B2' },
-  { id: 'featured-snippets', icon: Crown, primaryColor: '#F97316', secondaryColor: '#EA580C' }
+const servicesData = [
+  {
+    id: 'ai-strategy',
+    icon: Brain,
+    primaryColor: '#3B82F6',
+    secondaryColor: '#1D4ED8',
+    title: 'AI Presentatie',
+    description: 'Neem je team mee in de nieuwste AI-trends en tools. We helpen je organisatie AI beter te begrijpen en gericht toe te passen met een presentatie en sessies op maat.',
+    steps: [
+      { title: 'Kick-off sessie', description: 'We brengen in kaart welke tijdrovende processen de effici\u00ebntie drukken en waar teams vastlopen in terugkerend werk.', number: 1 },
+      { title: 'Analyse & afstemming met management', description: 'Op basis van de kick-off analyseren we kansen en bespreken we de belangrijkste verbeterpunten met het management voordat we de presentatie geven.', number: 2 },
+      { title: 'Presentatie op maat', description: 'We gaan in gesprek met het kernteam en bouwen draagvlak door kansen concreet te maken. Het uitgangspunt: AI helpt mensen sneller en slimmer te werken, niet om ze te vervangen.', number: 3 },
+      { title: 'Afdelingssessies', description: 'Per afdeling duiken we in de specifieke werkwijze en identificeren we kansen om stappen te automatiseren met AI of direct toepasbare tools te introduceren.', number: 4 },
+      { title: 'Praktische handleiding', description: 'We bundelen alle inzichten in een duidelijke handleiding: hoe je ChatGPT veilig en effectief inzet, hoe je custom GPT\'s traint voor specifieke taken en welke kansen er nog liggen.', number: 5 },
+      { title: 'Opvolging', description: 'Na ongeveer een maand plannen we een follow-up om de winst te evalueren, vragen te beantwoorden en verdere optimalisaties door te voeren.', number: 6 }
+    ]
+  },
+  {
+    id: 'email-ai',
+    icon: Mail,
+    primaryColor: '#10B981',
+    secondaryColor: '#059669',
+    title: 'AI Mail Agent',
+    description: 'Een AI-e-mailassistent die antwoorden voorstelt (of desgewenst automatisch verstuurt), getraind op je historische e-mails zodat toon, stijl en beslislogica aansluiten bij jou.',
+    steps: [
+      { title: 'E-mails verzamelen', description: 'Voor training gebruiken we je historische e-mails, zodat het model je communicatiestijl leert en antwoorden kan genereren die aanvoelen alsof je ze zelf schreef.', number: 1 },
+      { title: 'Data opschonen & structureren', description: 'We verwijderen ruis (handtekeningen, opmaak, herhalingen) en zetten de data om naar heldere vraag-antwoordparen (JSON), klaar voor training.', number: 2 },
+      { title: 'Model trainen', description: 'We fine-tunen een GPT-model op je patronen, vocabulaire en antwoordstijl, zodat het consistent e-mails opstelt in je tone of voice.', number: 3 },
+      { title: 'Valideren', description: 'We testen het model op nieuwe, realistische e-mails om te controleren of de antwoorden kloppen, professioneel blijven en je toon goed benaderen.', number: 4 },
+      { title: 'In gebruik nemen', description: 'Via een lichte integratie met Outlook, Gmail of andere clients leest het model de thread en stelt een conceptantwoord voor. Je aanpassingen maken het model steeds beter en besparen tijd.', number: 5 }
+    ]
+  },
+  {
+    id: 'product-text',
+    icon: ShoppingBag,
+    primaryColor: '#8B5CF6',
+    secondaryColor: '#7C3AED',
+    title: 'AI Producttekstschrijver',
+    description: 'AI-gestuurde producttekstoptimalisatie die beschrijvingen herschrijft naar meer overtuigende, SEO-vriendelijke teksten, met behoud van je merkstem, overal waar je publiceert.',
+    steps: [
+      { title: 'Productteksten verzamelen', description: 'We verzamelen je huidige productteksten en exporteren ze naar een CSV (Excel-formaat). Zo hebben we \u00e9\u00e9n overzicht en kunnen we alles consistent verbeteren, ongeacht of je Shopify, WooCommerce of een maatwerkplatform gebruikt.', number: 1 },
+      { title: 'Model trainen op je merkstem', description: 'We trainen het model op teksten die zijn afgestemd op je tone of voice. Daardoor klinkt elke nieuwe of herschreven productbeschrijving als "je merk".', number: 2 },
+      { title: 'Herschrijven & optimaliseren', description: 'Met het getrainde model herschrijven we alle productteksten: helderder, aantrekkelijker en meer gericht op conversie, zonder je stijl te verliezen. Je ontvangt alles in een bestand om te reviewen.', number: 3 },
+      { title: 'SEO verrijken', description: 'We analyseren zoekgedrag (o.a. seizoenspatronen) en verwerken relevante keywords natuurlijk in de tekst. Zo verbeteren vindbaarheid en organisch verkeer, het hele jaar door.', number: 4 },
+      { title: 'Review & live zetten', description: 'Je team kan de nieuwe teksten controleren. Na akkoord helpen we met het terugplaatsen in je systeem en zorgen we voor een soepele implementatie.', number: 5 }
+    ]
+  },
+  {
+    id: 'blog-writer',
+    icon: FileText,
+    primaryColor: '#F59E0B',
+    secondaryColor: '#D97706',
+    title: 'AI Blogschrijver',
+    description: 'Geautomatiseerde SEO-blogcreatie waarmee je concurreert op waardevolle zoekwoorden en advertentiekosten verlaagt via slimme content en automatische publicatie.',
+    steps: [
+      { title: 'Concurrentieonderzoek', description: 'We analyseren welke zoekwoorden concurrenten targeten (bijv. via Ahrefs) en waar kansen liggen om relevanter te worden voor Google.', number: 1 },
+      { title: 'Zoekwoorden kiezen', description: 'We selecteren zoekwoorden die je nu veel geld kosten in SEA. Door hier organisch op te ranken, kun je budget verschuiven naar goedkopere, minder competitieve campagnes.', number: 2 },
+      { title: 'Model afstemmen', description: 'We fine-tunen een model op je merk en branche, zodat de content natuurlijk leest \u00e9n je keywords op een geloofwaardige manier verwerkt.', number: 3 },
+      { title: 'AI-SEO aanpak', description: 'We richten content zo in dat deze ook goed kan verschijnen in AI-samenvattingen en featured snippets. Daarvoor passen we structuur en formuleringen strategisch toe.', number: 4 },
+      { title: 'Automatisch publiceren', description: 'We koppelen een auto-publish flow aan je platform (maatwerk, Shopify, WordPress of WooCommerce) en publiceren volgens een strategische planning, volledig geautomatiseerd.', number: 5 }
+    ]
+  },
+  {
+    id: 'linkedin-automation',
+    icon: Target,
+    primaryColor: '#EF4444',
+    secondaryColor: '#DC2626',
+    title: 'AI LinkedIn Sales Bot',
+    description: 'Een volledig geautomatiseerd LinkedIn-sales systeem dat prospects vindt, gepersonaliseerde campagnes uitrolt en connecties helpt omzetten naar klanten.',
+    steps: [
+      { title: 'Prospects bepalen', description: 'We defini\u00ebren en vinden je ideale doelgroep op LinkedIn met slimme filters en AI-analyse (bedrijfsgrootte, functietitel, branche, engagement).', number: 1 },
+      { title: 'Campagnes & hooks', description: 'We bouwen meerdere benaderingen (bijv. waardevolle PDF, intake/consult, of directe pitch) en testen hooks die reacties uitlokken.', number: 2 },
+      { title: 'LLM trainen op je stijl', description: 'We trainen een model op je eerdere gesprekken, zodat berichten persoonlijk, consistent en herkenbaar blijven in je tone of voice.', number: 3 },
+      { title: 'Automatisch uitvoeren & optimaliseren', description: 'Het systeem draait campagnes en stuurt bij op basis van data (acceptatie, opens, replies). Zo verbeteren resultaten continu zonder extra handwerk.', number: 4 },
+      { title: 'Multi-channel opvolging', description: 'We koppelen LinkedIn aan e-mail opvolging en tracken de klantreis van connectie tot klant, met inzicht in conversies en ROI.', number: 5 }
+    ]
+  },
+  {
+    id: 'chatbot',
+    icon: MessageCircle,
+    primaryColor: '#06B6D4',
+    secondaryColor: '#0891B2',
+    title: 'AI Chatbot',
+    description: 'Een AI-chatbot die is getraind op je gesprekken en daardoor je toon en service-stijl overneemt. Optioneel met "personal shopper" functies voor webshops.',
+    steps: [
+      { title: 'Data verzamelen & analyseren', description: 'We verzamelen historische gesprekken (e-mail, chat, calls, tickets, social) en analyseren patronen: vragen, oplossingen, tone of voice en service-standaarden.', number: 1 },
+      { title: 'Tone of voice in kaart', description: 'Met NLP leggen we vast hoe je reageert in verschillende situaties en welke formuleringen het beste werken, zodat de bot natuurlijk en passend klinkt.', number: 2 },
+      { title: 'Model trainen & testen', description: 'We fine-tunen het taalmodel op je data en testen het met realistische scenario\'s tot de kwaliteit en consistentie klopt.', number: 3 },
+      { title: 'Personal shopper (optioneel)', description: 'Voor webshops voegen we een assistent toe die op basis van voorkeuren en context producten adviseert en combinaties voorstelt.', number: 4 },
+      { title: 'Integreren in je kanalen', description: 'We plaatsen de chatbot op je website en andere kanalen (bijv. Shopify en social), inclusief slimme "handoff" naar een medewerker wanneer nodig.', number: 5 },
+      { title: 'Doorlopend verbeteren', description: 'De bot leert bij op basis van feedback, uitkomsten en conversies, zodat prestaties en klanttevredenheid blijven stijgen.', number: 6 }
+    ]
+  },
+  {
+    id: 'featured-snippets',
+    icon: Crown,
+    primaryColor: '#F97316',
+    secondaryColor: '#EA580C',
+    title: 'AI SEO Integratie',
+    description: 'Optimalisatie voor Google\'s AI-resultaten, zodat je content vaker wordt opgenomen in AI-samenvattingen en featured snippets.',
+    steps: [
+      { title: 'AI-algoritme analyseren', description: 'We onderzoeken welke signalen Google\'s AI gebruikt om bronnen te selecteren voor samenvattingen en snippets, zodat we gericht kunnen optimaliseren.', number: 1 },
+      { title: 'Vragen & intent in kaart', description: 'We brengen de belangrijkste vragen en zoekintenties van je doelgroep in kaart. Precies daar waar je oplossing waarde toevoegt.', number: 2 },
+      { title: 'Contentstructuur op autoriteit', description: 'We bouwen een contentaanpak die je positioneert als duidelijke bron, met heldere antwoorden en logische structuur die AI goed kan citeren.', number: 3 },
+      { title: 'Meta & schema optimaliseren', description: 'We optimaliseren meta-descriptions, headers en structured data zodat je content eenvoudiger te begrijpen en te gebruiken is voor AI-extractie.', number: 4 },
+      { title: 'Concurrenten verdringen', description: 'We analyseren wie nu in AI-resultaten staat en maken een plan om die posities over te nemen met betere, relevantere content.', number: 5 },
+      { title: 'Citeerbare quotes ontwerpen', description: 'We schrijven passages die natuurlijk te citeren zijn, zodat Google\'s AI je merk als bron kan toeschrijven.', number: 6 },
+      { title: 'Meten & opschalen', description: 'We monitoren prestaties (snippets, AI-citations, CTR) en schalen wat werkt naar meer onderwerpen en zoekclusters.', number: 7 }
+    ]
+  }
 ];
 
 function Services() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [selectedService, setSelectedService] = useState(null);
-  const { language } = useLanguage();
-  const t = translations[language].services;
-  const servicesData = t.items.map((item) => {
-    const staticConfig = servicesStaticConfig.find((s) => s.id === item.id);
-    return { ...staticConfig, ...item };
-  });
 
   const handleCardClick = (service) => {
     setSelectedService(service);
@@ -299,14 +394,14 @@ function Services() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            {t.title}
+            Onze AI Oplossingen
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
-            {t.subtitle}
+            Klik op een dienst en ontdek hoe we dit aanpakken
           </SectionSubtitle>
         </SectionHeader>
 
@@ -341,7 +436,7 @@ function Services() {
                       {service.description}
                     </ServiceDescription>
                     <ExpandButton>
-                      {t.howItWorks}
+                      Zo werkt het
                       <ChevronDown size={16} />
                     </ExpandButton>
                   </CardContent>

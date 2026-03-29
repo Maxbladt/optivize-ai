@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, ArrowRight, Linkedin, ExternalLink, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -257,9 +256,6 @@ const GreenDot = styled.span`
 `;
 
 function ContactPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
-
   return (
     <>
       <SEOHead
@@ -274,12 +270,10 @@ function ContactPage() {
           <HeroInner>
             <div>
               <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                {isNL ? 'Laten we kennismaken' : 'Let\'s get acquainted'}
+                Laten we kennismaken
               </H1>
               <Sub initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-                {isNL
-                  ? 'Plan een gratis adviesgesprek. Geen verplichtingen, wel concrete inzichten in wat AI voor je bedrijf kan doen.'
-                  : 'Book a free consultation. No obligations, just concrete insights into what AI can do for your business.'}
+                Plan een gratis adviesgesprek. Geen verplichtingen, wel concrete inzichten in wat AI voor je bedrijf kan doen.
               </Sub>
             </div>
           </HeroInner>
@@ -292,12 +286,10 @@ function ContactPage() {
             <LeftCol>
               <FadeIn>
                 <InfoTitle>
-                  {isNL ? 'Neem contact op' : 'Get in touch'}
+                  Neem contact op
                 </InfoTitle>
                 <InfoDesc>
-                  {isNL
-                    ? 'Wij reageren op elke aanvraag binnen 24 uur.'
-                    : 'We respond to every enquiry within 24 hours.'}
+                  Wij reageren op elke aanvraag binnen 24 uur.
                 </InfoDesc>
               </FadeIn>
 
@@ -307,7 +299,7 @@ function ContactPage() {
                     <ItemIcon $bg="rgba(59,130,246,0.08)" $color="#3B82F6"><Mail size={18} /></ItemIcon>
                     <ItemText>
                       <div className="label">info@optivaize.nl</div>
-                      <div className="value">{isNL ? 'Reactie binnen 24 uur' : 'Reply within 24h'}</div>
+                      <div className="value">Reactie binnen 24 uur</div>
                     </ItemText>
                   </ContactItem>
 
@@ -315,7 +307,7 @@ function ContactPage() {
                     <ItemIcon $bg="rgba(16,185,129,0.08)" $color="#10B981"><Phone size={18} /></ItemIcon>
                     <ItemText>
                       <div className="label">+31 6 42 69 89 18</div>
-                      <div className="value">{isNL ? 'Ma–Vr, 9:00–18:00' : 'Mon–Fri, 9:00–18:00'}</div>
+                      <div className="value">Ma-Vr, 9:00-18:00</div>
                     </ItemText>
                   </ContactItem>
 
@@ -331,7 +323,7 @@ function ContactPage() {
                     <ItemIcon $bg="rgba(99,102,241,0.08)" $color="#6366F1"><Linkedin size={18} /></ItemIcon>
                     <ItemText>
                       <div className="label">Optivaize</div>
-                      <div className="value">{isNL ? 'Volg ons' : 'Follow us'}</div>
+                      <div className="value">Volg ons</div>
                     </ItemText>
                   </ContactItem>
 
@@ -339,14 +331,14 @@ function ContactPage() {
                     <ItemIcon $bg="rgba(37,211,102,0.08)" $color="#25D366"><MessageCircle size={18} /></ItemIcon>
                     <ItemText>
                       <div className="label">WhatsApp</div>
-                      <div className="value">{isNL ? 'Stuur een bericht' : 'Send a message'}</div>
+                      <div className="value">Stuur een bericht</div>
                     </ItemText>
                   </ContactItem>
                 </ContactList>
 
                 <AvailabilityBar>
                   <GreenDot />
-                  {isNL ? 'Beschikbaar - Ma t/m Vr, 9:00-18:00' : 'Available - Mon to Fri, 9:00-18:00'}
+                  Beschikbaar - Ma t/m Vr, 9:00-18:00
                 </AvailabilityBar>
               </FadeIn>
             </LeftCol>
@@ -361,7 +353,7 @@ function ContactPage() {
                 >
                   <Image
                     src="/images/optivaize_office_outside.webp"
-                    alt={isNL ? 'Optivaize kantoor' : 'Optivaize office'}
+                    alt="Optivaize kantoor"
                     width={800}
                     height={500}
                     style={{ width: '100%', height: 'auto', minHeight: '440px', objectFit: 'cover', display: 'block' }}

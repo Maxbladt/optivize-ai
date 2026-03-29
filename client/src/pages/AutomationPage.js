@@ -6,7 +6,6 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from '../components/Link';
 import { Zap, ArrowRight, CheckCircle, RefreshCw, Database, Mail, Package, ChevronRight, GitBranch, Clock, BarChart3, Cpu, Server, Layers, XCircle, ArrowDown, Code2 } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 
@@ -840,16 +839,14 @@ const BuildDivider = styled.div`
 `;
 
 function AutomationPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
   const features = [
-    { icon: RefreshCw, color: '#8B5CF6', title: isNL ? 'Platform sync' : 'Platform sync', desc: isNL ? 'Verbind al je tools en synchroniseer data automatisch in real-time.' : 'Connect all your tools and sync data automatically in real-time.' },
-    { icon: GitBranch, color: '#3B82F6', title: isNL ? 'Complexe flows' : 'Complex flows', desc: isNL ? 'Bouw workflows met condities, vertakkingen en foutafhandeling.' : 'Build workflows with conditions, branches and error handling.' },
-    { icon: Clock, color: '#10B981', title: isNL ? 'Tijdgebaseerd' : 'Time-based', desc: isNL ? 'Plan taken op specifieke momenten of intervallen , geheel automatisch.' : 'Schedule tasks at specific times or intervals , fully automatically.' },
-    { icon: Database, color: '#F59E0B', title: isNL ? 'Data mapping' : 'Data mapping', desc: isNL ? 'Transformeer data van het ene formaat naar het andere zonder handmatig werk.' : 'Transform data from one format to another without manual work.' },
-    { icon: Mail, color: '#EF4444', title: isNL ? 'Notificaties' : 'Notifications', desc: isNL ? 'Automatische e-mails, Slack-berichten en alerts op het juiste moment.' : 'Automatic emails, Slack messages and alerts at the right moment.' },
-    { icon: BarChart3, color: '#EC4899', title: isNL ? 'Rapportages' : 'Reporting', desc: isNL ? 'Automatische rapporten en dashboards die altijd up-to-date zijn.' : 'Automatic reports and dashboards that are always up-to-date.' },
+    { icon: RefreshCw, color: '#8B5CF6', title: 'Platform sync', desc: 'Verbind al je tools en synchroniseer data automatisch in real-time.' },
+    { icon: GitBranch, color: '#3B82F6', title: 'Complexe flows', desc: 'Bouw workflows met condities, vertakkingen en foutafhandeling.' },
+    { icon: Clock, color: '#10B981', title: 'Tijdgebaseerd', desc: 'Plan taken op specifieke momenten of intervallen , geheel automatisch.' },
+    { icon: Database, color: '#F59E0B', title: 'Data mapping', desc: 'Transformeer data van het ene formaat naar het andere zonder handmatig werk.' },
+    { icon: Mail, color: '#EF4444', title: 'Notificaties', desc: 'Automatische e-mails, Slack-berichten en alerts op het juiste moment.' },
+    { icon: BarChart3, color: '#EC4899', title: 'Rapportages', desc: 'Automatische rapporten en dashboards die altijd up-to-date zijn.' },
   ];
 
   return (
@@ -870,28 +867,22 @@ function AutomationPage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Automatisering' : 'Automation'}</span>
+              <span>{'Automatisering'}</span>
             </Breadcrumb>
-            <Badge><Zap size={12} /> {isNL ? 'Workflow Automatisering' : 'Workflow Automation'}</Badge>
+            <Badge><Zap size={12} /> {'Workflow Automatisering'}</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? (
-                <>Elimineer handmatig werk. <span style={{ color: '#A78BFA' }}>Volledig.</span></>
-              ) : (
-                <>Eliminate manual work. <span style={{ color: '#A78BFA' }}>Completely.</span></>
-              )}
+              {<>Elimineer handmatig werk. <span style={{ color: '#A78BFA' }}>Volledig.</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Van repetitieve taken tot complexe platform-integraties: wij automatiseren het. Je team focust op wat echt telt, de rest doen de machines.'
-                : 'From repetitive tasks to complex platform integrations: we automate it. Your team focuses on what really matters, the machines do the rest.'}
+              {'Van repetitieve taken tot complexe platform-integraties: wij automatiseren het. Je team focust op wat echt telt, de rest doen de machines.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Bespreek je processen' : 'Discuss your processes'} <ArrowRight size={17} />
+              {'Bespreek je processen'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -902,14 +893,12 @@ function AutomationPage() {
         <Container>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              <SectionLabel style={{ display: 'flex', justifyContent: 'center', color: '#A78BFA' }}>{isNL ? 'Integratie' : 'Integration'}</SectionLabel>
+              <SectionLabel style={{ display: 'flex', justifyContent: 'center', color: '#A78BFA' }}>{'Integratie'}</SectionLabel>
               <BridgeTitle>
-                {isNL ? 'Wij bouwen de software die tussen je platformen communiceert' : 'We build the software that communicates between your platforms'}
+                {'Wij bouwen de software die tussen je platformen communiceert'}
               </BridgeTitle>
               <BridgeSub>
-                {isNL
-                  ? 'Van ERP tot CRM, van webshop tot boekhouding - wij verbinden het. Met een optionele AI-laag die je data slim verwerkt.'
-                  : 'From ERP to CRM, from webshop to accounting – we connect it. With an optional AI layer that processes your data intelligently.'}
+                {'Van ERP tot CRM, van webshop tot boekhouding - wij verbinden het. Met een optionele AI-laag die je data slim verwerkt.'}
               </BridgeSub>
             </div>
           </FadeIn>
@@ -918,8 +907,8 @@ function AutomationPage() {
             <BridgeVisual>
               <PlatformBox initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <PlatformIconWrap $color="#3B82F6"><Server size={24} /></PlatformIconWrap>
-                <PlatformName>{isNL ? 'Je Platform A' : 'Your Platform A'}</PlatformName>
-                <PlatformSub>{isNL ? 'ERP / webshop / CRM' : 'ERP / webshop / CRM'}</PlatformSub>
+                <PlatformName>{'Je Platform A'}</PlatformName>
+                <PlatformSub>{'ERP / webshop / CRM'}</PlatformSub>
               </PlatformBox>
 
               <DataFlowWrap>
@@ -930,7 +919,7 @@ function AutomationPage() {
               <MiddlewareBox initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
                 <MiddlewareIcon><Layers size={26} /></MiddlewareIcon>
                 <PlatformName>Optivaize</PlatformName>
-                <PlatformSub>{isNL ? 'Custom middleware' : 'Custom middleware'}</PlatformSub>
+                <PlatformSub>{'Custom middleware'}</PlatformSub>
                 <div><AIBadge><Cpu size={12} /> + AI Layer</AIBadge></div>
               </MiddlewareBox>
 
@@ -941,8 +930,8 @@ function AutomationPage() {
 
               <PlatformBox initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                 <PlatformIconWrap $color="#10B981"><Database size={24} /></PlatformIconWrap>
-                <PlatformName>{isNL ? 'Je Platform B' : 'Your Platform B'}</PlatformName>
-                <PlatformSub>{isNL ? 'Boekhouding / CRM / API' : 'Accounting / CRM / API'}</PlatformSub>
+                <PlatformName>{'Je Platform B'}</PlatformName>
+                <PlatformSub>{'Boekhouding / CRM / API'}</PlatformSub>
               </PlatformBox>
             </BridgeVisual>
           </FadeIn>
@@ -953,28 +942,22 @@ function AutomationPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Transformatie' : 'Transformation'}</SectionLabel>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Transformatie'}</SectionLabel>
             <FadeIn><SectionTitle style={{ textAlign: 'center' }}>
-              {isNL ? 'Van handmatige invoer naar volledige automatisering' : 'From manual entry to full automation'}
+              {'Van handmatige invoer naar volledige automatisering'}
             </SectionTitle></FadeIn>
           </div>
 
           <FadeIn delay={0.1}>
             <CompareGrid>
               <CompareCard $type="before" initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <CompareBadge $color="#EF4444">{isNL ? 'Handmatig' : 'Manual'}</CompareBadge>
-                {(isNL ? [
+                <CompareBadge $color="#EF4444">{'Handmatig'}</CompareBadge>
+                {([
                   'Handmatige data-invoer tussen systemen',
                   'Fouten door menselijk handelen',
                   'Uren per dag aan repetitief werk',
                   'Data niet gesynchroniseerd',
                   'Geen inzicht in real-time status',
-                ] : [
-                  'Manual data entry between systems',
-                  'Errors due to human handling',
-                  'Hours per day on repetitive work',
-                  'Data not synchronised',
-                  'No insight in real-time status',
                 ]).map((item, i) => (
                   <CompareItem key={i} $type="before"><XCircle size={16} color="#EF4444" />{item}</CompareItem>
                 ))}
@@ -983,19 +966,13 @@ function AutomationPage() {
               <CompareDivider><ArrowRight size={28} /></CompareDivider>
 
               <CompareCard $type="after" initial={{ opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <CompareBadge $color="#8B5CF6">{isNL ? 'Geautomatiseerd' : 'Automated'}</CompareBadge>
-                {(isNL ? [
+                <CompareBadge $color="#8B5CF6">{'Geautomatiseerd'}</CompareBadge>
+                {([
                   'Automatische data-sync in real-time',
                   'Foutloos en consistent, elke keer',
                   '24/7 zonder menselijke tussenkomst',
                   'Altijd gesynchroniseerd en up-to-date',
                   'Live dashboards en automatische alerts',
-                ] : [
-                  'Automatic data sync in real-time',
-                  'Flawless and consistent, every time',
-                  '24/7 without human intervention',
-                  'Always synchronised and up-to-date',
-                  'Live dashboards and automatic alerts',
                 ]).map((item, i) => (
                   <CompareItem key={i} $type="after"><CheckCircle size={16} color="#10B981" />{item}</CompareItem>
                 ))}
@@ -1009,8 +986,8 @@ function AutomationPage() {
       <FeaturesSection>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Mogelijkheden' : 'Capabilities'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Alles wat je nodig hebt' : 'Everything you need'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Mogelijkheden'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Alles wat je nodig hebt'}</SectionTitle></FadeIn>
           </div>
           <FeatureGrid>
             {features.map((f, i) => {
@@ -1033,12 +1010,10 @@ function AutomationPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Case Study' : 'Case Study'}</SectionLabel>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Case Study'}</SectionLabel>
             <FadeIn><SectionTitle style={{ textAlign: 'center' }}>Magic Apparels × Optivaize</SectionTitle></FadeIn>
             <FadeIn delay={0.1}><SectionSub>
-              {isNL
-                ? 'Wij bouwden een volledig geautomatiseerde order-to-invoice pipeline tussen Becosoft en Sage Intacct.'
-                : 'We built a fully automated order-to-invoice pipeline between Becosoft and Sage Intacct.'}
+              {'Wij bouwden een volledig geautomatiseerde order-to-invoice pipeline tussen Becosoft en Sage Intacct.'}
             </SectionSub></FadeIn>
           </div>
 
@@ -1046,7 +1021,7 @@ function AutomationPage() {
             <DarkFlowDiagram>
               <DarkFlowTitle>
                 <Zap size={14} color="#8B5CF6" />
-                {isNL ? 'Automatiseringsflow · Magic Apparels' : 'Automation flow · Magic Apparels'}
+                {'Automatiseringsflow · Magic Apparels'}
               </DarkFlowTitle>
 
               <PipelineGrid>
@@ -1054,7 +1029,7 @@ function AutomationPage() {
                   <DarkNodeIcon $color="#10B981"><Package size={16} /></DarkNodeIcon>
                   <DarkNodeText>
                     <div className="name">Becosoft</div>
-                    <div className="sub">{isNL ? 'Nieuwe bestelling' : 'New order'}</div>
+                    <div className="sub">{'Nieuwe bestelling'}</div>
                   </DarkNodeText>
                 </PipelineNode>
                 <PipelineArrow><DarkArrowLine /><ChevronRight size={16} color="#8B5CF6" /></PipelineArrow>
@@ -1063,7 +1038,7 @@ function AutomationPage() {
                   <DarkNodeIcon $color="#8B5CF6"><Database size={16} /></DarkNodeIcon>
                   <DarkNodeText>
                     <div className="name">Data Mapping</div>
-                    <div className="sub">{isNL ? 'Velden koppelen' : 'Map fields'}</div>
+                    <div className="sub">{'Velden koppelen'}</div>
                   </DarkNodeText>
                 </PipelineNode>
                 <PipelineArrow><DarkArrowLine /><ChevronRight size={16} color="#8B5CF6" /></PipelineArrow>
@@ -1072,38 +1047,38 @@ function AutomationPage() {
                   <DarkNodeIcon $color="#F59E0B"><Code2 size={16} /></DarkNodeIcon>
                   <DarkNodeText>
                     <div className="name">Transformatie</div>
-                    <div className="sub">{isNL ? 'Business rules' : 'Business rules'}</div>
+                    <div className="sub">{'Business rules'}</div>
                   </DarkNodeText>
                 </PipelineNode>
               </PipelineGrid>
 
               <RulesBlock>
-                <RulesTitle>{isNL ? 'Transformatie regels' : 'Transformation rules'}</RulesTitle>
+                <RulesTitle>{'Transformatie regels'}</RulesTitle>
                 <RuleLine><RuleKw>if</RuleKw> <RuleCond>valuta === "EUR"</RuleCond> <RuleArr>→</RuleArr> <RuleRes>BTW = 0%</RuleRes></RuleLine>
-                <RuleLine><RuleKw>if</RuleKw> <RuleCond>type === "credit"</RuleCond> <RuleArr>→</RuleArr> <RuleRes>{isNL ? 'bedrag = factuur × -1' : 'amount = invoice × -1'}</RuleRes></RuleLine>
-                <RuleLine><RuleKw>if</RuleKw> <RuleCond>{isNL ? 'bedrag > €10.000' : 'amount > €10,000'}</RuleCond> <RuleArr>→</RuleArr> <RuleRes>{isNL ? 'goedkeuring vereist' : 'approval required'}</RuleRes></RuleLine>
+                <RuleLine><RuleKw>if</RuleKw> <RuleCond>type === "credit"</RuleCond> <RuleArr>→</RuleArr> <RuleRes>{'bedrag = factuur × -1'}</RuleRes></RuleLine>
+                <RuleLine><RuleKw>if</RuleKw> <RuleCond>{'bedrag > €10.000'}</RuleCond> <RuleArr>→</RuleArr> <RuleRes>{'goedkeuring vereist'}</RuleRes></RuleLine>
               </RulesBlock>
 
               <div style={{ textAlign: 'center', color: '#475569', margin: '0.5rem 0 1rem' }}>
                 <ArrowDown size={16} color="#8B5CF6" />
-                <div style={{ fontSize: 11, color: '#64748B', marginTop: '0.25rem' }}>{isNL ? 'Parallel uitvoering' : 'Parallel execution'}</div>
+                <div style={{ fontSize: 11, color: '#64748B', marginTop: '0.25rem' }}>{'Parallel uitvoering'}</div>
               </div>
 
               <DarkBranchRow>
                 <DarkBranchCard $color="#F59E0B" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
                   <DarkBranchIcon $color="#F59E0B"><Database size={16} /></DarkBranchIcon>
                   <DarkBranchTitle>Sage Intacct</DarkBranchTitle>
-                  <DarkBranchSub>{isNL ? 'Factuur automatisch aangemaakt' : 'Invoice automatically created'}</DarkBranchSub>
+                  <DarkBranchSub>{'Factuur automatisch aangemaakt'}</DarkBranchSub>
                 </DarkBranchCard>
                 <DarkBranchCard $color="#EF4444" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}>
                   <DarkBranchIcon $color="#EF4444"><Mail size={16} /></DarkBranchIcon>
-                  <DarkBranchTitle>{isNL ? 'E-mail notificatie' : 'Email notification'}</DarkBranchTitle>
-                  <DarkBranchSub>{isNL ? 'Manager op de hoogte gesteld' : 'Manager notified instantly'}</DarkBranchSub>
+                  <DarkBranchTitle>{'E-mail notificatie'}</DarkBranchTitle>
+                  <DarkBranchSub>{'Manager op de hoogte gesteld'}</DarkBranchSub>
                 </DarkBranchCard>
                 <DarkBranchCard $color="#10B981" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
                   <DarkBranchIcon $color="#10B981"><Package size={16} /></DarkBranchIcon>
-                  <DarkBranchTitle>{isNL ? 'Voorraad update' : 'Inventory update'}</DarkBranchTitle>
-                  <DarkBranchSub>{isNL ? 'Stock bijgewerkt in real-time' : 'Stock updated in real-time'}</DarkBranchSub>
+                  <DarkBranchTitle>{'Voorraad update'}</DarkBranchTitle>
+                  <DarkBranchSub>{'Stock bijgewerkt in real-time'}</DarkBranchSub>
                 </DarkBranchCard>
               </DarkBranchRow>
             </DarkFlowDiagram>
@@ -1116,14 +1091,12 @@ function AutomationPage() {
       <BuildSection>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center', color: '#A78BFA' }}>{isNL ? 'Onze aanpak' : 'Our approach'}</SectionLabel>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center', color: '#A78BFA' }}>{'Onze aanpak'}</SectionLabel>
             <FadeIn><BridgeTitle>
-              {isNL ? 'Wij bouwen automatiseringen met de beste tools' : 'We build automations with the best tools'}
+              {'Wij bouwen automatiseringen met de beste tools'}
             </BridgeTitle></FadeIn>
             <FadeIn delay={0.05}><BridgeSub>
-              {isNL
-                ? 'Of het nu maatwerk software is of visuele tools als N8N – wij kiezen de beste aanpak voor je situatie.'
-                : 'Whether it\'s custom software or visual tools like N8N – we choose the best approach for your situation.'}
+              Of het nu maatwerk software is of visuele tools als N8N, wij kiezen de beste aanpak voor je situatie.
             </BridgeSub></FadeIn>
           </div>
 
@@ -1133,9 +1106,7 @@ function AutomationPage() {
                 <BuildCardIcon $color="#8B5CF6"><Code2 size={24} /></BuildCardIcon>
                 <BuildCardTitle>Custom Software</BuildCardTitle>
                 <BuildCardDesc>
-                  {isNL
-                    ? 'Voor complexe integraties en unieke business logic. Volledige controle over elke stap in het proces.'
-                    : 'For complex integrations and unique business logic. Full control over every step in the process.'}
+                  {'Voor complexe integraties en unieke business logic. Volledige controle over elke stap in het proces.'}
                 </BuildCardDesc>
                 <BuildTags>
                   <BuildTag $color="#8B5CF6">Node.js</BuildTag>
@@ -1151,9 +1122,7 @@ function AutomationPage() {
                 <BuildCardIcon $color="#10B981"><Zap size={24} /></BuildCardIcon>
                 <BuildCardTitle>N8N & Low-code</BuildCardTitle>
                 <BuildCardDesc>
-                  {isNL
-                    ? 'Voor snelle integraties met honderden platformen. Visuele workflows die eenvoudig aan te passen zijn.'
-                    : 'For fast integrations with hundreds of platforms. Visual workflows that are easy to adjust.'}
+                  {'Voor snelle integraties met honderden platformen. Visuele workflows die eenvoudig aan te passen zijn.'}
                 </BuildCardDesc>
                 <BuildTags>
                   <BuildTag $color="#10B981">N8N</BuildTag>
@@ -1168,10 +1137,10 @@ function AutomationPage() {
           <FadeIn delay={0.2}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginTop: '3rem', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '0.5rem' }}>
               {[
-                { icon: BarChart3, color: '#3B82F6', title: isNL ? 'Analyse' : 'Analysis' },
-                { icon: Layers, color: '#8B5CF6', title: isNL ? 'Architectuur' : 'Architecture' },
-                { icon: Code2, color: '#EF4444', title: isNL ? 'Ontwikkeling' : 'Development' },
-                { icon: CheckCircle, color: '#10B981', title: isNL ? 'Testen' : 'Testing' },
+                { icon: BarChart3, color: '#3B82F6', title: 'Analyse' },
+                { icon: Layers, color: '#8B5CF6', title: 'Architectuur' },
+                { icon: Code2, color: '#EF4444', title: 'Ontwikkeling' },
+                { icon: CheckCircle, color: '#10B981', title: 'Testen' },
                 { icon: Zap, color: '#F59E0B', title: 'Live' },
               ].map((step, i, arr) => (
                 <React.Fragment key={i}>
@@ -1199,18 +1168,16 @@ function AutomationPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Hosting & beheer' : 'Hosting & management'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Wij hosten je n8n-omgeving' : 'We host your n8n environment'}</SectionTitle>
+              <SectionLabel>{'Hosting & beheer'}</SectionLabel>
+              <SectionTitle>{'Wij hosten je n8n-omgeving'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Naast het bouwen van automatiseringen hosten en beheren wij ook je volledige n8n-omgeving. Je hebt altijd een betrouwbare, veilige en schaalbare infrastructuur voor je automatisering.'
-                  : 'In addition to building automations, we also host and manage your complete n8n environment. You always have reliable, secure and scalable infrastructure for your automation.'}
+                {'Naast het bouwen van automatiseringen hosten en beheren wij ook je volledige n8n-omgeving. Je hebt altijd een betrouwbare, veilige en schaalbare infrastructuur voor je automatisering.'}
               </SectionText>
               <Checks>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Dedicated server, geen gedeelde omgeving' : 'Dedicated server, no shared environment'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Koppeling met HubSpot, Salesforce of Pipedrive' : 'Connection with HubSpot, Salesforce or Pipedrive'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Automatische back-ups en monitoring' : 'Automatic backups and monitoring'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Maandelijkse optimalisaties inbegrepen' : 'Monthly optimisations included'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Dedicated server, geen gedeelde omgeving'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Koppeling met HubSpot, Salesforce of Pipedrive'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Automatische back-ups en monitoring'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Maandelijkse optimalisaties inbegrepen'}</CheckRow>
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
@@ -1225,14 +1192,14 @@ function AutomationPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Welk proces wil je automatiseren?' : 'Which process do you want to automate?'}</h2>
-              <p>{isNL ? 'Beschrijf je situatie en wij bouwen de oplossing. Gratis adviesgesprek, geen verplichtingen.' : 'Describe your situation and we\'ll build the solution. Free consultation, no obligations.'}</p>
+              <h2>{'Welk proces wil je automatiseren?'}</h2>
+              <p>Beschrijf je situatie en wij bouwen de oplossing. Gratis adviesgesprek, geen verplichtingen.</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </BtnRow>
             </CTACard>

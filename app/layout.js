@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 import StyledComponentsRegistry from '@/components/StyledComponentsRegistry';
-import { LanguageProvider } from '@/LanguageContext';
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,12 +29,6 @@ export const metadata = {
     apple: '/images/optivaize_logo_square.webp',
   },
   manifest: '/manifest.json',
-  alternates: {
-    languages: {
-      'nl-NL': 'https://optivaize.nl',
-      'x-default': 'https://optivaize.nl',
-    },
-  },
 };
 
 const jsonLd = {
@@ -174,9 +168,7 @@ export default function RootLayout({ children }) {
       </head>
       <body style={{ margin: 0 }}>
         <StyledComponentsRegistry>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
+          {children}
         </StyledComponentsRegistry>
       </body>
     </html>

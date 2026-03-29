@@ -6,7 +6,6 @@ import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
 import NextImage from 'next/image';
 import { TrendingUp, Search, FileText, BarChart3, Target, ArrowRight, CheckCircle, ChevronRight, Image } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 
@@ -499,42 +498,29 @@ const STEPS = [
 ];
 
 function MarketingPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
   const services = [
-    { icon: Search, color: '#10B981', title: isNL ? 'AI-SEO Systeem' : 'AI-SEO System', desc: isNL ? 'Wij scrapen je bedrijfsdata en concurrentiedata, analyseren hiaten en genereren geoptimaliseerde content die rankt.' : 'We scrape your business data and competitor data, analyse gaps and generate optimised content that ranks.' },
-    { icon: FileText, color: '#3B82F6', title: isNL ? 'AI Blog Writer' : 'AI Blog Writer', desc: isNL ? 'Geautomatiseerde blog-productie op basis van keyword-onderzoek, concurrentie-analyse en je merkvoice.' : 'Automated blog production based on keyword research, competitor analysis and your brand voice.' },
-    { icon: Image, color: '#8B5CF6', title: isNL ? 'AI Beeldgeneratie' : 'AI Image Generation', desc: isNL ? 'Onze AI-beeldgenerator maakt unieke, merkgebonden visuals voor al je marketingkanalen, zonder fotostudio.' : 'Our AI image generator creates unique, on-brand visuals for all your marketing channels, no photo studio needed.' },
-    { icon: BarChart3, color: '#F59E0B', title: isNL ? 'Content Analytics' : 'Content Analytics', desc: isNL ? 'AI analyseert welke content converteert en optimaliseert je strategie continu op basis van data.' : 'AI analyses which content converts and continuously optimises your strategy based on data.' },
-    { icon: Target, color: '#EC4899', title: isNL ? 'Conversie-optimalisatie' : 'Conversion optimisation', desc: isNL ? 'A/B-testen, landingspagina-optimalisatie en call-to-action verbetering , allemaal data-gedreven.' : 'A/B testing, landing page optimisation and call-to-action improvement , all data-driven.' },
-    { icon: TrendingUp, color: '#EF4444', title: isNL ? 'Featured Snippets & AI-zoeken' : 'Featured Snippets & AI Search', desc: isNL ? 'Wij optimaliseren je content specifiek voor AI-zoekresultaten, Google AI Overviews en position zero.' : 'We optimise your content specifically for AI search results, Google AI Overviews and position zero.' },
+    { icon: Search, color: '#10B981', title: 'AI-SEO Systeem', desc: 'Wij scrapen je bedrijfsdata en concurrentiedata, analyseren hiaten en genereren geoptimaliseerde content die rankt.' },
+    { icon: FileText, color: '#3B82F6', title: 'AI Blog Writer', desc: 'Geautomatiseerde blog-productie op basis van keyword-onderzoek, concurrentie-analyse en je merkvoice.' },
+    { icon: Image, color: '#8B5CF6', title: 'AI Beeldgeneratie', desc: 'Onze AI-beeldgenerator maakt unieke, merkgebonden visuals voor al je marketingkanalen, zonder fotostudio.' },
+    { icon: BarChart3, color: '#F59E0B', title: 'Content Analytics', desc: 'AI analyseert welke content converteert en optimaliseert je strategie continu op basis van data.' },
+    { icon: Target, color: '#EC4899', title: 'Conversie-optimalisatie', desc: 'A/B-testen, landingspagina-optimalisatie en call-to-action verbetering , allemaal data-gedreven.' },
+    { icon: TrendingUp, color: '#EF4444', title: 'Featured Snippets & AI-zoeken', desc: 'Wij optimaliseren je content specifiek voor AI-zoekresultaten, Google AI Overviews en position zero.' },
   ];
 
-  const seoChecks = isNL ? [
+  const seoChecks = [
     'Automatische concurrentie-analyse en keyword-mapping elke dag',
     'Blog-content gegenereerd, geoptimaliseerd en gepubliceerd zonder handmatig werk',
     'SEO-scores real-time gemonitord en verbeterd via AI-agent',
     'Productteksten geoptimaliseerd voor zoekintentie en conversie',
     'Backlink-analyse en outreach geautomatiseerd',
-  ] : [
-    'Automatic competitor analysis and keyword mapping every day',
-    'Blog content generated, optimised and published without manual work',
-    'SEO scores monitored and improved in real-time via AI agent',
-    'Product texts optimised for search intent and conversion',
-    'Backlink analysis and outreach automated',
   ];
 
-  const results = isNL ? [
+  const results = [
     { stat: '+180%', desc: 'Gemiddelde stijging organisch verkeer in 3 maanden' },
     { stat: '+65%', desc: 'Meer gekwalificeerde leads via organisch zoeken' },
     { stat: '10×', desc: 'Meer content geproduceerd dan met traditioneel team' },
     { stat: '40+', desc: 'Blogs per maand volledig geautomatiseerd' },
-  ] : [
-    { stat: '+180%', desc: 'Average increase in organic traffic in 3 months' },
-    { stat: '+65%', desc: 'More qualified leads via organic search' },
-    { stat: '10×', desc: 'More content produced than with traditional team' },
-    { stat: '40+', desc: 'Blogs per month fully automated' },
   ];
 
   return (
@@ -555,28 +541,22 @@ function MarketingPage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
               <span>AI Marketing</span>
             </Breadcrumb>
             <Badge><TrendingUp size={12} /> AI Marketing</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? (
-                <>Domineer Google. <span style={{ color: '#34D399' }}>Met AI.</span></>
-              ) : (
-                <>Dominate Google. <span style={{ color: '#34D399' }}>With AI.</span></>
-              )}
+              {<>Domineer Google. <span style={{ color: '#34D399' }}>Met AI.</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Wij bouwen AI-systemen die je content produceren, SEO optimaliseren en je merk laten groeien, sneller en slimmer dan een menselijk marketingteam.'
-                : 'We build AI systems that produce your content, optimise SEO and grow your brand , faster and smarter than a human marketing team.'}
+              {'Wij bouwen AI-systemen die je content produceren, SEO optimaliseren en je merk laten groeien, sneller en slimmer dan een menselijk marketingteam.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Start je AI-marketing' : 'Start your AI marketing'} <ArrowRight size={17} />
+              {'Start je AI-marketing'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -585,7 +565,7 @@ function MarketingPage() {
       {/* Tools strip */}
       <ToolsStrip>
         <Container>
-          <ToolsLabel>{isNL ? 'Platforms en tools die wij gebruiken' : 'Platforms and tools we use'}</ToolsLabel>
+          <ToolsLabel>{'Platforms en tools die wij gebruiken'}</ToolsLabel>
           <ToolsRow>
             {TOOLS.map((t, i) => (
               <ToolChip key={i}>
@@ -614,10 +594,10 @@ function MarketingPage() {
         <Container>
           <FadeIn>
             <StatsBanner>
-              <StatCell><StatNum>+180%</StatNum><StatText>{isNL ? 'Organisch verkeer' : 'Organic traffic'}</StatText></StatCell>
-              <StatCell><StatNum>10×</StatNum><StatText>{isNL ? 'Meer content output' : 'More content output'}</StatText></StatCell>
-              <StatCell><StatNum>60+</StatNum><StatText>{isNL ? 'Klanten geholpen' : 'Clients helped'}</StatText></StatCell>
-              <StatCell><StatNum>3 mnd</StatNum><StatText>{isNL ? 'Gemiddeld terugverdientijd' : 'Average payback period'}</StatText></StatCell>
+              <StatCell><StatNum>+180%</StatNum><StatText>{'Organisch verkeer'}</StatText></StatCell>
+              <StatCell><StatNum>10×</StatNum><StatText>{'Meer content output'}</StatText></StatCell>
+              <StatCell><StatNum>60+</StatNum><StatText>{'Klanten geholpen'}</StatText></StatCell>
+              <StatCell><StatNum>3 mnd</StatNum><StatText>{'Gemiddeld terugverdientijd'}</StatText></StatCell>
             </StatsBanner>
           </FadeIn>
         </Container>
@@ -628,12 +608,10 @@ function MarketingPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'AI-SEO Systeem' : 'AI-SEO System'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Je concurrenten analyseren, jij wint' : 'Analyse your competitors, you win'}</SectionTitle>
+              <SectionLabel>{'AI-SEO Systeem'}</SectionLabel>
+              <SectionTitle>{'Je concurrenten analyseren, jij wint'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Ons AI-SEO systeem scrapet dagelijks de data van je concurrenten, identificeert keyword-gaps en genereert automatisch content die hoger rankt. Geen handwerk, wel resultaat.'
-                  : 'Our AI-SEO system scrapes your competitors\' data daily, identifies keyword gaps and automatically generates content that ranks higher. No manual work, just results.'}
+                Ons AI-SEO systeem scrapet dagelijks de data van je concurrenten, identificeert keyword-gaps en genereert automatisch content die hoger rankt. Geen handwerk, wel resultaat.
               </SectionText>
               <Checks>
                 {seoChecks.map((c, i) => (
@@ -660,8 +638,8 @@ function MarketingPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Onze AI Marketing diensten' : 'Our AI Marketing services'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Alles wat een marketingteam doet, maar 10× sneller' : 'Everything a marketing team does, but 10× faster'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Onze AI Marketing diensten'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Alles wat een marketingteam doet, maar 10× sneller'}</SectionTitle></FadeIn>
           </div>
           <CardGrid>
             {services.map((s, i) => {
@@ -684,8 +662,8 @@ function MarketingPage() {
       <Section $gray>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Alle kanalen' : 'All channels'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wij optimaliseren elk marketingkanaal' : 'We optimise every marketing channel'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Alle kanalen'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Wij optimaliseren elk marketingkanaal'}</SectionTitle></FadeIn>
           </div>
           <ChannelGrid>
             {CHANNELS.map((ch, i) => (
@@ -699,7 +677,7 @@ function MarketingPage() {
                     />
                   </ChannelIcon>
                   <ChannelName>{ch.name}</ChannelName>
-                  <ChannelDesc>{isNL ? ch.descNL : ch.descEN}</ChannelDesc>
+                  <ChannelDesc>{ch.descNL}</ChannelDesc>
                 </ChannelCard>
               </FadeIn>
             ))}
@@ -711,16 +689,16 @@ function MarketingPage() {
       <Section $gray>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Hoe het werkt' : 'How it works'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Van nul naar volledig AI-marketing in 5 stappen' : 'From zero to full AI marketing in 5 steps'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Hoe het werkt'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Van nul naar volledig AI-marketing in 5 stappen'}</SectionTitle></FadeIn>
           </div>
           <StepsRow>
             {STEPS.map((step, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <StepCell>
                   <StepNum>{step.num}</StepNum>
-                  <StepTitle>{isNL ? step.titleNL : step.titleEN}</StepTitle>
-                  <StepDesc>{isNL ? step.descNL : step.descEN}</StepDesc>
+                  <StepTitle>{step.titleNL}</StepTitle>
+                  <StepDesc>{step.descNL}</StepDesc>
                 </StepCell>
               </FadeIn>
             ))}
@@ -736,18 +714,16 @@ function MarketingPage() {
               <NextImage src="/images/max_ai_presentatie_2.webp" alt="AI Marketing presentatie" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Case Study' : 'Case Study'}</SectionLabel>
+              <SectionLabel>{'Case Study'}</SectionLabel>
               <SectionTitle>Fonteyn</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Voor Fonteyn bouwden wij een volledig AI-gestuurd SEO- en contentplatform. Van keyword-strategie tot blog-publicatie, volledig geautomatiseerd en gescaleerd naar 40+ blogs per maand.'
-                  : 'For Fonteyn we built a fully AI-driven SEO and content platform. From keyword strategy to blog publication, fully automated and scaled to 40+ blogs per month.'}
+                {'Voor Fonteyn bouwden wij een volledig AI-gestuurd SEO- en contentplatform. Van keyword-strategie tot blog-publicatie, volledig geautomatiseerd en gescaleerd naar 40+ blogs per maand.'}
               </SectionText>
               <Checks>
-                <CheckRow><CheckCircle size={16} />{isNL ? '+180% organisch verkeer in 3 maanden' : '+180% organic traffic in 3 months'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? '40+ blogs per maand zonder handmatig schrijven' : '40+ blogs per month without manual writing'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Top 3 posities voor 60+ keywords' : 'Top 3 positions for 60+ keywords'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Google Ads campagnes automatisch geoptimaliseerd' : 'Google Ads campaigns automatically optimised'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'+180% organisch verkeer in 3 maanden'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'40+ blogs per maand zonder handmatig schrijven'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Top 3 posities voor 60+ keywords'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Google Ads campagnes automatisch geoptimaliseerd'}</CheckRow>
               </Checks>
             </FadeIn>
           </TwoCol>
@@ -759,17 +735,15 @@ function MarketingPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Samenwerking' : 'Partnership'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Samen met Elevate Digital' : 'Together with Elevate Digital'}</SectionTitle>
+              <SectionLabel>{'Samenwerking'}</SectionLabel>
+              <SectionTitle>{'Samen met Elevate Digital'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Als het gaat om marketing werken wij veel samen met Elevate Digital. Van strategie tot uitvoering combineren wij onze AI-expertise met hun marketingkennis voor het beste resultaat.'
-                  : 'When it comes to marketing, we work closely with Elevate Digital. From strategy to execution, we combine our AI expertise with their marketing knowledge for the best results.'}
+                {'Als het gaat om marketing werken wij veel samen met Elevate Digital. Van strategie tot uitvoering combineren wij onze AI-expertise met hun marketingkennis voor het beste resultaat.'}
               </SectionText>
               <Checks>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Gecombineerde expertise in AI en marketing' : 'Combined expertise in AI and marketing'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Gezamenlijke content- en campagnestrategie' : 'Joint content and campaign strategy'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Van SEO tot paid ads, volledig afgedekt' : 'From SEO to paid ads, fully covered'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Gecombineerde expertise in AI en marketing'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Gezamenlijke content- en campagnestrategie'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Van SEO tot paid ads, volledig afgedekt'}</CheckRow>
               </Checks>
             </FadeIn>
             <FadeIn delay={0.15}>
@@ -784,14 +758,14 @@ function MarketingPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar om Google te domineren?' : 'Ready to dominate Google?'}</h2>
-              <p>{isNL ? 'Wij bouwen een AI-marketingsysteem op maat voor je bedrijf. Plan een gratis gesprek.' : 'We build a custom AI marketing system for your business. Book a free call.'}</p>
+              <h2>{'Klaar om Google te domineren?'}</h2>
+              <p>{'Wij bouwen een AI-marketingsysteem op maat voor je bedrijf. Plan een gratis gesprek.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </BtnRow>
             </CTACard>

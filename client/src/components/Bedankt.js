@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Phone, Linkedin, ArrowLeft, CheckCircle, Mail } from 'lucide-react';
 import { useNavigate } from '../hooks';
-import { useLanguage, translations } from '../LanguageContext';
 import SEOHead from './SEOHead';
 
 const PageContainer = styled.div`
@@ -276,9 +275,6 @@ const FooterText = styled.p`
 
 function Bedankt() {
   const navigate = useNavigate();
-  const { language } = useLanguage();
-  const t = translations[language].bedankt;
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -330,39 +326,39 @@ function Bedankt() {
           </SuccessIcon>
 
           <Title variants={itemVariants}>
-            <GradientText>Bedankt</GradientText> {t.title}
+            <GradientText>Bedankt</GradientText> voor je bericht!
           </Title>
 
           <Subtitle variants={itemVariants}>
-            {t.subtitle}
+            Wij hebben je aanvraag ontvangen en nemen zo snel mogelijk contact met je op. Meestal binnen 24 uur.
           </Subtitle>
 
           <TeamPhotos variants={itemVariants}>
             <TeamMemberCard>
               <TeamPhoto src="/images/geronimo.webp" alt="Geronimo S." />
-              <TeamMemberName>{t.geronimo.name}</TeamMemberName>
-              <TeamMemberTitle>{t.team.geronimo}</TeamMemberTitle>
+              <TeamMemberName>Geronimo S.</TeamMemberName>
+              <TeamMemberTitle>Head of Operations | Prompt Engineer</TeamMemberTitle>
             </TeamMemberCard>
             <TeamMemberCard>
               <TeamPhoto src="/images/foto_max.webp" alt="Maximilian Bladt" />
               <TeamMemberName>Maximilian B.</TeamMemberName>
-              <TeamMemberTitle>{t.team.max}</TeamMemberTitle>
+              <TeamMemberTitle>CEO</TeamMemberTitle>
             </TeamMemberCard>
             <TeamMemberCard>
               <TeamPhoto src="/images/filip.webp" alt="Filip Lysiak" />
               <TeamMemberName>Filip L.</TeamMemberName>
-              <TeamMemberTitle>{t.team.filip}</TeamMemberTitle>
+              <TeamMemberTitle>AI & Data Science</TeamMemberTitle>
             </TeamMemberCard>
           </TeamPhotos>
 
           <ContactCard variants={itemVariants}>
-            <ContactCardTitle>{t.directContact}</ContactCardTitle>
+            <ContactCardTitle>Direct contact?</ContactCardTitle>
 
             <GeronimSection>
               <GeronimPhoto src="/images/geronimo.webp" alt="Geronimo S." />
               <GeronimInfo>
-                <GeronimName>{t.geronimo.name}</GeronimName>
-                <GeronimRole>{t.geronimo.role}</GeronimRole>
+                <GeronimName>Geronimo S.</GeronimName>
+                <GeronimRole>Head of Operations | Prompt Engineer</GeronimRole>
               </GeronimInfo>
             </GeronimSection>
 
@@ -379,7 +375,7 @@ function Bedankt() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Phone size={20} />
-                {t.callUs}
+                Bel ons: +31 6 42698918
               </ActionButton>
 
               <ActionButton
@@ -399,7 +395,7 @@ function Bedankt() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Linkedin size={20} />
-                {t.linkedin}
+                Geronimo op LinkedIn
               </ActionButton>
 
               <ActionButton
@@ -417,7 +413,7 @@ function Bedankt() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Mail size={20} />
-                {t.email}
+                Stuur een e-mail
               </ActionButton>
             </ActionsContainer>
           </ContactCard>
@@ -428,14 +424,14 @@ function Bedankt() {
             whileTap={{ scale: 0.95 }}
           >
             <ArrowLeft size={18} />
-            {t.backHome}
+            Terug naar Home
           </BackButton>
         </motion.div>
       </Content>
 
       <FooterBar>
         <FooterText>
-          {t.copyright}
+          &copy; 2026 Optivaize. Alle rechten voorbehouden.
         </FooterText>
       </FooterBar>
     </PageContainer>

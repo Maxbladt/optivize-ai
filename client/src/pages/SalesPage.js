@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
 import { Target, MessageSquare, Users, TrendingUp, Mail, ArrowRight, CheckCircle, ChevronRight, Zap, BarChart3, Monitor, Cpu, Database, Send, Globe, Calendar, ArrowDown } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 
@@ -562,16 +561,14 @@ const PIPELINE_STAGES = [
 ];
 
 function SalesPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
   const services = [
-    { icon: Mail, color: '#0A66C2', title: isNL ? 'LinkedIn Sales Agent' : 'LinkedIn Sales Agent', desc: isNL ? 'Gepersonaliseerde connection requests, follow-ups en berichten , volledig geautomatiseerd en menselijk klinkend.' : 'Personalised connection requests, follow-ups and messages , fully automated and sounding human.' },
-    { icon: MessageSquare, color: '#10B981', title: isNL ? 'AI Kwalificatie Chatbot' : 'AI Qualification Chatbot', desc: isNL ? 'Een chatbot die leads kwalificeert, bezwaren beantwoordt en meetings plant , 24/7, ook buiten kantooruren.' : 'A chatbot that qualifies leads, answers objections and books meetings , 24/7, even outside office hours.' },
-    { icon: Mail, color: '#3B82F6', title: isNL ? 'Geautomatiseerde E-mail Sequences' : 'Automated Email Sequences', desc: isNL ? 'AI schrijft en verstuurt gepersonaliseerde e-mail sequences op basis van gedrag, profiel en interacties.' : 'AI writes and sends personalised email sequences based on behaviour, profile and interactions.' },
-    { icon: Target, color: '#F59E0B', title: isNL ? 'Conversie-optimalisatie' : 'Conversion Optimisation', desc: isNL ? 'Analyseer waar leads afhaken en optimaliseer je funnel continu met AI-inzichten en A/B-testen.' : 'Analyse where leads drop off and continuously optimise your funnel with AI insights and A/B testing.' },
-    { icon: BarChart3, color: '#EC4899', title: isNL ? 'CRM Automatisering' : 'CRM Automation', desc: isNL ? 'Leads worden automatisch aangemaakt, gescoord en opgevolgd in HubSpot, Salesforce of je CRM naar keuze.' : 'Leads automatically created, scored and followed up in HubSpot, Salesforce or your CRM of choice.' },
-    { icon: Zap, color: '#8B5CF6', title: isNL ? 'Sales Intelligence' : 'Sales Intelligence', desc: isNL ? 'AI analyseert je pipeline en geeft concrete aanbevelingen voor betere conversie, dagelijks bijgewerkt.' : 'AI analyses your pipeline and provides concrete recommendations for better conversion, updated daily.' },
+    { icon: Mail, color: '#0A66C2', title: 'LinkedIn Sales Agent', desc: 'Gepersonaliseerde connection requests, follow-ups en berichten , volledig geautomatiseerd en menselijk klinkend.' },
+    { icon: MessageSquare, color: '#10B981', title: 'AI Kwalificatie Chatbot', desc: 'Een chatbot die leads kwalificeert, bezwaren beantwoordt en meetings plant , 24/7, ook buiten kantooruren.' },
+    { icon: Mail, color: '#3B82F6', title: 'Geautomatiseerde E-mail Sequences', desc: 'AI schrijft en verstuurt gepersonaliseerde e-mail sequences op basis van gedrag, profiel en interacties.' },
+    { icon: Target, color: '#F59E0B', title: 'Conversie-optimalisatie', desc: 'Analyseer waar leads afhaken en optimaliseer je funnel continu met AI-inzichten en A/B-testen.' },
+    { icon: BarChart3, color: '#EC4899', title: 'CRM Automatisering', desc: 'Leads worden automatisch aangemaakt, gescoord en opgevolgd in HubSpot, Salesforce of je CRM naar keuze.' },
+    { icon: Zap, color: '#8B5CF6', title: 'Sales Intelligence', desc: 'AI analyseert je pipeline en geeft concrete aanbevelingen voor betere conversie, dagelijks bijgewerkt.' },
   ];
 
   return (
@@ -592,28 +589,22 @@ function SalesPage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
               <span>AI Sales</span>
             </Breadcrumb>
             <Badge><Target size={12} /> AI Sales & Conversie</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? (
-                <>Meer leads. Betere conversie. <span style={{ color: '#FCD34D' }}>Automatisch.</span></>
-              ) : (
-                <>More leads. Better conversion. <span style={{ color: '#FCD34D' }}>Automatically.</span></>
-              )}
+              {<>Meer leads. Betere conversie. <span style={{ color: '#FCD34D' }}>Automatisch.</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Wij bouwen AI-systemen die je salesproces schalen zonder extra headcount. Van prospecting tot closing, AI doet het zware werk terwijl je team deals sluit.'
-                : 'We build AI systems that scale your sales process without extra headcount. From prospecting to closing , AI does the heavy lifting while your team closes deals.'}
+              {'Wij bouwen AI-systemen die je salesproces schalen zonder extra headcount. Van prospecting tot closing, AI doet het zware werk terwijl je team deals sluit.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Schaal je sales' : 'Scale your sales'} <ArrowRight size={17} />
+              {'Schaal je sales'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -622,7 +613,7 @@ function SalesPage() {
       {/* CRM tools strip */}
       <ToolsStrip>
         <Container>
-          <ToolsLabel>{isNL ? 'CRM-platforms en tools die wij ondersteunen' : 'CRM platforms and tools we support'}</ToolsLabel>
+          <ToolsLabel>{'CRM-platforms en tools die wij ondersteunen'}</ToolsLabel>
           <ToolsRow>
             {CRM_TOOLS.map((t, i) => (
               <ToolChip key={i}>
@@ -649,17 +640,17 @@ function SalesPage() {
         <Container>
           <FadeIn>
             <StatsBanner>
-              <StatCell><StatNum>3×</StatNum><StatText>{isNL ? 'Meer qualified leads' : 'More qualified leads'}</StatText></StatCell>
-              <StatCell><StatNum>60%</StatNum><StatText>{isNL ? 'Minder tijd aan prospecting' : 'Less time on prospecting'}</StatText></StatCell>
-              <StatCell><StatNum>40%</StatNum><StatText>{isNL ? 'Kortere sales-cycle' : 'Shorter sales cycle'}</StatText></StatCell>
-              <StatCell><StatNum>24/7</StatNum><StatText>{isNL ? 'Outreach zonder pauze' : 'Outreach without pause'}</StatText></StatCell>
+              <StatCell><StatNum>3×</StatNum><StatText>{'Meer qualified leads'}</StatText></StatCell>
+              <StatCell><StatNum>60%</StatNum><StatText>{'Minder tijd aan prospecting'}</StatText></StatCell>
+              <StatCell><StatNum>40%</StatNum><StatText>{'Kortere sales-cycle'}</StatText></StatCell>
+              <StatCell><StatNum>24/7</StatNum><StatText>{'Outreach zonder pauze'}</StatText></StatCell>
             </StatsBanner>
           </FadeIn>
 
           {/* Sales pipeline visual */}
           <FadeIn delay={0.1}>
             <PipelineWrap>
-              <PipelineTitle>{isNL ? 'Geautomatiseerde sales pipeline' : 'Automated sales pipeline'}</PipelineTitle>
+              <PipelineTitle>{'Geautomatiseerde sales pipeline'}</PipelineTitle>
               <PipelineStages>
                 {PIPELINE_STAGES.map((stage, i) => {
                   const Icon = stage.icon;
@@ -667,8 +658,8 @@ function SalesPage() {
                     <React.Fragment key={i}>
                       <Stage $color={stage.color} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                         <StageIcon $color={stage.color}><Icon size={18} /></StageIcon>
-                        <StageName>{isNL ? (stage.nameNL || stage.name) : (stage.nameEN || stage.name)}</StageName>
-                        <StageCount>{isNL ? stage.countNL : stage.countEN}</StageCount>
+                        <StageName>{(stage.nameNL || stage.name)}</StageName>
+                        <StageCount>{stage.countNL}</StageCount>
                       </Stage>
                       {i < PIPELINE_STAGES.length - 1 && (
                         <StageArrow><ChevronRight size={16} /></StageArrow>
@@ -689,14 +680,12 @@ function SalesPage() {
             <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>AI Sales Agent</SectionLabel>
             <FadeIn>
               <SectionTitle $light style={{ textAlign: 'center' }}>
-                {isNL ? 'Je AI Agent bestuurt de browser' : 'Your AI Agent controls the browser'}
+                {'Je AI Agent bestuurt de browser'}
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.05}>
               <SectionText $light style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto' }}>
-                {isNL
-                  ? 'Onze AI Sales Agent gebruikt je Chrome browser om LinkedIn-profielen te analyseren, e-mails te versturen, CRM bij te werken en meetings te plannen.'
-                  : 'Our AI Sales Agent uses your Chrome browser to analyse LinkedIn profiles, send emails, update CRM and schedule meetings.'}
+                {'Onze AI Sales Agent gebruikt je Chrome browser om LinkedIn-profielen te analyseren, e-mails te versturen, CRM bij te werken en meetings te plannen.'}
               </SectionText>
             </FadeIn>
           </div>
@@ -737,7 +726,7 @@ function SalesPage() {
                 <Monitor size={32} color="#FCD34D" />
               </AgentCircle>
               <AgentName>AI Sales Agent</AgentName>
-              <AgentSub>{isNL ? 'Bestuurt je Chrome browser' : 'Controls your Chrome browser'}</AgentSub>
+              <AgentSub>{'Bestuurt je Chrome browser'}</AgentSub>
             </div>
           </FadeIn>
 
@@ -750,10 +739,10 @@ function SalesPage() {
           <FadeIn delay={0.3}>
             <AgentActionRow>
               {[
-                { icon: Send, color: '#0A66C2', title: isNL ? 'LinkedIn outreach' : 'LinkedIn outreach', sub: isNL ? 'Gepersonaliseerde berichten' : 'Personalised messages' },
-                { icon: Mail, color: '#EA4335', title: isNL ? 'E-mail follow-up' : 'Email follow-up', sub: isNL ? 'Automatische sequences' : 'Automated sequences' },
-                { icon: Database, color: '#8B5CF6', title: isNL ? 'CRM bijwerken' : 'Update CRM', sub: isNL ? 'Alle data gesynchroniseerd' : 'All data synchronised' },
-                { icon: Calendar, color: '#10B981', title: isNL ? 'Meetings plannen' : 'Schedule meetings', sub: isNL ? 'Direct in je agenda' : 'Directly in your calendar' },
+                { icon: Send, color: '#0A66C2', title: 'LinkedIn outreach', sub: 'Gepersonaliseerde berichten' },
+                { icon: Mail, color: '#EA4335', title: 'E-mail follow-up', sub: 'Automatische sequences' },
+                { icon: Database, color: '#8B5CF6', title: 'CRM bijwerken', sub: 'Alle data gesynchroniseerd' },
+                { icon: Calendar, color: '#10B981', title: 'Meetings plannen', sub: 'Direct in je agenda' },
               ].map((action, i) => {
                 const Icon = action.icon;
                 return (
@@ -773,8 +762,8 @@ function SalesPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Onze AI Sales diensten' : 'Our AI Sales services'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Je salesteam keer tien, zonder extra personeel' : 'Your sales team times ten, without extra staff'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Onze AI Sales diensten'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Je salesteam keer tien, zonder extra personeel'}</SectionTitle></FadeIn>
           </div>
           <CardGrid>
             {services.map((s, i) => {
@@ -798,25 +787,25 @@ function SalesPage() {
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>
-              {isNL ? 'Lead opvolging' : 'Lead follow-up'}
+              {'Lead opvolging'}
             </SectionLabel>
             <FadeIn>
               <SectionTitle style={{ textAlign: 'center' }}>
-                {isNL ? 'Automatische opvolging met AI' : 'Automatic follow-up with AI'}
+                {'Automatische opvolging met AI'}
               </SectionTitle>
             </FadeIn>
           </div>
 
           <FadeIn delay={0.1}>
             <PipelineWrap>
-              <PipelineTitle>{isNL ? 'Van lead tot meeting - volledig geautomatiseerd' : 'From lead to meeting - fully automated'}</PipelineTitle>
+              <PipelineTitle>{'Van lead tot meeting - volledig geautomatiseerd'}</PipelineTitle>
               <PipelineStages>
                 {[
-                  { icon: Globe, color: '#3B82F6', name: isNL ? 'Nieuwe lead' : 'New lead', count: isNL ? 'Website of LinkedIn' : 'Website or LinkedIn' },
-                  { icon: Cpu, color: '#F59E0B', name: isNL ? 'AI analyseert' : 'AI analyzes', count: isNL ? 'Profiel & bedrijf' : 'Profile & company' },
-                  { icon: Send, color: '#10B981', name: isNL ? 'Persoonlijke actie' : 'Personal action', count: isNL ? 'E-mail of LinkedIn' : 'Email or LinkedIn' },
-                  { icon: Database, color: '#8B5CF6', name: isNL ? 'CRM bijgewerkt' : 'CRM updated', count: isNL ? 'Automatisch' : 'Automatically' },
-                  { icon: Calendar, color: '#EC4899', name: isNL ? 'Meeting geboekt' : 'Meeting booked', count: isNL ? 'In je agenda' : 'In your calendar' },
+                  { icon: Globe, color: '#3B82F6', name: 'Nieuwe lead', count: 'Website of LinkedIn' },
+                  { icon: Cpu, color: '#F59E0B', name: 'AI analyseert', count: 'Profiel & bedrijf' },
+                  { icon: Send, color: '#10B981', name: 'Persoonlijke actie', count: 'E-mail of LinkedIn' },
+                  { icon: Database, color: '#8B5CF6', name: 'CRM bijgewerkt', count: 'Automatisch' },
+                  { icon: Calendar, color: '#EC4899', name: 'Meeting geboekt', count: 'In je agenda' },
                 ].map((stage, i, arr) => {
                   const Icon = stage.icon;
                   return (
@@ -837,9 +826,7 @@ function SalesPage() {
           <div style={{ marginTop: '3rem' }}>
             <FadeIn delay={0.15}>
               <SectionText style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto' }}>
-                {isNL
-                  ? 'Wanneer een lead binnenkomt via je website, LinkedIn of e-mail, analyseert onze AI het profiel en bedrijf. Vervolgens verstuurt het systeem automatisch een gepersonaliseerde follow-up, werkt je CRM bij en plant meetings - alles zonder handmatige tussenkomst.'
-                  : 'When a lead comes in via your website, LinkedIn or email, our AI analyses the profile and company. Then the system automatically sends a personalised follow-up, updates your CRM and schedules meetings - all without manual intervention.'}
+                {'Wanneer een lead binnenkomt via je website, LinkedIn of e-mail, analyseert onze AI het profiel en bedrijf. Vervolgens verstuurt het systeem automatisch een gepersonaliseerde follow-up, werkt je CRM bij en plant meetings - alles zonder handmatige tussenkomst.'}
               </SectionText>
             </FadeIn>
           </div>
@@ -850,14 +837,14 @@ function SalesPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar om je sales te schalen?' : 'Ready to scale your sales?'}</h2>
-              <p>{isNL ? 'Laat AI het zware werk doen terwijl je team zich richt op het sluiten van deals.' : 'Let AI do the heavy lifting while your team focuses on closing deals.'}</p>
+              <h2>{'Klaar om je sales te schalen?'}</h2>
+              <p>{'Laat AI het zware werk doen terwijl je team zich richt op het sluiten van deals.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </BtnRow>
             </CTACard>

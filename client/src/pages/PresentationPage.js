@@ -125,18 +125,6 @@ const GateBtn = styled(motion.button)`
   gap: 0.5rem;
 `;
 
-const LangBtn = styled.button`
-  padding: 0.35rem 0.9rem;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  border: 1px solid ${p => p.$active ? 'rgba(59, 130, 246, 0.4)' : 'rgba(255, 255, 255, 0.08)'};
-  background: ${p => p.$active ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.04)'};
-  color: ${p => p.$active ? '#60A5FA' : 'rgba(255, 255, 255, 0.4)'};
-  transition: all 0.2s;
-  &:hover { border-color: rgba(59, 130, 246, 0.3); }
-`;
 
 /* ═══════════════════════════════════════
    PRESENTATION LAYOUT
@@ -214,10 +202,6 @@ const SlideCounter = styled.div`
   font-variant-numeric: tabular-nums;
 `;
 
-const TopLangRow = styled.div`
-  display: flex;
-  gap: 0.35rem;
-`;
 
 /* ═══════════════════════════════════════
    BOTTOM NAV
@@ -807,8 +791,6 @@ const slideVariants = {
 };
 
 function PresentationPage({ skipAuth = false }) {
-  const [presLang, setPresLang] = useState('nl');
-  const isNL = presLang === 'nl';
   const [screen, setScreen] = useState(skipAuth ? 'presentation' : 'password');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -823,7 +805,7 @@ function PresentationPage({ skipAuth = false }) {
       setError('');
       setScreen('presentation');
     } else {
-      setError(isNL ? 'Onjuist wachtwoord. Probeer het opnieuw.' : 'Incorrect password. Please try again.');
+      setError('Onjuist wachtwoord. Probeer het opnieuw.');
     }
   };
 
@@ -850,40 +832,34 @@ function PresentationPage({ skipAuth = false }) {
   // ── DATA ──
 
   const services = [
-    { icon: <Building2 size={18} />, title: 'AI Business', desc: isNL ? 'Van strategie tot uitvoering: wij transformeren je hele bedrijf met AI' : 'From strategy to execution: we transform your entire business with AI', bg: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA' },
-    { icon: <Presentation size={18} />, title: 'AI Training', desc: isNL ? 'Maatwerk training per afdeling. ChatGPT, Claude, Copilot, direct toepasbaar' : 'Tailored training per department. ChatGPT, Claude, Copilot, immediately applicable', bg: 'rgba(249, 115, 22, 0.15)', color: '#FB923C' },
-    { icon: <Monitor size={18} />, title: 'Custom Software', desc: isNL ? 'Wij bouwen software 3x sneller, het snelste AI-gedreven softwarebedrijf van NL' : 'We build software 3x faster, the fastest AI-driven software company in NL', bg: 'rgba(99, 102, 241, 0.15)', color: '#818CF8' },
-    { icon: <Zap size={18} />, title: 'Automation', desc: isNL ? 'n8n workflows en custom platformen. Koppel je systemen, elimineer handwerk' : 'n8n workflows and custom platforms. Connect your systems, eliminate manual work', bg: 'rgba(16, 185, 129, 0.15)', color: '#34D399' },
-    { icon: <Linkedin size={18} />, title: 'AI Sales', desc: isNL ? 'LinkedIn outreach, lead kwalificatie en CRM-integratie, volledig geautomatiseerd' : 'LinkedIn outreach, lead qualification and CRM integration, fully automated', bg: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA' },
-    { icon: <Target size={18} />, title: 'AI Marketing', desc: isNL ? 'AI-SEO, content automatisering en Google Ads optimalisatie' : 'AI-SEO, content automation and Google Ads optimisation', bg: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24' },
-    { icon: <Bot size={18} />, title: 'AI Agents', desc: isNL ? 'OpenClaw agents die 24/7 taken overnemen via WhatsApp, Slack en Teams' : 'OpenClaw agents that take over tasks 24/7 via WhatsApp, Slack and Teams', bg: 'rgba(236, 72, 153, 0.15)', color: '#F472B6' },
-    { icon: <MessageSquare size={18} />, title: 'AI Chatbot', desc: isNL ? 'Intelligente chatbots die je producten kennen en leads kwalificeren' : 'Intelligent chatbots that know your products and qualify leads', bg: 'rgba(239, 68, 68, 0.15)', color: '#F87171' },
-    { icon: <Globe size={18} />, title: 'Crypto & Blockchain', desc: isNL ? 'Smart contracts, DeFi platforms en blockchain development' : 'Smart contracts, DeFi platforms and blockchain development', bg: 'rgba(6, 182, 212, 0.15)', color: '#22D3EE' },
+    { icon: <Building2 size={18} />, title: 'AI Business', desc: 'Van strategie tot uitvoering: wij transformeren je hele bedrijf met AI', bg: 'rgba(59, 130, 246, 0.15)', color: '#60A5FA' },
+    { icon: <Presentation size={18} />, title: 'AI Training', desc: 'Maatwerk training per afdeling. ChatGPT, Claude, Copilot, direct toepasbaar', bg: 'rgba(249, 115, 22, 0.15)', color: '#FB923C' },
+    { icon: <Monitor size={18} />, title: 'Custom Software', desc: 'Wij bouwen software 3x sneller, het snelste AI-gedreven softwarebedrijf van NL', bg: 'rgba(99, 102, 241, 0.15)', color: '#818CF8' },
+    { icon: <Zap size={18} />, title: 'Automation', desc: 'n8n workflows en custom platformen. Koppel je systemen, elimineer handwerk', bg: 'rgba(16, 185, 129, 0.15)', color: '#34D399' },
+    { icon: <Linkedin size={18} />, title: 'AI Sales', desc: 'LinkedIn outreach, lead kwalificatie en CRM-integratie, volledig geautomatiseerd', bg: 'rgba(139, 92, 246, 0.15)', color: '#A78BFA' },
+    { icon: <Target size={18} />, title: 'AI Marketing', desc: 'AI-SEO, content automatisering en Google Ads optimalisatie', bg: 'rgba(245, 158, 11, 0.15)', color: '#FBBF24' },
+    { icon: <Bot size={18} />, title: 'AI Agents', desc: 'OpenClaw agents die 24/7 taken overnemen via WhatsApp, Slack en Teams', bg: 'rgba(236, 72, 153, 0.15)', color: '#F472B6' },
+    { icon: <MessageSquare size={18} />, title: 'AI Chatbot', desc: 'Intelligente chatbots die je producten kennen en leads kwalificeren', bg: 'rgba(239, 68, 68, 0.15)', color: '#F87171' },
+    { icon: <Globe size={18} />, title: 'Crypto & Blockchain', desc: 'Smart contracts, DeFi platforms en blockchain development', bg: 'rgba(6, 182, 212, 0.15)', color: '#22D3EE' },
   ];
 
   const cases = [
-    { company: 'Fonteyn', img: '/images/fonteyn_showroom.webp', title: isNL ? 'AI SEO Blog Optimalisatie' : 'AI SEO Blog Optimization', results: [isNL ? '-3% Ads kosten' : '-3% Ad costs', isNL ? '+4% conversie' : '+4% conversion', '30.000+ products'] },
-    { company: 'Aanhuis', img: '/images/aanhuis_voorkant.webp', title: isNL ? 'AI Training & Custom GPTs' : 'AI Training & Custom GPTs', results: [isNL ? '+20% efficiëntie' : '+20% efficiency', 'Custom GPTs', isNL ? 'Volledige adoptie' : 'Full adoption'] },
-    { company: 'Blosh', img: '/images/blosh_office.webp', title: isNL ? 'Complete AI Suite' : 'Complete AI Suite', results: ['AI SEO', 'AI Chatbot', isNL ? 'Shopify automatisering' : 'Shopify automation'] },
+    { company: 'Fonteyn', img: '/images/fonteyn_showroom.webp', title: 'AI SEO Blog Optimalisatie', results: ['-3% Ads kosten', '+4% conversie', '30.000+ products'] },
+    { company: 'Aanhuis', img: '/images/aanhuis_voorkant.webp', title: 'AI Training & Custom GPTs', results: ['+20% efficiëntie', 'Custom GPTs', 'Volledige adoptie'] },
+    { company: 'Blosh', img: '/images/blosh_office.webp', title: 'Complete AI Suite', results: ['AI SEO', 'AI Chatbot', 'Shopify automatisering'] },
   ];
 
   const team = [
-    { name: 'Maximilian Bladt', role: 'CEO', img: '/images/foto_max.webp', bio: isNL ? 'AI-strateeg en ondernemer. Leidt de visie en klantrelaties.' : 'AI strategist and entrepreneur. Leads vision and client relationships.' },
-    { name: 'Geronimo Saija', role: 'Head of Operations', img: '/images/geronimo.webp', bio: isNL ? 'Operationeel leider. Stuurt implementatie en projectmanagement aan.' : 'Operational leader. Drives implementation and project management.' },
-    { name: 'Willem Bladt', role: 'Head of Finance', img: '/images/willem.webp', bio: isNL ? 'Financieel strateeg. Bewaakt groei en duurzaamheid.' : 'Financial strategist. Oversees growth and sustainability.' },
+    { name: 'Maximilian Bladt', role: 'CEO', img: '/images/foto_max.webp', bio: 'AI-strateeg en ondernemer. Leidt de visie en klantrelaties.' },
+    { name: 'Geronimo Saija', role: 'Head of Operations', img: '/images/geronimo.webp', bio: 'Operationeel leider. Stuurt implementatie en projectmanagement aan.' },
+    { name: 'Willem Bladt', role: 'Head of Finance', img: '/images/willem.webp', bio: 'Financieel strateeg. Bewaakt groei en duurzaamheid.' },
   ];
 
-  const painPoints = isNL
-    ? ['Concurrenten gebruiken AI al en lopen voor', 'Medewerkers besteden uren aan repetitief werk', 'Marketing & sales schalen niet zonder meer personeel', 'Geen duidelijk plan om AI te implementeren']
-    : ['Competitors are already using AI and pulling ahead', 'Employees spend hours on repetitive work', 'Marketing & sales don\'t scale without more staff', 'No clear plan to implement AI'];
+  const painPoints = ['Concurrenten gebruiken AI al en lopen voor', 'Medewerkers besteden uren aan repetitief werk', 'Marketing & sales schalen niet zonder meer personeel', 'Geen duidelijk plan om AI te implementeren'];
 
-  const solutions = isNL
-    ? [{ bold: 'Strategie op maat', text: ': we analyseren je bedrijf en bouwen een AI-roadmap' }, { bold: 'Bewezen implementatie', text: ': 30+ organisaties succesvol getransformeerd' }, { bold: 'Training & adoptie', text: ': je team leert AI gebruiken, niet vrezen' }, { bold: 'Continue optimalisatie', text: ': maandelijkse sessies houden je voorsprong' }]
-    : [{ bold: 'Tailored strategy', text: ': we analyze your business and build an AI roadmap' }, { bold: 'Proven implementation', text: ': 30+ organizations successfully transformed' }, { bold: 'Training & adoption', text: ': your team learns to use AI, not fear it' }, { bold: 'Continuous optimization', text: ': monthly sessions keep your competitive edge' }];
+  const solutions = [{ bold: 'Strategie op maat', text: ': we analyseren je bedrijf en bouwen een AI-roadmap' }, { bold: 'Bewezen implementatie', text: ': 30+ organisaties succesvol getransformeerd' }, { bold: 'Training & adoptie', text: ': je team leert AI gebruiken, niet vrezen' }, { bold: 'Continue optimalisatie', text: ': maandelijkse sessies houden je voorsprong' }];
 
-  const processSteps = isNL
-    ? [{ title: 'Intake', text: 'We bespreken je doelen, uitdagingen en kansen in een vrijblijvend gesprek.' }, { title: 'Analyse & Voorstel', text: 'We leveren een helder plan met prioriteiten, kosten en verwachte resultaten.' }, { title: 'Implementatie', text: 'Ons team bouwt, traint en integreert de oplossingen in je workflow.' }, { title: 'Groei & Optimalisatie', text: 'We monitoren resultaten en optimaliseren continu voor maximaal rendement.' }]
-    : [{ title: 'Intake', text: 'We discuss your goals, challenges and opportunities in a no-obligation meeting.' }, { title: 'Analysis & Proposal', text: 'We deliver a clear plan with priorities, costs and expected results.' }, { title: 'Implementation', text: 'Our team builds, trains and integrates solutions into your workflow.' }, { title: 'Growth & Optimization', text: 'We monitor results and continuously optimize for maximum ROI.' }];
+  const processSteps = [{ title: 'Intake', text: 'We bespreken je doelen, uitdagingen en kansen in een vrijblijvend gesprek.' }, { title: 'Analyse & Voorstel', text: 'We leveren een helder plan met prioriteiten, kosten en verwachte resultaten.' }, { title: 'Implementatie', text: 'Ons team bouwt, traint en integreert de oplossingen in je workflow.' }, { title: 'Groei & Optimalisatie', text: 'We monitoren resultaten en optimaliseren continu voor maximaal rendement.' }];
 
   // ── SLIDE RENDERERS ──
 
@@ -896,12 +872,12 @@ function PresentationPage({ skipAuth = false }) {
         <SlideContent>
           <Badge $bg="rgba(59, 130, 246, 0.1)" $border="rgba(59, 130, 246, 0.25)" $color="#60A5FA"><Sparkles size={12} /> Optivaize · Groenekanseweg · De Bilt</Badge>
           <MegaTitle>Optimize <ShimmerSpan>What Matters</ShimmerSpan></MegaTitle>
-          <SubText>{isNL ? 'Wij transformeren bedrijven met AI die daadwerkelijk werkt. Van slimme automatisering tot complete implementatie, wij zorgen dat jouw organisatie klaar is voor de toekomst.' : 'We transform businesses with AI that actually works. From smart automation to full implementation, we make sure your organization is ready for the future.'}</SubText>
+          <SubText>Wij transformeren bedrijven met AI die daadwerkelijk werkt. Van slimme automatisering tot complete implementatie, wij zorgen dat jouw organisatie klaar is voor de toekomst.</SubText>
           <StatsRow style={{ marginTop: '1rem' }}>
-            <StatCard><StatNumber>30+</StatNumber><StatLabel>{isNL ? 'Organisaties getransformeerd' : 'Organizations transformed'}</StatLabel></StatCard>
-            <StatCard><StatNumber $gradient="linear-gradient(135deg, #10B981, #06B6D4)">100+</StatNumber><StatLabel>{isNL ? 'Geautomatiseerde taken' : 'Automated tasks'}</StatLabel></StatCard>
-            <StatCard><StatNumber $gradient="linear-gradient(135deg, #8B5CF6, #EC4899)">€3M+</StatNumber><StatLabel>{isNL ? 'Bespaard op loonkosten' : 'Saved in wage costs'}</StatLabel></StatCard>
-            <StatCard><StatNumber $gradient="linear-gradient(135deg, #F59E0B, #EF4444)">9</StatNumber><StatLabel>{isNL ? 'AI-diensten' : 'AI services'}</StatLabel></StatCard>
+            <StatCard><StatNumber>30+</StatNumber><StatLabel>Organisaties getransformeerd</StatLabel></StatCard>
+            <StatCard><StatNumber $gradient="linear-gradient(135deg, #10B981, #06B6D4)">100+</StatNumber><StatLabel>Geautomatiseerde taken</StatLabel></StatCard>
+            <StatCard><StatNumber $gradient="linear-gradient(135deg, #8B5CF6, #EC4899)">€3M+</StatNumber><StatLabel>Bespaard op loonkosten</StatLabel></StatCard>
+            <StatCard><StatNumber $gradient="linear-gradient(135deg, #F59E0B, #EF4444)">9</StatNumber><StatLabel>AI-diensten</StatLabel></StatCard>
           </StatsRow>
         </SlideContent>
       </SlideContainer>
@@ -914,9 +890,9 @@ function PresentationPage({ skipAuth = false }) {
         <SlideContent>
           <TwoColGrid>
             <div>
-              <Badge $bg="rgba(239, 68, 68, 0.1)" $border="rgba(239, 68, 68, 0.25)" $color="#F87171">{isNL ? 'Het Probleem' : 'The Problem'}</Badge>
-              <BigTitle>{isNL ? <>Bedrijven zonder AI-strategie vallen <span style={{ color: '#EF4444' }}>achterop</span></> : <>Businesses without AI strategy are <span style={{ color: '#EF4444' }}>falling behind</span></>}</BigTitle>
-              <SubText style={{ margin: '0 0 1rem', textAlign: 'left' }}>{isNL ? '72% van bedrijven wil AI inzetten, maar minder dan 15% heeft een concrete implementatie. Het verschil? Een partner die het daadwerkelijk doet.' : '72% of companies want to use AI, but fewer than 15% have a concrete implementation. The difference? A partner that actually delivers.'}</SubText>
+              <Badge $bg="rgba(239, 68, 68, 0.1)" $border="rgba(239, 68, 68, 0.25)" $color="#F87171">Het Probleem</Badge>
+              <BigTitle>Bedrijven zonder AI-strategie vallen <span style={{ color: '#EF4444' }}>achterop</span></BigTitle>
+              <SubText style={{ margin: '0 0 1rem', textAlign: 'left' }}>72% van bedrijven wil AI inzetten, maar minder dan 15% heeft een concrete implementatie. Het verschil? Een partner die het daadwerkelijk doet.</SubText>
             </div>
             <div>
               {painPoints.map((point, i) => (
@@ -935,9 +911,9 @@ function PresentationPage({ skipAuth = false }) {
         <SlideContent>
           <TwoColGrid>
             <div>
-              <Badge $bg="rgba(16, 185, 129, 0.1)" $border="rgba(16, 185, 129, 0.25)" $color="#34D399">{isNL ? 'De Oplossing' : 'The Solution'}</Badge>
-              <BigTitle>{isNL ? <>Optivaize: jouw <GradientSpan>AI-implementatiepartner</GradientSpan></> : <>Optivaize: your <GradientSpan>AI implementation partner</GradientSpan></>}</BigTitle>
-              <SubText style={{ margin: '0 0 0.5rem', textAlign: 'left' }}>{isNL ? 'Wij bouwen geen abstracte strategieen. Wij implementeren AI die je team vandaag al kan gebruiken en die morgen nog meer oplevert.' : 'We don\'t build abstract strategies. We implement AI that your team can use today and that delivers even more tomorrow.'}</SubText>
+              <Badge $bg="rgba(16, 185, 129, 0.1)" $border="rgba(16, 185, 129, 0.25)" $color="#34D399">De Oplossing</Badge>
+              <BigTitle>Optivaize: jouw <GradientSpan>AI-implementatiepartner</GradientSpan></BigTitle>
+              <SubText style={{ margin: '0 0 0.5rem', textAlign: 'left' }}>Wij bouwen geen abstracte strategieen. Wij implementeren AI die je team vandaag al kan gebruiken en die morgen nog meer oplevert.</SubText>
             </div>
             <div>
               {solutions.map((sol, i) => (
@@ -946,7 +922,7 @@ function PresentationPage({ skipAuth = false }) {
             </div>
           </TwoColGrid>
           <QuoteBlock style={{ marginTop: '0.5rem' }}>
-            <QuoteText>{isNL ? 'AI gaat mensen niet vervangen. Mensen die AI gebruiken wel.' : 'AI is not going to replace people. People who use AI will.'}</QuoteText>
+            <QuoteText>AI gaat mensen niet vervangen. Mensen die AI gebruiken wel.</QuoteText>
             <QuoteAuthor>Maximilian Bladt, CEO Optivaize</QuoteAuthor>
           </QuoteBlock>
         </SlideContent>
@@ -958,9 +934,9 @@ function PresentationPage({ skipAuth = false }) {
       <SlideContainer>
         <GlowOrb $size="350px" $color="rgba(139, 92, 246, 0.06)" $bottom="-80px" $left="-80px" />
         <SlideContent>
-          <Badge><Bot size={12} /> {isNL ? '9 Diensten' : '9 Services'}</Badge>
-          <BigTitle>{isNL ? <>Alles wat je nodig hebt voor <GradientSpan>AI-transformatie</GradientSpan></> : <>Everything you need for <GradientSpan>AI transformation</GradientSpan></>}</BigTitle>
-          <SubText>{isNL ? 'Van je eerste AI-presentatie tot een volledig geautomatiseerde workflow, wij dekken het hele spectrum.' : 'From your first AI presentation to a fully automated workflow, we cover the full spectrum.'}</SubText>
+          <Badge><Bot size={12} /> 9 Diensten</Badge>
+          <BigTitle>Alles wat je nodig hebt voor <GradientSpan>AI-transformatie</GradientSpan></BigTitle>
+          <SubText>Van je eerste AI-presentatie tot een volledig geautomatiseerde workflow, wij dekken het hele spectrum.</SubText>
           <ServicesGrid>
             {services.map((s, i) => (
               <ServiceCard key={i}><ServiceIcon $bg={s.bg} $color={s.color}>{s.icon}</ServiceIcon><ServiceTitle>{s.title}</ServiceTitle><ServiceDesc>{s.desc}</ServiceDesc></ServiceCard>
@@ -975,8 +951,8 @@ function PresentationPage({ skipAuth = false }) {
       <SlideContainer>
         <GlowOrb $size="400px" $color="rgba(59, 130, 246, 0.06)" $top="10%" $right="-150px" />
         <SlideContent>
-          <Badge $bg="rgba(245, 158, 11, 0.1)" $border="rgba(245, 158, 11, 0.25)" $color="#FBBF24"><Award size={12} /> {isNL ? 'Bewezen Resultaten' : 'Proven Results'}</Badge>
-          <BigTitle>{isNL ? <>Echte resultaten bij <GradientSpan>echte bedrijven</GradientSpan></> : <>Real results at <GradientSpan>real companies</GradientSpan></>}</BigTitle>
+          <Badge $bg="rgba(245, 158, 11, 0.1)" $border="rgba(245, 158, 11, 0.25)" $color="#FBBF24"><Award size={12} /> Bewezen Resultaten</Badge>
+          <BigTitle>Echte resultaten bij <GradientSpan>echte bedrijven</GradientSpan></BigTitle>
           <CasesGrid style={{ marginTop: '0.75rem' }}>
             {cases.map((c, i) => (
               <CaseCard key={i}>
@@ -986,7 +962,7 @@ function PresentationPage({ skipAuth = false }) {
             ))}
           </CasesGrid>
           <div style={{ marginTop: '0.75rem' }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.35rem' }}>{isNL ? 'En meer vertrouwd door' : 'And more trusted by'}</div>
+            <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.35rem' }}>En meer vertrouwd door</div>
             <LogoStrip>
               <LogoImg src="/images/fonteyn_logo.webp" alt="Fonteyn" /><LogoImg src="/images/aanhuis.webp" alt="Aanhuis" /><LogoImg src="/images/blosh.webp" alt="Blosh" /><LogoImg src="/images/sony.webp" alt="Sony" /><LogoImg src="/images/passion_icebaths_logo.webp" alt="Passion Ice Baths" /><LogoImg src="/images/red_button_logo.webp" alt="Red Button" /><LogoImg src="/images/marie_stella_maris.webp" alt="Marie-Stella-Maris" />
             </LogoStrip>
@@ -1000,20 +976,20 @@ function PresentationPage({ skipAuth = false }) {
       <SlideContainer>
         <GlowOrb $size="350px" $color="rgba(16, 185, 129, 0.06)" $bottom="-100px" $right="-80px" />
         <SlideContent>
-          <Badge $bg="rgba(16, 185, 129, 0.1)" $border="rgba(16, 185, 129, 0.25)" $color="#34D399"><Zap size={12} /> {isNL ? 'Hoe We Werken' : 'How We Work'}</Badge>
-          <BigTitle>{isNL ? <>Van intake tot <GradientSpan>impact</GradientSpan> in 4 stappen</> : <>From intake to <GradientSpan>impact</GradientSpan> in 4 steps</>}</BigTitle>
-          <SubText>{isNL ? 'Geen maandenlange trajecten. Wij leveren snel en meten altijd het resultaat.' : 'No months-long projects. We deliver fast and always measure results.'}</SubText>
+          <Badge $bg="rgba(16, 185, 129, 0.1)" $border="rgba(16, 185, 129, 0.25)" $color="#34D399"><Zap size={12} /> Hoe We Werken</Badge>
+          <BigTitle>Van intake tot <GradientSpan>impact</GradientSpan> in 4 stappen</BigTitle>
+          <SubText>Geen maandenlange trajecten. Wij leveren snel en meten altijd het resultaat.</SubText>
           <ProcessGrid>
             {processSteps.map((step, i) => (
               <ProcessCard key={i} $num={`0${i + 1}`}><ProcessTitle>{step.title}</ProcessTitle><ProcessText>{step.text}</ProcessText></ProcessCard>
             ))}
           </ProcessGrid>
           <div style={{ marginTop: '0.75rem' }}>
-            <SectionLabel>{isNL ? 'Wat ons anders maakt' : 'What sets us apart'}</SectionLabel>
+            <SectionLabel>Wat ons anders maakt</SectionLabel>
             <StatsRow $cols={3} style={{ marginTop: '0.4rem' }}>
-              <StatCard $accent="linear-gradient(90deg, #F97316, #EF4444)"><ServiceIcon $bg="rgba(249, 115, 22, 0.15)" $color="#FB923C" style={{ margin: '0 auto 0.4rem' }}><Clock size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>{isNL ? 'Snelle Levering' : 'Fast Delivery'}</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>{isNL ? 'Eerste resultaten binnen weken, niet maanden' : 'First results within weeks, not months'}</ServiceDesc></StatCard>
-              <StatCard $accent="linear-gradient(90deg, #3B82F6, #8B5CF6)"><ServiceIcon $bg="rgba(59, 130, 246, 0.15)" $color="#60A5FA" style={{ margin: '0 auto 0.4rem' }}><BarChart3 size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>{isNL ? 'Data-Gedreven' : 'Data-Driven'}</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>{isNL ? 'Elke implementatie wordt gemeten op concrete KPIs' : 'Every implementation is measured on concrete KPIs'}</ServiceDesc></StatCard>
-              <StatCard $accent="linear-gradient(90deg, #10B981, #06B6D4)"><ServiceIcon $bg="rgba(16, 185, 129, 0.15)" $color="#34D399" style={{ margin: '0 auto 0.4rem' }}><Globe size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>{isNL ? 'Full-Service' : 'Full-Service'}</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>{isNL ? 'Van strategie tot code, alles in-house' : 'From strategy to code, everything in-house'}</ServiceDesc></StatCard>
+              <StatCard $accent="linear-gradient(90deg, #F97316, #EF4444)"><ServiceIcon $bg="rgba(249, 115, 22, 0.15)" $color="#FB923C" style={{ margin: '0 auto 0.4rem' }}><Clock size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>Snelle Levering</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>Eerste resultaten binnen weken, niet maanden</ServiceDesc></StatCard>
+              <StatCard $accent="linear-gradient(90deg, #3B82F6, #8B5CF6)"><ServiceIcon $bg="rgba(59, 130, 246, 0.15)" $color="#60A5FA" style={{ margin: '0 auto 0.4rem' }}><BarChart3 size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>Data-Gedreven</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>Elke implementatie wordt gemeten op concrete KPIs</ServiceDesc></StatCard>
+              <StatCard $accent="linear-gradient(90deg, #10B981, #06B6D4)"><ServiceIcon $bg="rgba(16, 185, 129, 0.15)" $color="#34D399" style={{ margin: '0 auto 0.4rem' }}><Globe size={18} /></ServiceIcon><ServiceTitle style={{ textAlign: 'center' }}>Full-Service</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>Van strategie tot code, alles in-house</ServiceDesc></StatCard>
             </StatsRow>
           </div>
         </SlideContent>
@@ -1025,16 +1001,16 @@ function PresentationPage({ skipAuth = false }) {
       <SlideContainer>
         <GlowOrb $size="350px" $color="rgba(139, 92, 246, 0.06)" $top="-80px" $left="-80px" />
         <SlideContent>
-          <Badge $bg="rgba(139, 92, 246, 0.1)" $border="rgba(139, 92, 246, 0.25)" $color="#A78BFA"><Users size={12} /> {isNL ? 'Ons Team' : 'Our Team'}</Badge>
-          <BigTitle>{isNL ? <>Gestart vanuit passie voor AI, gegroeid tot een <GradientSpan>internationaal team</GradientSpan></> : <>Started from a passion for AI, grown into an <GradientSpan>international team</GradientSpan></>}</BigTitle>
-          <SubText>{isNL ? 'AI-onderzoek en projectleiding vanuit Nederland. Development in Mumbai en Manila. Hierdoor verlagen we de kostprijs zonder concessies aan kwaliteit.' : 'AI research and project management from the Netherlands. Development in Mumbai and Manila. This reduces costs without compromising quality.'}</SubText>
+          <Badge $bg="rgba(139, 92, 246, 0.1)" $border="rgba(139, 92, 246, 0.25)" $color="#A78BFA"><Users size={12} /> Ons Team</Badge>
+          <BigTitle>Gestart vanuit passie voor AI, gegroeid tot een <GradientSpan>internationaal team</GradientSpan></BigTitle>
+          <SubText>AI-onderzoek en projectleiding vanuit Nederland. Development in Mumbai en Manila. Hierdoor verlagen we de kostprijs zonder concessies aan kwaliteit.</SubText>
           <TeamGrid>
             {team.map((member, i) => (
               <TeamCard key={i}><TeamAvatar><img src={member.img} alt={member.name} loading="lazy" /></TeamAvatar><TeamName>{member.name}</TeamName><TeamRole>{member.role}</TeamRole><TeamBio>{member.bio}</TeamBio></TeamCard>
             ))}
           </TeamGrid>
           <StatsRow $cols={3} style={{ marginTop: '0.75rem' }}>
-            <StatCard><div style={{ fontSize: '1.3rem', marginBottom: '0.1rem' }}>&#x1F1F3;&#x1F1F1;</div><ServiceTitle style={{ textAlign: 'center' }}>Utrecht</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>{isNL ? 'AI Research & Hoofdkantoor' : 'AI Research & HQ'}</ServiceDesc></StatCard>
+            <StatCard><div style={{ fontSize: '1.3rem', marginBottom: '0.1rem' }}>&#x1F1F3;&#x1F1F1;</div><ServiceTitle style={{ textAlign: 'center' }}>Utrecht</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>AI Research & Hoofdkantoor</ServiceDesc></StatCard>
             <StatCard><div style={{ fontSize: '1.3rem', marginBottom: '0.1rem' }}>&#x1F1EE;&#x1F1F3;</div><ServiceTitle style={{ textAlign: 'center' }}>Mumbai</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>Development</ServiceDesc></StatCard>
             <StatCard><div style={{ fontSize: '1.3rem', marginBottom: '0.1rem' }}>&#x1F1F5;&#x1F1ED;</div><ServiceTitle style={{ textAlign: 'center' }}>Manila</ServiceTitle><ServiceDesc style={{ textAlign: 'center' }}>Development</ServiceDesc></StatCard>
           </StatsRow>
@@ -1059,19 +1035,15 @@ function PresentationPage({ skipAuth = false }) {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
           <GateLogo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
-            <LangBtn $active={presLang === 'nl'} onClick={() => setPresLang('nl')}>NL</LangBtn>
-            <LangBtn $active={presLang === 'en'} onClick={() => setPresLang('en')}>EN</LangBtn>
-          </div>
-          <GateTitle><GradientSpan>{isNL ? 'Presentatie' : 'Presentation'}</GradientSpan></GateTitle>
-          <GateSubtext>{isNL ? 'Voer het wachtwoord in om de presentatie te bekijken.' : 'Enter the password to view the presentation.'}</GateSubtext>
+          <GateTitle><GradientSpan>Presentatie</GradientSpan></GateTitle>
+          <GateSubtext>Voer het wachtwoord in om de presentatie te bekijken.</GateSubtext>
           <form onSubmit={handlePasswordSubmit}>
             <InputWrapper>
               <GateInput
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                placeholder={isNL ? 'Wachtwoord' : 'Password'}
+                placeholder="Wachtwoord"
                 $error={!!error}
                 autoFocus
               />
@@ -1085,7 +1057,7 @@ function PresentationPage({ skipAuth = false }) {
               )}
             </AnimatePresence>
             <GateBtn type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-              <Lock size={16} />{isNL ? 'Toegang' : 'Enter'}
+              <Lock size={16} />Toegang
             </GateBtn>
           </form>
         </GateCard>
@@ -1105,10 +1077,6 @@ function PresentationPage({ skipAuth = false }) {
       <TopBar>
         <TopLogo src="/images/optivaize_logo_new.webp" alt="Optivaize" />
         <SlideCounter>{activeSlide + 1} / {totalSlides}</SlideCounter>
-        <TopLangRow>
-          <LangBtn $active={presLang === 'nl'} onClick={() => setPresLang('nl')}>NL</LangBtn>
-          <LangBtn $active={presLang === 'en'} onClick={() => setPresLang('en')}>EN</LangBtn>
-        </TopLangRow>
       </TopBar>
 
       {/* Slide content with animation */}

@@ -4,7 +4,6 @@ import Link from '../components/Link';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -245,14 +244,11 @@ const CtaBtn = styled(motion.a)`
 /* Component */
 
 function CaseDetailPage({ caseData }) {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
-
   if (!caseData) return null;
 
-  const title = isNL ? caseData.title_nl : caseData.title_en;
-  const preview = isNL ? caseData.preview_nl : caseData.preview_en;
-  const description = isNL ? caseData.description_nl : caseData.description_en;
+  const title = caseData.title_nl;
+  const preview = caseData.preview_nl;
+  const description = caseData.description_nl;
   const partnerLogos = caseData.partner_logos || [];
 
   const isHTML = /<[a-z][\s\S]*>/i.test(description);
@@ -264,7 +260,7 @@ function CaseDetailPage({ caseData }) {
         <Container>
           <BackLink to="/cases">
             <ArrowLeft size={16} />
-            {isNL ? 'Ga terug naar cases' : 'Back to cases'}
+            Ga terug naar cases
           </BackLink>
         </Container>
       </BackBar>
@@ -371,9 +367,7 @@ function CaseDetailPage({ caseData }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {isNL
-                ? <>Vergelijkbare resultaten voor <GradientSpan>je bedrijf</GradientSpan>?</>
-                : <>Similar results for <GradientSpan>your business</GradientSpan>?</>}
+              <>Vergelijkbare resultaten voor <GradientSpan>je bedrijf</GradientSpan>?</>
             </CtaTitle>
             <CtaSub
               initial={{ opacity: 0, y: 20 }}
@@ -381,9 +375,7 @@ function CaseDetailPage({ caseData }) {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              {isNL
-                ? 'Plan een gratis gesprek en ontdek wat wij voor je bedrijf kunnen bouwen.'
-                : 'Book a free call and discover what we can build for your business.'}
+              Plan een gratis gesprek en ontdek wat wij voor je bedrijf kunnen bouwen.
             </CtaSub>
             <CtaBtn
               href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
@@ -395,7 +387,7 @@ function CaseDetailPage({ caseData }) {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              {isNL ? 'Plan gratis gesprek' : 'Book free call'}
+              Plan gratis gesprek
               <ArrowRight size={17} />
             </CtaBtn>
           </CtaInner>

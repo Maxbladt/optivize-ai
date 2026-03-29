@@ -5,55 +5,54 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase, Phone } from 'lucide-react';
 import Link from './Link';
 import { useLocation } from '../hooks';
-import { useLanguage } from '../LanguageContext';
 import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
 const serviceItems = [
   {
-    label: { nl: 'AI Business', en: 'AI Business' },
-    sublabel: { nl: 'Je hele bedrijf transformeren met AI', en: 'Transform your entire business with AI' },
+    label: 'AI Business',
+    sublabel: 'Je hele bedrijf transformeren met AI',
     path: '/ai-business', icon: Building2, color: '#EC4899',
   },
   {
-    label: { nl: 'AI Training', en: 'AI Training' },
-    sublabel: { nl: 'Je team klaarstomen voor het AI-tijdperk', en: 'Preparing your team for the AI era' },
+    label: 'AI Training',
+    sublabel: 'Je team klaarstomen voor het AI-tijdperk',
     path: '/ai-training', icon: GraduationCap, color: '#F97316',
   },
   {
-    label: { nl: 'Custom Software', en: 'Custom Software' },
-    sublabel: { nl: 'AI-first development, 3× sneller bouwen', en: 'AI-first development, 3× faster builds' },
+    label: 'Custom Software',
+    sublabel: 'AI-first development, 3x sneller bouwen',
     path: '/custom-software', icon: Code2, color: '#EF4444',
   },
   {
-    label: { nl: 'Automatisering', en: 'Automation' },
-    sublabel: { nl: 'n8n workflows & platform integraties', en: 'n8n workflows & platform integrations' },
+    label: 'Automatisering',
+    sublabel: 'n8n workflows & platform integraties',
     path: '/automatisering', icon: Zap, color: '#8B5CF6',
   },
   {
-    label: { nl: 'AI Sales', en: 'AI Sales' },
-    sublabel: { nl: 'CRM, LinkedIn automation & lead generatie', en: 'CRM, LinkedIn automation & lead generation' },
+    label: 'AI Sales',
+    sublabel: 'CRM, LinkedIn automation & lead generatie',
     path: '/ai-sales', icon: Target, color: '#F59E0B',
   },
   {
-    label: { nl: 'AI Marketing', en: 'AI Marketing' },
-    sublabel: { nl: 'Google Ads, SEO, content & social automatisering', en: 'Google Ads, SEO, content & social automation' },
+    label: 'AI Marketing',
+    sublabel: 'Google Ads, SEO, content & social automatisering',
     path: '/ai-marketing', icon: TrendingUp, color: '#10B981',
   },
   {
-    label: { nl: 'AI Agents', en: 'AI Agents' },
-    sublabel: { nl: 'Autonome agents die taken volledig overnemen', en: 'Autonomous agents that fully take over tasks' },
+    label: 'AI Agents',
+    sublabel: 'Autonome agents die taken volledig overnemen',
     path: '/ai-agenten', icon: Bot, color: '#3B82F6',
   },
   {
-    label: { nl: 'AI Chatbot', en: 'AI Chatbot' },
-    sublabel: { nl: 'Chatbots die leren van elk gesprek', en: 'Chatbots that learn from every conversation' },
+    label: 'AI Chatbot',
+    sublabel: 'Chatbots die leren van elk gesprek',
     path: '/ai-chatbot', icon: MessageCircle, color: '#06B6D4',
   },
   {
-    label: { nl: 'Crypto & Blockchain', en: 'Crypto & Blockchain' },
-    sublabel: { nl: 'Smart contracts & blockchain development', en: 'Smart contracts & blockchain development' },
+    label: 'Crypto & Blockchain',
+    sublabel: 'Smart contracts & blockchain development',
     path: '/crypto-blockchain', icon: Blocks, color: '#6366F1',
   },
 ];
@@ -181,29 +180,6 @@ const NavActions = styled.div`
   display: flex;
   align-items: center;
   gap: 0.625rem;
-`;
-
-const LangBtn = styled.button`
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748B;
-  background: transparent;
-  border: 1px solid #E2E8F0;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-
-  &:hover {
-    border-color: #3B82F6;
-    color: #3B82F6;
-  }
-
-  @media (max-width: 1100px) {
-    display: none;
-  }
 `;
 
 const CTABtn = styled(Link)`
@@ -494,20 +470,6 @@ const MobileCTA = styled(Link)`
   border-radius: 10px;
 `;
 
-const MobileLang = styled.button`
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: #64748B;
-  background: transparent;
-  border: 1px solid #E2E8F0;
-  padding: 0.75rem;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
 function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -517,7 +479,6 @@ function Navigation() {
   const [mobileOverOns, setMobileOverOns] = useState(false);
   const megaTimeout = useRef(null);
   const overOnsTimeout = useRef(null);
-  const { language, toggleLanguage } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
@@ -562,11 +523,9 @@ function Navigation() {
   return (
     <NavWrapper>
       <AnnouncementBar>
-        {language === 'nl'
-          ? 'Aan de top van AI-ontwikkeling. Wij bouwen wat anderen nog niet durven.'
-          : 'At the frontier of AI. Building what others haven\'t dared yet.'}
+        Aan de top van AI-ontwikkeling. Wij bouwen wat anderen nog niet durven.
         <a href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer">
-          {language === 'nl' ? 'Plan gratis gesprek' : 'Book free call'}
+          Plan gratis gesprek
         </a>
       </AnnouncementBar>
 
@@ -583,7 +542,7 @@ function Navigation() {
 
           <DesktopLinks>
             <NavLink to="/" className={isActive('/') ? 'active' : ''}>
-              {language === 'nl' ? 'Home' : 'Home'}
+              Home
             </NavLink>
             <DienstenBtn
               $active={isDienstenActive}
@@ -591,7 +550,7 @@ function Navigation() {
               onMouseEnter={openMega}
               onMouseLeave={closeMega}
             >
-              {language === 'nl' ? 'Diensten' : 'Services'}
+              Diensten
               <ChevronDown size={14} />
             </DienstenBtn>
             <NavLink to="/cases" className={isActive('/cases') ? 'active' : ''}>
@@ -602,7 +561,7 @@ function Navigation() {
                 $active={isOverOnsActive}
                 $open={overOnsOpen}
               >
-                {language === 'nl' ? 'Over ons' : 'About'}
+                Over ons
                 <ChevronDown size={14} />
               </DienstenBtn>
               <AnimatePresence>
@@ -615,11 +574,11 @@ function Navigation() {
                   >
                     <OverOnsItem to="/over-ons">
                       <OverOnsIcon $color="#3B82F6"><Users size={15} /></OverOnsIcon>
-                      {language === 'nl' ? 'Over ons' : 'About us'}
+                      Over ons
                     </OverOnsItem>
                     <OverOnsItem to="/hiring">
                       <OverOnsIcon $color="#10B981"><Briefcase size={15} /></OverOnsIcon>
-                      {language === 'nl' ? 'Vacatures' : 'Careers'}
+                      Vacatures
                     </OverOnsItem>
                   </OverOnsDropdown>
                 )}
@@ -631,12 +590,9 @@ function Navigation() {
           </DesktopLinks>
 
           <NavActions>
-            <LangBtn onClick={toggleLanguage}>
-              {language === 'nl' ? 'EN' : 'NL'}
-            </LangBtn>
             <CTABtn as="a" href="tel:+31642698918">
               <Phone size={14} />
-              {language === 'nl' ? 'Bel ons' : 'Call us'}
+              Bel ons
             </CTABtn>
             <HamburgerBtn onClick={() => setMobileOpen(true)}>
               <Menu size={24} />
@@ -658,7 +614,7 @@ function Navigation() {
           >
             <MegaInner>
               <MegaLabel>
-                {language === 'nl' ? 'Onze diensten' : 'Our services'}
+                Onze diensten
               </MegaLabel>
               <MegaGrid>
                 {serviceItems.map((item) => {
@@ -669,8 +625,8 @@ function Navigation() {
                         <Icon size={18} />
                       </TileIcon>
                       <div>
-                        <TileTitle>{item.label[language]}</TileTitle>
-                        <TileSub>{item.sublabel[language]}</TileSub>
+                        <TileTitle>{item.label}</TileTitle>
+                        <TileSub>{item.sublabel}</TileSub>
                       </div>
                     </ServiceTile>
                   );
@@ -703,13 +659,13 @@ function Navigation() {
             </MobileHead>
 
             <MobileItems>
-              <MobileLink to="/">{language === 'nl' ? 'Home' : 'Home'}</MobileLink>
+              <MobileLink to="/">Home</MobileLink>
 
               <MobileDienstenBtn
                 $open={mobileDiensten}
                 onClick={() => setMobileDiensten(!mobileDiensten)}
               >
-                {language === 'nl' ? 'Diensten' : 'Services'}
+                Diensten
                 <ChevronDown size={18} />
               </MobileDienstenBtn>
 
@@ -728,7 +684,7 @@ function Navigation() {
                           <MobileDienstenIcon $color={item.color}>
                             <Icon size={15} />
                           </MobileDienstenIcon>
-                          {item.label[language]}
+                          {item.label}
                         </MobileDienstenItem>
                       );
                     })}
@@ -742,7 +698,7 @@ function Navigation() {
                 $open={mobileOverOns}
                 onClick={() => setMobileOverOns(!mobileOverOns)}
               >
-                {language === 'nl' ? 'Over ons' : 'About'}
+                Over ons
                 <ChevronDown size={18} />
               </MobileDienstenBtn>
 
@@ -756,11 +712,11 @@ function Navigation() {
                   >
                     <MobileDienstenItem to="/over-ons">
                       <MobileDienstenIcon $color="#3B82F6"><Users size={15} /></MobileDienstenIcon>
-                      {language === 'nl' ? 'Over ons' : 'About us'}
+                      Over ons
                     </MobileDienstenItem>
                     <MobileDienstenItem to="/hiring">
                       <MobileDienstenIcon $color="#10B981"><Briefcase size={15} /></MobileDienstenIcon>
-                      {language === 'nl' ? 'Vacatures' : 'Careers'}
+                      Vacatures
                     </MobileDienstenItem>
                   </MobileDienstenList>
                 )}
@@ -771,11 +727,8 @@ function Navigation() {
 
             <MobileBottom>
               <MobileCTA as="a" href="tel:+31642698918">
-                {language === 'nl' ? 'Bel ons' : 'Call us'}
+                Bel ons
               </MobileCTA>
-              <MobileLang onClick={toggleLanguage}>
-                {language === 'nl' ? 'Switch to English' : 'Naar Nederlands'}
-              </MobileLang>
             </MobileBottom>
           </MobileOverlay>
         )}

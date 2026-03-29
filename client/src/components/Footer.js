@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, X, Linkedin, Instagram, Twitter, MessageCircle, Youtube } from 'lucide-react';
 import Link from './Link';
-import { useLanguage } from '../LanguageContext';
 import Image from 'next/image';
 
 const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
@@ -279,7 +278,6 @@ const policies = {
 function Footer() {
   const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
   const [activePolicy, setActivePolicy] = useState(null);
-  const { language } = useLanguage();
 
   return (
     <>
@@ -295,9 +293,7 @@ function Footer() {
                 <Image src="/images/optivaize_logo_new.webp" alt="Optivaize" width={128} height={32} loading="lazy" />
               </FooterLogo>
               <Tagline>
-                {language === 'nl'
-                  ? 'Aan de top van AI-ontwikkeling. Wij bouwen intelligente systemen die je bedrijf versnellen.'
-                  : 'At the frontier of AI. We build intelligent systems that accelerate your business.'}
+Aan de top van AI-ontwikkeling. Wij bouwen intelligente systemen die je bedrijf versnellen.
               </Tagline>
               <SocialRow>
                 <SocialIcon href="https://www.linkedin.com/company/optivaize" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }}>
@@ -320,11 +316,11 @@ function Footer() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <ColTitle>{language === 'nl' ? 'Diensten' : 'Services'}</ColTitle>
+              <ColTitle>Diensten</ColTitle>
               <FooterLink to="/ai-agenten">AI Agents</FooterLink>
               <FooterLink to="/ai-marketing">AI Marketing</FooterLink>
               <FooterLink to="/ai-sales">AI Sales</FooterLink>
-              <FooterLink to="/automatisering">{language === 'nl' ? 'Automatisering' : 'Automation'}</FooterLink>
+              <FooterLink to="/automatisering">Automatisering</FooterLink>
               <FooterLink to="/custom-software">Custom Software</FooterLink>
               <FooterLink to="/ai-business">AI Business</FooterLink>
             </FooterCol>
@@ -334,12 +330,12 @@ function Footer() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
-              <ColTitle>{language === 'nl' ? 'Bedrijf' : 'Company'}</ColTitle>
-              <FooterLink to="/">{language === 'nl' ? 'Home' : 'Home'}</FooterLink>
+              <ColTitle>Bedrijf</ColTitle>
+              <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/cases">Cases</FooterLink>
               <FooterLink to="/blog">Blog</FooterLink>
-              <FooterLink to="/over-ons">{language === 'nl' ? 'Over ons' : 'About'}</FooterLink>
-              <FooterLink to="/hiring">{language === 'nl' ? 'Vacatures' : 'Careers'}</FooterLink>
+              <FooterLink to="/over-ons">Over ons</FooterLink>
+              <FooterLink to="/hiring">Vacatures</FooterLink>
               <FooterLink to="/contact">Contact</FooterLink>
             </FooterCol>
 
@@ -354,14 +350,14 @@ function Footer() {
                   <ContactIcon><Mail size={15} /></ContactIcon>
                   <ContactText>
                     <a href="mailto:info@optivaize.nl">info@optivaize.nl</a>
-                    <span>{language === 'nl' ? 'Stuur ons een bericht' : 'Send us a message'}</span>
+                    <span>Stuur ons een bericht</span>
                   </ContactText>
                 </ContactItem>
                 <ContactItem>
                   <ContactIcon><Phone size={15} /></ContactIcon>
                   <ContactText>
                     <a href="tel:+31642698918">+31 6 42 69 89 18</a>
-                    <span>{language === 'nl' ? 'Ma–Vr, 9:00–18:00' : 'Mon–Fri, 9:00–18:00'}</span>
+                    <span>Ma-Vr, 9:00-18:00</span>
                   </ContactText>
                 </ContactItem>
                 <ContactItem>
@@ -375,7 +371,7 @@ function Footer() {
                   <ContactIcon><MessageCircle size={15} /></ContactIcon>
                   <ContactText>
                     <a href="https://wa.me/31642698918" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                    <span>{language === 'nl' ? 'Stuur een bericht' : 'Send a message'}</span>
+                    <span>Stuur een bericht</span>
                   </ContactText>
                 </ContactItem>
               </ContactColInner>
@@ -384,14 +380,14 @@ function Footer() {
 
           <FooterBottom>
             <Copyright>
-              &copy; {new Date().getFullYear()} Optivaize. {language === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.'}
+              &copy; {new Date().getFullYear()} Optivaize. Alle rechten voorbehouden.
               {' | KvK: 97569186 | BTW: NL868115769B01'}
             </Copyright>
             <LegalLinks>
               <LegalLink onClick={() => setActivePolicy('privacy')}>Privacy</LegalLink>
               <LegalLink onClick={() => setActivePolicy('cookies')}>Cookies</LegalLink>
               <LegalLink as="a" href="/images/Algemene Voorwaarden.pdf" download style={{ textDecoration: 'none' }}>
-                {language === 'nl' ? 'Algemene Voorwaarden' : 'Terms & Conditions'}
+                Algemene Voorwaarden
               </LegalLink>
             </LegalLinks>
           </FooterBottom>

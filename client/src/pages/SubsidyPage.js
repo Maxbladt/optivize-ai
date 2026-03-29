@@ -9,7 +9,6 @@ import {
   Zap, TrendingUp, Shield, Server,
   Layers, Coins, Wallet, Gamepad2
 } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 const GRADIENT = 'linear-gradient(135deg, #6366F1, #3B82F6)';
@@ -792,57 +791,39 @@ const DEMO_STEPS_NL = [
   { type: 'result', text: 'Smart contract live op Solana \u00b7 Staking operationeel' },
 ];
 
-const DEMO_STEPS_EN = [
-  { type: 'user', text: 'Deploy a staking smart contract on Solana with reward mechanism.' },
-  { type: 'chip', text: 'Blockchain development pipeline...' },
-  { type: 'agent', text: 'We\'ll compile the Anchor program and deploy to Solana mainnet.' },
-  { type: 'panel', actions: [
-    { icon: Code2, bg: '#6366F1', text: 'Anchor program compiled \u00b7 0 errors' },
-    { icon: Shield, bg: '#3B82F6', text: 'Security audit passed \u00b7 8 checks' },
-    { icon: Blocks, bg: '#8B5CF6', text: 'Deploying to Solana mainnet \u00b7 Program ID generated' },
-    { icon: Coins, bg: '#10B981', text: 'Staking pool live \u00b7 First stake tx confirmed' },
-  ]},
-  { type: 'result', text: 'Smart contract live on Solana \u00b7 Staking operational' },
-];
 
 const capabilities = [
   {
     icon: Code2,
-    nl: { title: 'Smart Contracts', desc: 'Solidity voor Ethereum & Polygon, Rust/Anchor voor Solana. Geaudit, gas-geoptimaliseerd en production-ready.', tech: 'Solidity \u00b7 Rust \u00b7 Anchor' },
-    en: { title: 'Smart Contracts', desc: 'Solidity for Ethereum & Polygon, Rust/Anchor for Solana. Audited, gas-optimized and production-ready.', tech: 'Solidity \u00b7 Rust \u00b7 Anchor' },
+    title: 'Smart Contracts', desc: 'Solidity voor Ethereum & Polygon, Rust/Anchor voor Solana. Geaudit, gas-geoptimaliseerd en production-ready.', tech: 'Solidity \u00b7 Rust \u00b7 Anchor',
   },
   {
     icon: TrendingUp,
-    nl: { title: 'DeFi & Staking', desc: 'Staking pools, yield farming, liquidity protocols en token swaps. Volledig on-chain met transparante mechanismen.', tech: 'Staking \u00b7 Yield \u00b7 LP' },
-    en: { title: 'DeFi & Staking', desc: 'Staking pools, yield farming, liquidity protocols and token swaps. Fully on-chain with transparent mechanisms.', tech: 'Staking \u00b7 Yield \u00b7 LP' },
+    title: 'DeFi & Staking', desc: 'Staking pools, yield farming, liquidity protocols en token swaps. Volledig on-chain met transparante mechanismen.', tech: 'Staking \u00b7 Yield \u00b7 LP',
   },
   {
     icon: Coins,
-    nl: { title: 'Token Development', desc: 'Van tokenomics design tot launch. ERC-20, SPL tokens, governance tokens en utility tokens.', tech: 'ERC-20 \u00b7 SPL \u00b7 Governance' },
-    en: { title: 'Token Development', desc: 'From tokenomics design to launch. ERC-20, SPL tokens, governance tokens and utility tokens.', tech: 'ERC-20 \u00b7 SPL \u00b7 Governance' },
+    title: 'Token Development', desc: 'Van tokenomics design tot launch. ERC-20, SPL tokens, governance tokens en utility tokens.', tech: 'ERC-20 \u00b7 SPL \u00b7 Governance',
   },
   {
     icon: Wallet,
-    nl: { title: 'Wallet Integratie', desc: 'Naadloze crypto wallet integratie met Privy, Phantom, MetaMask en WalletConnect voor de beste UX.', tech: 'Privy \u00b7 Phantom \u00b7 MetaMask' },
-    en: { title: 'Wallet Integration', desc: 'Seamless crypto wallet integration with Privy, Phantom, MetaMask and WalletConnect for the best UX.', tech: 'Privy \u00b7 Phantom \u00b7 MetaMask' },
+    title: 'Wallet Integratie', desc: 'Naadloze crypto wallet integratie met Privy, Phantom, MetaMask en WalletConnect voor de beste UX.', tech: 'Privy \u00b7 Phantom \u00b7 MetaMask',
   },
   {
     icon: Layers,
-    nl: { title: 'dApp Development', desc: 'Full-stack decentralized applications met React, Next.js en blockchain backends. Van frontend tot on-chain logica.', tech: 'React \u00b7 Next.js \u00b7 Web3' },
-    en: { title: 'dApp Development', desc: 'Full-stack decentralized applications with React, Next.js and blockchain backends. From frontend to on-chain logic.', tech: 'React \u00b7 Next.js \u00b7 Web3' },
+    title: 'dApp Development', desc: 'Full-stack decentralized applications met React, Next.js en blockchain backends. Van frontend tot on-chain logica.', tech: 'React \u00b7 Next.js \u00b7 Web3',
   },
   {
     icon: Server,
-    nl: { title: 'Blockchain Infra', desc: 'Multi-container hosting, RPC nodes, blockchain indexers en load balancing voor schaalbare crypto platforms.', tech: 'Docker \u00b7 RPC \u00b7 Helius' },
-    en: { title: 'Blockchain Infra', desc: 'Multi-container hosting, RPC nodes, blockchain indexers and load balancing for scalable crypto platforms.', tech: 'Docker \u00b7 RPC \u00b7 Helius' },
+    title: 'Blockchain Infra', desc: 'Multi-container hosting, RPC nodes, blockchain indexers en load balancing voor schaalbare crypto platforms.', tech: 'Docker \u00b7 RPC \u00b7 Helius',
   },
 ];
 
 /* ─── Demo Component ─────────────────────────── */
-function BlockchainDemo({ language }) {
+function BlockchainDemo() {
   const [step, setStep] = useState(0);
   const [cycle, setCycle] = useState(0);
-  const steps = language === 'nl' ? DEMO_STEPS_NL : DEMO_STEPS_EN;
+  const steps = DEMO_STEPS_NL;
 
   useEffect(() => {
     setStep(0);
@@ -856,7 +837,7 @@ function BlockchainDemo({ language }) {
     ];
     const reset = setTimeout(() => setCycle(c => c + 1), 9000);
     return () => { timers.forEach(clearTimeout); clearTimeout(reset); };
-  }, [cycle, language]);
+  }, [cycle]);
 
   const panelStep = steps.find(s => s.type === 'panel');
 
@@ -906,7 +887,7 @@ function BlockchainDemo({ language }) {
                 style={{ borderLeft: '2px solid #6366F1' }}
               >
                 <span style={{ fontSize: '10px', color: '#A5B4FC', fontWeight: 700, display: 'block', marginBottom: '2px' }}>
-                  {language === 'nl' ? 'Blockchain Agent' : 'Blockchain Agent'}
+                  {'Blockchain Agent'}
                 </span>
                 {steps[2].text}
               </ChatBubble>
@@ -919,7 +900,7 @@ function BlockchainDemo({ language }) {
             <AgentPanel initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
               <AgentPanelHeader>
                 <span className="pulse" />
-                {language === 'nl' ? 'Blockchain Agent \u00b7 Bouwen & Deployen' : 'Blockchain Agent \u00b7 Building & Deploying'}
+                {'Blockchain Agent \u00b7 Bouwen & Deployen'}
               </AgentPanelHeader>
               {panelStep?.actions.map((action, i) => {
                 const Icon = action.icon;
@@ -950,63 +931,33 @@ function BlockchainDemo({ language }) {
 
 /* ─── Page ───────────────────────────────────── */
 export default function SubsidyPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
-  const stepsData = {
-    nl: [
-      { num: '01', title: 'Architectuur & Design', desc: 'We analyseren je use case en ontwerpen de optimale blockchain architectuur. Welke chain, welk consensus mechanisme, welke token standaard.' },
-      { num: '02', title: 'Smart Contract Development', desc: 'We bouwen, testen en auditen je smart contracts. Van Solidity tot Rust/Anchor, met uitgebreide test coverage en security checks.' },
-      { num: '03', title: 'Deploy & Integratie', desc: 'We deployen naar mainnet en integreren met je frontend, wallets en backend systemen. Volledig end-to-end, van concept tot live platform.' },
-    ],
-    en: [
-      { num: '01', title: 'Architecture & Design', desc: 'We analyse your use case and design the optimal blockchain architecture. Which chain, which consensus mechanism, which token standard.' },
-      { num: '02', title: 'Smart Contract Development', desc: 'We build, test and audit your smart contracts. From Solidity to Rust/Anchor, with extensive test coverage and security checks.' },
-      { num: '03', title: 'Deploy & Integration', desc: 'We deploy to mainnet and integrate with your frontend, wallets and backend systems. Fully end-to-end, from concept to live platform.' },
-    ],
-  };
+  const stepsData = [
+    { num: '01', title: 'Architectuur & Design', desc: 'We analyseren je use case en ontwerpen de optimale blockchain architectuur. Welke chain, welk consensus mechanisme, welke token standaard.' },
+    { num: '02', title: 'Smart Contract Development', desc: 'We bouwen, testen en auditen je smart contracts. Van Solidity tot Rust/Anchor, met uitgebreide test coverage en security checks.' },
+    { num: '03', title: 'Deploy & Integratie', desc: 'We deployen naar mainnet en integreren met je frontend, wallets en backend systemen. Volledig end-to-end, van concept tot live platform.' },
+  ];
 
-  const statsData = {
-    nl: [
-      { num: '3+', label: 'Blockchain platforms' },
-      { num: '50+', label: 'Smart contracts deployed' },
-      { num: 'End-to-end', label: 'Van concept tot mainnet' },
-      { num: '24/7', label: 'On-chain monitoring' },
-    ],
-    en: [
-      { num: '3+', label: 'Blockchain platforms' },
-      { num: '50+', label: 'Smart contracts deployed' },
-      { num: 'End-to-end', label: 'From concept to mainnet' },
-      { num: '24/7', label: 'On-chain monitoring' },
-    ],
-  };
+  const statsData = [
+    { num: '3+', label: 'Blockchain platforms' },
+    { num: '50+', label: 'Smart contracts deployed' },
+    { num: 'End-to-end', label: 'Van concept tot mainnet' },
+    { num: '24/7', label: 'On-chain monitoring' },
+  ];
 
   const caseData = {
-    nl: {
-      title: 'StakePVP',
-      sub: 'Game Platform & Blockchain Integratie',
-      desc: 'Optivaize bouwde een compleet game platform met 3 volledig functionele games en blockchain integratie op de Solana blockchain. Multi-container hosting, Privy wallet integratie en in-game crypto transacties.',
-      results: [
-        { value: '3 games', label: 'Volledig functioneel gebouwd', color: '#10B981' },
-        { value: 'Solana', label: 'Blockchain integratie met Privy', color: '#3B82F6' },
-        { value: 'Schaalbaar', label: 'Multi-container infra', color: '#8B5CF6' },
-        { value: '10+ services', label: 'Privy, Solana, Helius', color: '#F59E0B' },
-      ],
-    },
-    en: {
-      title: 'StakePVP',
-      sub: 'Game Platform & Blockchain Integration',
-      desc: 'Optivaize built a complete game platform with 3 fully functional games and blockchain integration on the Solana blockchain. Multi-container hosting, Privy wallet integration and in-game crypto transactions.',
-      results: [
-        { value: '3 games', label: 'Fully functional built', color: '#10B981' },
-        { value: 'Solana', label: 'Blockchain integration with Privy', color: '#3B82F6' },
-        { value: 'Scalable', label: 'Multi-container infra', color: '#8B5CF6' },
-        { value: '10+ services', label: 'Privy, Solana, Helius', color: '#F59E0B' },
-      ],
-    },
+    title: 'StakePVP',
+    sub: 'Game Platform & Blockchain Integratie',
+    desc: 'Optivaize bouwde een compleet game platform met 3 volledig functionele games en blockchain integratie op de Solana blockchain. Multi-container hosting, Privy wallet integratie en in-game crypto transacties.',
+    results: [
+      { value: '3 games', label: 'Volledig functioneel gebouwd', color: '#10B981' },
+      { value: 'Solana', label: 'Blockchain integratie met Privy', color: '#3B82F6' },
+      { value: 'Schaalbaar', label: 'Multi-container infra', color: '#8B5CF6' },
+      { value: '10+ services', label: 'Privy, Solana, Helius', color: '#F59E0B' },
+    ],
   };
 
-  const c = caseData[language];
+  const c = caseData;
 
   return (
     <>
@@ -1036,11 +987,7 @@ export default function SubsidyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              {isNL ? (
-                <>Wij bouwen software op de <GradientText>blockchain</GradientText></>
-              ) : (
-                <>We build software on the <GradientText>blockchain</GradientText></>
-              )}
+              {<>Wij bouwen software op de <GradientText>blockchain</GradientText></>}
             </HeroH1>
 
             <HeroP
@@ -1048,9 +995,7 @@ export default function SubsidyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              {isNL
-                ? 'Van smart contracts tot complete crypto platforms. Wij ontwikkelen end-to-end blockchain oplossingen op Solana, Ethereum en Polygon.'
-                : 'From smart contracts to complete crypto platforms. We develop end-to-end blockchain solutions on Solana, Ethereum and Polygon.'}
+              {'Van smart contracts tot complete crypto platforms. Wij ontwikkelen end-to-end blockchain oplossingen op Solana, Ethereum en Polygon.'}
             </HeroP>
 
             <ChainRow
@@ -1078,11 +1023,11 @@ export default function SubsidyPage() {
                 whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(99,102,241,0.45)' }}
                 whileTap={{ scale: 0.97 }}
               >
-                {isNL ? 'Plan een gesprek' : 'Schedule a call'}
+                {'Plan een gesprek'}
                 <ArrowRight size={17} />
               </BtnPrimary>
               <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                {isNL ? 'Bekijk onze cases' : 'View our cases'}
+                {'Bekijk onze cases'}
               </BtnSecondary>
             </HeroBtns>
           </HeroInner>
@@ -1101,8 +1046,8 @@ export default function SubsidyPage() {
             <ChainConnector />
             <ChainNode initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }}>
               <Code2 size={22} className="node-icon" />
-              <span className="label">{isNL ? 'Smart Contracts' : 'Smart Contracts'}</span>
-              <span className="sub">{isNL ? 'Geaudit & Getest' : 'Audited & Tested'}</span>
+              <span className="label">{'Smart Contracts'}</span>
+              <span className="sub">{'Geaudit & Getest'}</span>
             </ChainNode>
             <ChainConnector />
             <ChainNode $center initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }}>
@@ -1114,7 +1059,7 @@ export default function SubsidyPage() {
             <ChainNode initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8 }}>
               <Coins size={22} className="node-icon" />
               <span className="label">DeFi & Tokens</span>
-              <span className="sub">{isNL ? 'Staking & Yield' : 'Staking & Yield'}</span>
+              <span className="sub">{'Staking & Yield'}</span>
             </ChainNode>
             <ChainConnector />
             <ChainNode initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.9 }}>
@@ -1130,7 +1075,7 @@ export default function SubsidyPage() {
       <StatsSection>
         <Container>
           <StatsGrid>
-            {statsData[language].map((stat, i) => (
+            {statsData.map((stat, i) => (
               <StatCard
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -1150,23 +1095,21 @@ export default function SubsidyPage() {
       <HowSection>
         <Container>
           <SectionHeader>
-            <SectionLabel>{isNL ? 'Ons proces' : 'Our process'}</SectionLabel>
+            <SectionLabel>{'Ons proces'}</SectionLabel>
             <FadeIn>
               <SectionTitle>
-                {isNL ? 'Van idee tot mainnet' : 'From idea to mainnet'}
+                {'Van idee tot mainnet'}
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <SectionSub>
-                {isNL
-                  ? 'Wij begeleiden het hele traject van blockchain development, van architectuur tot deployment.'
-                  : 'We guide the entire blockchain development journey, from architecture to deployment.'}
+                {'Wij begeleiden het hele traject van blockchain development, van architectuur tot deployment.'}
               </SectionSub>
             </FadeIn>
           </SectionHeader>
 
           <StepsGrid>
-            {stepsData[language].map((s, i) => (
+            {stepsData.map((s, i) => (
               <StepCard
                 key={i}
                 initial={{ opacity: 0, y: 24 }}
@@ -1187,17 +1130,15 @@ export default function SubsidyPage() {
       <CapSection>
         <Container>
           <SectionHeader>
-            <SectionLabel>{isNL ? 'Wat wij bouwen' : 'What we build'}</SectionLabel>
+            <SectionLabel>{'Wat wij bouwen'}</SectionLabel>
             <FadeIn>
               <SectionTitle>
-                {isNL ? 'Blockchain expertise' : 'Blockchain expertise'}
+                {'Blockchain expertise'}
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <SectionSub>
-                {isNL
-                  ? 'Van smart contracts tot volledige decentralized applications, wij bouwen het.'
-                  : 'From smart contracts to full decentralized applications, we build it.'}
+                {'Van smart contracts tot volledige decentralized applications, wij bouwen het.'}
               </SectionSub>
             </FadeIn>
           </SectionHeader>
@@ -1205,7 +1146,6 @@ export default function SubsidyPage() {
           <CapGrid>
             {capabilities.map((cap, i) => {
               const Icon = cap.icon;
-              const copy = cap[language];
               return (
                 <CapCard
                   key={i}
@@ -1215,9 +1155,9 @@ export default function SubsidyPage() {
                   transition={{ delay: i * 0.06 }}
                 >
                   <CapIcon><Icon size={22} /></CapIcon>
-                  <CapTitle>{copy.title}</CapTitle>
-                  <CapDesc>{copy.desc}</CapDesc>
-                  <CapTech>{copy.tech}</CapTech>
+                  <CapTitle>{cap.title}</CapTitle>
+                  <CapDesc>{cap.desc}</CapDesc>
+                  <CapTech>{cap.tech}</CapTech>
                 </CapCard>
               );
             })}
@@ -1285,14 +1225,10 @@ export default function SubsidyPage() {
           <FadeIn>
             <CTABox whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
               <CTATitle>
-                {isNL
-                  ? 'Klaar om op de blockchain te bouwen?'
-                  : 'Ready to build on the blockchain?'}
+                {'Klaar om op de blockchain te bouwen?'}
               </CTATitle>
               <CTASub>
-                {isNL
-                  ? 'Van smart contracts tot complete crypto platforms. Vertel ons over je project en wij bouwen het.'
-                  : 'From smart contracts to complete crypto platforms. Tell us about your project and we\'ll build it.'}
+                Van smart contracts tot complete crypto platforms. Vertel ons over je project en wij bouwen het.
               </CTASub>
               <CTABtns>
                 <CTABtnWhite
@@ -1302,7 +1238,7 @@ export default function SubsidyPage() {
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                 >
-                  {isNL ? 'Plan een gesprek' : 'Schedule a call'}
+                  {'Plan een gesprek'}
                   <ArrowRight size={17} />
                 </CTABtnWhite>
               </CTABtns>

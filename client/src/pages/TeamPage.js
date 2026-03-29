@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage } from '../LanguageContext';
 import { ArrowRight, MapPin } from 'lucide-react';
 import Team from '../components/Team';
 import InteractiveGlobe from '../components/InteractiveGlobe';
@@ -278,20 +277,12 @@ const locationsNL = [
   { city: 'Manila', country: 'Filipijnen', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
 ];
 
-const locationsEN = [
-  { city: 'Utrecht', country: 'Netherlands', desc: 'AI Research & Headquarters - Strategy, sales & management', flag: '🇳🇱' },
-  { city: 'Mumbai', country: 'India', desc: 'Development - Machine learning & data science', flag: '🇮🇳' },
-  { city: 'Manila', country: 'Philippines', desc: 'Development hub - Full-stack & AI engineering', flag: '🇵🇭' },
-];
-
 /* ──── Globe is now in components/InteractiveGlobe.js ──── */
 
 /* ──── Component ──── */
 
 function TeamPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
-  const locations = isNL ? locationsNL : locationsEN;
+  const locations = locationsNL;
 
   return (
     <>
@@ -307,12 +298,10 @@ function TeamPage() {
         <Container>
           <HeroContent>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? 'Wij zijn Optivaize' : 'We are Optivaize'}
+              Wij zijn Optivaize
             </H1>
             <Sub initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Wij helpen bedrijven slimmer werken met AI. Van chatbots en automatisering tot complete AI-transformaties, met een team van 15+ specialisten in 3 landen.'
-                : 'We help businesses work smarter with AI. From chatbots and automation to complete AI transformations, with a team of 15+ specialists in 3 countries.'}
+              Wij helpen bedrijven slimmer werken met AI. Van chatbots en automatisering tot complete AI-transformaties, met een team van 15+ specialisten in 3 landen.
             </Sub>
           </HeroContent>
         </Container>
@@ -328,7 +317,7 @@ function TeamPage() {
           >
             <HeroImage
               src="/images/optivaize_office_outside.webp"
-              alt={isNL ? 'Optivaize kantoor' : 'Optivaize office'}
+              alt="Optivaize kantoor"
               loading="eager"
             />
           </HeroImageInner>
@@ -344,14 +333,12 @@ function TeamPage() {
           <GlobeLayout>
             <div>
               <FadeIn>
-                <SectionLabel $light>{isNL ? 'Onze internationale workforce' : 'Our international workforce'}</SectionLabel>
+                <SectionLabel $light>Onze internationale workforce</SectionLabel>
                 <SectionTitle $light>
-                  {isNL ? 'Ons team werkt vanuit 3 landen' : 'Our team works from 3 countries'}
+                  Ons team werkt vanuit 3 landen
                 </SectionTitle>
                 <SectionText $light>
-                  {isNL
-                    ? 'AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.'
-                    : 'AI research and project management are based in the Netherlands. Development takes place in Mumbai and Manila, where we have access to exceptional talent. This allows us to significantly reduce development costs without compromising quality. Direction and final responsibility always remain with our Dutch team.'}
+                  AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.
                 </SectionText>
               </FadeIn>
               <LocationsList>
@@ -389,9 +376,7 @@ function TeamPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {isNL
-                ? <>Klaar om samen te <GradientSpan>bouwen</GradientSpan>?</>
-                : <>Ready to <GradientSpan>build</GradientSpan> together?</>}
+              <>Klaar om samen te <GradientSpan>bouwen</GradientSpan>?</>
             </CtaTitle>
             <CtaSub
               initial={{ opacity: 0, y: 20 }}
@@ -399,9 +384,7 @@ function TeamPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              {isNL
-                ? 'Neem contact op en ontdek wat wij voor je bedrijf kunnen betekenen.'
-                : 'Get in touch and discover what we can do for your business.'}
+              Neem contact op en ontdek wat wij voor je bedrijf kunnen betekenen.
             </CtaSub>
             <CtaBtn
               href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
@@ -413,7 +396,7 @@ function TeamPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              {isNL ? 'Plan gratis gesprek' : 'Book free call'}
+              Plan gratis gesprek
               <ArrowRight size={17} />
             </CtaBtn>
           </CtaInner>

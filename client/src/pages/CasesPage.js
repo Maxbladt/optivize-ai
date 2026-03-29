@@ -2,7 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../LanguageContext';
 import Cases from '../components/Cases';
 
 const PageHero = styled.section`
@@ -45,20 +44,15 @@ const Sub = styled(motion.p)`
 `;
 
 function CasesPage({ initialCases = [] }) {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
-
   return (
     <>
       <PageHero>
         <Container>
           <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            {isNL ? 'Cases & Resultaten' : 'Cases & Results'}
+            Cases & Resultaten
           </H1>
           <Sub initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-            {isNL
-              ? 'Bekijk hoe wij bedrijven hebben getransformeerd met AI-automatisering, agents en custom software.'
-              : 'See how we have transformed businesses with AI automation, agents and custom software.'}
+            Bekijk hoe wij bedrijven hebben getransformeerd met AI-automatisering, agents en custom software.
           </Sub>
         </Container>
       </PageHero>

@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 import { DollarSign, Zap } from 'lucide-react';
 
 const PresentationContainer = styled.section`
@@ -166,19 +165,16 @@ const StatLabel = styled.p`
 
 function PresentationSection() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const { language } = useLanguage();
-  const t = translations[language].presentation;
-
   const stats = [
     {
       icon: Zap,
-      number: t.stat1Number,
-      label: t.stat1Label,
+      number: '100+',
+      label: 'Geautomatiseerde taken',
     },
     {
       icon: DollarSign,
-      number: t.stat2Number,
-      label: t.stat2Label,
+      number: '3M',
+      label: 'Bespaard op loonkosten',
     }
   ];
 
@@ -218,11 +214,11 @@ function PresentationSection() {
             animate={inView ? "visible" : "hidden"}
           >
             <Title variants={itemVariants}>
-              {t.title}
+              Bewezen resultaten
             </Title>
-            
+
             <Description variants={itemVariants}>
-              {t.description}
+              Wij hebben bij 30+ organisaties AI geïntegreerd in processen en daarmee nieuwe omzetkansen én stevige kostenbesparingen gerealiseerd via intelligente automatisering. Je kunt gerust contact opnemen met onze klanten: sterke referenties zijn het beste bewijs van de resultaten die wij leveren.
             </Description>
 
             <StatsGrid variants={itemVariants}>

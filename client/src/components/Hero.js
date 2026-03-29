@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 
 const HeroSection = styled.section`
   id: home;
@@ -142,9 +141,6 @@ function Hero() {
   const shapesRef = useRef(null);
   const circuitRef = useRef(null);
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
-  const { language } = useLanguage();
-  const t = translations[language].hero;
-
   // Service titles from Services.js
   const servicesTitles = [
     'AI Presentation',
@@ -312,7 +308,7 @@ function Hero() {
           animate={controls}
         >
           <Headline>
-            {t.headline.split(' ').map((word, idx) => (
+            {'Transformeer je bedrijf met'.split(' ').map((word, idx) => (
               <motion.span
                 key={idx}
                 initial="hidden"
@@ -339,7 +335,7 @@ function Hero() {
           </Headline>
 
           <Subheadline variants={itemVariants}>
-            {t.subheadline}
+            Wij stroomlijnen je processen, automatiseren terugkerend werk en helpen je sneller groeien met slimme AI-oplossingen die passen bij je organisatie.
           </Subheadline>
 
           <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -370,7 +366,7 @@ function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {t.callUs}
+              Bel ons
             </motion.a>
 
             <motion.a
@@ -404,7 +400,7 @@ function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              {t.contactUs}
+              Vul het formulier in
             </motion.a>
           </motion.div>
         </motion.div>

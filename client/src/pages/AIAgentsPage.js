@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
 import { Bot, MessageCircle, Zap, Target, TrendingUp, CheckCircle, ArrowRight, Users, Globe, ChevronRight, BarChart3 } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 import VideoPlayer from '../components/VideoPlayer';
 
@@ -864,7 +863,7 @@ const DEMO_AGENTS = [
   { name: 'Ops Agent', icon: Zap, color: '#8B5CF6' },
 ];
 
-function AgentDemo({ isNL }) {
+function AgentDemo() {
   const [qIdx, setQIdx] = useState(0);
   const [phase, setPhase] = useState(0);
 
@@ -894,7 +893,7 @@ function AgentDemo({ isNL }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
         >
-          {isNL ? q.msgNL : q.msgEN}
+          {q.msgNL}
         </DemoChatBubble>
       </DemoChat>
 
@@ -904,7 +903,7 @@ function AgentDemo({ isNL }) {
           <DemoMainInfo>
             <div className="name">OpenClaw Main Agent</div>
             <div className="status">
-              {phase === 0 ? '...' : phase === 1 ? (isNL ? 'Analyseren...' : 'Analysing...') : (isNL ? q.routeNL : q.routeEN)}
+              {phase === 0 ? '...' : phase === 1 ? ('Analyseren...') : (q.routeNL)}
             </div>
           </DemoMainInfo>
         </DemoMainCard>
@@ -932,7 +931,7 @@ function AgentDemo({ isNL }) {
               <DemoAgentLabel>{ag.name}</DemoAgentLabel>
               {isActive && (
                 <DemoActions>
-                  {(isNL ? q.actionsNL : q.actionsEN).map((action, j) => (
+                  {(q.actionsNL).map((action, j) => (
                     <DemoAction key={`${qIdx}-${j}`} $delay={j * 0.3} $color={ag.color}>
                       <CheckCircle size={9} /> {action}
                     </DemoAction>
@@ -1031,42 +1030,29 @@ function ClickVideo({ src, thumbnail }) {
 }
 
 function AIAgentsPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
-  const steps = isNL ? [
+  const steps = [
     { icon: MessageCircle, num: '1', title: 'Verzoek indienen', desc: 'Een medewerker stuurt een bericht via Slack, WhatsApp of Teams. Net als een chatgesprek.' },
     { icon: Bot, num: '2', title: 'Hoofd-agent analyseert', desc: 'De OpenClaw Main Agent analyseert het verzoek en bepaalt welke sub-agent(s) het beste kunnen helpen.' },
     { icon: CheckCircle, num: '3', title: 'Sub-agents handelen', desc: 'De juiste sub-agents nemen het over, voeren de taak uit en rapporteren de uitkomst.' },
-  ] : [
-    { icon: MessageCircle, num: '1', title: 'Submit a request', desc: 'An employee sends a message via Slack, WhatsApp or Teams. Just like a chat conversation.' },
-    { icon: Bot, num: '2', title: 'Main agent analyses', desc: 'The OpenClaw Main Agent analyses the request and determines which sub-agent(s) can best help.' },
-    { icon: CheckCircle, num: '3', title: 'Sub-agents execute', desc: 'The right sub-agents take over, execute the task and report the outcome.' },
   ];
 
   const useCases = [
-    { icon: TrendingUp, color: '#10B981', title: isNL ? 'Marketing automatisering' : 'Marketing automation', desc: isNL ? 'Agent schrijft blogs, optimaliseert SEO, beheert Google Ads en plaatst social content, zonder handmatig werk.' : 'Agent writes blogs, optimises SEO, manages Google Ads and posts social content, without manual work.' },
-    { icon: Target, color: '#3B82F6', title: isNL ? 'Sales opvolging' : 'Sales follow-up', desc: isNL ? 'Leads worden automatisch gekwalificeerd, bijgehouden in HubSpot en opgevolgd via gepersonaliseerde berichten.' : 'Leads are automatically qualified, tracked in HubSpot and followed up via personalised messages.' },
-    { icon: Zap, color: '#8B5CF6', title: isNL ? 'Operations & rapportages' : 'Operations & reporting', desc: isNL ? 'Processen geautomatiseerd, platforms gesynchroniseerd via n8n en rapporten dagelijks gegenereerd.' : 'Processes automated, platforms synchronised via n8n and reports generated daily.' },
-    { icon: Globe, color: '#F59E0B', title: isNL ? 'Klantenservice 24/7' : 'Customer service 24/7', desc: isNL ? 'AI chatbot beantwoordt vragen, escaleert complexe gevallen naar mensen en werkt altijd door.' : 'AI chatbot answers questions, escalates complex cases to humans and always keeps working.' },
-    { icon: BarChart3, color: '#EF4444', title: isNL ? 'Finance & cashflow' : 'Finance & cashflow', desc: isNL ? 'Agent logt in op boekhoudtools zoals Exact Online, analyseert cashflow en stuurt samenvattingen.' : 'Agent logs into accounting tools like Exact Online, analyses cashflow and sends summaries.' },
-    { icon: Users, color: '#EC4899', title: isNL ? 'HR & onboarding' : 'HR & onboarding', desc: isNL ? 'Automatische onboarding flows, taaklijsten en kennisoverdracht voor nieuwe medewerkers.' : 'Automatic onboarding flows, task lists and knowledge transfer for new employees.' },
+    { icon: TrendingUp, color: '#10B981', title: 'Marketing automatisering', desc: 'Agent schrijft blogs, optimaliseert SEO, beheert Google Ads en plaatst social content, zonder handmatig werk.' },
+    { icon: Target, color: '#3B82F6', title: 'Sales opvolging', desc: 'Leads worden automatisch gekwalificeerd, bijgehouden in HubSpot en opgevolgd via gepersonaliseerde berichten.' },
+    { icon: Zap, color: '#8B5CF6', title: 'Operations & rapportages', desc: 'Processen geautomatiseerd, platforms gesynchroniseerd via n8n en rapporten dagelijks gegenereerd.' },
+    { icon: Globe, color: '#F59E0B', title: 'Klantenservice 24/7', desc: 'AI chatbot beantwoordt vragen, escaleert complexe gevallen naar mensen en werkt altijd door.' },
+    { icon: BarChart3, color: '#EF4444', title: 'Finance & cashflow', desc: 'Agent logt in op boekhoudtools zoals Exact Online, analyseert cashflow en stuurt samenvattingen.' },
+    { icon: Users, color: '#EC4899', title: 'HR & onboarding', desc: 'Automatische onboarding flows, taaklijsten en kennisoverdracht voor nieuwe medewerkers.' },
   ];
 
-  const features = isNL ? [
+  const features = [
     'Werkt 24/7 zonder pauze of vakantie',
     'Integreert met al je bestaande tools en platforms',
     'Leert van elke interactie en wordt steeds slimmer',
     'Volledig aanpasbaar aan je bedrijfsprocessen',
     'Veilig, privacygericht en zelf te hosten',
     'Gebouwd op ons eigen OpenClaw framework',
-  ] : [
-    'Works 24/7 without breaks or holidays',
-    'Integrates with all your existing tools and platforms',
-    'Learns from every interaction and gets smarter',
-    'Fully customisable to your business processes',
-    'Secure, privacy-focused and self-hostable',
-    'Built on our own OpenClaw framework',
   ];
 
   return (
@@ -1087,7 +1073,7 @@ function AIAgentsPage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
               <span>AI Agents</span>
             </Breadcrumb>
@@ -1097,20 +1083,14 @@ function AIAgentsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              {isNL ? (
-                <>AI Agents die je team <span style={{ color: '#60A5FA' }}>versterken</span></>
-              ) : (
-                <>AI Agents that <span style={{ color: '#60A5FA' }}>amplify</span> your team</>
-              )}
+              {<>AI Agents die je team <span style={{ color: '#60A5FA' }}>versterken</span></>}
             </PageH1>
             <PageDesc
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              {isNL
-                ? 'OpenClaw is ons eigen multi-agent framework voor bedrijven. Een hoofd-agent ontvangt verzoeken en distribueert taken naar gespecialiseerde sub-agents, volledig autonoom, via de tools die je team al gebruikt.'
-                : 'OpenClaw is our own multi-agent framework for businesses. One main agent receives requests and distributes tasks to specialised sub-agents , fully autonomously, via the tools your team already uses.'}
+              {'OpenClaw is ons eigen multi-agent framework voor bedrijven. Een hoofd-agent ontvangt verzoeken en distribueert taken naar gespecialiseerde sub-agents, volledig autonoom, via de tools die je team al gebruikt.'}
             </PageDesc>
             <PageCTA
               href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
@@ -1122,7 +1102,7 @@ function AIAgentsPage() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Plan een demo' : 'Book a demo'}
+              {'Plan een demo'}
               <ArrowRight size={17} />
             </PageCTA>
           </PageHeroInner>
@@ -1132,7 +1112,7 @@ function AIAgentsPage() {
       {/* Tools strip */}
       <ToolsStrip>
         <Container>
-          <ToolsLabel>{isNL ? 'Platforms en tools waarmee onze agents werken' : 'Platforms and tools our agents work with'}</ToolsLabel>
+          <ToolsLabel>{'Platforms en tools waarmee onze agents werken'}</ToolsLabel>
           <ToolsRow>
             {AGENT_TOOLS.map((t, i) => (
               <ToolChip key={i}>
@@ -1159,10 +1139,10 @@ function AIAgentsPage() {
         <Container>
           <FadeIn>
             <StatsBanner>
-              <StatCell><StatNum>90%</StatNum><StatText>{isNL ? 'Van interne verzoeken geautomatiseerd' : 'Of internal requests automated'}</StatText></StatCell>
-              <StatCell><StatNum>24/7</StatNum><StatText>{isNL ? 'Actief zonder onderbreking' : 'Active without interruption'}</StatText></StatCell>
-              <StatCell><StatNum>8+</StatNum><StatText>{isNL ? 'Communicatiekanalen ondersteund' : 'Communication channels supported'}</StatText></StatCell>
-              <StatCell><StatNum>3×</StatNum><StatText>{isNL ? 'Meer output met zelfde team' : 'More output with same team'}</StatText></StatCell>
+              <StatCell><StatNum>90%</StatNum><StatText>{'Van interne verzoeken geautomatiseerd'}</StatText></StatCell>
+              <StatCell><StatNum>24/7</StatNum><StatText>{'Actief zonder onderbreking'}</StatText></StatCell>
+              <StatCell><StatNum>8+</StatNum><StatText>{'Communicatiekanalen ondersteund'}</StatText></StatCell>
+              <StatCell><StatNum>3×</StatNum><StatText>{'Meer output met zelfde team'}</StatText></StatCell>
             </StatsBanner>
           </FadeIn>
         </Container>
@@ -1173,12 +1153,10 @@ function AIAgentsPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Architectuur' : 'Architecture'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Een hoofd-agent, oneindig veel mogelijkheden' : 'One main agent, infinite possibilities'}</SectionTitle>
+              <SectionLabel>{'Architectuur'}</SectionLabel>
+              <SectionTitle>{'Een hoofd-agent, oneindig veel mogelijkheden'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'OpenClaw gebruikt een Gateway-architectuur. De Main Agent is de regisseur die verzoeken analyseert en delegeert aan gespecialiseerde sub-agents. Elke sub-agent heeft zijn eigen tools, geheugen en bevoegdheden.'
-                  : 'OpenClaw uses a Gateway architecture. The Main Agent is the director that analyses requests and delegates to specialised sub-agents. Each sub-agent has its own tools, memory and permissions.'}
+                {'OpenClaw gebruikt een Gateway-architectuur. De Main Agent is de regisseur die verzoeken analyseert en delegeert aan gespecialiseerde sub-agents. Elke sub-agent heeft zijn eigen tools, geheugen en bevoegdheden.'}
               </SectionText>
               <FeatureList>
                 {features.map((f, i) => (
@@ -1191,7 +1169,7 @@ function AIAgentsPage() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <AgentDemo isNL={isNL} />
+              <AgentDemo />
             </FadeIn>
           </TwoCol>
         </Container>
@@ -1201,8 +1179,8 @@ function AIAgentsPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Communicatiekanalen' : 'Communication channels'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Je team communiceert via de tools die ze al kennen' : 'Your team communicates via the tools they already know'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Communicatiekanalen'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Je team communiceert via de tools die ze al kennen'}</SectionTitle></FadeIn>
           </div>
           <ChannelsGrid>
             {CHANNELS_DATA.map((ch, i) => (
@@ -1232,17 +1210,13 @@ function AIAgentsPage() {
               <VideoPlayer src="/videos/Openclaw intro.mp4" />
             </FadeIn>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Voor je bedrijf' : 'For your business'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Gebouwd voor de manier waarop je team werkt' : 'Built for the way your team works'}</SectionTitle>
+              <SectionLabel>{'Voor je bedrijf'}</SectionLabel>
+              <SectionTitle>{'Gebouwd voor de manier waarop je team werkt'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Wij configureren OpenClaw specifiek voor je organisatie. Je medewerkers communiceren via de tools die ze al gebruiken, geen nieuwe software te leren.'
-                  : 'We configure OpenClaw specifically for your organisation. Your employees communicate via the tools they already use , no new software to learn.'}
+                {'Wij configureren OpenClaw specifiek voor je organisatie. Je medewerkers communiceren via de tools die ze al gebruiken, geen nieuwe software te leren.'}
               </SectionText>
               <SectionText>
-                {isNL
-                  ? 'Of het nu gaat om Slack, WhatsApp, Teams of Discord, OpenClaw werkt via je bestaande communicatiekanalen en koppelt aan je CRM, boekhouding en andere systemen.'
-                  : 'Whether it\'s Slack, WhatsApp, Teams or Discord , OpenClaw works through your existing communication channels and connects to your CRM, accounting and other systems.'}
+                {'Of het nu gaat om Slack, WhatsApp, Teams of Discord, OpenClaw werkt via je bestaande communicatiekanalen en koppelt aan je CRM, boekhouding en andere systemen.'}
               </SectionText>
             </FadeIn>
           </TwoCol>
@@ -1253,8 +1227,8 @@ function AIAgentsPage() {
       <StepsSection>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <SectionLabel style={{ justifyContent: 'center', display: 'flex' }}>{isNL ? 'Hoe het werkt' : 'How it works'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'In drie stappen live' : 'Live in three steps'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ justifyContent: 'center', display: 'flex' }}>{'Hoe het werkt'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'In drie stappen live'}</SectionTitle></FadeIn>
           </div>
           <StepsGrid>
             {steps.map((step, i) => {
@@ -1277,8 +1251,8 @@ function AIAgentsPage() {
       <UseCasesSection>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <SectionLabel style={{ justifyContent: 'center', display: 'flex' }}>{isNL ? 'Toepassingen' : 'Applications'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wat kunnen onze agents voor je doen?' : 'What can our agents do for you?'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ justifyContent: 'center', display: 'flex' }}>{'Toepassingen'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Wat kunnen onze agents voor je doen?'}</SectionTitle></FadeIn>
           </div>
           <UseCaseGrid>
             {useCases.map((uc, i) => {
@@ -1304,14 +1278,14 @@ function AIAgentsPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar voor je eigen AI Agent workforce?' : 'Ready for your own AI Agent workforce?'}</h2>
-              <p>{isNL ? 'Wij bouwen een OpenClaw implementatie op maat voor je organisatie. Plan een gratis gesprek.' : 'We build a custom OpenClaw implementation for your organisation. Book a free call.'}</p>
+              <h2>{'Klaar voor je eigen AI Agent workforce?'}</h2>
+              <p>{'Wij bouwen een OpenClaw implementatie op maat voor je organisatie. Plan een gratis gesprek.'}</p>
               <CTAButtonRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </CTAButtonRow>
             </CTACard>
