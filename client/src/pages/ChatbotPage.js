@@ -9,7 +9,6 @@ import {
   MessageCircle, ArrowRight, CheckCircle, Zap, TrendingUp, RefreshCw,
   Star, Bot, Target, BarChart3, Mail, MapPin, ShoppingBag, Globe, Code2
 } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 
@@ -283,11 +282,10 @@ const CHAT_SCRIPT_EN = [
   { role: 'discount', text: '' },
 ];
 
-function ChatbotDemo({ language }) {
+function ChatbotDemo() {
   const [step, setStep] = useState(0);
   const [typing, setTyping] = useState(false);
-  const isNL = language === 'nl';
-  const CHAT_SCRIPT = isNL ? CHAT_SCRIPT_NL : CHAT_SCRIPT_EN;
+  const CHAT_SCRIPT = CHAT_SCRIPT_NL;
 
   useEffect(() => {
     if (step >= CHAT_SCRIPT.length) {
@@ -308,7 +306,7 @@ function ChatbotDemo({ language }) {
     <DemoWrap initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.3 }}>
       <DemoBar>
         <span className="r" /><span className="y" /><span className="g" />
-        <span className="label">{isNL ? 'Fonteyn Spas · AI Productadvies' : 'Fonteyn Spas · AI Product Advice'}</span>
+        <span className="label">{'Fonteyn Spas · AI Productadvies'}</span>
       </DemoBar>
       <ChatArea>
         <AnimatePresence>
@@ -331,8 +329,8 @@ function ChatbotDemo({ language }) {
             if (msg.role === 'discount') {
               return (
                 <DiscountCard key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-                  <div className="title"><Star size={13} />{isNL ? 'Persoonlijke aanbieding voor jou' : 'Personal offer for you'}</div>
-                  {isNL ? '10% extra korting op de Spa Believe. Je persoonlijke kortingscode:' : '10% extra off the Spa Believe. Your personal discount code:'}
+                  <div className="title"><Star size={13} />{'Persoonlijke aanbieding voor jou'}</div>
+                  {'10% extra korting op de Spa Believe. Je persoonlijke kortingscode:'}
                   <div className="code">SPA10FONTEYN</div>
                 </DiscountCard>
               );
@@ -641,23 +639,14 @@ const CTABtn = styled(motion.a)`
 `;
 
 function ChatbotPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
-  const features = isNL ? [
+  const features = [
     { icon: RefreshCw, color: '#06B6D4', title: 'Live training op gesprekken', text: 'Andere chatbots volgen alleen instructies. Ons systeem leert van elk gesprek , automatisch, zonder menselijke tussenkomst. Elke interactie maakt de chatbot slimmer.' },
     { icon: Target, color: '#3B82F6', title: 'A/B-vragen & gebruikersflows', text: 'Wij bouwen conversatieflows in waarbij de chatbot strategisch vragen stelt om de gebruiker richting een aankoop of conversie te leiden , zonder agressief te zijn.' },
     { icon: BarChart3, color: '#8B5CF6', title: 'Conversie-tracking over sessies', text: 'Wij tracken niet alleen één gesprek maar de volledige klantreis over meerdere sessies. Zo zie je exact hoeveel omzet je chatbot genereert.' },
     { icon: Zap, color: '#F59E0B', title: 'Kortingen & tools op regelbasis', text: 'De chatbot kan automatisch kortingen aanbieden op basis van klantgedrag, aankoophistorie of specifieke regels die je instelt, volledig geautomatiseerd.' },
     { icon: Bot, color: '#10B981', title: 'Getraind op je data', text: 'Wij trainen de chatbot op je producten, FAQs, conversaties en tone of voice. Het resultaat: een assistent die klinkt en denkt als je beste medewerker.' },
     { icon: TrendingUp, color: '#EC4899', title: 'Continu verbeteren', text: 'Maandelijks analyseren wij de chatbot-prestaties, passen we flows aan en trainen we opnieuw op nieuwe conversaties. Je chatbot groeit mee met je bedrijf.' },
-  ] : [
-    { icon: RefreshCw, color: '#06B6D4', title: 'Live training on conversations', text: 'Other chatbots only follow instructions. Our system learns from every conversation , automatically, without human intervention. Each interaction makes the chatbot smarter.' },
-    { icon: Target, color: '#3B82F6', title: 'A/B questions & user flows', text: 'We build conversation flows where the chatbot strategically asks questions to guide the user towards a purchase or conversion , without being aggressive.' },
-    { icon: BarChart3, color: '#8B5CF6', title: 'Cross-session conversion tracking', text: 'We track not just one conversation but the full customer journey across multiple sessions. See exactly how much revenue your chatbot generates.' },
-    { icon: Zap, color: '#F59E0B', title: 'Discounts & rule-based tools', text: 'The chatbot can automatically offer discounts based on customer behaviour, purchase history or specific rules you set , fully automated.' },
-    { icon: Bot, color: '#10B981', title: 'Trained on your data', text: 'We train the chatbot on your products, FAQs, conversations and tone of voice. The result: an assistant that sounds and thinks like your best employee.' },
-    { icon: TrendingUp, color: '#EC4899', title: 'Continuous improvement', text: 'Monthly we analyse chatbot performance, adjust flows and retrain on new conversations. Your chatbot grows with your business.' },
   ];
 
   const channels = [
@@ -671,20 +660,13 @@ function ChatbotPage() {
     { name: 'Gmail', logo: 'https://cdn.simpleicons.org/gmail/EA4335' },
   ];
 
-  const flowSteps = isNL ? [
+  const flowSteps = [
     { title: 'Kennismaking & data-verzameling', desc: 'Wij verzamelen je productdata, bestaande FAQs, eerdere klantgesprekken en je tone of voice. Dit vormt de basis van de training.' },
     { title: 'Conversatieflow ontwerp', desc: 'Samen ontwerpen we de ideale klantreizen, van productadvies tot checkout. Inclusief A/B-vragen en beslisbomen voor conversie-optimalisatie.' },
     { title: 'Training & fine-tuning', desc: 'Wij trainen het taalmodel op je specifieke data en verfijnen het totdat de chatbot precies klinkt en handelt zoals je wilt.' },
     { title: 'Koppeling aan kanalen', desc: 'De chatbot wordt gekoppeld aan alle kanalen die je wilt, website, WhatsApp, Slack, Discord, Shopify en meer.' },
     { title: 'Live & monitoring', desc: 'Zodra de chatbot live gaat, monitoren we conversaties, conversies en leermomenten. Maandelijks draaien we een nieuwe trainingsronde.' },
     { title: 'Doorlopende optimalisatie', desc: 'Elke maand analyseren we prestaties en passen flows aan. Je chatbot wordt elk kwartaal meetbaar beter.' },
-  ] : [
-    { title: 'Intake & data collection', desc: 'We collect your product data, existing FAQs, past customer conversations and your tone of voice. This forms the foundation of training.' },
-    { title: 'Conversation flow design', desc: 'Together we design ideal customer journeys , from product advice to checkout. Including A/B questions and decision trees for conversion optimisation.' },
-    { title: 'Training & fine-tuning', desc: 'We train the language model on your specific data and refine it until the chatbot sounds and acts exactly as you want.' },
-    { title: 'Channel integration', desc: 'The chatbot is connected to all channels you want , website, WhatsApp, Slack, Discord, Shopify and more.' },
-    { title: 'Live & monitoring', desc: 'Once live, we monitor conversations, conversions and learning moments. Monthly we run a new training round.' },
-    { title: 'Ongoing optimisation', desc: 'Every month we analyse performance and adjust flows. Your chatbot measurably improves every quarter.' },
   ];
 
   return (
@@ -706,19 +688,13 @@ function ChatbotPage() {
             <div>
               <HeroBadge>
                 <MessageCircle size={12} />
-                {isNL ? 'AI Chatbot · Optivaize' : 'AI Chatbot · Optivaize'}
+                {'AI Chatbot · Optivaize'}
               </HeroBadge>
               <H1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                {isNL ? (
-                  <>De chatbot die <Gradient>leert van elk gesprek</Gradient></>
-                ) : (
-                  <>The chatbot that <Gradient>learns from every conversation</Gradient></>
-                )}
+                {<>De chatbot die <Gradient>leert van elk gesprek</Gradient></>}
               </H1>
               <HeroSub initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-                {isNL
-                  ? 'Wij zijn de enigen die chatbots bouwen die over-the-air getraind worden op echte gesprekken. Geen statische instructieset, maar een systeem dat elke dag slimmer wordt en je conversies structureel verhoogt.'
-                  : 'We are the only ones building chatbots that are over-the-air trained on real conversations. No static instruction set , a system that gets smarter every day and structurally increases your conversions.'}
+                {'Wij zijn de enigen die chatbots bouwen die over-the-air getraind worden op echte gesprekken. Geen statische instructieset, maar een systeem dat elke dag slimmer wordt en je conversies structureel verhoogt.'}
               </HeroSub>
               <HeroBtns>
                 <BtnPrimary
@@ -728,15 +704,15 @@ function ChatbotPage() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  {isNL ? 'Gratis chatbot demo' : 'Free chatbot demo'}
+                  {'Gratis chatbot demo'}
                   <ArrowRight size={16} />
                 </BtnPrimary>
                 <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }}>
-                  {isNL ? 'Bekijk resultaten' : 'View results'}
+                  {'Bekijk resultaten'}
                 </BtnSecondary>
               </HeroBtns>
             </div>
-            <ChatbotDemo language={language} />
+            <ChatbotDemo />
           </HeroGrid>
         </Container>
       </PageHero>
@@ -746,35 +722,23 @@ function ChatbotPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Wat ons anders maakt' : 'What makes us different'}</SectionLabel>
+              <SectionLabel>{'Wat ons anders maakt'}</SectionLabel>
               <SectionTitle>
-                {isNL
-                  ? 'Andere chatbots volgen instructies. De onze leren.'
-                  : 'Other chatbots follow instructions. Ours learn.'}
+                {'Andere chatbots volgen instructies. De onze leren.'}
               </SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'De meeste chatbots werken op basis van een statische instructieset of kennisbank. Zodra een vraag buiten het script valt, faalt de bot. Bij Optivaize trainen wij chatbots continu opnieuw op basis van echte klantgesprekken.'
-                  : 'Most chatbots work from a static instruction set or knowledge base. When a question falls outside the script, the bot fails. At Optivaize we continuously retrain chatbots based on real customer conversations.'}
+                {'De meeste chatbots werken op basis van een statische instructieset of kennisbank. Zodra een vraag buiten het script valt, faalt de bot. Bij Optivaize trainen wij chatbots continu opnieuw op basis van echte klantgesprekken.'}
               </SectionText>
               <SectionText>
-                {isNL
-                  ? 'Elke succesvolle conversatie, elke aankoop, elke klantinteractie wordt gebruikt om het model te verbeteren. Na 3 maanden heb je een chatbot die je best-presterende medewerker presteert, 24/7, op alle kanalen tegelijk.'
-                  : 'Every successful conversation, every purchase, every customer interaction is used to improve the model. After 3 months you have a chatbot performing like your best employee , 24/7, on all channels simultaneously.'}
+                {'Elke succesvolle conversatie, elke aankoop, elke klantinteractie wordt gebruikt om het model te verbeteren. Na 3 maanden heb je een chatbot die je best-presterende medewerker presteert, 24/7, op alle kanalen tegelijk.'}
               </SectionText>
               <CheckList>
-                {(isNL ? [
+                {([
                   'Over-the-air training op echte klantgesprekken',
                   'A/B-testvragen voor maximale conversie',
                   'Automatische kortingen op basis van klantgedrag',
                   'Conversie-tracking over meerdere sessies',
                   'Koppeling aan alle kanalen die je gebruikt',
-                ] : [
-                  'Over-the-air training on real customer conversations',
-                  'A/B test questions for maximum conversion',
-                  'Automatic discounts based on customer behaviour',
-                  'Conversion tracking across multiple sessions',
-                  'Integration with all channels you use',
                 ]).map((item, i) => (
                   <CheckItem key={i}>
                     <CheckCircle size={18} color="#06B6D4" />
@@ -795,9 +759,9 @@ function ChatbotPage() {
         <Container>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-              <SectionLabel $light>{isNL ? 'Mogelijkheden' : 'Capabilities'}</SectionLabel>
+              <SectionLabel $light>{'Mogelijkheden'}</SectionLabel>
               <SectionTitle $light>
-                {isNL ? 'Alles wat je chatbot nodig heeft om te converteren' : 'Everything your chatbot needs to convert'}
+                {'Alles wat je chatbot nodig heeft om te converteren'}
               </SectionTitle>
             </div>
           </FadeIn>
@@ -823,14 +787,12 @@ function ChatbotPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel $light>{isNL ? 'Kanalen' : 'Channels'}</SectionLabel>
+              <SectionLabel $light>{'Kanalen'}</SectionLabel>
               <SectionTitle $light>
-                {isNL ? 'Je chatbot werkt overal waar je klanten zijn' : 'Your chatbot works everywhere your customers are'}
+                {'Je chatbot werkt overal waar je klanten zijn'}
               </SectionTitle>
               <SectionText $light>
-                {isNL
-                  ? 'Wij koppelen je chatbot aan elk kanaal dat je gebruikt. Eén intelligente kern, overal inzetbaar. Hetzelfde getrainde model staat klaar op je website, in WhatsApp, Slack, Discord en meer.'
-                  : 'We connect your chatbot to every channel you use. One intelligent core , deployable everywhere. The same trained model is ready on your website, in WhatsApp, Slack, Discord and more.'}
+                {'Wij koppelen je chatbot aan elk kanaal dat je gebruikt. Eén intelligente kern, overal inzetbaar. Hetzelfde getrainde model staat klaar op je website, in WhatsApp, Slack, Discord en meer.'}
               </SectionText>
               <ChannelStrip>
                 {channels.map((ch, i) => (
@@ -855,10 +817,10 @@ function ChatbotPage() {
         <Container>
           <StatsRow>
             {[
-              { num: '24/7', label: isNL ? 'Beschikbaar, geen overwerk' : 'Available, no overtime' },
-              { num: '+34%', label: isNL ? 'Gemiddelde conversiestijging' : 'Average conversion increase' },
-              { num: '3×', label: isNL ? 'Sneller reageren dan menselijk team' : 'Faster response than human team' },
-              { num: '90d', label: isNL ? 'Tot schaalbaar resultaat' : 'To scalable results' },
+              { num: '24/7', label: 'Beschikbaar, geen overwerk' },
+              { num: '+34%', label: 'Gemiddelde conversiestijging' },
+              { num: '3×', label: 'Sneller reageren dan menselijk team' },
+              { num: '90d', label: 'Tot schaalbaar resultaat' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.1}>
                 <StatCard>
@@ -876,14 +838,12 @@ function ChatbotPage() {
         <Container>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <SectionLabel>{isNL ? 'Aanpak' : 'Approach'}</SectionLabel>
+              <SectionLabel>{'Aanpak'}</SectionLabel>
               <SectionTitle>
-                {isNL ? 'Van intake tot chatbot die verkoopt' : 'From intake to chatbot that sells'}
+                {'Van intake tot chatbot die verkoopt'}
               </SectionTitle>
               <SectionText style={{ maxWidth: 600, margin: '0 auto' }}>
-                {isNL
-                  ? 'Wij nemen de volledige implementatie op ons, van data-verzameling en training tot live-gang en maandelijkse optimalisatie.'
-                  : 'We handle the entire implementation, from data collection and training to go-live and monthly optimisation.'}
+                {'Wij nemen de volledige implementatie op ons, van data-verzameling en training tot live-gang en maandelijkse optimalisatie.'}
               </SectionText>
             </div>
           </FadeIn>
@@ -911,17 +871,13 @@ function ChatbotPage() {
           <FadeIn>
             <CTABox initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <SectionLabel $light style={{ color: '#22D3EE' }}>
-                {isNL ? 'Klaar om te starten?' : 'Ready to get started?'}
+                {'Klaar om te starten?'}
               </SectionLabel>
               <CTATitle>
-                {isNL
-                  ? 'Laat je chatbot voor jou werken, 24/7'
-                  : 'Let your chatbot work for you , 24/7'}
+                {'Laat je chatbot voor jou werken, 24/7'}
               </CTATitle>
               <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 16, maxWidth: 500, margin: '0 auto' }}>
-                {isNL
-                  ? 'Wij starten met een gratis intake. Binnen 2 weken heb je een werkende chatbot op je eerste kanaal.'
-                  : 'We start with a free intake. Within 2 weeks you have a working chatbot on your first channel.'}
+                {'Wij starten met een gratis intake. Binnen 2 weken heb je een werkende chatbot op je eerste kanaal.'}
               </p>
               <CTABtn
                 href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/"
@@ -930,7 +886,7 @@ function ChatbotPage() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {isNL ? 'Plan gratis intake' : 'Book free intake'}
+                {'Plan gratis intake'}
                 <ArrowRight size={17} />
               </CTABtn>
             </CTABox>

@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
 import {
-  ArrowRight, Bot, TrendingUp, Target, Zap, Code2, Building2,
-  MessageCircle, Cpu, GraduationCap, Blocks, ClipboardList,
+  ArrowRight, Bot, TrendingUp, Code2, GraduationCap, ClipboardList,
   Search, Lightbulb, Wrench, Phone, MapPin
 } from 'lucide-react';
-import { useLanguage, translations } from '../LanguageContext';
 import ClientSlider from '../components/ClientSlider';
 import SEOHead from '../components/SEOHead';
 import VideoPlayer from '../components/VideoPlayer';
@@ -326,7 +324,7 @@ const AGENT_NODES = [
   { label: { nl: 'Operations', en: 'Operations' }, color: '#8B5CF6', cx: 320, cy: 110, pathCtrl: '320,65' },
 ];
 
-function OptivaizeDemo({ language }) {
+function OptivaizeDemo() {
   const [demoIdx, setDemoIdx] = useState(0);
   const [phase, setPhase] = useState(0);
   const [visibleTasks, setVisibleTasks] = useState(0);
@@ -346,8 +344,6 @@ function OptivaizeDemo({ language }) {
   }, [demoIdx]);
 
   const demo = CHAT_DEMOS[demoIdx];
-  const isNL = language === 'nl';
-
   return (
     <DemoContainer
       initial={{ opacity: 0, x: 30 }}
@@ -365,7 +361,7 @@ function OptivaizeDemo({ language }) {
         <AnimatePresence mode="wait">
           <ChatMsgRow $user key={`u-${demoIdx}`}>
             <ChatBubble $user initial={{ opacity: 0, y: 6, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.3 }}>
-              {demo.userMsg[language]}
+              {demo.userMsg.nl}
             </ChatBubble>
           </ChatMsgRow>
         </AnimatePresence>
@@ -374,7 +370,7 @@ function OptivaizeDemo({ language }) {
           {phase >= 1 && (
             <RoutingPill key={`rp-${demoIdx}`} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: demo.agentColor, display: 'inline-block' }} />
-              {isNL ? `Routing naar ${demo.agentName.nl}` : `Routing to ${demo.agentName.en}`}...
+              {`Routing naar ${demo.agentName.nl}`}...
             </RoutingPill>
           )}
         </AnimatePresence>
@@ -385,13 +381,13 @@ function OptivaizeDemo({ language }) {
               <AgentReply $color={demo.agentColor}
                 initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               >
-                <AgentReplyLabel $color={demo.agentColor}>{demo.agentName[language]}</AgentReplyLabel>
-                {isNL ? 'Ik ga direct aan de slag!' : "On it right away!"}
+                <AgentReplyLabel $color={demo.agentColor}>{demo.agentName.nl}</AgentReplyLabel>
+                {'Ik ga direct aan de slag!'}
                 {demo.tasks.map((task, i) => visibleTasks > i ? (
                   <TaskLine key={i} $color={demo.agentColor}
                     initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }}
                   >
-                    {task[language]}
+                    {task.nl}
                   </TaskLine>
                 ) : null)}
               </AgentReply>
@@ -440,7 +436,7 @@ function OptivaizeDemo({ language }) {
                 </text>
                 <text x={node.cx} y={node.cy + 36} textAnchor="middle" fill={node.color}
                   fontSize="8.5" fontWeight="600" fillOpacity={isActive ? 1 : 0.3}>
-                  {node.label[language]}
+                  {node.label.nl}
                 </text>
               </g>
             );
@@ -1159,41 +1155,17 @@ function HeroVideo({ src, thumbnail, isLogo }) {
 }
 
 const serviceItems = [
-  { icon: Building2, color: '#EC4899', path: '/ai-business',
-    nl: { title: 'AI Business', desc: 'Van strategie tot uitvoering: wij transformeren je hele bedrijf met AI op langetermijnbasis.' },
-    en: { title: 'AI Business', desc: 'From strategy to execution: we transform your entire business with AI on a long-term basis.' }
+  { icon: Code2, color: '#8B5CF6', path: '/software-platforms',
+    nl: { title: 'Software & Platforms', desc: 'Custom software, dashboards en automatisering. Van maatwerk platforms tot volledig geautomatiseerde workflows.' },
+    en: { title: 'Software & Platforms', desc: 'Custom software, dashboards and automation. From tailored platforms to fully automated workflows.' }
   },
-  { icon: GraduationCap, color: '#F97316', path: '/ai-training',
-    nl: { title: 'AI Training', desc: 'Maatwerk training per afdeling. ChatGPT, Claude, Copilot, Midjourney, praktisch en direct toepasbaar.' },
-    en: { title: 'AI Training', desc: 'Tailored training per department. ChatGPT, Claude, Copilot, Midjourney, practical and immediately applicable.' }
-  },
-  { icon: Code2, color: '#EF4444', path: '/custom-software',
-    nl: { title: 'Custom Software', desc: 'Wij bouwen software 3x sneller, het snelste AI-gedreven softwarebedrijf van Nederland.' },
-    en: { title: 'Custom Software', desc: 'We build software 3x faster, the fastest AI-driven software company in the Netherlands.' }
-  },
-  { icon: Zap, color: '#8B5CF6', path: '/automatisering',
-    nl: { title: 'Automatisering', desc: 'n8n workflows en custom platforms. Verbind je systemen en elimineer handmatig werk volledig.' },
-    en: { title: 'Automation', desc: 'n8n workflows and custom platforms. Connect your systems and eliminate manual work entirely.' }
-  },
-  { icon: Target, color: '#F59E0B', path: '/ai-sales',
-    nl: { title: 'AI Sales', desc: 'LinkedIn outreach, lead kwalificatie en CRM-integratie, volledig geautomatiseerd door AI.' },
-    en: { title: 'AI Sales', desc: 'LinkedIn outreach, lead qualification and CRM integration, fully automated by AI.' }
+  { icon: Bot, color: '#3B82F6', path: '/ai-agents-chatbots',
+    nl: { title: 'AI Agents & Chatbots', desc: 'Autonome AI agents en chatbots die 24/7 taken overnemen, klanten helpen en processen automatiseren.' },
+    en: { title: 'AI Agents & Chatbots', desc: 'Autonomous AI agents and chatbots that take over tasks 24/7, help customers and automate processes.' }
   },
   { icon: TrendingUp, color: '#10B981', path: '/ai-marketing',
     nl: { title: 'AI Marketing', desc: 'AI-SEO, content automatisering en Google Ads optimalisatie voor maximale organische groei.' },
     en: { title: 'AI Marketing', desc: 'AI-SEO, content automation and Google Ads optimisation for maximum organic growth.' }
-  },
-  { icon: Bot, color: '#3B82F6', path: '/ai-agenten',
-    nl: { title: 'AI Agents', desc: 'OpenClaw agents die 24/7 taken overnemen via WhatsApp, Slack en Teams.' },
-    en: { title: 'AI Agents', desc: 'OpenClaw agents that take over tasks 24/7 via WhatsApp, Slack and Teams.' }
-  },
-  { icon: MessageCircle, color: '#06B6D4', path: '/ai-chatbot',
-    nl: { title: 'AI Chatbot', desc: 'Intelligente chatbots die je producten kennen, vragen beantwoorden en leads kwalificeren.' },
-    en: { title: 'AI Chatbot', desc: 'Intelligent chatbots that know your products, answer questions and qualify leads.' }
-  },
-  { icon: Blocks, color: '#6366F1', path: '/crypto-blockchain',
-    nl: { title: 'Crypto & Blockchain', desc: 'Smart contracts, DeFi platforms en end-to-end blockchain development op Solana, Ethereum en Polygon.' },
-    en: { title: 'Crypto & Blockchain', desc: 'Smart contracts, DeFi platforms and end-to-end blockchain development on Solana, Ethereum and Polygon.' }
   },
 ];
 
@@ -1232,7 +1204,6 @@ const intakeSteps = [
 /* ─── Globe is now in components/InteractiveGlobe.js ── */
 
 function HomePage({ initialCases = [] }) {
-  const { language } = useLanguage();
   const homeCases = initialCases.filter(c => ['fonteyn', 'red-button', 'blosh'].includes(c.slug));
 
   return (
@@ -1251,29 +1222,25 @@ function HomePage({ initialCases = [] }) {
           <HeroGrid>
             <HeroLeft>
               <HeroH1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-                {language === 'nl'
-                  ? <>De snelste <GradientText>AI partner</GradientText> van Nederland</>
-                  : <>The fastest <GradientText>AI partner</GradientText> in the Netherlands</>}
+                <>De snelste <GradientText>AI partner</GradientText> van Nederland</>
               </HeroH1>
 
               <HeroSub initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
-                {language === 'nl'
-                  ? 'Wij helpen jouw bedrijf AI te gebruiken, te bouwen en iedereen te trainen dit efficient te gebruiken. Niet in maanden, maar in weken.'
-                  : 'We help your business use AI, build with AI, and train everyone to use it efficiently. Not in months, but in weeks.'}
+                {'Wij helpen jouw bedrijf AI te gebruiken, te bouwen en iedereen te trainen dit efficient te gebruiken. Niet in maanden, maar in weken.'}
               </HeroSub>
 
               <HeroStats initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}>
                 <HeroStat>
                   <span className="num">150+</span>
-                  <span className="lbl">{language === 'nl' ? 'Bedrijven' : 'Companies'}</span>
+                  <span className="lbl">Bedrijven</span>
                 </HeroStat>
                 <HeroStat>
                   <span className="num">40+</span>
-                  <span className="lbl">{language === 'nl' ? 'Uur bespaard/week per bedrijf' : 'Hours saved/week per company'}</span>
+                  <span className="lbl">Uur bespaard/week per bedrijf</span>
                 </HeroStat>
                 <HeroStat>
                   <span className="num">3x</span>
-                  <span className="lbl">{language === 'nl' ? 'Sneller bouwen' : 'Faster builds'}</span>
+                  <span className="lbl">Sneller bouwen</span>
                 </HeroStat>
               </HeroStats>
 
@@ -1284,12 +1251,12 @@ function HomePage({ initialCases = [] }) {
                   whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(59,130,246,0.45)' }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  {language === 'nl' ? 'Plan gratis gesprek' : 'Book free call'}
+                  Plan gratis gesprek
                   <ArrowRight size={17} />
                 </BtnPrimary>
                 <BtnCall href="tel:+31642698918">
                   <Phone size={16} />
-                  <span className="call-label">{language === 'nl' ? 'Bel ons' : 'Call us'}</span>
+                  <span className="call-label">Bel ons</span>
                 </BtnCall>
               </HeroBtns>
             </HeroLeft>
@@ -1312,19 +1279,15 @@ function HomePage({ initialCases = [] }) {
       <IdentitySection>
         <Container>
           <IdentityTop>
-            <SectionLabel>{language === 'nl' ? 'Wie wij zijn' : 'Who we are'}</SectionLabel>
+            <SectionLabel>Wie wij zijn</SectionLabel>
             <FadeIn>
               <IdentityHeadline>
-                {language === 'nl'
-                  ? <>We bouwen <GradientText>AI in</GradientText> jouw organisatie</>
-                  : <>We build <GradientText>AI into</GradientText> your organisation</>}
+                <>We bouwen <GradientText>AI in</GradientText> jouw organisatie</>
               </IdentityHeadline>
             </FadeIn>
             <FadeIn delay={0.1}>
               <IdentitySub>
-                {language === 'nl'
-                  ? 'Geen hype. Geen powerpoints. Wij implementeren AI direct in jouw bedrijfsprocessen, trainen je team en bouwen de applicaties die jouw concurrentie nog niet heeft.'
-                  : "No hype. No PowerPoints. We implement AI directly into your business processes, train your team and build the applications your competition doesn't have yet."}
+                {'Geen hype. Geen powerpoints. Wij implementeren AI direct in jouw bedrijfsprocessen, trainen je team en bouwen de applicaties die jouw concurrentie nog niet heeft.'}
               </IdentitySub>
             </FadeIn>
           </IdentityTop>
@@ -1334,33 +1297,27 @@ function HomePage({ initialCases = [] }) {
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
             >
               <PillarIcon $color="#3B82F6"><Bot size={22} /></PillarIcon>
-              <PillarTitle>{language === 'nl' ? 'AI inzetten' : 'Deploy AI'}</PillarTitle>
+              <PillarTitle>AI inzetten</PillarTitle>
               <PillarText>
-                {language === 'nl'
-                  ? 'We implementeren AI in bestaande workflows zodat jouw team direct resultaat ziet. Geen grote transformatietrajecten, gewoon resultaat.'
-                  : 'We implement AI into existing workflows so your team sees immediate results. No big transformation projects, just results.'}
+                {'We implementeren AI in bestaande workflows zodat jouw team direct resultaat ziet. Geen grote transformatietrajecten, gewoon resultaat.'}
               </PillarText>
             </IdentityPillar>
             <IdentityPillar
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
             >
               <PillarIcon $color="#F97316"><GraduationCap size={22} /></PillarIcon>
-              <PillarTitle>{language === 'nl' ? 'AI training' : 'Train on AI'}</PillarTitle>
+              <PillarTitle>AI training</PillarTitle>
               <PillarText>
-                {language === 'nl'
-                  ? 'We bouwen het fundament door jouw hele team te trainen. Van management tot uitvoering, iedereen leert AI efficient te gebruiken.'
-                  : 'We build the foundation by training your entire team. From management to execution, everyone learns to use AI efficiently.'}
+                {'We bouwen het fundament door jouw hele team te trainen. Van management tot uitvoering, iedereen leert AI efficient te gebruiken.'}
               </PillarText>
             </IdentityPillar>
             <IdentityPillar
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
             >
               <PillarIcon $color="#10B981"><Code2 size={22} /></PillarIcon>
-              <PillarTitle>{language === 'nl' ? 'AI bouwen' : 'Build with AI'}</PillarTitle>
+              <PillarTitle>AI bouwen</PillarTitle>
               <PillarText>
-                {language === 'nl'
-                  ? 'We bouwen ook zelf AI-applicaties op maat. Van automatiseringen tot volledige platformen, 3x sneller dan traditionele bureaus.'
-                  : 'We also build custom AI applications ourselves. From automations to complete platforms, 3x faster than traditional agencies.'}
+                {'We bouwen ook zelf AI-applicaties op maat. Van automatiseringen tot volledige platformen, 3x sneller dan traditionele bureaus.'}
               </PillarText>
             </IdentityPillar>
           </IdentityPillars>
@@ -1371,17 +1328,15 @@ function HomePage({ initialCases = [] }) {
       <section style={{ padding: '5rem 0', background: '#F8FAFC' }}>
         <Container>
           <SectionHeader>
-            <SectionLabel>{language === 'nl' ? 'Onze cases' : 'Our cases'}</SectionLabel>
+            <SectionLabel>Onze cases</SectionLabel>
             <FadeIn>
               <SectionTitle>
-                {language === 'nl' ? 'Resultaten die voor zich spreken' : 'Results that speak for themselves'}
+                Resultaten die voor zich spreken
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <SectionSub>
-                {language === 'nl'
-                  ? 'Van AI agents tot complete integraties, bekijk wat we voor onze klanten hebben gebouwd.'
-                  : 'From AI agents to complete integrations, see what we have built for our clients.'}
+                {'Van AI agents tot complete integraties, bekijk wat we voor onze klanten hebben gebouwd.'}
               </SectionSub>
             </FadeIn>
           </SectionHeader>
@@ -1391,17 +1346,17 @@ function HomePage({ initialCases = [] }) {
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Image src={c.image || caseImages[c.slug] || caseImages[c.slug.replace('-', '')]} alt={language === 'nl' ? c.title_nl : c.title_en} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" />
+                <Image src={c.image || caseImages[c.slug] || caseImages[c.slug.replace('-', '')]} alt={c.title_nl} fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" loading="lazy" />
                 <CaseOverlay>
-                  <CaseClient>{language === 'nl' ? c.title_nl : c.title_en}</CaseClient>
-                  <CaseTitle>{language === 'nl' ? c.preview_nl : c.preview_en}</CaseTitle>
+                  <CaseClient>{c.title_nl}</CaseClient>
+                  <CaseTitle>{c.preview_nl}</CaseTitle>
                 </CaseOverlay>
               </HomeCaseCard>
             ))}
           </HomeCasesGrid>
           <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
             <BtnSecondary href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              {language === 'nl' ? 'Bekijk alle cases' : 'View all cases'} <ArrowRight size={15} />
+              Bekijk alle cases <ArrowRight size={15} />
             </BtnSecondary>
           </div>
         </Container>
@@ -1427,31 +1382,25 @@ function HomePage({ initialCases = [] }) {
               transition={{ duration: 0.7, delay: 0.15 }}
             >
               <WimHofLabel>
-                {language === 'nl' ? 'Featured case' : 'Featured case'}
+                Featured case
               </WimHofLabel>
               <WimHofTitle>
-                {language === 'nl'
-                  ? <>Wim Hof's merk groeit organisch met <span style={{ color: '#10B981' }}>AI-gedreven SEO</span></>
-                  : <>Wim Hof's brand grows organically with <span style={{ color: '#10B981' }}>AI-driven SEO</span></>}
+                <>Wim Hof's merk groeit organisch met <span style={{ color: '#10B981' }}>AI-gedreven SEO</span></>
               </WimHofTitle>
               <WimHofText>
-                {language === 'nl'
-                  ? 'Voor Passion Ice Baths, het merk geassocieerd met de legendarische Wim Hof, bouwden we een volledig AI-gedreven SEO systeem. We gebruikten GA4 data en Google Search Console om precies te begrijpen welke zoekwoorden het meeste potentieel hadden.'
-                  : "For Passion Ice Baths, the brand associated with the legendary Wim Hof, we built a fully AI-driven SEO system. We used GA4 data and Google Search Console to understand exactly which keywords had the most potential."}
+                {'Voor Passion Ice Baths, het merk geassocieerd met de legendarische Wim Hof, bouwden we een volledig AI-gedreven SEO systeem. We gebruikten GA4 data en Google Search Console om precies te begrijpen welke zoekwoorden het meeste potentieel hadden.'}
               </WimHofText>
               <WimHofText>
-                {language === 'nl'
-                  ? 'We trainden een eigen AI model op hun merkstijl en doelgroep. Dit model genereert content die authentiek aanvoelt en tegelijk technisch geoptimaliseerd is voor zoekmachines. Daarnaast zijn we momenteel een custom Shopify app aan het bouwen.'
-                  : "We trained a custom AI model on their brand style and target audience. This model generates content that feels authentic while being technically optimized for search engines. We are also currently building a custom Shopify app."}
+                {'We trainden een eigen AI model op hun merkstijl en doelgroep. Dit model genereert content die authentiek aanvoelt en tegelijk technisch geoptimaliseerd is voor zoekmachines. Daarnaast zijn we momenteel een custom Shopify app aan het bouwen.'}
               </WimHofText>
               <WimHofBadges>
                 <WimHofBadge>GA4 data</WimHofBadge>
                 <WimHofBadge>Search Console</WimHofBadge>
-                <WimHofBadge>{language === 'nl' ? 'Custom AI model' : 'Custom AI model'}</WimHofBadge>
+                <WimHofBadge>Custom AI model</WimHofBadge>
                 <WimHofBadge>Shopify app</WimHofBadge>
               </WimHofBadges>
               <WimHofCta href="/cases" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                {language === 'nl' ? 'Bekijk alle cases' : 'View all cases'}
+                Bekijk alle cases
                 <ArrowRight size={16} />
               </WimHofCta>
             </WimHofContent>
@@ -1463,17 +1412,15 @@ function HomePage({ initialCases = [] }) {
       <ServicesSection>
         <Container>
           <SectionHeader>
-            <SectionLabel>{language === 'nl' ? 'Wat wij doen' : 'What we do'}</SectionLabel>
+            <SectionLabel>Wat wij doen</SectionLabel>
             <FadeIn>
               <SectionTitle>
-                {language === 'nl' ? 'AI voor elk onderdeel van je bedrijf' : 'AI for every part of your business'}
+                AI voor elk onderdeel van je bedrijf
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <SectionSub>
-                {language === 'nl'
-                  ? 'Van agents tot automatisering, van software tot strategie, wij bouwen het allemaal.'
-                  : 'From agents to automation, from software to strategy, we build it all.'}
+                {'Van agents tot automatisering, van software tot strategie, wij bouwen het allemaal.'}
               </SectionSub>
             </FadeIn>
           </SectionHeader>
@@ -1481,7 +1428,7 @@ function HomePage({ initialCases = [] }) {
           <ServiceGrid>
             {serviceItems.map((item, i) => {
               const Icon = item.icon;
-              const copy = item[language];
+              const copy = item.nl;
               return (
                 <ServiceCard key={item.path} href={item.path} $color={item.color}
                   initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
@@ -1491,7 +1438,7 @@ function HomePage({ initialCases = [] }) {
                   <ServiceCardTitle>{copy.title}</ServiceCardTitle>
                   <ServiceCardDesc>{copy.desc}</ServiceCardDesc>
                   <ServiceCardLink $color={item.color}>
-                    {language === 'nl' ? 'Meer info' : 'Learn more'} <ArrowRight size={13} />
+                    Meer info <ArrowRight size={13} />
                   </ServiceCardLink>
                 </ServiceCard>
               );
@@ -1508,17 +1455,15 @@ function HomePage({ initialCases = [] }) {
               <VideoPlayer src="/videos/Openclaw intro.mp4" />
             </FadeIn>
             <WimHofContent initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.15 }}>
-              <WimHofLabel>{language === 'nl' ? 'Bekijk de video' : 'Watch the video'}</WimHofLabel>
+              <WimHofLabel>Bekijk de video</WimHofLabel>
               <WimHofTitle>
-                {language === 'nl' ? 'Hoe AI agents werken' : 'How AI agents work'}
+                Hoe AI agents werken
               </WimHofTitle>
               <WimHofText>
-                {language === 'nl'
-                  ? 'In deze 1 minuut durende video legt Max uit hoe AI agents werken en hoe jij ze aanstuurt. Ontdek hoe OpenClaw agents 24/7 taken overnemen via WhatsApp, Slack en Teams.'
-                  : 'In this 1-minute video, Max explains how AI agents work and how you control them. Discover how OpenClaw agents take over tasks 24/7 via WhatsApp, Slack, and Teams.'}
+                {'In deze 1 minuut durende video legt Max uit hoe AI agents werken en hoe jij ze aanstuurt. Ontdek hoe OpenClaw agents 24/7 taken overnemen via WhatsApp, Slack en Teams.'}
               </WimHofText>
               <WimHofCta href="/ai-agenten" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                {language === 'nl' ? 'Meer over AI Agents' : 'More about AI Agents'}
+                Meer over AI Agents
                 <ArrowRight size={16} />
               </WimHofCta>
             </WimHofContent>
@@ -1532,19 +1477,15 @@ function HomePage({ initialCases = [] }) {
           <AboutPreviewGrid>
             <FadeIn>
               <div>
-                <SectionLabel>{language === 'nl' ? 'Over Optivaize' : 'About Optivaize'}</SectionLabel>
+                <SectionLabel>Over Optivaize</SectionLabel>
                 <IdentityHeadline style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)' }}>
-                  {language === 'nl'
-                    ? <>Gestart vanuit passie voor AI, gegroeid tot een <GradientText>internationaal team</GradientText></>
-                    : <>Started from a passion for AI, grown into an <GradientText>international team</GradientText></>}
+                  <>Gestart vanuit passie voor AI, gegroeid tot een <GradientText>internationaal team</GradientText></>
                 </IdentityHeadline>
                 <IdentitySub style={{ margin: '0 0 1.5rem 0' }}>
-                  {language === 'nl'
-                    ? 'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In de afgelopen vijf jaar hebben we tientallen AI-tools en platformen gebouwd die onze klanten een echte voorsprong geven op hun concurrentie. Van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen. We hebben inmiddels een sterk internationaal team en fantastische klanten over de hele wereld.'
-                    : 'Maximilian Bladt started Optivaize after seeing the first AI models emerge in 2020. After 2 years at Elevate Digital, a Business bachelor, Econometrics premaster and a master in Quantitative Finance at UvA, founding Optivaize was the logical next step. Over the past five years we have built dozens of AI tools and platforms that give our clients a real edge over their competition. From automations saving thousands of hours to complete AI systems driving revenue. We now have a strong international team and fantastic clients around the world.'}
+                  {'Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI modellen zag opkomen. Na 2 jaar ervaring bij Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch. In de afgelopen vijf jaar hebben we tientallen AI-tools en platformen gebouwd die onze klanten een echte voorsprong geven op hun concurrentie. Van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen. We hebben inmiddels een sterk internationaal team en fantastische klanten over de hele wereld.'}
                 </IdentitySub>
                 <BtnSecondary href="/over-ons" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  {language === 'nl' ? 'Meer over ons' : 'More about us'} <ArrowRight size={15} />
+                  Meer over ons <ArrowRight size={15} />
                 </BtnSecondary>
               </div>
             </FadeIn>
@@ -1563,16 +1504,12 @@ function HomePage({ initialCases = [] }) {
           <HomeGlobeLayout>
             <div>
               <FadeIn>
-                <HomeGlobeLabel>{language === 'nl' ? 'Onze internationale workforce' : 'Our international workforce'}</HomeGlobeLabel>
+                <HomeGlobeLabel>Onze internationale workforce</HomeGlobeLabel>
                 <HomeGlobeTitle>
-                  {language === 'nl'
-                    ? 'Ons team werkt vanuit 3 landen'
-                    : 'Our team works from 3 countries'}
+                  Ons team werkt vanuit 3 landen
                 </HomeGlobeTitle>
                 <HomeGlobeText>
-                  {language === 'nl'
-                    ? 'AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.'
-                    : 'AI research and project management are based in the Netherlands. Development takes place in Mumbai and Manila, where we have access to exceptional talent. This allows us to significantly reduce development costs without compromising quality. Direction and final responsibility always remain with our Dutch team.'}
+                  {'AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Hierdoor kunnen we de kostprijs van development aanzienlijk verlagen zonder concessies te doen aan kwaliteit. De regie en eindverantwoordelijkheid liggen altijd bij ons Nederlandse team.'}
                 </HomeGlobeText>
               </FadeIn>
               <HomeLocations>
@@ -1586,7 +1523,7 @@ function HomePage({ initialCases = [] }) {
                       <HomeLocIcon><MapPin size={16} /></HomeLocIcon>
                       <HomeLocText>
                         <div className="city">{loc.flag} {loc.city}</div>
-                        <div className="role">{loc.role[language]}</div>
+                        <div className="role">{loc.role.nl}</div>
                       </HomeLocText>
                     </HomeLocCard>
                   </FadeIn>
@@ -1595,7 +1532,7 @@ function HomePage({ initialCases = [] }) {
               <FadeIn delay={0.4}>
                 <div style={{ marginTop: '1.5rem' }}>
                   <BtnSecondary href="/hiring" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
-                    {language === 'nl' ? 'Bekijk vacatures' : 'View open positions'} <ArrowRight size={15} />
+                    Bekijk vacatures <ArrowRight size={15} />
                   </BtnSecondary>
                 </div>
               </FadeIn>
@@ -1615,17 +1552,15 @@ function HomePage({ initialCases = [] }) {
       <IntakeSection>
         <Container>
           <SectionHeader>
-            <SectionLabel>{language === 'nl' ? 'Hoe we werken' : 'How we work'}</SectionLabel>
+            <SectionLabel>Hoe we werken</SectionLabel>
             <FadeIn>
               <SectionTitle>
-                {language === 'nl' ? 'Van idee tot resultaat in weken' : 'From idea to result in weeks'}
+                Van idee tot resultaat in weken
               </SectionTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <SectionSub>
-                {language === 'nl'
-                  ? 'Geen eindeloze trajecten. Wij werken snel, gestructureerd en resultaatgericht.'
-                  : 'No endless projects. We work fast, structured and results-driven.'}
+                {'Geen eindeloze trajecten. Wij werken snel, gestructureerd en resultaatgericht.'}
               </SectionSub>
             </FadeIn>
           </SectionHeader>
@@ -1633,7 +1568,7 @@ function HomePage({ initialCases = [] }) {
           <IntakeGrid>
             {intakeSteps.map((step, i) => {
               const Icon = step.icon;
-              const copy = step[language];
+              const copy = step.nl;
               return (
                 <IntakeCard key={i}
                   initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
@@ -1662,16 +1597,12 @@ function HomePage({ initialCases = [] }) {
           <CtaContent>
             <FadeIn>
               <CtaTitle>
-                {language === 'nl'
-                  ? <>Klaar om <GradientText>AI</GradientText> in te zetten?</>
-                  : <>Ready to deploy <GradientText>AI</GradientText>?</>}
+                <>Klaar om <GradientText>AI</GradientText> in te zetten?</>
               </CtaTitle>
             </FadeIn>
             <FadeIn delay={0.1}>
               <CtaSub>
-                {language === 'nl'
-                  ? 'Plan een gratis gesprek en ontdek binnen 30 minuten hoe AI jouw bedrijf kan transformeren.'
-                  : 'Book a free call and discover within 30 minutes how AI can transform your business.'}
+                {'Plan een gratis gesprek en ontdek binnen 30 minuten hoe AI jouw bedrijf kan transformeren.'}
               </CtaSub>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -1682,12 +1613,12 @@ function HomePage({ initialCases = [] }) {
                   whileHover={{ scale: 1.03, boxShadow: '0 8px 30px rgba(59,130,246,0.45)' }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  {language === 'nl' ? 'Plan gratis gesprek' : 'Book free call'}
+                  Plan gratis gesprek
                   <ArrowRight size={17} />
                 </BtnPrimary>
                 <BtnCall href="tel:+31642698918" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
                   <Phone size={16} />
-                  {language === 'nl' ? 'Bel ons' : 'Call us'}
+                  Bel ons
                 </BtnCall>
               </CtaBtns>
             </FadeIn>

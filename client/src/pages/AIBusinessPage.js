@@ -6,7 +6,6 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from '../components/Link';
 import { Building2, Search, Cpu, Rocket, TrendingUp, Users, Shield, ArrowRight, CheckCircle, ChevronRight, BarChart3 } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 
 
@@ -340,76 +339,50 @@ const BtnOutline = styled(motion.a)`
 `;
 
 function AIBusinessPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
   const phases = [
-    { icon: Search, color: '#3B82F6', num: isNL ? 'FASE 01' : 'PHASE 01', title: isNL ? 'AI Audit' : 'AI Audit', desc: isNL ? 'Wij analyseren elk bedrijfsproces en identificeren waar AI de grootste impact maakt.' : 'We analyse every business process and identify where AI makes the greatest impact.' },
-    { icon: Cpu, color: '#10B981', num: isNL ? 'FASE 02' : 'PHASE 02', title: isNL ? 'Strategie & Roadmap' : 'Strategy & Roadmap', desc: isNL ? 'Een concrete AI-roadmap met prioriteiten, tijdlijn en verwachte ROI per initiatief.' : 'A concrete AI roadmap with priorities, timeline and expected ROI per initiative.' },
-    { icon: Rocket, color: '#EC4899', num: isNL ? 'FASE 03' : 'PHASE 03', title: isNL ? 'Implementatie' : 'Implementation', desc: isNL ? 'Wij bouwen en implementeren alle AI-oplossingen , van agents tot automatisering.' : 'We build and implement all AI solutions , from agents to automation.' },
-    { icon: BarChart3, color: '#F59E0B', num: isNL ? 'FASE 04' : 'PHASE 04', title: isNL ? 'Optimalisatie & Groei' : 'Optimisation & Growth', desc: isNL ? 'Continu meten, bijsturen en uitbreiden. Wij blijven je AI-partner op de lange termijn.' : 'Continuously measuring, adjusting and expanding. We remain your long-term AI partner.' },
+    { icon: Search, color: '#3B82F6', num: 'FASE 01', title: 'AI Audit', desc: 'Wij analyseren elk bedrijfsproces en identificeren waar AI de grootste impact maakt.' },
+    { icon: Cpu, color: '#10B981', num: 'FASE 02', title: 'Strategie & Roadmap', desc: 'Een concrete AI-roadmap met prioriteiten, tijdlijn en verwachte ROI per initiatief.' },
+    { icon: Rocket, color: '#EC4899', num: 'FASE 03', title: 'Implementatie', desc: 'Wij bouwen en implementeren alle AI-oplossingen , van agents tot automatisering.' },
+    { icon: BarChart3, color: '#F59E0B', num: 'FASE 04', title: 'Optimalisatie & Groei', desc: 'Continu meten, bijsturen en uitbreiden. Wij blijven je AI-partner op de lange termijn.' },
   ];
 
   const values = [
-    { icon: TrendingUp, color: '#10B981', title: isNL ? 'Meetbare ROI' : 'Measurable ROI', desc: isNL ? 'Elke investering wordt gekoppeld aan concrete KPIs en meetbare bedrijfsresultaten.' : 'Every investment is linked to concrete KPIs and measurable business results.' },
-    { icon: Users, color: '#3B82F6', title: isNL ? 'Langetermijn partner' : 'Long-term partner', desc: isNL ? 'Geen eenmalig project, wij worden onderdeel van je organisatie en groeien mee.' : 'No one-off project, we become part of your organisation and grow with you.' },
-    { icon: Shield, color: '#EC4899', title: isNL ? 'Vertrouwelijk & veilig' : 'Confidential & secure', desc: isNL ? 'Je data en bedrijfsprocessen zijn veilig bij ons. Privacy en security staan voorop.' : 'Your data and business processes are safe with us. Privacy and security are paramount.' },
+    { icon: TrendingUp, color: '#10B981', title: 'Meetbare ROI', desc: 'Elke investering wordt gekoppeld aan concrete KPIs en meetbare bedrijfsresultaten.' },
+    { icon: Users, color: '#3B82F6', title: 'Langetermijn partner', desc: 'Geen eenmalig project, wij worden onderdeel van je organisatie en groeien mee.' },
+    { icon: Shield, color: '#EC4899', title: 'Vertrouwelijk & veilig', desc: 'Je data en bedrijfsprocessen zijn veilig bij ons. Privacy en security staan voorop.' },
   ];
 
-  const checks = isNL ? [
+  const checks = [
     'Volledig bedrijfsbreed AI-programma op maat',
     'Cross-functionele samenwerking met je teams',
     'Geen verstoring van bestaande processen',
     'Training en kennisoverdracht voor je medewerkers',
     'Maandelijkse voortgangsrapportages en bijsturing',
     'Doorlopende optimalisaties en nieuwe kansen identificeren',
-  ] : [
-    'Fully company-wide custom AI programme',
-    'Cross-functional collaboration with your teams',
-    'No disruption to existing processes',
-    'Training and knowledge transfer for your employees',
-    'Monthly progress reports and adjustments',
-    'Ongoing optimisations and identifying new opportunities',
   ];
 
-  const roiExamples = isNL ? [
+  const roiExamples = [
     { stat: '40%', label: 'Efficiencystijging', desc: 'Gemiddelde verhoging van operationele efficieny bij onze AI Business klanten' },
     { stat: '6 mnd', label: 'Terugverdientijd', desc: 'Gemiddelde terugverdientijd van de volledige AI-investering' },
     { stat: '3×', label: 'Meer output', desc: 'Teams produceren gemiddeld 3× meer met hetzelfde aantal medewerkers' },
-  ] : [
-    { stat: '40%', label: 'Efficiency gain', desc: 'Average increase in operational efficiency among our AI Business clients' },
-    { stat: '6 mo', label: 'Payback period', desc: 'Average payback period for the full AI investment' },
-    { stat: '3×', label: 'More output', desc: 'Teams produce an average of 3× more with the same number of employees' },
   ];
 
-  const projectFeatures = isNL ? [
+  const projectFeatures = [
     'Eenmalige AI-implementatie voor een specifiek proces',
     'Vaste prijs, helder afgesproken deliverables',
     'Oplevering binnen 4-8 weken',
     'Inclusief documentatie en training',
     'Post-launch support voor 30 dagen',
-  ] : [
-    'One-time AI implementation for a specific process',
-    'Fixed price, clearly agreed deliverables',
-    'Delivery within 4-8 weeks',
-    'Including documentation and training',
-    'Post-launch support for 30 days',
   ];
 
-  const retainerFeatures = isNL ? [
+  const retainerFeatures = [
     'Doorlopende AI-optimalisatie van je gehele bedrijf',
     'Maandelijks vaste uren toegewijd aan je organisatie',
     'Proactieve identificatie van nieuwe AI-kansen',
     'Prioriteit bij nieuwe ontwikkelingen en updates',
     'Kwartaal AI-audit en roadmap bijstelling',
     'Dedicated contactpersoon en weekelijkse updates',
-  ] : [
-    'Ongoing AI optimisation of your entire business',
-    'Monthly fixed hours dedicated to your organisation',
-    'Proactive identification of new AI opportunities',
-    'Priority access to new developments and updates',
-    'Quarterly AI audit and roadmap adjustment',
-    'Dedicated contact person and weekly updates',
   ];
 
   return (
@@ -430,28 +403,22 @@ function AIBusinessPage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
               <span>AI Business</span>
             </Breadcrumb>
             <Badge><Building2 size={12} /> AI Business Transformatie</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? (
-                <>Je hele bedrijf. <span style={{ color: '#F9A8D4' }}>Getransformeerd door AI.</span></>
-              ) : (
-                <>Your entire business. <span style={{ color: '#F9A8D4' }}>Transformed by AI.</span></>
-              )}
+              {<>Je hele bedrijf. <span style={{ color: '#F9A8D4' }}>Getransformeerd door AI.</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Wij gaan door je gehele organisatie, van marketing tot operaties, en implementeren AI op elk niveau. Wij geloven dat elk bedrijf beter kan worden en werken op lange termijn samen voor bewezen resultaat.'
-                : 'We go through your entire organisation , from marketing to operations , and implement AI at every level. We believe every business can improve and work long-term together for proven results.'}
+              {'Wij gaan door je gehele organisatie, van marketing tot operaties, en implementeren AI op elk niveau. Wij geloven dat elk bedrijf beter kan worden en werken op lange termijn samen voor bewezen resultaat.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Start de transformatie' : 'Start the transformation'} <ArrowRight size={17} />
+              {'Start de transformatie'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -462,10 +429,10 @@ function AIBusinessPage() {
         <Container>
           <FadeIn>
             <StatsBanner>
-              <StatCell><StatNum>40%</StatNum><StatText>{isNL ? 'Gemiddelde efficiencyverbetering' : 'Average efficiency improvement'}</StatText></StatCell>
-              <StatCell><StatNum>6 mnd</StatNum><StatText>{isNL ? 'Gemiddelde terugverdientijd' : 'Average payback period'}</StatText></StatCell>
-              <StatCell><StatNum>50+</StatNum><StatText>{isNL ? 'Bedrijven getransformeerd' : 'Businesses transformed'}</StatText></StatCell>
-              <StatCell><StatNum>3×</StatNum><StatText>{isNL ? 'Meer output, zelfde team' : 'More output, same team'}</StatText></StatCell>
+              <StatCell><StatNum>40%</StatNum><StatText>{'Gemiddelde efficiencyverbetering'}</StatText></StatCell>
+              <StatCell><StatNum>6 mnd</StatNum><StatText>{'Gemiddelde terugverdientijd'}</StatText></StatCell>
+              <StatCell><StatNum>50+</StatNum><StatText>{'Bedrijven getransformeerd'}</StatText></StatCell>
+              <StatCell><StatNum>3×</StatNum><StatText>{'Meer output, zelfde team'}</StatText></StatCell>
             </StatsBanner>
           </FadeIn>
         </Container>
@@ -475,8 +442,8 @@ function AIBusinessPage() {
       <Section $gray>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Ons proces' : 'Our process'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Van audit tot volledig AI-bedrijf' : 'From audit to fully AI-powered business'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Ons proces'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Van audit tot volledig AI-bedrijf'}</SectionTitle></FadeIn>
           </div>
           <FadeIn>
             <PhaseGrid>
@@ -501,12 +468,10 @@ function AIBusinessPage() {
         <Container>
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Onze aanpak' : 'Our approach'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Wij geloven dat elk bedrijf kan worden verbeterd met AI' : 'We believe every business can be improved with AI'}</SectionTitle>
+              <SectionLabel>{'Onze aanpak'}</SectionLabel>
+              <SectionTitle>{'Wij geloven dat elk bedrijf kan worden verbeterd met AI'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Geen generieke adviezen, wij duiken diep in je specifieke situatie, identificeren de grootste kansen en bouwen oplossingen die echt werken voor je organisatie.'
-                  : 'No generic advice , we dive deep into your specific situation, identify the biggest opportunities and build solutions that actually work for your organisation.'}
+                {'Geen generieke adviezen, wij duiken diep in je specifieke situatie, identificeren de grootste kansen en bouwen oplossingen die echt werken voor je organisatie.'}
               </SectionText>
               <Checks>
                 {checks.map((c, i) => <CheckRow key={i}><CheckCircle size={16} />{c}</CheckRow>)}
@@ -523,8 +488,8 @@ function AIBusinessPage() {
       <Section $gray>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Bewezen resultaten' : 'Proven results'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wat AI Business oplevert' : 'What AI Business delivers'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Bewezen resultaten'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Wat AI Business oplevert'}</SectionTitle></FadeIn>
           </div>
           <ROIGrid>
             {roiExamples.map((r, i) => (
@@ -544,25 +509,21 @@ function AIBusinessPage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Samenwerkingsmodellen' : 'Collaboration models'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Project of doorlopende samenwerking' : 'Project or ongoing collaboration'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Samenwerkingsmodellen'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Project of doorlopende samenwerking'}</SectionTitle></FadeIn>
             <FadeIn delay={0.1}><p style={{ fontSize: 17, color: '#64748B', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
-              {isNL
-                ? 'Wij werken zowel op projectbasis als via een doorlopende retainer. Voor maximale impact adviseren wij een langetermijn samenwerking.'
-                : 'We work both on a project basis and via an ongoing retainer. For maximum impact we recommend a long-term collaboration.'}
+              {'Wij werken zowel op projectbasis als via een doorlopende retainer. Voor maximale impact adviseren wij een langetermijn samenwerking.'}
             </p></FadeIn>
           </div>
           <PricingGrid>
             <FadeIn>
               <PricingCard>
                 <PricingBadge style={{ background: '#F8FAFC', color: '#334155', border: '1px solid #E2E8F0' }}>
-                  {isNL ? 'Project' : 'Project'}
+                  {'Project'}
                 </PricingBadge>
-                <PricingTitle>{isNL ? 'Eenmalige implementatie' : 'One-time implementation'}</PricingTitle>
+                <PricingTitle>{'Eenmalige implementatie'}</PricingTitle>
                 <PricingDesc>
-                  {isNL
-                    ? 'Ideaal voor een specifiek AI-vraagstuk met een duidelijk einddoel en afgebakende scope.'
-                    : 'Ideal for a specific AI challenge with a clear end goal and defined scope.'}
+                  {'Ideaal voor een specifiek AI-vraagstuk met een duidelijk einddoel en afgebakende scope.'}
                 </PricingDesc>
                 <PricingFeatures>
                   {projectFeatures.map((f, i) => (
@@ -570,18 +531,16 @@ function AIBusinessPage() {
                   ))}
                 </PricingFeatures>
                 <PricingCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }}>
-                  {isNL ? 'Bespreek je project' : 'Discuss your project'} <ArrowRight size={15} />
+                  {'Bespreek je project'} <ArrowRight size={15} />
                 </PricingCTA>
               </PricingCard>
             </FadeIn>
             <FadeIn delay={0.1}>
               <PricingCard $featured>
-                <PricingBadge>{isNL ? 'Aanbevolen' : 'Recommended'}</PricingBadge>
-                <PricingTitle>{isNL ? 'Doorlopende retainer' : 'Ongoing retainer'}</PricingTitle>
+                <PricingBadge>{'Aanbevolen'}</PricingBadge>
+                <PricingTitle>{'Doorlopende retainer'}</PricingTitle>
                 <PricingDesc>
-                  {isNL
-                    ? 'Wij worden je vaste AI-partner en optimaliseren je bedrijf maandelijks. Maximale impact, continu verbeteren.'
-                    : 'We become your permanent AI partner and optimise your business monthly. Maximum impact, continuous improvement.'}
+                  {'Wij worden je vaste AI-partner en optimaliseren je bedrijf maandelijks. Maximale impact, continu verbeteren.'}
                 </PricingDesc>
                 <PricingFeatures>
                   {retainerFeatures.map((f, i) => (
@@ -589,7 +548,7 @@ function AIBusinessPage() {
                   ))}
                 </PricingFeatures>
                 <PricingCTA $featured href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }}>
-                  {isNL ? 'Start langetermijn samenwerking' : 'Start long-term collaboration'} <ArrowRight size={15} />
+                  {'Start langetermijn samenwerking'} <ArrowRight size={15} />
                 </PricingCTA>
               </PricingCard>
             </FadeIn>
@@ -601,8 +560,8 @@ function AIBusinessPage() {
       <Section $dark>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Onze belofte' : 'Our promise'}</SectionLabel>
-            <FadeIn><SectionTitle $light style={{ textAlign: 'center' }}>{isNL ? 'Wat je van ons kunt verwachten' : 'What you can expect from us'}</SectionTitle></FadeIn>
+            <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>{'Onze belofte'}</SectionLabel>
+            <FadeIn><SectionTitle $light style={{ textAlign: 'center' }}>{'Wat je van ons kunt verwachten'}</SectionTitle></FadeIn>
           </div>
           <ValueGrid>
             {values.map((v, i) => {
@@ -629,19 +588,17 @@ function AIBusinessPage() {
               <Image src="/images/max_ai_presentatie.webp" alt="AI implementatie" width={800} height={500} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px', display: 'block' }} loading="lazy" />
             </FadeIn>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Toepassingsgebieden' : 'Areas of application'}</SectionLabel>
-              <SectionTitle>{isNL ? 'AI in elk onderdeel van je organisatie' : 'AI in every part of your organisation'}</SectionTitle>
+              <SectionLabel>{'Toepassingsgebieden'}</SectionLabel>
+              <SectionTitle>{'AI in elk onderdeel van je organisatie'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Van marketing en sales tot HR, finance en operations, wij identificeren en implementeren AI-kansen in elk onderdeel van je bedrijf.'
-                  : 'From marketing and sales to HR, finance and operations , we identify and implement AI opportunities in every part of your business.'}
+                {'Van marketing en sales tot HR, finance en operations, wij identificeren en implementeren AI-kansen in elk onderdeel van je bedrijf.'}
               </SectionText>
               <Checks>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Marketing: content, SEO, social en advertenties geautomatiseerd' : 'Marketing: content, SEO, social and ads automated'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Sales: prospecting, kwalificatie en follow-up op AI-autopilot' : 'Sales: prospecting, qualification and follow-up on AI autopilot'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Operations: workflows, rapportages en platform-integraties' : 'Operations: workflows, reports and platform integrations'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'Finance: AI-analyse van cashflow, prognoses en anomaliedetectie' : 'Finance: AI analysis of cashflow, forecasts and anomaly detection'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{isNL ? 'HR: AI-assisted recruiting, onboarding en kennismanagement' : 'HR: AI-assisted recruiting, onboarding and knowledge management'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Marketing: content, SEO, social en advertenties geautomatiseerd'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Sales: prospecting, kwalificatie en follow-up op AI-autopilot'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Operations: workflows, rapportages en platform-integraties'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'Finance: AI-analyse van cashflow, prognoses en anomaliedetectie'}</CheckRow>
+                <CheckRow><CheckCircle size={16} />{'HR: AI-assisted recruiting, onboarding en kennismanagement'}</CheckRow>
               </Checks>
             </FadeIn>
           </TwoCol>
@@ -652,14 +609,14 @@ function AIBusinessPage() {
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar voor de volgende stap?' : 'Ready for the next step?'}</h2>
-              <p>{isNL ? 'Plan een gratis strategiegesprek. Wij analyseren je bedrijf en vertellen je precies welke AI-kansen er liggen.' : 'Book a free strategy call. We analyse your business and tell you exactly which AI opportunities exist.'}</p>
+              <h2>{'Klaar voor de volgende stap?'}</h2>
+              <p>{'Plan een gratis strategiegesprek. Wij analyseren je bedrijf en vertellen je precies welke AI-kansen er liggen.'}</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </BtnRow>
             </CTACard>

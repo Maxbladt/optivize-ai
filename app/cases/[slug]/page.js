@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 import CaseDetailPage from '@/pages/CaseDetailPage';
 import Layout from '@/components/Layout';
 import { notFound } from 'next/navigation';
@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/cases/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${baseUrl}/api/cases/${slug}`, { next: { revalidate: 3600 } });
     if (!res.ok) return { title: 'Case niet gevonden | Optivaize' };
     const caseData = await res.json();
     return {
@@ -30,7 +30,7 @@ export default async function Page({ params }) {
   const { slug } = await params;
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/cases/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${baseUrl}/api/cases/${slug}`, { next: { revalidate: 3600 } });
     if (!res.ok) return notFound();
     const caseData = await res.json();
 

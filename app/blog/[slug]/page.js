@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 import BlogDetailPage from '@/pages/BlogDetailPage';
 import Layout from '@/components/Layout';
 import { notFound } from 'next/navigation';
@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { next: { revalidate: 3600 } });
     if (!res.ok) return { title: 'Blog niet gevonden | Optivaize' };
     const blog = await res.json();
     return {
@@ -36,7 +36,7 @@ export default async function Page({ params }) {
   const { slug } = await params;
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { next: { revalidate: 3600 } });
     if (!res.ok) return notFound();
     const blog = await res.json();
 

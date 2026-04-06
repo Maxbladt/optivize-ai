@@ -5,8 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from '../components/Link';
-import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown } from 'lucide-react';
-import { useLanguage } from '../LanguageContext';
+import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown, RefreshCw, Mail, Package, BarChart3 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
 
@@ -528,6 +527,55 @@ const SelfHostIcon = styled.div`
   margin: 0 auto 1rem;
 `;
 
+/* ─── Automation Section ─── */
+const AutoSection = styled.section`
+  padding: 7rem 0;
+  background: #F8FAFC;
+`;
+
+const AutoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+`;
+
+const AutoCard = styled(motion.div)`
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  &:hover { border-color: ${props => props.$color}44; box-shadow: 0 6px 24px ${props => props.$color}12; transform: translateY(-4px); }
+  transition: all 0.25s ease;
+`;
+
+const AutoCardIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: ${props => props.$color}14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$color};
+  margin-bottom: 1.25rem;
+`;
+
+const AutoCardTitle = styled.h3`
+  font-size: 17px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.625rem;
+`;
+
+const AutoCardDesc = styled.p`
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+`;
+
 const ExamplesGrid = styled.div`
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
   @media (max-width: 768px) { grid-template-columns: 1fr; }
@@ -577,6 +625,7 @@ const DEV_TOOLS = [
   { name: 'AWS', slug: null, customIcon: '/images/aws_logo.svg', bg: '#FF9900' },
   { name: 'Vercel', slug: 'vercel', bg: '#000000' },
   { name: 'PostgreSQL', slug: 'postgresql', bg: '#4169E1' },
+  { name: 'n8n', slug: null, bg: '#EA4B71', label: 'n8n' },
 ];
 
 const PIPELINE_NODES = [
@@ -588,65 +637,66 @@ const PIPELINE_NODES = [
 ];
 
 function SoftwarePage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
 
   const features = [
-    { icon: Zap, color: '#EF4444', title: isNL ? 'AI-assisted development' : 'AI-assisted development', desc: isNL ? 'Claude en Cursor in elk stap van het bouwproces , voor maximale snelheid en kwaliteit zonder in te leveren.' : 'Claude and Cursor in every step of the build process , for maximum speed and quality without compromise.' },
-    { icon: Shield, color: '#3B82F6', title: isNL ? 'Production-ready' : 'Production-ready', desc: isNL ? 'Geen prototypes , wij leveren schaalbare, veilige software die direct in productie gaat.' : 'No prototypes , we deliver scalable, secure software that goes straight to production.' },
-    { icon: Layers, color: '#10B981', title: isNL ? 'Modern tech stack' : 'Modern tech stack', desc: isNL ? 'React, Node.js, Python, cloud-native , gebouwd voor de toekomst en volledig schaalbaar.' : 'React, Node.js, Python, cloud-native , built for the future and fully scalable.' },
-    { icon: GitBranch, color: '#8B5CF6', title: isNL ? 'Agile & iteratief' : 'Agile & iterative', desc: isNL ? 'Wekelijkse sprints, dagelijkse updates. Je ziet de voortgang en hebt volledige controle.' : 'Weekly sprints, daily updates. You see the progress and have full control.' },
-    { icon: Cpu, color: '#F59E0B', title: isNL ? 'AI-integraties' : 'AI integrations', desc: isNL ? 'Wij integreren de nieuwste AI-modellen (GPT-4, Claude, Gemini) direct in je software.' : 'We integrate the latest AI models (GPT-4, Claude, Gemini) directly into your software.' },
-    { icon: Clock, color: '#EC4899', title: isNL ? 'MVP in 2-4 weken' : 'MVP in 2-4 weeks', desc: isNL ? 'Eerste versie live in 2-4 weken. Geen maanden wachten, wel kwaliteitsproduct.' : 'First version live in 2-4 weeks. No months of waiting, quality product guaranteed.' },
+    { icon: Zap, color: '#EF4444', title: 'AI-assisted development', desc: 'Claude en Cursor in elk stap van het bouwproces , voor maximale snelheid en kwaliteit zonder in te leveren.' },
+    { icon: Shield, color: '#3B82F6', title: 'Production-ready', desc: 'Geen prototypes , wij leveren schaalbare, veilige software die direct in productie gaat.' },
+    { icon: Layers, color: '#10B981', title: 'Modern tech stack', desc: 'React, Node.js, Python, cloud-native , gebouwd voor de toekomst en volledig schaalbaar.' },
+    { icon: GitBranch, color: '#8B5CF6', title: 'Agile & iteratief', desc: 'Wekelijkse sprints, dagelijkse updates. Je ziet de voortgang en hebt volledige controle.' },
+    { icon: Cpu, color: '#F59E0B', title: 'AI-integraties', desc: 'Wij integreren de nieuwste AI-modellen (GPT-4, Claude, Gemini) direct in je software.' },
+    { icon: Clock, color: '#EC4899', title: 'MVP in 2-4 weken', desc: 'Eerste versie live in 2-4 weken. Geen maanden wachten, wel kwaliteitsproduct.' },
   ];
 
   const examples = [
-    { tag: isNL ? 'Automatisering Platform' : 'Automation Platform', title: 'Magic Apparels', desc: isNL ? 'Volledig geautomatiseerd orderplatform tussen Becosoft en Sage Intacct, honderden orders per dag.' : 'Fully automated order platform between Becosoft and Sage Intacct, hundreds of orders daily.', img: '/images/magic_apparels_dashboard.webp', alt: 'Magic Apparels dashboard' },
-    { tag: 'OpenClaw', title: isNL ? 'Multi-agent platform' : 'Multi-agent platform', desc: isNL ? 'Custom multi-agent implementatie voor volledige bedrijfsautomatisering via berichtenplatforms.' : 'Custom multi-agent implementation for complete business automation via messaging platforms.', img: '/images/openclaw_cool.webp', alt: 'OpenClaw platform' },
-    { tag: isNL ? 'AI-Integratie' : 'AI Integration', title: 'Passion Ice Baths', desc: isNL ? 'AI-gedreven SEO systeem en custom Shopify app voor het merk van Wim Hof.' : 'AI-driven SEO system and custom Shopify app for the Wim Hof brand.', img: '/images/passion_icebaths.webp', alt: 'Passion Ice Baths' },
-    { tag: isNL ? 'Automatisering' : 'Automation', title: isNL ? 'n8n Workflow Platform' : 'n8n Workflow Platform', desc: isNL ? 'Low-code automatiseringen en custom integraties voor complexe bedrijfsprocessen.' : 'Low-code automations and custom integrations for complex business processes.', img: '/images/n8n_flow.webp', alt: 'n8n workflow automation' },
+    { tag: 'Automatisering Platform', title: 'Magic Apparels', desc: 'Volledig geautomatiseerd orderplatform tussen Becosoft en Sage Intacct, honderden orders per dag.', img: '/images/magic_apparels_dashboard.webp', alt: 'Magic Apparels dashboard' },
+    { tag: 'OpenClaw', title: 'Multi-agent platform', desc: 'Custom multi-agent implementatie voor volledige bedrijfsautomatisering via berichtenplatforms.', img: '/images/openclaw_cool.webp', alt: 'OpenClaw platform' },
+    { tag: 'AI-Integratie', title: 'Passion Ice Baths', desc: 'AI-gedreven SEO systeem en custom Shopify app voor het merk van Wim Hof.', img: '/images/passion_icebaths.webp', alt: 'Passion Ice Baths' },
+    { tag: 'Automatisering', title: 'n8n Workflow Platform', desc: 'Low-code automatiseringen en custom integraties voor complexe bedrijfsprocessen.', img: '/images/n8n_flow.webp', alt: 'n8n workflow automation' },
   ];
 
-  const checks = isNL ? [
+  const automationFeatures = [
+    { icon: RefreshCw, color: '#8B5CF6', title: 'Platform sync', desc: 'Verbind al je tools en synchroniseer data automatisch in real-time.' },
+    { icon: GitBranch, color: '#3B82F6', title: 'Complexe flows', desc: 'Bouw workflows met condities, vertakkingen en foutafhandeling.' },
+    { icon: Clock, color: '#10B981', title: 'Tijdgebaseerd', desc: 'Plan taken op specifieke momenten of intervallen, geheel automatisch.' },
+    { icon: Database, color: '#F59E0B', title: 'Data mapping', desc: 'Transformeer data van het ene formaat naar het andere zonder handmatig werk.' },
+    { icon: Mail, color: '#EF4444', title: 'Notificaties', desc: 'Automatische e-mails, Slack-berichten en alerts op het juiste moment.' },
+    { icon: BarChart3, color: '#EC4899', title: 'Rapportages', desc: 'Automatische rapporten en dashboards die altijd up-to-date zijn.' },
+  ];
+
+  const checks = [
     'MVP in 2 tot 4 weken live , aantoonbaar snelste in Nederland',
     'Volledige documentatie en kennisoverdracht',
     'Schaalbare cloud-architectuur (AWS, Azure, GCP)',
     'Veilig, GDPR-compliant en pen-tested',
     'Post-launch support en doorlopende iteraties',
     'AI-agents gebouwd in ons eigen OpenClaw framework',
-  ] : [
-    'MVP live in 2 to 4 weeks , demonstrably fastest in the Netherlands',
-    'Complete documentation and knowledge transfer',
-    'Scalable cloud architecture (AWS, Azure, GCP)',
-    'Secure, GDPR-compliant and pen-tested',
-    'Post-launch support and ongoing iterations',
-    'AI agents built in our own OpenClaw framework',
+    'n8n workflows, platform integraties en custom automatisering',
   ];
 
   const processSteps = [
-    { icon: Users, color: '#3B82F6', title: isNL ? 'Kennismaking' : 'Meeting', desc: isNL ? 'Requirements opstellen' : 'Establish requirements' },
-    { icon: FileText, color: '#8B5CF6', title: isNL ? 'Technisch Plan' : 'Technical Plan', desc: isNL ? 'Onze devs maken een plan' : 'Our devs create a plan' },
-    { icon: Code2, color: '#EF4444', title: 'Development', desc: isNL ? 'AI development pipeline' : 'AI development pipeline' },
-    { icon: MessageSquare, color: '#10B981', title: isNL ? 'Klant Review' : 'Client Review', desc: isNL ? 'Bespreken & goedkeuring' : 'Review & approval' },
-    { icon: Rocket, color: '#F59E0B', title: 'Deploy', desc: isNL ? 'Na toestemming live' : 'Live after approval' },
+    { icon: Users, color: '#3B82F6', title: 'Kennismaking', desc: 'Requirements opstellen' },
+    { icon: FileText, color: '#8B5CF6', title: 'Technisch Plan', desc: 'Onze devs maken een plan' },
+    { icon: Code2, color: '#EF4444', title: 'Development', desc: 'AI development pipeline' },
+    { icon: MessageSquare, color: '#10B981', title: 'Klant Review', desc: 'Bespreken & goedkeuring' },
+    { icon: Rocket, color: '#F59E0B', title: 'Deploy', desc: 'Na toestemming live' },
   ];
 
   const funnelStages = [
-    { icon: Code2, color: '#EF4444', width: '100%', title: isNL ? 'AI-Assisted Coding' : 'AI-Assisted Coding', desc: isNL ? 'Claude, Cursor & Copilot schrijven en reviewen code' : 'Claude, Cursor & Copilot write and review code' },
-    { icon: Zap, color: '#3B82F6', width: '78%', title: isNL ? 'Automated Testing' : 'Automated Testing', desc: isNL ? 'Unit tests, integratie tests en E2E tests' : 'Unit tests, integration tests and E2E tests' },
-    { icon: Shield, color: '#10B981', width: '56%', title: isNL ? 'Security Testing' : 'Security Testing', desc: isNL ? 'Penetration testing & OWASP compliance' : 'Penetration testing & OWASP compliance' },
+    { icon: Code2, color: '#EF4444', width: '100%', title: 'AI-Assisted Coding', desc: 'Claude, Cursor & Copilot schrijven en reviewen code' },
+    { icon: Zap, color: '#3B82F6', width: '78%', title: 'Automated Testing', desc: 'Unit tests, integratie tests en E2E tests' },
+    { icon: Shield, color: '#10B981', width: '56%', title: 'Security Testing', desc: 'Penetration testing & OWASP compliance' },
   ];
 
   return (
     <>
       <SEOHead
-        title="Custom Software Ontwikkeling | Optivaize, De Bilt"
-        description="Op maat gemaakte software en webapplicaties. Optivaize ontwikkelt dashboards, APIs en platforms met AI-integratie vanuit De Bilt."
-        canonicalUrl="https://optivaize.nl/custom-software"
+        title="Software & Platforms | Optivaize, De Bilt"
+        description="Op maat gemaakte software, platforms en automatisering. Optivaize ontwikkelt dashboards, APIs, n8n workflows en platforms met AI-integratie vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/software-platforms"
         ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
-          { name: 'Custom Software', url: 'https://optivaize.nl/custom-software' }
+          { name: 'Software & Platforms', url: 'https://optivaize.nl/software-platforms' }
         ]}
       />
       <PageHero>
@@ -655,28 +705,22 @@ function SoftwarePage() {
             <Breadcrumb>
               <Link to="/">Home</Link>
               <ChevronRight size={14} />
-              <span>{isNL ? 'Diensten' : 'Services'}</span>
+              <span>{'Diensten'}</span>
               <ChevronRight size={14} />
-              <span>Custom Software</span>
+              <span>Software & Platforms</span>
             </Breadcrumb>
-            <Badge><Code2 size={12} /> Custom Software</Badge>
+            <Badge><Code2 size={12} /> Software & Platforms</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {isNL ? (
-                <>De snelste softwarebouwer <span style={{ color: '#FCA5A5' }}>van Nederland</span></>
-              ) : (
-                <>The fastest software builder <span style={{ color: '#FCA5A5' }}>in the Netherlands</span></>
-              )}
+              {<>Software, platforms <span style={{ color: '#FCA5A5' }}>&amp; automatisering</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-              {isNL
-                ? 'Dankzij AI-assisted development leveren wij productieklare software in weken, niet maanden. Op maat gebouwd met Claude, Cursor en de nieuwste tools , sneller dan ieder ander in Nederland.'
-                : 'Thanks to AI-assisted development we deliver production-ready software in weeks, not months. Custom built with Claude, Cursor and the latest tools , faster than anyone in the Netherlands.'}
+              {'Dankzij AI-assisted development leveren wij productieklare software in weken, niet maanden. Op maat gebouwd met Claude, Cursor en de nieuwste tools , sneller dan ieder ander in Nederland.'}
             </Desc>
             <HeroCTA href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer"
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
             >
-              {isNL ? 'Start je project' : 'Start your project'} <ArrowRight size={17} />
+              {'Start je project'} <ArrowRight size={17} />
             </HeroCTA>
           </HeroInner>
         </Container>
@@ -685,7 +729,7 @@ function SoftwarePage() {
       {/* Dev tools strip */}
       <ToolsStrip>
         <Container>
-          <ToolsLabel>{isNL ? 'Technologieen en tools die wij gebruiken' : 'Technologies and tools we use'}</ToolsLabel>
+          <ToolsLabel>{'Technologieen en tools die wij gebruiken'}</ToolsLabel>
           <ToolsRow>
             {DEV_TOOLS.map((t, i) => (
               <ToolChip key={i}>
@@ -712,11 +756,9 @@ function SoftwarePage() {
           <FadeIn>
             <SpeedHighlight>
               <SpeedNum>#1</SpeedNum>
-              <SpeedLabel>{isNL ? 'Snelste AI-softwarebouwer van Nederland' : 'Fastest AI software builder in the Netherlands'}</SpeedLabel>
+              <SpeedLabel>{'Snelste AI-softwarebouwer van Nederland'}</SpeedLabel>
               <SpeedSub>
-                {isNL
-                  ? 'Door AI te integreren in ons ontwikkelproces leveren we wat anderen in 3 maanden bouwen in slechts 4 weken. Zelfde kwaliteit, 3× sneller , gegarandeerd.'
-                  : 'By integrating AI into our development process we deliver what others build in 3 months in just 4 weeks. Same quality, 3× faster , guaranteed.'}
+                {'Door AI te integreren in ons ontwikkelproces leveren we wat anderen in 3 maanden bouwen in slechts 4 weken. Zelfde kwaliteit, 3× sneller , gegarandeerd.'}
               </SpeedSub>
             </SpeedHighlight>
           </FadeIn>
@@ -724,8 +766,8 @@ function SoftwarePage() {
           {/* ── Process Steps ── */}
           <div style={{ marginBottom: '5rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Ons ontwikkelproces' : 'Our development process'}</SectionLabel>
-              <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Van kennismaking tot live deployment' : 'From meeting to live deployment'}</SectionTitle></FadeIn>
+              <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Ons ontwikkelproces'}</SectionLabel>
+              <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Van kennismaking tot live deployment'}</SectionTitle></FadeIn>
             </div>
 
             <FadeIn>
@@ -747,7 +789,7 @@ function SoftwarePage() {
             <FadeIn delay={0.15}>
               <FunnelContainer>
                 <FunnelLabel>AI Development Pipeline</FunnelLabel>
-                <FunnelHeading>{isNL ? 'Onze AI-pipeline voor development' : 'Our AI pipeline for development'}</FunnelHeading>
+                <FunnelHeading>{'Onze AI-pipeline voor development'}</FunnelHeading>
 
                 {funnelStages.map((stage, i) => {
                   const Icon = stage.icon;
@@ -770,7 +812,7 @@ function SoftwarePage() {
                 <FunnelArrowDown><ArrowDown size={20} /></FunnelArrowDown>
                 <FunnelOutput initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                   <CheckCircle size={18} />
-                  {isNL ? 'Klaar voor klant review' : 'Ready for client review'}
+                  {'Klaar voor klant review'}
                 </FunnelOutput>
               </FunnelContainer>
             </FadeIn>
@@ -778,12 +820,10 @@ function SoftwarePage() {
 
           <TwoCol>
             <FadeIn>
-              <SectionLabel>{isNL ? 'Onze aanpak' : 'Our approach'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Software bouwen aan de top van AI-ontwikkeling' : 'Building software at the cutting edge of AI'}</SectionTitle>
+              <SectionLabel>{'Onze aanpak'}</SectionLabel>
+              <SectionTitle>{'Software bouwen aan de top van AI-ontwikkeling'}</SectionTitle>
               <SectionText>
-                {isNL
-                  ? 'Wij bouwen niet alleen applicaties , wij integreren AI in ons eigen bouwproces. Van requirements tot deployment, AI versnelt elke stap en verhoogt de kwaliteit.'
-                  : 'We don\'t just build applications , we integrate AI into our own build process. From requirements to deployment, AI accelerates every step and improves quality.'}
+                Wij bouwen niet alleen applicaties, wij integreren AI in ons eigen bouwproces. Van requirements tot deployment, AI versnelt elke stap en verhoogt de kwaliteit.
               </SectionText>
               <Checks>
                 {checks.map((c, i) => <CheckRow key={i}><CheckCircle size={16} />{c}</CheckRow>)}
@@ -799,8 +839,8 @@ function SoftwarePage() {
       <Section $gray>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Waarom wij sneller zijn' : 'Why we are faster'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Technologie maakt het verschil' : 'Technology makes the difference'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Waarom wij sneller zijn'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Technologie maakt het verschil'}</SectionTitle></FadeIn>
           </div>
           <FeatureGrid>
             {features.map((f, i) => {
@@ -822,8 +862,8 @@ function SoftwarePage() {
       <Section>
         <Container>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Onze projecten' : 'Our projects'}</SectionLabel>
-            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{isNL ? 'Wat wij hebben gebouwd' : 'What we have built'}</SectionTitle></FadeIn>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>{'Onze projecten'}</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>{'Wat wij hebben gebouwd'}</SectionTitle></FadeIn>
           </div>
           <ExamplesGrid>
             {examples.map((ex, i) => (
@@ -847,14 +887,12 @@ function SoftwarePage() {
         <Container>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>{isNL ? 'Self-hosting' : 'Self-hosting'}</SectionLabel>
+              <SectionLabel $light style={{ display: 'flex', justifyContent: 'center' }}>{'Self-hosting'}</SectionLabel>
               <SectionTitle $light style={{ textAlign: 'center' }}>
-                {isNL ? 'Software die je zelf kunt hosten' : 'Software you can host yourself'}
+                {'Software die je zelf kunt hosten'}
               </SectionTitle>
               <SectionText $light style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto' }}>
-                {isNL
-                  ? 'Wij bouwen software die volledig op je eigen infrastructuur draait. Dit doen we veel voor bedrijven met strikte GDPR-eisen. Je data blijft altijd bij jou.'
-                  : 'We build software that runs entirely on your own infrastructure. We do this often for companies with strict GDPR requirements. Your data always stays with you.'}
+                {'Wij bouwen software die volledig op je eigen infrastructuur draait. Dit doen we veel voor bedrijven met strikte GDPR-eisen. Je data blijft altijd bij jou.'}
               </SectionText>
             </div>
           </FadeIn>
@@ -864,12 +902,10 @@ function SoftwarePage() {
               <SelfHostCard initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                 <SelfHostIcon $color="#EF4444"><Server size={26} /></SelfHostIcon>
                 <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
-                  {isNL ? 'Self-hosted Software' : 'Self-hosted Software'}
+                  {'Self-hosted Software'}
                 </div>
                 <div style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.6 }}>
-                  {isNL
-                    ? 'Volledig op je eigen servers. Geen afhankelijkheid van externe cloud providers, volledige controle over updates en data.'
-                    : 'Fully on your own servers. No dependency on external cloud providers, full control over updates and data.'}
+                  {'Volledig op je eigen servers. Geen afhankelijkheid van externe cloud providers, volledige controle over updates en data.'}
                 </div>
               </SelfHostCard>
             </FadeIn>
@@ -877,12 +913,10 @@ function SoftwarePage() {
               <SelfHostCard initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                 <SelfHostIcon $color="#3B82F6"><Shield size={26} /></SelfHostIcon>
                 <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
-                  {isNL ? 'GDPR-compliant' : 'GDPR-compliant'}
+                  {'GDPR-compliant'}
                 </div>
                 <div style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.6 }}>
-                  {isNL
-                    ? 'Gebouwd voor de strengste privacy-eisen. Geen data naar externe servers, alles blijft binnen je netwerk.'
-                    : 'Built for the strictest privacy requirements. No data to external servers, everything stays within your network.'}
+                  {'Gebouwd voor de strengste privacy-eisen. Geen data naar externe servers, alles blijft binnen je netwerk.'}
                 </div>
               </SelfHostCard>
             </FadeIn>
@@ -890,12 +924,10 @@ function SoftwarePage() {
               <SelfHostCard initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                 <SelfHostIcon $color="#F59E0B"><Database size={26} /></SelfHostIcon>
                 <div style={{ fontSize: 17, fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
-                  {isNL ? 'AI Modellen Zelf Hosten' : 'Self-host AI Models'}
+                  {'AI Modellen Zelf Hosten'}
                 </div>
                 <div style={{ fontSize: 14, color: '#94A3B8', lineHeight: 1.6 }}>
-                  {isNL
-                    ? 'Wij hosten AI-modellen op je eigen infrastructuur. Geen data naar OpenAI of andere API\'s, maximale privacy.'
-                    : 'We host AI models on your own infrastructure. No data to OpenAI or other APIs, maximum privacy.'}
+                  {'Wij hosten AI-modellen op je eigen infrastructuur. Geen data naar OpenAI of andere API\'s, maximale privacy.'}
                 </div>
               </SelfHostCard>
             </FadeIn>
@@ -903,18 +935,65 @@ function SoftwarePage() {
         </Container>
       </Section>
 
+      {/* ── Automatisering ── */}
+      <AutoSection>
+        <Container>
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>Automatisering</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>Wij automatiseren ook je bestaande processen</SectionTitle></FadeIn>
+          </div>
+          <AutoGrid>
+            {automationFeatures.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <FadeIn key={i} delay={i * 0.08}>
+                  <AutoCard $color={f.color} whileHover={{ y: -4 }}>
+                    <AutoCardIcon $color={f.color}><Icon size={22} /></AutoCardIcon>
+                    <AutoCardTitle>{f.title}</AutoCardTitle>
+                    <AutoCardDesc>{f.desc}</AutoCardDesc>
+                  </AutoCard>
+                </FadeIn>
+              );
+            })}
+          </AutoGrid>
+        </Container>
+      </AutoSection>
+
+      <Section>
+        <Container>
+          <TwoCol>
+            <FadeIn>
+              <SectionLabel>Hosting & beheer</SectionLabel>
+              <SectionTitle>Wij hosten je n8n-omgeving</SectionTitle>
+              <SectionText>
+                Naast het bouwen van automatiseringen hosten en beheren wij ook je volledige n8n-omgeving. Je hebt altijd een betrouwbare, veilige en schaalbare infrastructuur voor je automatisering.
+              </SectionText>
+              <Checks>
+                <CheckRow><CheckCircle size={16} />Dedicated server, geen gedeelde omgeving</CheckRow>
+                <CheckRow><CheckCircle size={16} />Koppeling met HubSpot, Salesforce of Pipedrive</CheckRow>
+                <CheckRow><CheckCircle size={16} />Automatische back-ups en monitoring</CheckRow>
+                <CheckRow><CheckCircle size={16} />Maandelijkse optimalisaties inbegrepen</CheckRow>
+              </Checks>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <Image src="/images/n8n_banner.webp" alt="n8n automation" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
+            </FadeIn>
+          </TwoCol>
+        </Container>
+      </Section>
+
       <Section>
         <Container>
           <FadeIn>
             <CTACard whileHover={{ scale: 1.01 }}>
-              <h2>{isNL ? 'Klaar om te bouwen?' : 'Ready to build?'}</h2>
-              <p>{isNL ? 'Vertel ons wat je nodig hebt. Wij sturen je binnen 24 uur een concreet voorstel.' : 'Tell us what you need. We\'ll send you a concrete proposal within 24 hours.'}</p>
+              <h2>{'Klaar om te bouwen?'}</h2>
+              <p>Vertel ons wat je nodig hebt. Wij sturen je binnen 24 uur een concreet voorstel.</p>
               <BtnRow>
                 <BtnWhite href="https://cloud.teamleader.eu/optivaize/forms/ai-of-automatiseringsaanvraag/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Vul het formulier in' : 'Fill in the form'} <ArrowRight size={16} />
+                  {'Vul het formulier in'} <ArrowRight size={16} />
                 </BtnWhite>
                 <BtnOutline href="tel:+31642698918" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                  {isNL ? 'Bel ons direct' : 'Call us directly'}
+                  {'Bel ons direct'}
                 </BtnOutline>
               </BtnRow>
             </CTACard>

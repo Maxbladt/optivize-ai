@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 import Image from 'next/image';
 
 const SliderSection = styled.section`
@@ -125,9 +124,6 @@ const duplicatedClients = [...clientData, ...clientData];
 
 function ClientSlider() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const { language } = useLanguage();
-  const t = translations[language].clientSlider;
-
   return (
     <SliderSection ref={ref}>
       <Container>
@@ -136,7 +132,7 @@ function ClientSlider() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          {t.title}
+          Vertrouwd door vooruitstrevende bedrijven
         </SectionTitle>
 
         <SliderContainer>

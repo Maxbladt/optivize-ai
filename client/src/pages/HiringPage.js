@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage } from '../LanguageContext';
 import SEOHead from '../components/SEOHead';
 import { ArrowRight, MapPin, Clock, Briefcase, Brain, Eye, Layout, Code2, Cpu, ChevronDown, Send } from 'lucide-react';
 
@@ -363,50 +362,10 @@ const jobsNL = [
   },
 ];
 
-const jobsEN = [
-  {
-    icon: Brain, bg: 'linear-gradient(135deg, #8B5CF6, #6D28D9)',
-    title: 'AI/ML Engineer',
-    desc: 'Train and fine-tune large language models and foundation models. Build AI pipelines that directly deliver value for our clients. You work with the latest deep learning and MLOps techniques.',
-    location: 'Remote', type: 'Full-time', level: 'Senior', locationType: 'remote',
-    requirements: ['Experience with PyTorch / TensorFlow', 'LLM fine-tuning', 'MLOps & model deployment', 'Python, cloud infra (AWS/GCP)', 'Understanding of RAG architectures', 'Experience with vector databases'],
-  },
-  {
-    icon: Eye, bg: 'linear-gradient(135deg, #EC4899, #DB2777)',
-    title: 'Computer Vision & Inference Engineer',
-    desc: 'Work with state-of-the-art image models. Optimize inference, deploy vision pipelines and build real-time image recognition. Focus on production-ready computer vision solutions.',
-    location: 'Remote', type: 'Full-time', level: 'Mid / Senior', locationType: 'remote',
-    requirements: ['Experience with computer vision models', 'Inference optimization (ONNX, TensorRT)', 'Real-time image processing', 'Python, C++', 'Diffusion models knowledge is a plus', 'Edge deployment experience'],
-  },
-  {
-    icon: Layout, bg: 'linear-gradient(135deg, #F59E0B, #D97706)',
-    title: 'UX Designer - AI Products',
-    desc: 'Design intuitive interfaces for complex AI products. Make the power of AI accessible to end users. You work on-site with our development team.',
-    location: 'Utrecht', type: 'Full-time', level: 'Mid-level', locationType: 'utrecht',
-    requirements: ['Figma expert', 'Experience with complex SaaS products', 'Design systems knowledge', 'User research & testing', 'Prototyping & wireframing', 'Eye for micro-interactions'],
-  },
-  {
-    icon: Code2, bg: 'linear-gradient(135deg, #10B981, #059669)',
-    title: 'Full-Stack Engineer',
-    desc: 'Build fast, beautiful applications with React, Node.js and modern tooling. You work directly with our AI team on products that clients use daily.',
-    location: 'Remote', type: 'Full-time', level: 'Mid / Senior', locationType: 'remote',
-    requirements: ['React / Next.js / TypeScript', 'Node.js / Python backends', 'Database design (SQL & NoSQL)', 'API design & integrations', 'CI/CD & cloud deployment', 'AI integration experience is a plus'],
-  },
-  {
-    icon: Cpu, bg: 'linear-gradient(135deg, #3B82F6, #2563EB)',
-    title: 'AI Solutions Architect',
-    desc: 'Design end-to-end AI architectures for enterprise clients. From cloud infra to model deployment and monitoring. You are the bridge between client and technical team.',
-    location: 'Utrecht / Hybrid', type: 'Full-time', level: 'Senior', locationType: 'utrecht',
-    requirements: ['Cloud architecture (AWS/Azure/GCP)', 'AI/ML pipeline design', 'Client communication & consultancy', 'Infrastructure as Code', 'Monitoring & observability', 'Minimum 5 years experience'],
-  },
-];
-
 /* ──── Component ──── */
 
 function HiringPage() {
-  const { language } = useLanguage();
-  const isNL = language === 'nl';
-  const allJobs = isNL ? jobsNL : jobsEN;
+  const allJobs = jobsNL;
   const [expandedJob, setExpandedJob] = useState(null);
   const [filter, setFilter] = useState('all');
 
@@ -430,12 +389,10 @@ function HiringPage() {
       <PageHero>
         <Container>
           <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            {isNL ? 'Werk bij Optivaize' : 'Work at Optivaize'}
+            Werk bij Optivaize
           </H1>
           <Sub initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
-            {isNL
-              ? 'Wij groeien hard en zoeken versterking. Bekijk onze openstaande vacatures hieronder.'
-              : 'We\'re growing fast and looking for reinforcements. Check out our open positions below.'}
+            Wij groeien hard en zoeken versterking. Bekijk onze openstaande vacatures hieronder.
           </Sub>
         </Container>
       </PageHero>
@@ -444,14 +401,14 @@ function HiringPage() {
         <Container>
           <FadeIn>
             <SectionHead>
-              <SectionLabel>{isNL ? 'Open posities' : 'Open positions'}</SectionLabel>
-              <SectionTitle>{isNL ? 'Vind jouw plek' : 'Find your role'}</SectionTitle>
+              <SectionLabel>Open posities</SectionLabel>
+              <SectionTitle>Vind jouw plek</SectionTitle>
             </SectionHead>
           </FadeIn>
 
           <FilterRow>
             <FilterTab $active={filter === 'all'} onClick={() => setFilter('all')}>
-              {isNL ? 'Alle posities' : 'All positions'} ({allJobs.length})
+              Alle posities ({allJobs.length})
             </FilterTab>
             <FilterTab $active={filter === 'remote'} onClick={() => setFilter('remote')}>
               Remote ({allJobs.filter(j => j.locationType === 'remote').length})
@@ -511,7 +468,7 @@ function HiringPage() {
                               <JobDesc>{job.desc}</JobDesc>
 
                               <div style={{ fontSize: '14px', fontWeight: 700, color: '#0F172A', marginBottom: '0.75rem' }}>
-                                {isNL ? 'Wat we zoeken' : 'What we look for'}
+                                Wat we zoeken
                               </div>
                               <RequirementsList>
                                 {job.requirements.map((req, ri) => (
@@ -525,7 +482,7 @@ function HiringPage() {
                                 whileTap={{ scale: 0.97 }}
                               >
                                 <Send size={15} />
-                                {isNL ? 'Solliciteer nu' : 'Apply now'}
+                                Solliciteer nu
                               </ApplyBtn>
                             </JobBodyInner>
                           </JobBody>
@@ -547,9 +504,7 @@ function HiringPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            {isNL
-              ? <>Geen match? Stuur een <GradientSpan>open sollicitatie</GradientSpan></>
-              : <>No match? Send an <GradientSpan>open application</GradientSpan></>}
+            <>Geen match? Stuur een <GradientSpan>open sollicitatie</GradientSpan></>
           </CtaTitle>
           <CtaSub
             initial={{ opacity: 0, y: 20 }}
@@ -557,9 +512,7 @@ function HiringPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            {isNL
-              ? 'Wij zijn altijd op zoek naar talent. Stuur ons een mail met je CV en motivatie.'
-              : 'We are always looking for talent. Send us an email with your CV and motivation.'}
+            Wij zijn altijd op zoek naar talent. Stuur ons een mail met je CV en motivatie.
           </CtaSub>
           <CtaBtn
             href="mailto:info@optivaize.nl?subject=Open%20Sollicitatie%20-%20Optivaize"
@@ -570,7 +523,7 @@ function HiringPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {isNL ? 'Mail ons' : 'Email us'}
+            Mail ons
             <ArrowRight size={17} />
           </CtaBtn>
         </Container>

@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 import { Linkedin } from 'lucide-react';
 
 const TeamSection = styled.section`
@@ -183,12 +182,29 @@ const teamStaticConfig = [
 
 function Team() {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const { language } = useLanguage();
-  const t = translations[language].team;
-  const teamMembers = t.members.map((member, idx) => ({
-    ...teamStaticConfig[idx],
-    ...member
-  }));
+  const teamMembers = [
+    {
+      ...teamStaticConfig[0],
+      name: 'Maximilian Bladt',
+      title: 'Chief Executive Officer',
+      bio: 'Na zijn rol als Head of AI Implementation bij Elevate Digital was Optivaize de logische volgende stap: bedrijven zonder belemmeringen van A tot Z helpen met AI. Maximilian bouwt pragmatische AI-oplossingen, traint taalmodellen op taken die omzet verhogen en kosten verlagen en leidt een groeiend internationaal team aan de top van AI-ontwikkeling. Hij gelooft dat mensen die AI goed inzetten een ongrijpbare voorsprong krijgen op wie dat niet doet.',
+      skills: ['Strategie', 'Leiderschap', 'AI Engineering', 'Cloudarchitectuur']
+    },
+    {
+      ...teamStaticConfig[1],
+      name: 'Geronimo Saija',
+      title: 'Head of Operations',
+      bio: 'Geronimo combineert strategisch denken met sterke uitvoering en houdt als Head of Operations de dagelijkse motor van Optivaize draaiend. Daarnaast is hij een ervaren prompt engineer die AI-modellen aanstuurt en optimaliseert voor klantprojecten. Van go-to-market strategie tot performance marketing en het verfijnen van prompts: zijn focus ligt op het vertalen van Optivaize\'s geavanceerde AI-technologie naar overtuigende verhalen die klanten bewegen en naar systemen die daadwerkelijk resultaat opleveren. Hij gelooft dat echte AI-transformatie pas ontstaat wanneer technologie en organisatie even sterk zijn.',
+      skills: ['Operations', 'Prompt Engineering', 'Groeistrategie', 'Marketing']
+    },
+    {
+      ...teamStaticConfig[2],
+      name: 'Willem Bladt',
+      title: 'Head of Finance',
+      bio: 'Willem bewaakt de financiële gezondheid en schaalbaarheid van Optivaize. Met een scherp oog voor cijfers en structuur zorgt hij dat de snelle groei van het bedrijf wordt ondersteund door een solide financiële basis. Van investeerdersrelaties tot budgetbeheer en financial planning: Willem geeft Optivaize de ruggengraat om ambitieuze AI-projecten verantwoord te kunnen opschalen.',
+      skills: ['Finance', 'Budgetbeheer', 'Investeerdersrelaties', 'Financiële planning']
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -222,7 +238,7 @@ function Team() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         >
-          {t.title}
+          Maak kennis met je AI-innovatiepartners
         </SectionTitle>
 
         <motion.div

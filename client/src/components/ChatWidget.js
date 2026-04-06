@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Send, X, Phone, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '../LanguageContext';
+
 
 // ─── CONSTANTS ───
 
@@ -19,7 +19,7 @@ const TEAM = [
   {
     id: 'max',
     name: 'Max',
-    role: { nl: 'CEO & AI Developer', en: 'CEO & AI Developer' },
+    role: 'CEO & AI Developer',
     avatar: '/images/max_avatar.webp',
     color: '#3B82F6',
     gradient: 'linear-gradient(135deg, #3B82F6, #10B981)',
@@ -27,7 +27,7 @@ const TEAM = [
   {
     id: 'geronimo',
     name: 'Geronimo',
-    role: { nl: 'Head of Operations', en: 'Head of Operations' },
+    role: 'Head of Operations',
     avatar: '/images/geronimo_avatar.webp',
     color: '#8B5CF6',
     gradient: 'linear-gradient(135deg, #8B5CF6, #EC4899)',
@@ -360,8 +360,6 @@ function ChatWidget() {
   const lastFetchedPath = useRef('');
 
   const pathname = usePathname();
-  const { language } = useLanguage();
-
   const agent = TEAM.find(t => t.id === agentId) || TEAM[0];
   const tipAgent = TEAM.find(t => t.id === tipAgentId) || TEAM[0];
 
@@ -498,25 +496,17 @@ function ChatWidget() {
     const lastTime = getLastMessageTime(convos, aid);
     const hoursSince = lastTime ? (Date.now() - lastTime) / 3600000 : Infinity;
 
-    if (hoursSince >= 168) { // 7+ days
-      return language === 'nl'
-        ? `Hey, lang niet gezien! Ik ben ${a.name}, ${a.role.nl} bij Optivaize. Fijn dat je er weer bent, kan ik je ergens mee helpen?`
-        : `Hey, long time no see! I'm ${a.name}, ${a.role.en} at Optivaize. Great to have you back, can I help with anything?`;
+    if (hoursSince >= 168) {
+      return `Hey, lang niet gezien! Ik ben ${a.name}, ${a.role} bij Optivaize. Fijn dat je er weer bent, kan ik je ergens mee helpen?`;
     }
-    if (hoursSince >= 24) { // 1+ days
-      return language === 'nl'
-        ? `Hé, leuk je weer te zien! Ik ben ${a.name}. Waar kan ik je mee helpen vandaag?`
-        : `Hey, good to see you again! I'm ${a.name}. How can I help you today?`;
+    if (hoursSince >= 24) {
+      return `Hé, leuk je weer te zien! Ik ben ${a.name}. Waar kan ik je mee helpen vandaag?`;
     }
-    if (hoursSince >= 1) { // 1+ hour
-      return language === 'nl'
-        ? `Hey, welkom terug! Ik ben ${a.name}. Kan ik je nog ergens mee helpen?`
-        : `Hey, welcome back! I'm ${a.name}. Can I help you with anything?`;
+    if (hoursSince >= 1) {
+      return `Hey, welkom terug! Ik ben ${a.name}. Kan ik je nog ergens mee helpen?`;
     }
-    return language === 'nl'
-      ? `Hi, mijn naam is ${a.name}, ${a.role.nl} bij Optivaize. Heb je een vraag over AI, automatisering of software? Stel hem gerust!`
-      : `Hi, I'm ${a.name}, ${a.role.en} at Optivaize. Got a question about AI, automation or software? Feel free to ask!`;
-  }, [language, storageData]);
+    return `Hi, mijn naam is ${a.name}, ${a.role} bij Optivaize. Heb je een vraag over AI, automatisering of software? Stel hem gerust!`;
+  }, [storageData]);
 
   // ─── OPEN / SWITCH ───
   const openChat = useCallback(() => {
@@ -618,9 +608,7 @@ function ChatWidget() {
     } catch (err) {
       if (err.name === 'AbortError') return;
       setApiOnline(false);
-      const fallback = language === 'nl'
-        ? `Sorry, er ging iets mis. Bel me gerust op ${PHONE} of stuur een WhatsApp!`
-        : `Sorry, something went wrong. Feel free to call ${PHONE} or send a WhatsApp!`;
+      const fallback = `Sorry, er ging iets mis. Bel me gerust op ${PHONE} of stuur een WhatsApp!`;
       setConvos(prev => {
         const msgs = [...(prev[agentId] || [])];
         msgs[msgs.length - 1] = { role: 'assistant', content: fallback, timestamp: Date.now() };
@@ -630,7 +618,7 @@ function ChatWidget() {
       setStreaming(false);
       abortRef.current = null;
     }
-  }, [streaming, agentId, convos, pathname, language, sessionId]);
+  }, [streaming, agentId, convos, pathname, sessionId]);
 
   const handleSubmit = useCallback(e => { e.preventDefault(); sendMessage(message); }, [message, sendMessage]);
 
@@ -694,7 +682,7 @@ function ChatWidget() {
                 </HeaderAvatar>
                 <div>
                   <AgentName>{agent.name}</AgentName>
-                  <AgentRole>{agent.role[language]}</AgentRole>
+                  <AgentRole>{agent.role}</AgentRole>
                 </div>
               </AgentInfo>
               <CloseBtn onClick={() => setIsOpen(false)}><X size={16} /></CloseBtn>
@@ -743,20 +731,20 @@ function ChatWidget() {
             {showCTA && (
               <CTABar initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
                 <CTABtn href={`tel:${PHONE.replace(/\s/g,'')}`} $c="#10B981" $bg="#ECFDF5">
-                  <Phone size={12} />{language==='nl'?'Bel':'Call'}
+                  <Phone size={12} />Bel
                 </CTABtn>
                 <CTABtn href={WHATSAPP} target="_blank" rel="noopener noreferrer" $c="#25D366" $bg="#F0FFF4">
                   <MessageSquare size={12} />WhatsApp
                 </CTABtn>
                 <CTABtn href={FORM_URL} target="_blank" rel="noopener noreferrer" $c="#3B82F6" $bg="#EFF6FF">
-                  <ExternalLink size={12} />{language==='nl'?'Aanvraag':'Inquiry'}
+                  <ExternalLink size={12} />Aanvraag
                 </CTABtn>
               </CTABar>
             )}
 
             <InputArea onSubmit={handleSubmit}>
               <Input type="text" value={message} onChange={e=>setMessage(e.target.value)}
-                placeholder={language==='nl'?`Bericht aan ${agent.name}...`:`Message ${agent.name}...`}
+                placeholder={`Bericht aan ${agent.name}...`}
                 disabled={streaming} />
               <SendBtnStyled type="submit" disabled={!message.trim()||streaming} $g={agent.gradient}>
                 <Send size={16} />

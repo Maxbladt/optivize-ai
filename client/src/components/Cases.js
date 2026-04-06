@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useLanguage, translations } from '../LanguageContext';
 import { ArrowRight } from 'lucide-react';
 import Link from './Link';
 import Image from 'next/image';
@@ -130,11 +129,7 @@ const ViewLink = styled.div`
 
 function Cases({ initialCases = [] }) {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const { language } = useLanguage();
-  const t = translations[language].cases;
   const cases = initialCases;
-
-  const isNL = language === 'nl';
 
   return (
     <CasesSection id="cases" ref={ref}>
@@ -145,14 +140,14 @@ function Cases({ initialCases = [] }) {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           >
-            {t.title}
+            Succesverhalen
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            {t.subtitle}
+            Echte veranderingen, meetbare resultaten. Bekijk hoe we organisaties in uiteenlopende sectoren hebben geholpen.
           </SectionSubtitle>
         </SectionHeader>
 
@@ -188,10 +183,10 @@ function Cases({ initialCases = [] }) {
               </CaseHeader>
 
               <CaseContent>
-                <CaseTitle>{isNL ? caseItem.title_nl : caseItem.title_en}</CaseTitle>
-                <CasePreview>{isNL ? caseItem.preview_nl : caseItem.preview_en}</CasePreview>
+                <CaseTitle>{caseItem.title_nl}</CaseTitle>
+                <CasePreview>{caseItem.preview_nl}</CasePreview>
                 <ViewLink>
-                  <span>{t.viewFullCase}</span>
+                  <span>Bekijk de volledige case</span>
                   <ArrowRight size={16} />
                 </ViewLink>
               </CaseContent>
