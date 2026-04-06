@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from '../components/Link';
 import {
-  ArrowRight, Bot, TrendingUp, Target, Zap, Code2, Building2,
-  MessageCircle, Cpu, GraduationCap, Blocks, ClipboardList,
+  ArrowRight, Bot, TrendingUp, Code2, GraduationCap, ClipboardList,
   Search, Lightbulb, Wrench, Phone, MapPin
 } from 'lucide-react';
 import ClientSlider from '../components/ClientSlider';
@@ -1156,41 +1155,17 @@ function HeroVideo({ src, thumbnail, isLogo }) {
 }
 
 const serviceItems = [
-  { icon: Building2, color: '#EC4899', path: '/ai-business',
-    nl: { title: 'AI Business', desc: 'Van strategie tot uitvoering: wij transformeren je hele bedrijf met AI op langetermijnbasis.' },
-    en: { title: 'AI Business', desc: 'From strategy to execution: we transform your entire business with AI on a long-term basis.' }
+  { icon: Code2, color: '#8B5CF6', path: '/software-platforms',
+    nl: { title: 'Software & Platforms', desc: 'Custom software, dashboards en automatisering. Van maatwerk platforms tot volledig geautomatiseerde workflows.' },
+    en: { title: 'Software & Platforms', desc: 'Custom software, dashboards and automation. From tailored platforms to fully automated workflows.' }
   },
-  { icon: GraduationCap, color: '#F97316', path: '/ai-training',
-    nl: { title: 'AI Training', desc: 'Maatwerk training per afdeling. ChatGPT, Claude, Copilot, Midjourney, praktisch en direct toepasbaar.' },
-    en: { title: 'AI Training', desc: 'Tailored training per department. ChatGPT, Claude, Copilot, Midjourney, practical and immediately applicable.' }
-  },
-  { icon: Code2, color: '#EF4444', path: '/custom-software',
-    nl: { title: 'Custom Software', desc: 'Wij bouwen software 3x sneller, het snelste AI-gedreven softwarebedrijf van Nederland.' },
-    en: { title: 'Custom Software', desc: 'We build software 3x faster, the fastest AI-driven software company in the Netherlands.' }
-  },
-  { icon: Zap, color: '#8B5CF6', path: '/automatisering',
-    nl: { title: 'Automatisering', desc: 'n8n workflows en custom platforms. Verbind je systemen en elimineer handmatig werk volledig.' },
-    en: { title: 'Automation', desc: 'n8n workflows and custom platforms. Connect your systems and eliminate manual work entirely.' }
-  },
-  { icon: Target, color: '#F59E0B', path: '/ai-sales',
-    nl: { title: 'AI Sales', desc: 'LinkedIn outreach, lead kwalificatie en CRM-integratie, volledig geautomatiseerd door AI.' },
-    en: { title: 'AI Sales', desc: 'LinkedIn outreach, lead qualification and CRM integration, fully automated by AI.' }
+  { icon: Bot, color: '#3B82F6', path: '/ai-agents-chatbots',
+    nl: { title: 'AI Agents & Chatbots', desc: 'Autonome AI agents en chatbots die 24/7 taken overnemen, klanten helpen en processen automatiseren.' },
+    en: { title: 'AI Agents & Chatbots', desc: 'Autonomous AI agents and chatbots that take over tasks 24/7, help customers and automate processes.' }
   },
   { icon: TrendingUp, color: '#10B981', path: '/ai-marketing',
     nl: { title: 'AI Marketing', desc: 'AI-SEO, content automatisering en Google Ads optimalisatie voor maximale organische groei.' },
     en: { title: 'AI Marketing', desc: 'AI-SEO, content automation and Google Ads optimisation for maximum organic growth.' }
-  },
-  { icon: Bot, color: '#3B82F6', path: '/ai-agenten',
-    nl: { title: 'AI Agents', desc: 'OpenClaw agents die 24/7 taken overnemen via WhatsApp, Slack en Teams.' },
-    en: { title: 'AI Agents', desc: 'OpenClaw agents that take over tasks 24/7 via WhatsApp, Slack and Teams.' }
-  },
-  { icon: MessageCircle, color: '#06B6D4', path: '/ai-chatbot',
-    nl: { title: 'AI Chatbot', desc: 'Intelligente chatbots die je producten kennen, vragen beantwoorden en leads kwalificeren.' },
-    en: { title: 'AI Chatbot', desc: 'Intelligent chatbots that know your products, answer questions and qualify leads.' }
-  },
-  { icon: Blocks, color: '#6366F1', path: '/crypto-blockchain',
-    nl: { title: 'Crypto & Blockchain', desc: 'Smart contracts, DeFi platforms en end-to-end blockchain development op Solana, Ethereum en Polygon.' },
-    en: { title: 'Crypto & Blockchain', desc: 'Smart contracts, DeFi platforms and end-to-end blockchain development on Solana, Ethereum and Polygon.' }
   },
 ];
 

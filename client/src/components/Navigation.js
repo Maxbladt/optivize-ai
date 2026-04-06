@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Bot, TrendingUp, Target, Zap, Code2, Building2, MessageCircle, GraduationCap, Blocks, Users, Briefcase, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, TrendingUp, Code2, Users, Briefcase, Phone } from 'lucide-react';
 import Link from './Link';
 import { useLocation } from '../hooks';
 import Image from 'next/image';
@@ -11,49 +11,19 @@ const GRADIENT = 'linear-gradient(135deg, #3B82F6, #10B981)';
 
 const serviceItems = [
   {
-    label: 'AI Business',
-    sublabel: 'Je hele bedrijf transformeren met AI',
-    path: '/ai-business', icon: Building2, color: '#EC4899',
+    label: 'Software & Platforms',
+    sublabel: 'Custom software, dashboards & automatisering',
+    path: '/software-platforms', icon: Code2, color: '#8B5CF6',
   },
   {
-    label: 'AI Training',
-    sublabel: 'Je team klaarstomen voor het AI-tijdperk',
-    path: '/ai-training', icon: GraduationCap, color: '#F97316',
-  },
-  {
-    label: 'Custom Software',
-    sublabel: 'AI-first development, 3x sneller bouwen',
-    path: '/custom-software', icon: Code2, color: '#EF4444',
-  },
-  {
-    label: 'Automatisering',
-    sublabel: 'n8n workflows & platform integraties',
-    path: '/automatisering', icon: Zap, color: '#8B5CF6',
-  },
-  {
-    label: 'AI Sales',
-    sublabel: 'CRM, LinkedIn automation & lead generatie',
-    path: '/ai-sales', icon: Target, color: '#F59E0B',
+    label: 'AI Agents & Chatbots',
+    sublabel: 'Autonome agents en chatbots die 24/7 werken',
+    path: '/ai-agents-chatbots', icon: Bot, color: '#3B82F6',
   },
   {
     label: 'AI Marketing',
-    sublabel: 'Google Ads, SEO, content & social automatisering',
+    sublabel: 'SEO, content, ads & social automatisering',
     path: '/ai-marketing', icon: TrendingUp, color: '#10B981',
-  },
-  {
-    label: 'AI Agents',
-    sublabel: 'Autonome agents die taken volledig overnemen',
-    path: '/ai-agenten', icon: Bot, color: '#3B82F6',
-  },
-  {
-    label: 'AI Chatbot',
-    sublabel: 'Chatbots die leren van elk gesprek',
-    path: '/ai-chatbot', icon: MessageCircle, color: '#06B6D4',
-  },
-  {
-    label: 'Crypto & Blockchain',
-    sublabel: 'Smart contracts & blockchain development',
-    path: '/crypto-blockchain', icon: Blocks, color: '#6366F1',
   },
 ];
 

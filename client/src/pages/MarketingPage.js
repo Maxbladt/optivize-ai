@@ -730,29 +730,6 @@ function MarketingPage() {
         </Container>
       </Section>
 
-      {/* Elevate Digital partnership */}
-      <Section $gray>
-        <Container>
-          <TwoCol>
-            <FadeIn>
-              <SectionLabel>{'Samenwerking'}</SectionLabel>
-              <SectionTitle>{'Samen met Elevate Digital'}</SectionTitle>
-              <SectionText>
-                {'Als het gaat om marketing werken wij veel samen met Elevate Digital. Van strategie tot uitvoering combineren wij onze AI-expertise met hun marketingkennis voor het beste resultaat.'}
-              </SectionText>
-              <Checks>
-                <CheckRow><CheckCircle size={16} />{'Gecombineerde expertise in AI en marketing'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{'Gezamenlijke content- en campagnestrategie'}</CheckRow>
-                <CheckRow><CheckCircle size={16} />{'Van SEO tot paid ads, volledig afgedekt'}</CheckRow>
-              </Checks>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <NextImage src="https://cdn.prod.website-files.com/621ceace3251175ba0fe61f9/643d156d65a741346cbdccf1_BvprPfyGOec9pyXEYDTUBzz9_KcTWBrE9iulta0Znbc.jpeg" alt="Elevate Digital samenwerking" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
-            </FadeIn>
-          </TwoCol>
-        </Container>
-      </Section>
-
       {/* CTA */}
       <Section>
         <Container>

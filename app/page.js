@@ -1,4 +1,4 @@
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 import HomePage from '@/pages/HomePage';
 import Layout from '@/components/Layout';
 
@@ -19,7 +19,7 @@ export default async function Page() {
   let cases = [];
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/cases`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${baseUrl}/api/cases`, { cache: 'no-store' });
     if (res.ok) cases = await res.json();
   } catch {}
 

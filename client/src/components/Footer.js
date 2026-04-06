@@ -317,12 +317,9 @@ Aan de top van AI-ontwikkeling. Wij bouwen intelligente systemen die je bedrijf 
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <ColTitle>Diensten</ColTitle>
-              <FooterLink to="/ai-agenten">AI Agents</FooterLink>
+              <FooterLink to="/software-platforms">Software & Platforms</FooterLink>
+              <FooterLink to="/ai-agents-chatbots">AI Agents & Chatbots</FooterLink>
               <FooterLink to="/ai-marketing">AI Marketing</FooterLink>
-              <FooterLink to="/ai-sales">AI Sales</FooterLink>
-              <FooterLink to="/automatisering">Automatisering</FooterLink>
-              <FooterLink to="/custom-software">Custom Software</FooterLink>
-              <FooterLink to="/ai-business">AI Business</FooterLink>
             </FooterCol>
 
             <FooterCol

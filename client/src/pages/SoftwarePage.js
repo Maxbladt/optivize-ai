@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from '../components/Link';
-import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown } from 'lucide-react';
+import { Code2, Zap, Shield, Layers, GitBranch, Cpu, ArrowRight, CheckCircle, ChevronRight, Clock, Users, FileText, MessageSquare, Rocket, Server, Database, ArrowDown, RefreshCw, Mail, Package, BarChart3 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
 
@@ -527,6 +527,55 @@ const SelfHostIcon = styled.div`
   margin: 0 auto 1rem;
 `;
 
+/* ─── Automation Section ─── */
+const AutoSection = styled.section`
+  padding: 7rem 0;
+  background: #F8FAFC;
+`;
+
+const AutoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+`;
+
+const AutoCard = styled(motion.div)`
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  &:hover { border-color: ${props => props.$color}44; box-shadow: 0 6px 24px ${props => props.$color}12; transform: translateY(-4px); }
+  transition: all 0.25s ease;
+`;
+
+const AutoCardIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: ${props => props.$color}14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${props => props.$color};
+  margin-bottom: 1.25rem;
+`;
+
+const AutoCardTitle = styled.h3`
+  font-size: 17px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.625rem;
+`;
+
+const AutoCardDesc = styled.p`
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+`;
+
 const ExamplesGrid = styled.div`
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
   @media (max-width: 768px) { grid-template-columns: 1fr; }
@@ -576,6 +625,7 @@ const DEV_TOOLS = [
   { name: 'AWS', slug: null, customIcon: '/images/aws_logo.svg', bg: '#FF9900' },
   { name: 'Vercel', slug: 'vercel', bg: '#000000' },
   { name: 'PostgreSQL', slug: 'postgresql', bg: '#4169E1' },
+  { name: 'n8n', slug: null, bg: '#EA4B71', label: 'n8n' },
 ];
 
 const PIPELINE_NODES = [
@@ -604,6 +654,15 @@ function SoftwarePage() {
     { tag: 'Automatisering', title: 'n8n Workflow Platform', desc: 'Low-code automatiseringen en custom integraties voor complexe bedrijfsprocessen.', img: '/images/n8n_flow.webp', alt: 'n8n workflow automation' },
   ];
 
+  const automationFeatures = [
+    { icon: RefreshCw, color: '#8B5CF6', title: 'Platform sync', desc: 'Verbind al je tools en synchroniseer data automatisch in real-time.' },
+    { icon: GitBranch, color: '#3B82F6', title: 'Complexe flows', desc: 'Bouw workflows met condities, vertakkingen en foutafhandeling.' },
+    { icon: Clock, color: '#10B981', title: 'Tijdgebaseerd', desc: 'Plan taken op specifieke momenten of intervallen, geheel automatisch.' },
+    { icon: Database, color: '#F59E0B', title: 'Data mapping', desc: 'Transformeer data van het ene formaat naar het andere zonder handmatig werk.' },
+    { icon: Mail, color: '#EF4444', title: 'Notificaties', desc: 'Automatische e-mails, Slack-berichten en alerts op het juiste moment.' },
+    { icon: BarChart3, color: '#EC4899', title: 'Rapportages', desc: 'Automatische rapporten en dashboards die altijd up-to-date zijn.' },
+  ];
+
   const checks = [
     'MVP in 2 tot 4 weken live , aantoonbaar snelste in Nederland',
     'Volledige documentatie en kennisoverdracht',
@@ -611,6 +670,7 @@ function SoftwarePage() {
     'Veilig, GDPR-compliant en pen-tested',
     'Post-launch support en doorlopende iteraties',
     'AI-agents gebouwd in ons eigen OpenClaw framework',
+    'n8n workflows, platform integraties en custom automatisering',
   ];
 
   const processSteps = [
@@ -630,13 +690,13 @@ function SoftwarePage() {
   return (
     <>
       <SEOHead
-        title="Custom Software Ontwikkeling | Optivaize, De Bilt"
-        description="Op maat gemaakte software en webapplicaties. Optivaize ontwikkelt dashboards, APIs en platforms met AI-integratie vanuit De Bilt."
-        canonicalUrl="https://optivaize.nl/custom-software"
+        title="Software & Platforms | Optivaize, De Bilt"
+        description="Op maat gemaakte software, platforms en automatisering. Optivaize ontwikkelt dashboards, APIs, n8n workflows en platforms met AI-integratie vanuit De Bilt."
+        canonicalUrl="https://optivaize.nl/software-platforms"
         ogImage="https://optivaize.nl/images/optivaize_logo_new.webp"
         breadcrumbs={[
           { name: 'Home', url: 'https://optivaize.nl' },
-          { name: 'Custom Software', url: 'https://optivaize.nl/custom-software' }
+          { name: 'Software & Platforms', url: 'https://optivaize.nl/software-platforms' }
         ]}
       />
       <PageHero>
@@ -647,11 +707,11 @@ function SoftwarePage() {
               <ChevronRight size={14} />
               <span>{'Diensten'}</span>
               <ChevronRight size={14} />
-              <span>Custom Software</span>
+              <span>Software & Platforms</span>
             </Breadcrumb>
-            <Badge><Code2 size={12} /> Custom Software</Badge>
+            <Badge><Code2 size={12} /> Software & Platforms</Badge>
             <H1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-              {<>De snelste softwarebouwer <span style={{ color: '#FCA5A5' }}>van Nederland</span></>}
+              {<>Software, platforms <span style={{ color: '#FCA5A5' }}>&amp; automatisering</span></>}
             </H1>
             <Desc initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}>
               {'Dankzij AI-assisted development leveren wij productieklare software in weken, niet maanden. Op maat gebouwd met Claude, Cursor en de nieuwste tools , sneller dan ieder ander in Nederland.'}
@@ -872,6 +932,53 @@ function SoftwarePage() {
               </SelfHostCard>
             </FadeIn>
           </SelfHostGrid>
+        </Container>
+      </Section>
+
+      {/* ── Automatisering ── */}
+      <AutoSection>
+        <Container>
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <SectionLabel style={{ display: 'flex', justifyContent: 'center' }}>Automatisering</SectionLabel>
+            <FadeIn><SectionTitle style={{ textAlign: 'center' }}>Wij automatiseren ook je bestaande processen</SectionTitle></FadeIn>
+          </div>
+          <AutoGrid>
+            {automationFeatures.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <FadeIn key={i} delay={i * 0.08}>
+                  <AutoCard $color={f.color} whileHover={{ y: -4 }}>
+                    <AutoCardIcon $color={f.color}><Icon size={22} /></AutoCardIcon>
+                    <AutoCardTitle>{f.title}</AutoCardTitle>
+                    <AutoCardDesc>{f.desc}</AutoCardDesc>
+                  </AutoCard>
+                </FadeIn>
+              );
+            })}
+          </AutoGrid>
+        </Container>
+      </AutoSection>
+
+      <Section>
+        <Container>
+          <TwoCol>
+            <FadeIn>
+              <SectionLabel>Hosting & beheer</SectionLabel>
+              <SectionTitle>Wij hosten je n8n-omgeving</SectionTitle>
+              <SectionText>
+                Naast het bouwen van automatiseringen hosten en beheren wij ook je volledige n8n-omgeving. Je hebt altijd een betrouwbare, veilige en schaalbare infrastructuur voor je automatisering.
+              </SectionText>
+              <Checks>
+                <CheckRow><CheckCircle size={16} />Dedicated server, geen gedeelde omgeving</CheckRow>
+                <CheckRow><CheckCircle size={16} />Koppeling met HubSpot, Salesforce of Pipedrive</CheckRow>
+                <CheckRow><CheckCircle size={16} />Automatische back-ups en monitoring</CheckRow>
+                <CheckRow><CheckCircle size={16} />Maandelijkse optimalisaties inbegrepen</CheckRow>
+              </Checks>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <Image src="/images/n8n_banner.webp" alt="n8n automation" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: '20px', display: 'block' }} loading="lazy" />
+            </FadeIn>
+          </TwoCol>
         </Container>
       </Section>
 
