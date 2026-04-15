@@ -24,14 +24,6 @@ const TEAM = [
     color: '#3B82F6',
     gradient: 'linear-gradient(135deg, #3B82F6, #10B981)',
   },
-  {
-    id: 'geronimo',
-    name: 'Geronimo',
-    role: 'Head of Operations',
-    avatar: '/images/geronimo_avatar.webp',
-    color: '#8B5CF6',
-    gradient: 'linear-gradient(135deg, #8B5CF6, #EC4899)',
-  },
 ];
 
 // ─── HELPERS ───
@@ -181,28 +173,6 @@ const CloseBtn = styled.button`
   transition:all 0.2s;&:hover{background:rgba(255,255,255,0.35);}
 `;
 
-const TeamSelector = styled.div`
-  display:flex;gap:6px;padding:10px 16px;background:#F8FAFC;border-bottom:1px solid #F1F5F9;
-`;
-
-const TeamBtn = styled.button`
-  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:8px 12px;border-radius:12px;font-family:inherit;cursor:pointer;transition:all 0.2s;
-  border:1.5px solid ${p=>(p.$a?p.$c:'transparent')};
-  background:${p=>(p.$a?'white':'transparent')};
-  box-shadow:${p=>(p.$a?'0 2px 8px rgba(0,0,0,0.06)':'none')};
-  &:hover{background:${p=>(p.$a?'white':'rgba(255,255,255,0.8)')};}
-`;
-
-const SmallAvatar = styled.div`
-  width:28px;height:28px;border-radius:50%;overflow:hidden;flex-shrink:0;
-  border:1.5px solid ${p=>(p.$a?p.$c:'#E2E8F0')};
-  img{object-position:center 15% !important;}
-`;
-
-const TeamName = styled.span`
-  font-size:13px;font-weight:${p=>(p.$a?'700':'500')};color:${p=>(p.$a?'#0F172A':'#94A3B8')};
-`;
 
 const ChatArea = styled.div`
   flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;
@@ -519,15 +489,6 @@ function ChatWidget() {
     }
   }, [agentId, inited, getGreeting]);
 
-  const switchAgent = useCallback((id) => {
-    setAgentId(id);
-    setShowCTA(false);
-    saveStorage({ ...loadStorage(), lastAgent: id });
-    if (!inited[id]) {
-      setConvos(prev => ({ ...prev, [id]: [...(prev[id] || []), { role: 'assistant', content: getGreeting(id) }] }));
-      setInited(prev => ({ ...prev, [id]: true }));
-    }
-  }, [inited, getGreeting]);
 
   // ─── TIP CLICK: append to conversation and open chat ───
   const handleTipClick = useCallback(() => {
@@ -688,16 +649,6 @@ function ChatWidget() {
               <CloseBtn onClick={() => setIsOpen(false)}><X size={16} /></CloseBtn>
             </Header>
 
-            <TeamSelector>
-              {TEAM.map(t => (
-                <TeamBtn key={t.id} $a={t.id===agentId} $c={t.color} onClick={() => switchAgent(t.id)}>
-                  <SmallAvatar $a={t.id===agentId} $c={t.color}>
-                    <Image src={t.avatar} alt={t.name} width={28} height={28} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                  </SmallAvatar>
-                  <TeamName $a={t.id===agentId}>{t.name}</TeamName>
-                </TeamBtn>
-              ))}
-            </TeamSelector>
 
             <ChatArea ref={chatRef}>
               {currentMsgs.map((msg, i) => {
