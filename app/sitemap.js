@@ -13,6 +13,8 @@ export default async function sitemap() {
     { url: 'https://optivaize.nl/ai-agenten', lastModified: now },
     { url: 'https://optivaize.nl/ai-chatbot', lastModified: now },
     { url: 'https://optivaize.nl/cases', lastModified: now },
+    { url: 'https://optivaize.nl/producten', lastModified: now },
+    { url: 'https://optivaize.nl/ai-assistent', lastModified: now },
     { url: 'https://optivaize.nl/blog', lastModified: now },
     { url: 'https://optivaize.nl/over-ons', lastModified: now },
     { url: 'https://optivaize.nl/contact', lastModified: now },

@@ -329,6 +329,7 @@ Aan de top van AI-ontwikkeling. Wij bouwen intelligente systemen die je bedrijf 
             >
               <ColTitle>Bedrijf</ColTitle>
               <FooterLink to="/">Home</FooterLink>
+              <FooterLink to="/producten">Producten</FooterLink>
               <FooterLink to="/cases">Cases</FooterLink>
               <FooterLink to="/blog">Blog</FooterLink>
               <FooterLink to="/over-ons">Over ons</FooterLink>

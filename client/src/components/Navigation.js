@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Bot, TrendingUp, Code2, Users, Briefcase, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, TrendingUp, Code2, Users, Briefcase, Phone, Package } from 'lucide-react';
 import Link from './Link';
 import { useLocation } from '../hooks';
 import Image from 'next/image';
@@ -526,6 +526,9 @@ function Navigation() {
             <NavLink to="/cases" className={isActive('/cases') ? 'active' : ''}>
               Cases
             </NavLink>
+            <NavLink to="/producten" className={isActive('/producten') || isActive('/ai-assistent') ? 'active' : ''}>
+              Producten
+            </NavLink>
             <OverOnsWrap onMouseEnter={openOverOns} onMouseLeave={closeOverOns}>
               <DienstenBtn
                 $active={isOverOnsActive}
@@ -663,6 +666,7 @@ function Navigation() {
               </AnimatePresence>
 
               <MobileLink to="/cases">Cases</MobileLink>
+              <MobileLink to="/producten">Producten</MobileLink>
 
               <MobileDienstenBtn
                 $open={mobileOverOns}

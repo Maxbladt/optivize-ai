@@ -128,6 +128,20 @@ const migrations = [
       await client.query(`ALTER TABLE chat_sessions ADD COLUMN IF NOT EXISTS ip VARCHAR(45)`);
     },
   },
+  {
+    id: '005_voice_assistant_sessions',
+    up: async (client) => {
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS voice_assistant_sessions (
+          id SERIAL PRIMARY KEY,
+          ip VARCHAR(45) NOT NULL,
+          case_key VARCHAR(50) NOT NULL,
+          created_at TIMESTAMP DEFAULT NOW()
+        );
+      `);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_voice_ip_time ON voice_assistant_sessions(ip, created_at)`);
+    },
+  },
 ];
 
 async function migrate() {
