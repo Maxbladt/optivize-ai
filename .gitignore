@@ -9,6 +9,7 @@ frontend/dist/
 
 # Environment variables
 .env
+.env.staging
 .env.local
 .env.development.local
 .env.test.local

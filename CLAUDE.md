@@ -4,6 +4,42 @@
 
 - **NEVER use mdash (em dash) characters** in any text, code, or content. Use a comma, period, or rewrite the sentence instead.
 
+## Deployment: Production and Staging
+
+Two parallel deployments run on the same host using docker compose project namespacing.
+
+| Environment | Branch    | Host port | Compose project name | Env file        | DB name             |
+|-------------|-----------|-----------|----------------------|-----------------|---------------------|
+| production  | `main`    | **3333**  | `optivize-ai` (default) | `.env`        | `optivaize`         |
+| staging     | `staging` | **3334**  | `optivaize-staging`     | `.env.staging`| `optivaize_staging` |
+
+- Each environment has its **own postgres container and its own named volume** (no shared data).
+- `.env` and `.env.staging` are gitignored. `.env.staging.example` is the committed template.
+- Host-wide port allocation lives in `/home/maxbladt/Desktop/ports.txt`.
+
+### Workflow
+
+1. Develop on the `staging` branch.
+2. Deploy/test on staging at `:3334`.
+3. When ready, merge `staging` into `main` and redeploy production at `:3333`.
+
+### Deploy commands
+
+```bash
+# Production (from main branch)
+git checkout main && git pull
+docker compose --env-file .env up -d --build
+
+# Staging (from staging branch)
+git checkout staging && git pull
+docker compose -p optivaize-staging --env-file .env.staging up -d --build
+
+# Tear down staging only
+docker compose -p optivaize-staging --env-file .env.staging down
+```
+
+The `-p optivaize-staging` flag is what keeps staging's containers, network, and `pgdata` volume separate from production's. Always include it for any staging compose command (`logs`, `ps`, `down`, `exec`, etc.).
+
 ## Database Migrations
 
 - Migrations are in `server/migrate.js` using a versioned system with a `migrations` tracking table.
