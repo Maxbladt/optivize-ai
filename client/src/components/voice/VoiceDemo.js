@@ -343,7 +343,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
-      const sdpResp = await fetch('https://api.openai.com/v1/realtime?model=gpt-realtime', {
+      const sdpResp = await fetch('https://api.openai.com/v1/realtime/calls', {
         method: 'POST',
         body: offer.sdp,
         headers: {
