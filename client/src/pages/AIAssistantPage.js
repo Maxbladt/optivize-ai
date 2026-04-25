@@ -600,10 +600,9 @@ function getInitialCase() {
 }
 
 export default function AIAssistantPage() {
+  const [mounted, setMounted] = useState(false);
   const [activeCase, setActiveCase] = useState('tandarts');
-  const [stateMap, setStateMap] = useState(() =>
-    Object.fromEntries(CASE_KEYS.map((k) => [k, CASE_REGISTRY[k].initialState]))
-  );
+  const [stateMap, setStateMap] = useState({});
   const stateMapRef = useRef(stateMap);
   const activeCaseRef = useRef(activeCase);
   const demoRef = useRef(null);
@@ -611,9 +610,13 @@ export default function AIAssistantPage() {
   useEffect(() => { stateMapRef.current = stateMap; }, [stateMap]);
   useEffect(() => { activeCaseRef.current = activeCase; }, [activeCase]);
 
-  // Hash routing
+  // Mount + hash routing. Initial state is computed only on the client because
+  // some case modules build dates from `new Date()` (timezone-dependent), which
+  // would cause SSR/CSR hydration mismatches if computed during render.
   useEffect(() => {
+    setStateMap(Object.fromEntries(CASE_KEYS.map((k) => [k, CASE_REGISTRY[k].initialState])));
     setActiveCase(getInitialCase());
+    setMounted(true);
     const onHash = () => setActiveCase(getInitialCase());
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
@@ -630,6 +633,10 @@ export default function AIAssistantPage() {
     }
   }
 
+  const ActiveComponent = mounted && stateMap[activeCase] ? CASE_REGISTRY[activeCase].Component : null;
+  const activeState = stateMap[activeCase];
+  const activeMeta = INDUSTRY_DETAILS[activeCase];
+
   const setCaseState = useCallback((key, updater) => {
     setStateMap((m) => ({
       ...m,
@@ -643,10 +650,6 @@ export default function AIAssistantPage() {
     const currentState = stateMapRef.current[key];
     return caseDef.executeTool(name, args, currentState, (updater) => setCaseState(key, updater));
   }, [setCaseState]);
-
-  const ActiveComponent = CASE_REGISTRY[activeCase].Component;
-  const activeState = stateMap[activeCase];
-  const activeMeta = INDUSTRY_DETAILS[activeCase];
 
   function scrollToDemo() {
     if (demoRef.current) {
@@ -759,7 +762,13 @@ export default function AIAssistantPage() {
                 </ul>
               </div>
             </div>
-            <ActiveComponent state={activeState} />
+            {ActiveComponent && activeState ? (
+              <ActiveComponent state={activeState} />
+            ) : (
+              <div style={{ background: 'white', borderRadius: 20, padding: '1.5rem', border: '1px solid #E2E8F0', minHeight: 420, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94A3B8', fontSize: '0.9rem' }}>
+                Demo wordt geladen...
+              </div>
+            )}
           </DemoLayout>
         </Container>
       </Section>
