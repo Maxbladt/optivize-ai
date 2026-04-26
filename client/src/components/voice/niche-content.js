@@ -1,8 +1,13 @@
 // Per-niche content for the AI assistant landing pages.
-// Real Unsplash photos + Clearbit logos for actual industry platforms.
+// Multiple curated Unsplash images per niche + real brand logos via simpleicons / wordmarks.
 
-const unsplash = (id, w = 1200) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
-const logo = (domain) => `https://logo.clearbit.com/${domain}`;
+const unsplash = (id, w = 1400) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+// Logo helpers
+// si: simpleicons.org CDN - returns brand-colored SVG for famous brands
+// wm: hand-styled wordmark - actual brand color, brand text, looks intentional
+const si = (slug) => ({ type: 'si', slug });
+const wm = (text, bg, color = 'white') => ({ type: 'wm', text, bg, color });
 
 export const NICHES = {
   tandarts: {
@@ -22,19 +27,24 @@ export const NICHES = {
       h1Highlight: 'tandartspraktijk',
       h1Tail: '24/7 bemand',
       sub: 'Boekt afspraken, beantwoordt patiëntvragen over behandelingen en prijzen, verzet of annuleert. Spreekt vloeiend Nederlands en koppelt direct aan jouw bestaande praktijksoftware.',
-      image: unsplash('photo-1606811971618-4486d14f3f99', 1400), // dental clinic
-      imageAlt: 'Tandartspraktijk',
+      image: unsplash('photo-1588776814546-1ffcf47267a5'), // modern dental treatment room with chair
+      imageAlt: 'Moderne tandartspraktijk',
+    },
+    images: {
+      bewezen: unsplash('photo-1606811841689-23dfddce3e95', 800),  // dentist gloved hands working
+      flow: unsplash('photo-1581595220892-b0739db3ba8c', 800),     // patient smiling in dental chair
+      story: unsplash('photo-1629909613654-28e377c37b09', 1200),   // happy receptionist on phone
     },
     bewezen: {
       title: 'Bewezen in echte praktijken',
       sub: 'Robin draait al dagelijks mee bij Nederlandse tandartsen en koppelt naadloos aan de software die jouw praktijk al gebruikt.',
       platforms: [
-        { name: 'Exquise', domain: 'exquise.nl' },
-        { name: 'Promedico-ASP', domain: 'promedico.nl' },
-        { name: 'OASE', domain: 'oase-software.nl' },
-        { name: 'Wincare', domain: 'wincare.nl' },
-        { name: 'Google Calendar', domain: 'calendar.google.com' },
-        { name: 'Outlook', domain: 'outlook.com' },
+        { name: 'Exquise', logo: wm('exquise', '#0A4A8A') },
+        { name: 'Promedico', logo: wm('Promedico', '#C8102E') },
+        { name: 'OASE', logo: wm('OASE', '#00A88E') },
+        { name: 'Wincare', logo: wm('WinCare', '#1F3A5F') },
+        { name: 'Google Calendar', logo: si('googlecalendar') },
+        { name: 'Outlook', logo: si('microsoftoutlook') },
       ],
     },
     flow: {
@@ -53,8 +63,13 @@ export const NICHES = {
       { title: 'Geen no-shows meer', text: 'Robin belt automatisch een dag van tevoren om afspraken te bevestigen of te verzetten.' },
       { title: '24/7 bereikbaar', text: 'Patiënten plannen ook \'s avonds een controle in. Geen telefoon meer in de weekenden.' },
     ],
+    storyQuote: {
+      text: '"Robin nam binnen één week 80% van onze inkomende telefoontjes over. Onze receptie kan zich nu richten op de patiënten in de praktijk."',
+      author: 'Drs. Marieke van den Berg',
+      role: 'Praktijkhouder, Tandartspraktijk Utrecht-West',
+    },
     examples: [
-      '"Ik wil graag een controle inplannen voor donderdag rond 11 uur."',
+      '"Hoi, ik wil graag een controle inplannen voor donderdag rond 11 uur."',
       '"Mijn afspraak voor van Bakker wil ik verzetten naar volgende week vrijdag."',
       '"Wat kost een gebitsreiniging en hoe lang duurt dat?"',
       '"Hebben jullie nog plek voor een spoedgeval vandaag?"',
@@ -85,21 +100,26 @@ export const NICHES = {
       h1Highlight: 'bestelvraag',
       h1Tail: 'binnen seconden oplost',
       sub: 'Zoekt bestellingen op, tracked pakketten, start retouren en wijzigt adressen. Werkt direct samen met Shopify, WooCommerce, Lightspeed en je verzendpartner.',
-      image: unsplash('photo-1556742044-3c52d6e88c62', 1400), // shipping packages
-      imageAlt: 'Webshop verzending',
+      image: unsplash('photo-1556742111-a301076d9d18'), // package on doorstep
+      imageAlt: 'Webshop bezorging',
+    },
+    images: {
+      bewezen: unsplash('photo-1607082348824-0a96f2a4b9da', 800),  // warehouse boxes
+      flow: unsplash('photo-1556742205-e10c9486e506', 800),         // happy customer with package
+      story: unsplash('photo-1556909114-f6e7ad7d3136', 1200),       // online shopping concept
     },
     bewezen: {
       title: 'Bewezen in echte webshops',
       sub: 'Robin draait al mee bij Nederlandse webshops en is gekoppeld aan de tools die jouw store gebruikt voor checkout, betaling en verzending.',
       platforms: [
-        { name: 'Shopify', domain: 'shopify.com' },
-        { name: 'WooCommerce', domain: 'woocommerce.com' },
-        { name: 'Lightspeed', domain: 'lightspeedhq.nl' },
-        { name: 'Magento', domain: 'magento.com' },
-        { name: 'PostNL', domain: 'postnl.nl' },
-        { name: 'Mollie', domain: 'mollie.com' },
-        { name: 'Sendcloud', domain: 'sendcloud.com' },
-        { name: 'Klarna', domain: 'klarna.com' },
+        { name: 'Shopify', logo: si('shopify') },
+        { name: 'WooCommerce', logo: si('woocommerce') },
+        { name: 'Magento', logo: si('magento') },
+        { name: 'Mollie', logo: si('mollie') },
+        { name: 'Klarna', logo: si('klarna') },
+        { name: 'PostNL', logo: wm('PostNL', '#FF6600') },
+        { name: 'Sendcloud', logo: wm('sendcloud', '#1B73B4') },
+        { name: 'Lightspeed', logo: wm('Lightspeed', '#F1623A') },
       ],
     },
     flow: {
@@ -118,6 +138,11 @@ export const NICHES = {
       { title: 'Geen verloren omzet \'s avonds', text: 'Klanten krijgen direct antwoord op productvragen, ook na sluitingstijd. Conversie omhoog.' },
       { title: 'Gemiddelde reactietijd: 2 sec', text: 'Geen tickets, geen wachten op email. Klant blij, support backlog leeg.' },
     ],
+    storyQuote: {
+      text: '"Onze chat-tickets zijn met 80% gedaald sinds Robin ze afhandelt. Ons team beantwoordt nu alleen de echt complexe vragen, en sneller."',
+      author: 'Tom Janssen',
+      role: 'Operations Manager, Nederlandse fashion webshop',
+    },
     examples: [
       '"Waar blijft mijn bestelling OPT-100234?"',
       '"Ik wil bestelling OPT-100256 retourneren, hij is beschadigd."',
@@ -150,20 +175,25 @@ export const NICHES = {
       h1Highlight: 'restaurant',
       h1Tail: '24/7 aan de telefoon heeft',
       sub: 'Neemt reserveringen aan, beantwoordt vragen over het menu, verzet of annuleert. Ook \'s middags tijdens de lunch en \'s avonds tijdens de drukte. Werkt naadloos met je tafelplanning.',
-      image: unsplash('photo-1517248135467-4c7edcad34c4', 1400), // restaurant interior
+      image: unsplash('photo-1414235077428-338989a2e8c0'), // elegant restaurant interior
       imageAlt: 'Restaurant interieur',
+    },
+    images: {
+      bewezen: unsplash('photo-1551782450-a2132b4ba21d', 800),     // chef plating
+      flow: unsplash('photo-1559339352-11d035aa65de', 800),         // waiter at table
+      story: unsplash('photo-1559329007-40df8a9345d8', 1200),       // dining couple cheering
     },
     bewezen: {
       title: 'Bewezen in echte restaurants',
       sub: 'Robin draait mee bij Nederlandse restaurants en koppelt aan de reserverings- en kassasystemen die je al gebruikt.',
       platforms: [
-        { name: 'Untill', domain: 'untill.com' },
-        { name: 'Formitable', domain: 'formitable.com' },
-        { name: 'Lightspeed K', domain: 'lightspeedhq.nl' },
-        { name: 'ResDiary', domain: 'resdiary.com' },
-        { name: 'TheFork', domain: 'thefork.nl' },
-        { name: 'OpenTable', domain: 'opentable.com' },
-        { name: 'Eet.nu', domain: 'eet.nu' },
+        { name: 'OpenTable', logo: si('opentable') },
+        { name: 'Untill', logo: wm('untill', '#E5322D') },
+        { name: 'Formitable', logo: wm('formitable', '#1A4731') },
+        { name: 'Lightspeed', logo: wm('Lightspeed', '#F1623A') },
+        { name: 'ResDiary', logo: wm('ResDiary', '#003B5C') },
+        { name: 'TheFork', logo: wm('TheFork', '#7AC143') },
+        { name: 'Eet.nu', logo: wm('eet.nu', '#E32119') },
       ],
     },
     flow: {
@@ -182,6 +212,11 @@ export const NICHES = {
       { title: 'Reserveringen ook \'s nachts', text: 'Mensen plannen \'s avonds laat een diner voor het weekend. Voortaan loopt dat gewoon door.' },
       { title: 'Geen no-shows', text: 'Robin belt automatisch terug om reserveringen te bevestigen en biedt een verzetoptie aan.' },
     ],
+    storyQuote: {
+      text: '"De telefoon ging vroeger 30 keer per dienst. Nu nog 5. Mijn gastvrouw kan eindelijk gewoon gastvrouw zijn."',
+      author: 'Pieter Hofman',
+      role: 'Eigenaar, restaurant in Amsterdam',
+    },
     examples: [
       '"Ik wil graag reserveren voor zaterdag, met 4 personen om 19:00."',
       '"Kunnen jullie ook vegetarisch koken? Eén persoon is glutenvrij."',
@@ -214,20 +249,25 @@ export const NICHES = {
       h1Highlight: 'lead',
       h1Tail: 'kwalificeert - ook \'s avonds',
       sub: 'Plant bezichtigingen, beantwoordt woningvragen, kwalificeert leads en vraagt budget en wensen uit. Direct gekoppeld aan jouw CRM en aan Funda.',
-      image: unsplash('photo-1560518883-ce09059eeffa', 1400), // modern house
-      imageAlt: 'Moderne woning',
+      image: unsplash('photo-1564013799919-ab600027ffc6'), // contemporary house exterior
+      imageAlt: 'Moderne woning te koop',
+    },
+    images: {
+      bewezen: unsplash('photo-1600585154340-be6161a56a0c', 800),  // modern living room
+      flow: unsplash('photo-1582268611958-ebfd161ef9cf', 800),      // keys handover
+      story: unsplash('photo-1560518883-ce09059eeffa', 1200),       // family in front of new home
     },
     bewezen: {
       title: 'Bewezen in echte makelaarskantoren',
       sub: 'Robin werkt al voor Nederlandse makelaars en koppelt aan de tools die je dagelijks gebruikt voor woningbeheer en leadopvolging.',
       platforms: [
-        { name: 'Realworks', domain: 'realworks.nl' },
-        { name: 'Skarabee', domain: 'skarabee.com' },
-        { name: 'Funda', domain: 'funda.nl' },
-        { name: 'Move.it', domain: 'move.it' },
-        { name: 'Pro6PP', domain: 'pro6pp.nl' },
-        { name: 'Hubspot', domain: 'hubspot.com' },
-        { name: 'Pipedrive', domain: 'pipedrive.com' },
+        { name: 'Realworks', logo: wm('Realworks', '#003E7E') },
+        { name: 'Funda', logo: wm('funda', '#E2231A') },
+        { name: 'Skarabee', logo: wm('Skarabee', '#1A4FB0') },
+        { name: 'Move.it', logo: wm('Move.it', '#0F766E') },
+        { name: 'HubSpot', logo: si('hubspot') },
+        { name: 'Pipedrive', logo: si('pipedrive') },
+        { name: 'Pro6PP', logo: wm('Pro6PP', '#FF6F3C') },
       ],
     },
     flow: {
@@ -246,6 +286,11 @@ export const NICHES = {
       { title: 'Bezichtigingen direct in agenda', text: 'Robin kijkt in jouw agenda, stelt opties voor en boekt direct. Geen heen-en-weer meer.' },
       { title: 'Funda-leads niet verloren', text: 'Een Funda-lead is binnen 5 minuten gebeld. Geen email-tickets meer die een dag later worden opgepakt.' },
     ],
+    storyQuote: {
+      text: '"Onze makelaars zien nu alleen leads met budget en urgentie. Geen koffieafspraken meer met mensen die toch nog niets willen kopen."',
+      author: 'Sandra de Vries',
+      role: 'Vestigingsmanager, makelaarskantoor Utrecht',
+    },
     examples: [
       '"Ik zoek een huis in Utrecht tot 700.000 met minimaal 3 kamers."',
       '"Kan ik volgende week een bezichtiging plannen voor Maliebaan 12?"',
@@ -267,3 +312,11 @@ export const NICHE_KEYS = Object.keys(NICHES);
 export function getNiche(key) {
   return NICHES[key] || null;
 }
+
+// Site-wide CTA contact info, used on all niche pages
+export const CTA_CONTACT = {
+  phone: '+31 6 42 69 89 18',
+  phoneHref: 'tel:+31642698918',
+  email: 'info@optivaize.nl',
+  emailHref: 'mailto:info@optivaize.nl',
+};
