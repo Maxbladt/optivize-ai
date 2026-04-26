@@ -1382,15 +1382,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                 )}
               </StickyDemoBlock>
 
-              {/* Image card lives RIGHT here (Flow section + Story section
-                  keep their images on the LEFT for alternation). */}
-              <SideImageCard>
-                <img src={niche.images.bewezen} alt={`${niche.short} in actie`} loading="lazy" />
-                <SideImageOverlay>
-                  Werkt naadloos met de tools die jouw team al gebruikt
-                </SideImageOverlay>
-              </SideImageCard>
-
               {/* Story testimonial - moved from LEFT so the image lives RIGHT
                   and the right column stays as tall as the left. */}
               <SideCard>
