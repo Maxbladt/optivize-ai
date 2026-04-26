@@ -1205,7 +1205,7 @@ export default function NicheAssistantPage({ nicheKey }) {
               <Sub>{niche.hero.sub}</Sub>
               <HeroCtas>
                 <Primary onClick={scrollToDemo}><Mic size={18} /> Probeer de live demo</Primary>
-                <Secondary href={CTA_CONTACT.phoneHref}><Phone size={16} /> {CTA_CONTACT.phone}</Secondary>
+                <Secondary href={CTA_CONTACT.phoneHref}><Phone size={16} /> Bel ons</Secondary>
               </HeroCtas>
               <HeroBadges>
                 <HeroBadge><BadgeCheck size={13} color="#10B981" /> Live binnen 1-3 dagen</HeroBadge>
