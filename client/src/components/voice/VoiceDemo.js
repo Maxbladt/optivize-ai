@@ -330,6 +330,12 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
       dcRef.current = dc;
       dc.onopen = () => {
         if (typeof onSessionStart === 'function') onSessionStart();
+        // Trigger the assistant to speak first (greeting from system prompt).
+        // Without this, the model waits for user audio via server VAD, so a
+        // visitor who stays quiet hears silence.
+        try {
+          dc.send(JSON.stringify({ type: 'response.create' }));
+        } catch {}
       };
       dc.onmessage = (e) => {
         try {
