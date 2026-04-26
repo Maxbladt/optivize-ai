@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Bot, TrendingUp, Code2, Users, Briefcase, Phone, Package } from 'lucide-react';
+import { Menu, X, ChevronDown, Bot, TrendingUp, Code2, Users, Briefcase, Phone, Package, FileText } from 'lucide-react';
 import Link from './Link';
 import { useLocation } from '../hooks';
 import Image from 'next/image';
@@ -488,7 +488,11 @@ function Navigation() {
 
   const isActive = (path) => location.pathname === path;
   const isDienstenActive = serviceItems.some(s => location.pathname === s.path);
-  const isOverOnsActive = location.pathname === '/over-ons' || location.pathname === '/hiring';
+  const isOverOnsActive = location.pathname === '/over-ons'
+    || location.pathname === '/hiring'
+    || location.pathname === '/cases'
+    || location.pathname === '/producten'
+    || location.pathname.startsWith('/ai-assistent');
 
   return (
     <NavWrapper>
@@ -523,12 +527,6 @@ function Navigation() {
               Diensten
               <ChevronDown size={14} />
             </DienstenBtn>
-            <NavLink to="/cases" className={isActive('/cases') ? 'active' : ''}>
-              Cases
-            </NavLink>
-            <NavLink to="/producten" className={isActive('/producten') || isActive('/ai-assistent') ? 'active' : ''}>
-              Producten
-            </NavLink>
             <OverOnsWrap onMouseEnter={openOverOns} onMouseLeave={closeOverOns}>
               <DienstenBtn
                 $active={isOverOnsActive}
@@ -548,6 +546,14 @@ function Navigation() {
                     <OverOnsItem to="/over-ons">
                       <OverOnsIcon $color="#3B82F6"><Users size={15} /></OverOnsIcon>
                       Over ons
+                    </OverOnsItem>
+                    <OverOnsItem to="/producten">
+                      <OverOnsIcon $color="#8B5CF6"><Package size={15} /></OverOnsIcon>
+                      Producten
+                    </OverOnsItem>
+                    <OverOnsItem to="/cases">
+                      <OverOnsIcon $color="#F59E0B"><FileText size={15} /></OverOnsIcon>
+                      Cases
                     </OverOnsItem>
                     <OverOnsItem to="/hiring">
                       <OverOnsIcon $color="#10B981"><Briefcase size={15} /></OverOnsIcon>
@@ -665,9 +671,6 @@ function Navigation() {
                 )}
               </AnimatePresence>
 
-              <MobileLink to="/cases">Cases</MobileLink>
-              <MobileLink to="/producten">Producten</MobileLink>
-
               <MobileDienstenBtn
                 $open={mobileOverOns}
                 onClick={() => setMobileOverOns(!mobileOverOns)}
@@ -687,6 +690,14 @@ function Navigation() {
                     <MobileDienstenItem to="/over-ons">
                       <MobileDienstenIcon $color="#3B82F6"><Users size={15} /></MobileDienstenIcon>
                       Over ons
+                    </MobileDienstenItem>
+                    <MobileDienstenItem to="/producten">
+                      <MobileDienstenIcon $color="#8B5CF6"><Package size={15} /></MobileDienstenIcon>
+                      Producten
+                    </MobileDienstenItem>
+                    <MobileDienstenItem to="/cases">
+                      <MobileDienstenIcon $color="#F59E0B"><FileText size={15} /></MobileDienstenIcon>
+                      Cases
                     </MobileDienstenItem>
                     <MobileDienstenItem to="/hiring">
                       <MobileDienstenIcon $color="#10B981"><Briefcase size={15} /></MobileDienstenIcon>
