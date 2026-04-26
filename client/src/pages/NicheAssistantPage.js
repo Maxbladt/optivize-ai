@@ -1198,7 +1198,6 @@ export default function NicheAssistantPage({ nicheKey }) {
         <Container>
           <HeroInner>
             <HeroTextCol>
-              <Eyebrow><Sparkles size={11} />{niche.hero.eyebrow}</Eyebrow>
               <H1>
                 {niche.hero.h1Lead} <Highlight>{niche.hero.h1Highlight}</Highlight> {niche.hero.h1Tail}
               </H1>
