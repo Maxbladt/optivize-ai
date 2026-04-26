@@ -1316,25 +1316,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </CardGrid>
               </FadeIn>
 
-              {/* Story / testimonial */}
-              <FadeIn>
-                <SectionEyebrow>Wat klanten zeggen</SectionEyebrow>
-                <H2>Echte teams, echte resultaten</H2>
-                <StoryGrid style={{ marginTop: '1rem' }}>
-                  <StoryImage>
-                    <img src={niche.images.story} alt="Tevreden klant" loading="lazy" />
-                  </StoryImage>
-                  <QuoteCard>
-                    <QuoteIcon><Quote size={18} /></QuoteIcon>
-                    <QuoteText>{niche.storyQuote.text}</QuoteText>
-                    <QuoteAuthor>
-                      <QuoteName>{niche.storyQuote.author}</QuoteName>
-                      <QuoteRole>{niche.storyQuote.role}</QuoteRole>
-                    </QuoteAuthor>
-                  </QuoteCard>
-                </StoryGrid>
-              </FadeIn>
-
               {/* Phone integration callout */}
               <FadeIn>
                 <PhoneCallout>
@@ -1426,7 +1407,40 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </SideImageOverlay>
               </SideImageCard>
 
-              {/* Process snapshot - the only "Zo gaat het / Zo werkt het" on the page */}
+              {/* Story testimonial - moved from LEFT so the image lives RIGHT
+                  and the right column stays as tall as the left. */}
+              <SideCard>
+                <SideCardTitle><Quote size={14} /> Wat klanten zeggen</SideCardTitle>
+                <SideImageCard style={{ aspectRatio: '16 / 10', borderRadius: '12px', marginBottom: '0.4rem' }}>
+                  <img src={niche.images.story} alt="Tevreden klant" loading="lazy" />
+                </SideImageCard>
+                <SideQuote>
+                  {niche.storyQuote.text.replace(/^"|"$/g, '')}
+                  <SideQuoteAuthor><strong>{niche.storyQuote.author}</strong> - {niche.storyQuote.role}</SideQuoteAuthor>
+                </SideQuote>
+              </SideCard>
+
+              {/* Trustpilot mini rating card */}
+              <SideCard>
+                <SideCardTitle><Star size={14} /> Beoordeeld door klanten</SideCardTitle>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <div style={{ display: 'flex', gap: 2 }}>
+                    {[1,2,3,4,5].map(i => (
+                      <span key={i} style={{ width: 22, height: 22, background: '#00B67A', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
+                        <Star size={12} fill="white" strokeWidth={0} />
+                      </span>
+                    ))}
+                  </div>
+                  <div style={{ fontSize: '0.92rem', color: '#0F172A' }}>
+                    <strong style={{ fontWeight: 800 }}>4.9</strong> / 5 op 12 reviews
+                  </div>
+                </div>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#475569', lineHeight: 1.45 }}>
+                  Aanbevolen door Nederlandse {niche.pretty} - betrouwbaar, snel live en altijd binnen handbereik.
+                </p>
+              </SideCard>
+
+              {/* Process snapshot - the only "Zo werkt het" on the page */}
               <SideCard>
                 <SideCardTitle><GitBranch size={14} /> Zo werkt het</SideCardTitle>
                 <SideCardH>Van intake tot live in 1-3 dagen</SideCardH>
