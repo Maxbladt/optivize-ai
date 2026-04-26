@@ -320,20 +320,33 @@ const StickyDemoCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  align-self: start;
   min-width: 0;
+  /* No align-self:start — let the column stretch to the row height so the
+     sticky demo block below stays glued to the viewport even after the
+     SideCards have all scrolled past. */
   @media (max-width: 1024px) {
     order: -1;
     margin-bottom: 1rem;
   }
 `;
 
+/* Wraps the demo, examples and fake-backend so they stay visually together
+   when the demo "ends" and the SideCards keep scrolling. NOT sticky -
+   it scrolls naturally with the SideCards. The sticky behaviour lives on
+   StickyTail at the bottom of the column so the right side never goes
+   blank as the user reads through the longer left column. */
 const StickyDemoBlock = styled.div`
-  position: sticky;
-  top: 100px;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+`;
+
+/* The final CTA card pins to the top once the user has scrolled past
+   the SideCards above it, keeping the right column populated all the
+   way down through the (taller) left column. */
+const StickyTail = styled.div`
+  position: sticky;
+  top: 100px;
   @media (max-width: 1024px) { position: static; }
 `;
 
@@ -1522,17 +1535,19 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </SidePriceRow>
               </SideCard>
 
-              {/* Mini CTA */}
-              <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
-                <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
-                <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
-                <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
-                  Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen.
-                </p>
-                <SideCtaButton href={CTA_CONTACT.phoneHref}>
-                  <Phone size={16} /> {CTA_CONTACT.phone}
-                </SideCtaButton>
-              </SideCard>
+              {/* Mini CTA - pinned to top once user scrolls past the cards above */}
+              <StickyTail>
+                <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                  <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
+                  <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
+                  <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                    Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen.
+                  </p>
+                  <SideCtaButton href={CTA_CONTACT.phoneHref}>
+                    <Phone size={16} /> {CTA_CONTACT.phone}
+                  </SideCtaButton>
+                </SideCard>
+              </StickyTail>
             </StickyDemoCol>
           </TwoCol>
         </Container>
