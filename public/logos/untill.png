@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <script>
+        // Define dataLayer and the gtag function.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag("consent", "default", {
+            'ad_storage': "denied",
+            'analytics_storage': "denied",
+            'functionality_storage': "denied",
+            'personalization_storage': "denied",
+            'security_storage': "granted",
+            'facebook': "denied",
+            'wait_for_update': 500,
+        });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-N5M89PF9');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://untill.com/favicon.ico">
+
+    <script src="/assets/components/theme/templates/js/dist/bundle.js?v=0.3.1"></script>
+    <title>Home | unTill Corporate</title>
+    <meta name="description" content="">
+    <base href="https://untill.com/">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N5M89PF9"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<nav class="navbar navbar-expand-xl fixed-top pt-0">
+    <div class="container">
+        <div class="col-12 col-xxl-10 py-3 pe-xl-3 ps-xl-2 bg-white d-flex justify-content-between justify-content-xxl-end flex-wrap g-1">
+            <div class="d-none d-md-inline" id="search">
+                <a href="search" class="btn btn-link"><i class="fa-solid fa-search"></i></a>
+            </div>
+            <div class="d-none d-md-inline" id="knowledge">
+                <a href="knowledge/" class="btn btn-link fw-medium">Knowledge</a>
+            </div>
+            <button class="navbar-toggler bg-white border-0 p-2 order-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="navbarToggler">
+                <span class="button-text d-none d-sm-inline text-black">Menu</span>
+                <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
+            </button>
+            <hr class="d-none d-md-inline text-gray my-0 border-2 opacity-100 w-100 mb-md-4" id="whiteDivider">
+            <a class="navbar-brand" href="https://untill.com/">
+                <img src="/assets/components/theme/templates/images/logo.svg" alt="unTill Corporate" class="img-fluid" width="141px">
+            </a>
+            <div class="collapse navbar-collapse order-last order-xl-0 justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav"><li class="nav-item d-flex justify-content-center">
+    <a href="solutions/"  class="nav-link text-center text-md-start first pe-0" title="unTill products" >unTill products</a>
+    
+</li>
+<li class="nav-item d-flex flex-wrap justify-content-center dropdown"  id="" onmouseleave="this.lastElementChild.classList.remove('show')">
+    <a href="industries/" class="nav-link text-center text-md-start pe-0" title="Industries" >Industries</a>
+
+    
+    <a href="#" class="nav-link dropdown-toggle text-center px-2" title="Industries"  role="button" data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.click()"></a>
+    <ul class="dropdown-menu mt-0">
+    <li><a class="dropdown-item nav-link text-center text-md-start first" href="restaurant" >Restaurant</a></li>
+<li><a class="dropdown-item nav-link text-center text-md-start" href="hotel" >Hotel</a></li>
+<li><a class="dropdown-item nav-link text-center text-md-start" href="quick-service" >Quick service</a></li>
+<li><a class="dropdown-item nav-link text-center text-md-start" href="bar/cafe" >Bar/Cafe</a></li>
+<li><a class="dropdown-item nav-link text-center text-md-start" href="leisure" >Leisure</a></li>
+<li><a class="dropdown-item nav-link text-center text-md-start last" href="events" >Events</a></li>
+
+</ul>
+    
+</li>
+
+<li class="nav-item d-flex flex-wrap justify-content-center"  >
+    <a href="untill-integrations/" class="nav-link text-center text-md-start pe-0" title="Integrations" >Integrations</a>
+
+    
+</li>
+
+<li class="nav-item d-flex justify-content-center">
+    <a href="about-us/"  class="nav-link text-center text-md-start pe-0" title="About us" >About us</a>
+    
+</li>
+<li class="nav-item d-flex flex-wrap justify-content-center dropdown"  id="" onmouseleave="this.lastElementChild.classList.remove('show')">
+    <a href="news/" class="nav-link text-center text-md-start last pe-0" title="News" >News</a>
+
+    
+    <a href="#" class="nav-link dropdown-toggle text-center px-2" title="News"  role="button" data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.click()"></a>
+    <ul class="dropdown-menu mt-0">
+    <li><a class="dropdown-item nav-link text-center text-md-start first" href="important-message-about-ast" >Important update regarding AST / Symbiosis</a></li>
+
+</ul>
+    
+</li>
+
+</ul>
+            </div>
+            <div class="m-auto d-none d-sm-block">
+                <a href="try-untill’s-unique-pos-interface/" class="btn btn-secondary text-white" id="TryForFree"><span>Try it yourself</span></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<header class="position-relative half-fluid mb-5">
+    <div class="position-absolute h-100 w-100 d-none d-lg-block">
+        <div class="container h-100">
+            <div class="col-10 h-100 position-relative header-element">
+
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 750.4 896.1" style="enable-background:new 0 0 750.4 896.1;" xml:space="preserve">
+<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:#F3F3F3;}
+</style>
+                    <g id="Group_461" transform="translate(2948.919 -432.716)">
+                        <path id="Intersection_11" class="st0" d="M-2420.9,1334v-320.2c-0.1-11.8,4.5-23.1,12.8-31.5c8.2-7.9,19.2-12.4,30.7-12.4h178.9
+		v364H-2420.9z M-2948.9,1334V432.7h750.4v334.8h-192.4c-19.7,0-38.9,6.8-54.3,19.3l-161.3,130.5c-20.6,16.8-32.7,42.2-32.7,69V1334
+		H-2948.9z"/>
+                        <path id="Subtraction_3" class="st1" d="M-2226.9,1334h-147.6v-48.9c0-18.2-14.7-33-32.9-33.1h-13.5v-148.5h128.3
+		c36.3,0,65.8,29.5,65.8,65.8c0,0,0,0.1,0,0.1L-2226.9,1334L-2226.9,1334z M-2776.9,1334h-164.9v-67c0-20,9.1-39,24.7-51.5
+		l121.8-97.5c11.6-9.3,26.1-14.4,41-14.4h115.3v148.5h-105.1c-8.6,0-16.9,3.3-23.2,9.3c-6.3,6.3-9.8,14.9-9.7,23.8V1334
+		L-2776.9,1334z"/>
+                    </g>
+</svg>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="header-container">
+        <div class="row pb-lg-5">
+            <div class="col-lg-5 z-2">
+                <div class="p-4 p-lg-0 py-5 pe-lg-5" id="header-card">
+                    <div class="height-spacer"></div>
+                    <h1 class="card-title fw-light">Inspiring <strong>hospitality entrepreneurs</strong> talk about their <strong>success.</strong></h1>
+                    <p class="card-text">
+                    </p>
+                    <p class="fw-medium">Discover unTill</p>
+                    <a href="solutions/" class="btn btn-light mb-3"><span>Our solutions</span></a>
+                </div>
+            </div>
+            <div class="col-lg-6 position-lg-absolute mt-n5 mt-lg-0 right-half h-100">
+                <div class="d-flex justify-content-center image d-grid align-items-end" style="background-image: url('/assets/components/phpthumbof/cache/ontwerp-zonder-titel-%2814%29.93bfae405bb8ce98e0e2de5518ca611d.png');">
+                    <div class="m-4 d-lg-none">
+                            <a href="testimonials/" class="btn btn-light"><span>Read testimonials</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <p class="text-center text-lg-start z-1"><a href="#trusted-by" class="btn btn-link text-primary">Read more <i class="fa-sharp fa-regular fa-chevron-down"></i></a></p>
+        </div>
+    </div>
+</header>
+<section id="trusted-by">
+    <div class="container">
+        <h2 class="text-center text-gray">Trusted by</h2>
+        <div class="swiper swiper-customers">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/vapiano.65ff8d62e6ba83d795164b8c18774e5f.png" class="img-fluid" alt="customer logos">
+</div>
+<div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/loetje.65ff8d62e6ba83d795164b8c18774e5f.png" class="img-fluid" alt="customer logos">
+</div>
+<div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/logo-amadore.120e30a6f7149233a394ce9a6cdca884.jpg" class="img-fluid" alt="customer logos">
+</div>
+<div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/logo-laurentius.120e30a6f7149233a394ce9a6cdca884.jpg" class="img-fluid" alt="customer logos">
+</div>
+<div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/van-der-valk.65ff8d62e6ba83d795164b8c18774e5f.png" class="img-fluid" alt="customer logos">
+</div>
+<div class="swiper-slide d-flex align-items-center">
+        <img src="/assets/components/phpthumbof/cache/logo-fletcher.120e30a6f7149233a394ce9a6cdca884.jpg" class="img-fluid" alt="customer logos">
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row justify-content-between align-items-center flex-md-row-reverse mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">unTill – solutions that fit <span style="color: #2294ff;">your business</span></h2>
+        <div class="introtext-rich-checkmarks">
+            <p>After 25+ years working with all kinds of businesses, we&rsquo;ve learned what really matters: every team works differently. That&rsquo;s why unTill offers two POS products, each built for a different kind of business.</p>
+<p>✔️ unTill Prime</p>
+<p>✔️ unTill Air</p>
+<p>Different needs. Different tools. <strong>Same unTill quality.</strong></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/opties-%2824%29.f8aea764ba3bbd1c52bf928d0e0fd9d3.png" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+<section class="mt-5 pt-5 mt-lg-0 pt-lg-0">
+    <div class="container">
+        <div id="demo-section" class="pt-3 mb-5">
+    <div class="row">
+        
+        <h2 class="text-black fw-bold h1">Try unTill’s unique POS interface</h2>
+        <div class="introtext-rich-bullets-primary mb-5 mb-md-0">
+            <p>Want to try unTill's unique POS interface firsthand? Click, order and pay as if you were already live &ndash; completely online, directly in your browser.</p>
+<p>No appointment, no trial period. Test our interactive app whenever it suits you.</p>
+<ul class="demo-usps">
+<li class="available"><span class="OYPEnA">Available online 24/7, test at your own pace</span></li>
+<li class="no-requirement"><span class="OYPEnA">No appointment, no obligation</span></li>
+<li class="branche"><span class="OYPEnA">View unTill POS by segment, specially designed for your type of business</span></li>
+</ul>
+        </div>
+        
+    </div>
+    <div class="row">
+        
+        <h2 class="mb-3 h1 fw-bold"></h2>
+        
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 g-lg-4">
+        <div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-utensils fs-6"></i></span>Restaurant</h5>
+                <p class="card-text">Restaurant, café or bar with tables? Check it out!</p>
+                <a href="hospitality-demo" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-restaurant.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-mug-saucer fs-6"></i></span>Coffee bar</h5>
+                <p class="card-text">Coffee, bakery or smoothies? Check it out!</p>
+                <a href="coffee-corner" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-code-coffee-shop.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-table-picnic fs-6"></i></span>Quick service</h5>
+                <p class="card-text">Canteen, lunch spot or snack bar? Check it out!</p>
+                <a href="canteen-demo" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-cantine2.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-van-shuttle fs-6"></i></span>To-go</h5>
+                <p class="card-text">Food truck, snacks or pop-up? Check it out!</p>
+                <a href="to-go" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-food-truck.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-bag-shopping fs-6"></i></span>Retail</h5>
+                <p class="card-text">Shop, kiosk or market stall? Check it out!</p>
+                <a href="retail-demo" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-retail2.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card bg-light">
+        <div class="card-body px-3 py-4 px-lg-4 d-flex row">
+            <div class="card-inner col-md-7 d-inline-flex flex-column pe-3">
+                <h5 class="card-title"><span class="text-white bg-secondary rounded-5 lh-1 p-2 me-2 d-inline-flex align-items-center justify-content-center"><i class="fa-light fa-spa fs-6"></i></span>Beauty</h5>
+                <p class="card-text">Salon, nail bar or tattoo studio? Check it out!</p>
+                <a href="beauty" class="btn btn-primary mt-auto d-flex w-full justify-content-center" target="_blank"><span>Try out</span></a>
+            </div>
+            <div class="card-inner col-md-5 d-none d-md-block">
+                <img src="assets/images/demo/qr-code-beauty-segment.png" class="w-100 rounded-1 object-fit-contain" alt="Scan QR Code" width="136" height="136">
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+    </div>
+</section>
+
+<div class="row justify-content-between align-items-center  mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">unTill Prime – made just for you</h2>
+        <div class="introtext-rich-bullets-primary">
+            <p>unTill Prime is made for businesses that need flexibility, advanced features, and a setup that adapts fully to their workflow. Ideal for big restaurants, hotels, and ambitious entrepreneurs who want top-level service.</p>
+<ul>
+<li>Customise everything, compromise nothing.</li>
+<li>125+ integrations with leading hospitality software.</li>
+<li>Packed with premium features to flex with you.</li>
+<li>Outstanding service from our certified resellers at all times.</li>
+</ul>
+<p><a class="btn btn-primary btn-xs" href="prime" target="_blank" rel="noopener">Discover unTill Prime</a></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/header-13.a49ab6c320da62e5b1e84cdc97270833.jpg" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+<div class="row justify-content-between align-items-center flex-md-row-reverse mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">unTill Air – Simple. Smart. Efficient.</h2>
+        <div class="introtext-rich-bullets-primary">
+            <p>unTill Air is a perfect match for smaller businesses who value simplicity, speed, and affordability. An excellent choice for small caf&eacute;s and bars, food trucks and any pop-up concepts ready to move fast without compromising quality.</p>
+<ul>
+<li>Easy-to-use to use POS with all the essentials included.</li>
+<li>Cloud-based and super mobile.</li>
+<li>A fully professional POS app &mdash; from just &euro;19.</li>
+<li>Flexible hardware. Quick onboarding.</li>
+</ul>
+<p><a class="btn btn-primary btn-xs" href="untill-air" target="_blank" rel="noopener">Discover unTill Air</a></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/header2.a49ab6c320da62e5b1e84cdc97270833.jpg" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+<div class="row justify-content-between align-items-center  mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">unTill Payments brings it all together</h2>
+        <div class="introtext-rich-bullets-primary">
+            <p data-start="183" data-end="388">unTill Payments is a modern, secure payment system developed by unTill &mdash; so you can accept payments seamlessly and instantly, right from your POS. All-in-one solution? Exactly. That&rsquo;s what it is.</p>
+<p data-start="390" data-end="544">It&rsquo;s built into both unTill Prime and unTill Air, so no matter which system you use, you&rsquo;ll benefit from fully integrated payments that just work.</p>
+<ul>
+<li>Mobile, scalable, and cost-effective.</li>
+<li>Accept all modern payment methods.</li>
+<li>Regular and accurate payouts. No surprises.</li>
+<li>Quick and smooth setup.</li>
+<li>Use your phone as a payment device or go with a fixed terminal? It&rsquo;s up to you!</li>
+</ul>
+<p><a class="btn btn-primary btn-xs" href="untill-payments" target="_blank" rel="noopener">Discover unTill Payments</a></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/payments-tap-to-pay.a49ab6c320da62e5b1e84cdc97270833.jpg" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+<div class="row justify-content-between align-items-center flex-md-row-reverse mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">unTill WebManagement</h2>
+        <div class="introtext-rich-bullets-primary">
+            <p>Stay in control of your business &mdash; anytime, anywhere.</p>
+<p>With unTill WebManagement, you can access your unTill Prime system 24/7 through the cloud. Track performance, manage products and pricing, monitor your team, and generate powerful reports &mdash; all from one intuitive platform.</p>
+<p><a class="btn btn-primary btn-xs" href="untill-webmanagement" target="_blank" rel="noopener">Discover unTill WebManagement</a></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/webmanagement.f8aea764ba3bbd1c52bf928d0e0fd9d3.png" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+<div class="row justify-content-between align-items-center  mb-3 mb-md-5 dynamic-content">
+    <div class="col-md-6 h-100">
+        <h2 class="display-1 fw-bold mb-3">Find a reseller near you</h2>
+        <div class="introtext-rich-bullets-primary">
+            <p>Are you ready to elevate your business with automation, or do you want to learn more about our POS systems? Our resellers are ready to assist you in the best possible way.</p>
+<p><a class="btn btn-primary" href="resellers/">Find reseller</a></p>
+        </div>
+    </div>
+    
+    <div class="col-md-6 d-flex align-items-center mb-5 mb-md-0 gx-3">
+        
+        <img src="/assets/components/phpthumbof/cache/find-reseller.f8aea764ba3bbd1c52bf928d0e0fd9d3.png" class="img-fluid rounded" alt="Home">
+        
+    </div>
+    
+</div>
+
+
+
+    <div class="row align-items-center flex-md-row-reverse ms-auto text-white g-0 pb-5 pb-lg-0 bg-secondary rounded position-relative col-lg-9 dynamic-content dynamic-block">
+        <div class="col-lg-6 pb-5 pb-lg-0">
+            <div class="d-flex flex-column justify-content-center p-4 p-md-5 mh-section-dynamic">
+                <h2 class="display-1 fw-bold mb-3">Our mission</h2>
+                <div class="introtext-rich-bullets-primary dynamic-text">
+                    <p data-start="277" data-end="372"><strong data-start="277" data-end="372">Every business deserves the right solution.<br /></strong></p>
+<p data-start="374" data-end="590">At unTill, we believe in standing behind the people who make things happen &mdash; every shift, every service, every day. That&rsquo;s why we build reliable, powerful tools that fit your way of working, not the other way around.</p>
+<p data-start="592" data-end="619"><strong data-start="592" data-end="619">We are &ndash; where you are.</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 col-sm-8 position-absolute start-50 top-100 translate-middle" id="dynamic-image-left">
+            <img src="/assets/components/phpthumbof/cache/header-5.5ef51c39dd5c6123ac3bf03e4c0cdaf3.jpg" class="img-fluid rounded" alt="">
+        </div>
+    </div>
+
+
+
+
+</section>
+<section class="mb-0" id="segments">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="h-100 p-4 p-lg-5">
+                    <h2 class="text-stripe mb-4">About us</h2>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="h-100 p-4 p-lg-5">
+                    <p class="mb-4">With over 25 years of experience in hospitality and retail, unTill builds POS solutions that fit how businesses really work.
+
+We’re based in the Netherlands, trusted by over 8,000 clients worldwide, and supported by a strong international reseller network. Always ready, when you are.</p>
+                    <a href="about-us/" class="btn btn-light"><span>Read more</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="swiper swiper-products">
+            <div class="swiper-wrapper pt-5">
+                <div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <span class="badge rounded-pill bg-secondary position-absolute translate-middle start-50">Top-tier</span>
+        <div class="card-body text-center mt-4">
+            <img src="/assets/components/phpthumbof/cache/untill-prime.99afb47a3c9c4e8a9edf67e9269f81b6.png" class="img-fluid" alt="unTill Prime">
+            <h2 class="sr-only">unTill Prime</h2>
+        </div>
+        <div class="card-body h-100 border-1 border-bottom border-black">
+            <div class="card-text my-3">
+                
+            </div>
+            <div class="card-text introtext-rich">
+                <ul>
+<li>Highly customisable to all your needs and preferences</li>
+<li>Made for hospitality &ndash; by hospitality experts</li>
+<li>Built-in payments with unTill Payments</li>
+<li>125+ integrations with leading hospitality software</li>
+<li>Excellent for managing multiple locations</li>
+<li>Custom pricing to match your setup</li>
+</ul>
+            </div>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-end mb-3 mt-4">
+            
+            <a href="prime" class="btn btn-secondary stretched-link text-white"><span>More information</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <span class="badge rounded-pill bg-secondary position-absolute translate-middle start-50">New!</span>
+        <div class="card-body text-center mt-4">
+            <img src="/assets/components/phpthumbof/cache/untill-air.99afb47a3c9c4e8a9edf67e9269f81b6.png" class="img-fluid" alt="unTill Air">
+            <h2 class="sr-only">unTill Air</h2>
+        </div>
+        <div class="card-body h-100 border-1 border-bottom border-black">
+            <div class="card-text my-3">
+                
+            </div>
+            <div class="card-text introtext-rich">
+                <ul>
+<li>Easy-to-use POS app. Cloud-based &amp; mobile</li>
+<li>Flexible, budget-friendly subscription</li>
+<li>Built-in payments with unTill Payments</li>
+<li>Hardware freedom and no installation costs</li>
+<li>Super scalable. You only pay for what you actually use</li>
+<li>Quick onboarding &mdash; up and running in days</li>
+</ul>
+            </div>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-end mb-3 mt-4">
+            
+            <div>
+                <div class="card-text text-gray">From</div>
+                <div class="display-1 text-black">&euro;19</div>
+                <div class="card-text text-gray">Monthly</div>
+            </div>
+            <a href="untill-air" class="btn btn-secondary stretched-link text-white"><span>More information</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        
+        <div class="card-body text-center mt-4">
+            <img src="/assets/components/phpthumbof/cache/untill-payments.99afb47a3c9c4e8a9edf67e9269f81b6.png" class="img-fluid" alt="unTill Payments">
+            <h2 class="sr-only">unTill Payments</h2>
+        </div>
+        <div class="card-body h-100 border-1 border-bottom border-black">
+            <div class="card-text my-3">
+                
+            </div>
+            <div class="card-text introtext-rich">
+                <ul>
+<li>Integrated payment system for unTill Prime and unTill Air</li>
+<li>Quick and secure payments</li>
+<li>Fair pricing per transaction &mdash; no hidden fees</li>
+<li>No extra costs in the license</li>
+<li>Reliable, regular payouts straight to the bank</li>
+<li>Turn your phone into a terminal with Tap to Pay. No extra hardware needed</li>
+</ul>
+            </div>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-end mb-3 mt-4">
+            
+            <a href="untill-payments" class="btn btn-secondary stretched-link text-white"><span>More information</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        
+        <div class="card-body text-center mt-4">
+            <img src="/assets/components/phpthumbof/cache/untill-webmanagement.99afb47a3c9c4e8a9edf67e9269f81b6.png" class="img-fluid" alt="unTill WebManagement">
+            <h2 class="sr-only">unTill WebManagement</h2>
+        </div>
+        <div class="card-body h-100 border-1 border-bottom border-black">
+            <div class="card-text my-3">
+                
+            </div>
+            <div class="card-text introtext-rich">
+                <ul>
+<li>Cloud-based management solution</li>
+<li>Manage your unTill Prime location anywhere, anytime</li>
+<li>Dozens of clear and ready-to-use reports</li>
+<li>Custom reports for best insights</li>
+<li>Intuitive dashboards</li>
+<li>Manage your products, prices, and team with ease</li>
+</ul>
+            </div>
+        </div>
+        <div class="card-body d-flex justify-content-between align-items-end mb-3 mt-4">
+            
+            <a href="untill-webmanagement" class="btn btn-secondary stretched-link text-white"><span>More information</span></a>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <div class="d-flex justify-content-center my-3">
+                <span class="fa-stack button-prev pointer">
+                    <i class="fa-thin fa-square fa-stack-2x"></i>
+                    <i class="fa-solid fa-xs fa-arrow-left fa-stack-1x"></i>
+                </span>
+                <span class="fa-stack button-next pointer">
+                    <i class="fa-thin fa-square fa-stack-2x"></i>
+                    <i class="fa-solid fa-xs fa-arrow-right fa-stack-1x"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="bg-primary rounded position-relative col-lg-9" id="about-us">
+            <div class="row align-items-center g-0 pb-5 pb-lg-0">
+                <div class="col-lg-6 pb-5 pb-lg-0">
+                    <div class="p-4 p-md-5 mh-section-about-us">
+                        <h2 class="mb-3 fw-bold text-white">Benefits</h2>
+                        <p>Benefit from the powerful unTill solutions</p>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fa-solid fa-check text-white"></i></span>Dedicated service by our resellers</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-check text-white"></i></span>Employees operational within fifteen minutes</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-check text-white"></i></span>More than 100 integrations possible</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-check text-white"></i></span>Insights in your business through clear reports</li>
+                            <li><span class="fa-li"><i class="fa-solid fa-check text-white"></i></span>Easily adjust dishes, prices, table lay-out, and more</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-10 col-sm-8 position-absolute start-50 top-100 translate-middle mt-n5" id="about-image">
+                    <img src="/assets/components/phpthumbof/cache/kok_in_de_keuken.b43b09538b7eeca4dd242593f6d5157a.jpg" class="img-fluid rounded" alt="Home">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 class="text-stripe mb-4">Industries</h2>
+        <div class="swiper swiper-industries">
+            <div class="swiper-wrapper py-5">
+                <div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-utensils fa-2x my-4"></i>
+            <h5 class="card-title">Restaurant</h5>
+            <p class="card-text">An unforgettable customer experience is what you want to achieve in your restaurant. But that’s easier said than done. Creating the menu, table plan, hiring skilled staff, planning, and purchase are just a few things you have to manage.</p>
+            <a href="restaurant" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-bed-front fa-2x my-4"></i>
+            <h5 class="card-title">Hotel</h5>
+            <p class="card-text">A flawless guest experience is what you strive for in your hotel. And there is a lot involved, because at a hotel you have many different business sections. </p>
+            <a href="hotel" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-burger-soda fa-2x my-4"></i>
+            <h5 class="card-title">Quick service</h5>
+            <p class="card-text">Wherever an order or visit comes from, with  unTill® you deal with it quick and problem free. From the menu to planning and from purchase to reporting.</p>
+            <a href="quick-service" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-martini-glass-citrus fa-2x my-4"></i>
+            <h5 class="card-title">Bar/Cafe</h5>
+            <p class="card-text">Whether you own a pub, a cocktail bar, a cafe or a tavern when you use an unTill® point of sale system you work much more efficiently and you save time. </p>
+            <a href="bar/cafe" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-bowling-ball-pin fa-2x my-4"></i>
+            <h5 class="card-title">Leisure</h5>
+            <p class="card-text">An unforgettable customer experience is what you want to achieve with your leisure activities. But that’s easier said than done. </p>
+            <a href="leisure" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+<div class="swiper-slide">
+    <div class="card h-100 text-bg-light">
+        <div class="card-body d-flex flex-column">
+            <i class="fa-light fa-user-chef fa-2x my-4"></i>
+            <h5 class="card-title">Events</h5>
+            <p class="card-text">At unTill, we strive to give you full control over your events and provide your visitors with an enjoyable experience. We understand the importance of avoiding long queues, especially during busy concerts and festivals. </p>
+            <a href="events" class="btn btn-link text-secondary stretched-link text-start mt-auto">Discover more</a>
+        </div>
+    </div>
+</div>
+
+            </div>
+            <div class="d-flex gap-4 justify-content-center align-items-center">
+                <div>
+                    <span class="fa-stack button-industries-prev pointer">
+                        <i class="fa-thin fa-square fa-stack-2x"></i>
+                        <i class="fa-solid fa-xs fa-arrow-left fa-stack-1x"></i>
+                    </span>
+                </div>
+                <div class="swiper-industries-scrollbar flex-fill"></div>
+                <div>
+                    <span class="fa-stack button-industries-next pointer">
+                        <i class="fa-thin fa-square fa-stack-2x"></i>
+                        <i class="fa-solid fa-xs fa-arrow-right fa-stack-1x"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-black py-5">
+    <div class="container">
+        <h2 class="text-white fw-bold mb-5">Knowledge</h2>
+        <div class="row row-cols-1 row-cols-lg-3 g-4">
+            <div class="col">
+                <div class="card d-flex justify-content-between h-100 text-bg-dark">
+                    <a href="" class="stretched-link">
+                    <img src="/assets/components/phpthumbof/cache/food-on-plate.79d9b44430e7e476b7fccae04bea591b.jpg" class="card-img-top img-fluid rounded" alt="">
+                    </a>
+                    <div class="card-body d-flex flex-column px-0">
+                        <h2 class="card-title text-primary fw-bold mt-4">Whitepaper</h2>
+                            <div class="d-flex gap-4 my-3">
+                                <span><i class="fa-regular fa-clock me-2"></i>10 min</span>
+                                <span><i class="fa-regular fa-calendar me-2"></i>November ‘23</span>
+                            </div>
+                        <p class="card-text fw-bold">
+                            Create peace between kitchen and service
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card d-flex justify-content-between h-100 text-bg-dark">
+                    <a href="" class="stretched-link">
+                    <img src="/assets/components/phpthumbof/cache/bar.79d9b44430e7e476b7fccae04bea591b.jpg" class="card-img-top img-fluid rounded" alt="">
+                    </a>
+                    <div class="card-body d-flex flex-column px-0">
+                        <h2 class="card-title text-primary fw-bold mt-4">News</h2>
+                        <div class="d-flex gap-4 my-3">
+                            <span><i class="fa-regular fa-clock me-2"></i>1 min</span>
+                            <span><i class="fa-regular fa-calendar me-2"></i>November ‘23</span>
+                        </div>
+                        <p class="card-text fw-bold">
+                            The Dorrup takes inventory management to the next level with Apicbase.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card d-flex justify-content-between h-100 text-bg-dark">
+                    <a href="" class="stretched-link">
+                    <img src="/assets/images/restaurant.jpg" class="card-img-top img-fluid rounded" alt="">
+                    </a>
+                    <div class="card-body d-flex flex-column px-0">
+                        <h2 class="card-title text-primary fw-bold mt-4">Blog</h2>
+                        <div class="d-flex gap-4 my-3">
+                            <span><i class="fa-regular fa-clock me-2"></i>3 min</span>
+                            <span><i class="fa-regular fa-calendar me-2"></i>October ‘23</span>
+                        </div>
+                        <p class="card-text fw-bold">
+                            Prepare well to make the most out of the terrace season in 2024.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <a href="knowledge/" class="btn btn-light"><span>More knowledge</span></a>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="swiper swiper-stories">
+            <div class="swiper-wrapper pt-5">
+                <div class="swiper-slide">
+    <div class="row gap-4">
+        <div class="col-md-5">
+            <span class="fa-stack fa-2x position-absolute translate-middle ms-5 start-0">
+                <i class="fa-solid fa-circle text-primary fa-stack-2x"></i>
+                <i class="fa-solid fa-quote-right text-white fa-stack-1x"></i>
+            </span>
+            <img src="/assets/components/phpthumbof/cache/220804-shotbyluba-loetje-breda-047-horizontaal.46892ab9779c1a0fcb173a2d311057fa.jpg" class="card-img-top rounded" alt="unTill Corporate">
+        </div>
+        <div class="col-md-5 d-flex flex-column gap-4">
+            <div>
+                <h2 class="text-stripe mb-4">Loetje X unTill: a reliable partnership for 9 years</h2>
+                <p class="fw-normal">
+                    What began in 1977 as Café Loetje, a billiards café in Amsterdam, has evolved into 36 successful restaurants across the Netherlands. Apart from the renowned steak in gravy, Loetje attributes its success to the recognisable and familiar ambiance that guests consistently experience during their visits. This is also the case in the city of Breda, where the 20th Loetje location is established.
+                </p>
+                <p class="fw-bold">
+                    Loetje, Restaurant Company Europe
+                </p>
+            </div>
+            <a href="testimonials/" class="btn btn-light mt-auto me-auto stretched-link"><span>More testimonials</span></a>
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="mt-auto">
+                <div class="d-flex gap-4 justify-content-end align-items-center py-3">
+                    <div>
+                        <div class="swiper-stories-pagination"></div>
+                    </div>
+                    <div>
+                        <span class="fa-stack button-stories-prev pointer">
+                            <i class="fa-thin fa-square fa-stack-2x"></i>
+                            <i class="fa-solid fa-xs fa-arrow-left fa-stack-1x"></i>
+                        </span>
+                        <span class="fa-stack button-stories-next pointer">
+                            <i class="fa-thin fa-square fa-stack-2x"></i>
+                            <i class="fa-solid fa-xs fa-arrow-right fa-stack-1x"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="swiper-stories-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="question">
+    <div class="container-fluid gx-0 position-relative">
+        <img src="/assets/components/theme/templates/images/have_a_question.jpg" class="img-fluid bg-image" alt="people eating">
+        <div class="col-10 col-lg-6 position-absolute translate-middle start-50">
+
+            <div class="card h-100 bg-dark text-white p-2 p-lg-3">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h2 class="card-title fw-light">Have a <strong>question?</strong></h2>
+                            <p class="card-text"></p>
+                            <p class="card-text fw-normal">
+                                <a href="mailto:info@untill.com" class="text-white">info@untill.com</a>
+                            </p>
+                            <a href="resellers/" class="btn btn-primary"><span>Find a reseller</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-absolute me-n2 me-sm-n5 bottom-0 end-0 mb-n2 ms-n5 h-100 d-flex align-items-end question-element">
+                    <!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 445.5 220.9" style="enable-background:new 0 0 445.5 220.9;" xml:space="preserve">
+<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{opacity:0.31;fill:#FFFFFF;}
+</style>
+                        <g id="Group_462" transform="translate(1134.974 -6621.626)">
+                            <path id="Subtraction_5" class="st0" d="M-689.5,6842.5h-66.4v-139.2c0-8.2-6.6-14.8-14.8-14.9h-151.4c-3.9,0-7.6,1.5-10.4,4.2
+		c-2.8,2.8-4.4,6.7-4.3,10.7v136.9c0,0.8-0.1,1.5-0.2,2.3h-74v-147.4c0-9,4.1-17.5,11.1-23.2l54.8-43.8c5.2-4.2,11.7-6.5,18.4-6.5
+		h207.6c16.3,0,29.6,13.2,29.6,29.6c0,0,0,0,0,0.1L-689.5,6842.5L-689.5,6842.5z"/>
+                            <path id="Subtraction_4" class="st1" d="M-832.5,6842.5H-895v-54.1c0-7.7-6.2-14-13.9-14h-142.4c-3.7,0-7.2,1.4-9.8,4
+		c-2.7,2.7-4.1,6.3-4.1,10v54.1h-69.8v-61.7c0-8.5,3.9-16.5,10.4-21.8l51.5-41.3c4.9-3.9,11-6.1,17.3-6.1h195.3
+		c15.4,0,27.8,12.5,27.8,27.8c0,0,0,0,0,0.1L-832.5,6842.5L-832.5,6842.5z"/>
+                        </g>
+</svg>
+
+
+                </div>
+            </div>
+
+        </div>
+</section>
+
+<footer class="bg-dark py-5">
+    <div class="container">
+        <div class="row text-white py-5 gy-5">
+            <div class="col-lg-4 order-first order-lg-last ms-auto text-center text-md-start">
+                <img src="/assets/components/theme/templates/images/logo-white.svg" alt="logo" class="img-fluid" width="142px">
+                <p class="fw-light text-gray my-5">More than twenty-five years of developing andsupplying software for the hospitality industry worldwide</p>
+                <p><a href="privacy-policy" class="text-white">Privacy policy</a></p>
+            </div>
+            <div class="col-lg-2">
+                
+<div class="col-md-4 col-lg-2 text-center text-md-start">
+    <a href="industries/" class="text-white fw-bold mb-3 mb-lg-5">Industries</a>
+    <ul class="navbar-nav">
+        <li><a class="nav-link first level-2" href="restaurant" >Restaurant</a></li>
+<li><a class="nav-link level-2" href="hotel" >Hotel</a></li>
+<li><a class="nav-link level-2" href="quick-service" >Quick service</a></li>
+<li><a class="nav-link level-2" href="bar/cafe" >Bar/Cafe</a></li>
+<li><a class="nav-link level-2" href="leisure" >Leisure</a></li>
+<li><a class="nav-link last level-2" href="events" >Events</a></li>
+
+    </ul>
+</div>
+
+<div class="col-md-4 col-lg-2 text-center text-md-start">
+    <a href="news/" class="text-white fw-bold mb-3 mb-lg-5">News</a>
+    <ul class="navbar-nav">
+        <li><a class="nav-link first level-2" href="important-message-about-ast" >Important update regarding AST / Symbiosis</a></li>
+
+    </ul>
+</div>
+
+
+            </div>
+            <div class="col-lg-2 col-md-4 text-center text-md-start">
+                <a href="untill-integrations/" class="fw-bold mb-3 mb-lg-5 text-white"><span>Integrations</span></a>
+            </div>
+        </div>
+    <hr class="text-white">
+    <div class="container">
+        <div class="d-flex flex-column flex-lg-row align-items-center gap-3 my-4 my-lg-5">
+            <a href="try-untill’s-unique-pos-interface/" class="btn btn-secondary text-white"><span>Try it yourself</span></a>
+            <a href="developers/" class="btn btn-outline-white"><span>Developers</span></a>
+        </div>
+    </div>
+    <hr class="text-white">
+    <div class="container">
+        <div class="row justify-content-center justify-content-lg-start my-5">
+            <div class="col-auto">
+                <a href="https://www.linkedin.com/company/untill-nederland/" target="_blank">
+                    <i class="fa-brands fa-linkedin fa-2x text-white"></i>
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="https://www.facebook.com/untillnl/" target="_blank">
+                    <i class="fa-brands fa-square-facebook fa-2x text-white"></i>
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="" target="_blank">
+                    <i class="fa-brands fa-instagram fa-2x text-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

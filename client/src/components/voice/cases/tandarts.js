@@ -4,11 +4,19 @@ import styled from 'styled-components';
 import { Calendar, Sparkles } from 'lucide-react';
 import { Panel, PanelHeader, PanelTitle, Badge, Subtle, plus, ymd, dayLabel, treatmentLabel } from './_shared';
 
+const ScrollWrap = styled.div`
+  overflow-x: auto;
+  margin: 0 -0.5rem;
+  padding: 0 0.5rem;
+  -webkit-overflow-scrolling: touch;
+`;
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 50px repeat(10, 1fr);
   gap: 3px;
   font-size: 0.7rem;
+  min-width: 560px;
 `;
 
 const HeaderCell = styled.div`
@@ -149,6 +157,7 @@ export function Component({ state }) {
         <Badge $bg="#DCFCE7" $color="#065F46"><Sparkles size={10} style={{ marginRight: 4 }} /> Live</Badge>
       </PanelHeader>
       <Subtle>Tandartspraktijk Optivaize - 2 weken vooruit ({dayLabel(days[0]).split(' ')[1]} - {dayLabel(days[days.length-1]).split(' ')[1]})</Subtle>
+      <ScrollWrap>
       <Grid>
         <HeaderCell></HeaderCell>
         {days.map((d) => (
@@ -172,6 +181,7 @@ export function Component({ state }) {
           </React.Fragment>
         ))}
       </Grid>
+      </ScrollWrap>
       <Subtle style={{ marginTop: 'auto' }}>{state.appointments.length} afspraken deze week. Vraag de assistent om er een te plannen, te verzetten of te annuleren.</Subtle>
     </Panel>
   );

@@ -1,0 +1,2068 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>
+      
+      
+    </title>
+    <link rel="shortcut icon" href="https://resdiary.com/hubfs/Icon_%20resdiary_favicon.png">
+
+    
+
+    
+      <meta name="description" content="">
+    
+
+    
+
+    <meta name="google-site-verification" content="bzyyfX0D9QuNycF5XXgrO_4fma-xvC5wQHTWgGb2aao">
+
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="preload" as="style" href="https://use.typekit.net/vag8zin.css">
+    <link rel="stylesheet" href="https://use.typekit.net/vag8zin.css">
+    <noscript>
+      <link rel="stylesheet" href="https://use.typekit.net/vag8zin.css">
+    </noscript>
+
+    
+
+    
+    
+
+    
+
+    
+
+
+    <!--  -->
+    <!-- country found false -->
+    <!-- country found  -->
+    <!--  -->
+    <!-- recommendedRegion Global -->
+
+    
+
+    <!--  -->
+    <!--  -->
+
+    
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="hAuMfgMYNmyghSSwEdWtCryAQfokeNsx";;analytics.SNIPPET_VERSION="4.15.3";
+      analytics.load("hAuMfgMYNmyghSSwEdWtCryAQfokeNsx");
+      analytics.page();
+      }}();
+    </script>
+
+    
+      
+
+      
+        <link rel="x-default" href="https://resdiary.com/404?region=GB" hreflang="en">
+      
+
+      
+        <link rel="canonical" href="https://resdiary.com/404">
+      
+    
+
+    
+
+    <style>
+      /* Page loader overlay */
+      .region-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #064169;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+        pointer-events: none;
+      }
+
+      /* Fade out loader smoothly */
+      .region-loader.fade-out {
+        opacity: 0;
+      }
+
+      /* Remove loader after fade animation */
+      .region-loader.hidden {
+        display: none;
+      }
+
+      /* Spinner animation */
+      .region-loader__spinner {
+        width: 100px;
+        height: auto;
+        animation: pulse 1.5s linear infinite;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 0.2; }
+        50% { opacity: 1; }
+        100% { opacity: 0.2; }
+      }
+
+      /* Hide main content during redirect */
+      body.redirecting-region {
+        overflow: hidden;
+      }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://resdiary.com/hubfs/hub_generated/template_assets/1/393260897494/1776688415396/template_main.min.css">
+<link rel="stylesheet" href="https://resdiary.com/hubfs/hub_generated/template_assets/1/200215964867/1776436605682/template_styles.min.css">
+<link rel="stylesheet" href="https://resdiary.com/hubfs/hub_generated/module_assets/1/67157376734/1745319070735/module_Dishcult_Exit.min.css">
+
+  <style>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </style>
+  
+    
+
+    
+<!--  Added by GoogleAnalytics4 integration -->
+<script>
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+if (!window._hsGoogleConsentRunOnce) {
+  window._hsGoogleConsentRunOnce = true;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': waitForUpdateMillis
+  });
+
+  if (useGoogleConsentModeV2) {
+    _hsp.push(['useGoogleConsentModeV2'])
+  } else {
+    _hsp.push(['addPrivacyConsentListener', function(consent){
+      var hasAnalyticsConsent = consent && (consent.allowed || (consent.categories && consent.categories.analytics));
+      var hasAdsConsent = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+
+      gtag('consent', 'update', {
+        'ad_storage': hasAdsConsent ? 'granted' : 'denied',
+        'analytics_storage': hasAnalyticsConsent ? 'granted' : 'denied',
+        'ad_user_data': hasAdsConsent ? 'granted' : 'denied',
+        'ad_personalization': hasAdsConsent ? 'granted' : 'denied'
+      });
+    }]);
+  }
+}
+
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTQ1Zm', true);
+gtag('config', 'G-WY1SHCXY6V');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WY1SHCXY6V"></script>
+
+<!-- /Added by GoogleAnalytics4 integration -->
+
+<!--  Added by GoogleTagManager integration -->
+<script>
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+
+var hsLoadGtm = function loadGtm() {
+    if(window._hsGtmLoadOnce) {
+      return;
+    }
+
+    if (useGoogleConsentModeV2) {
+
+      gtag('set','developer_id.dZTQ1Zm',true);
+
+      gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': waitForUpdateMillis
+      });
+
+      _hsp.push(['useGoogleConsentModeV2'])
+    }
+
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXBWBLK');
+
+    window._hsGtmLoadOnce = true;
+};
+
+_hsp.push(['addPrivacyConsentListener', function(consent){
+  if(consent.allowed || (consent.categories && consent.categories.analytics)){
+    hsLoadGtm();
+  }
+}]);
+
+</script>
+
+<!-- /Added by GoogleTagManager integration -->
+
+
+<script>var $wc_load=function(a){return  JSON.parse(JSON.stringify(a))},$wc_leads=$wc_leads||{doc:{url:$wc_load(document.URL),ref:$wc_load(document.referrer),search:$wc_load(location.search),hash:$wc_load(location.hash)}};</script>
+<script src="//s.ksrndkehqnwntyxlhgto.com/147278.js"></script>
+
+<script>(function (u, n, i, v, e, r, s, a, l) { u[r] = {}; u[r].uid = '1d79a951-6330-49a2-9495-37858344ff09'; u[r].m = ['getReferrerInfo', 'identify', 'integrationsReady', 'on', 'ready', 'track']; u[r].queue = []; u[r].f = function(t) { return function() { var l = Array.prototype.slice.call(arguments); l.unshift(t); u[r].queue.push(l); return u[r].queue; }; }; for (var t = 0; t < u[r].m.length; t++) { l = u[r].m[t]; u[r][l] = u[r].f(l); } a = n.createElement(v); a.src = e + '/us-' + u[r].uid + '.js'; a.async = s; n.getElementsByTagName(i)[0].appendChild(a); })(window, document, 'head', 'script', 'https://amb-snippet.resdiary.com', 'mbsy', true);</script> 
+<meta property="og:url" content="https://resdiary.com/404">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="content-language" content="en">
+
+
+
+
+
+
+
+  <meta name="generator" content="HubSpot"></head>
+
+  <body>
+<!--  Added by GoogleTagManager integration -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXBWBLK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- /Added by GoogleTagManager integration -->
+
+
+    <div id="region-loader" class="region-loader" style="display: none;">
+      <div class="region-loader__spinner">
+        <!--?xml version="1.0" encoding="UTF-8"?-->
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 71.2 39.6">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: #00b7f0;
+              }
+            </style>
+          </defs>
+          <path class="cls-1" d="M0,19.9v-3.9c0-2.5.5-5,1.5-7.3,1.3-3.2,3.7-5.8,6.7-7.3C9.7.7,11.3.2,13,.1c3-.3,6.1.2,8.8,1.4,1.7.7,3.2,1.5,4.9,2.3,2.9,1.4,5.8,2.8,8.7,4.1.1.1.3.1.4,0,4-1.9,8.1-3.8,12.1-5.8,1.7-.8,3.5-1.4,5.4-1.8,3-.6,6.1-.3,8.9.8,2.6,1.1,4.8,3,6.3,5.4,1.2,1.9,2,4.1,2.4,6.4.2,1.2.3,2.5.3,3.7v6.8c0,2.3-.3,4.7-1.1,6.9-.9,2.7-2.7,5.1-5,6.8-1.7,1.2-3.7,2-5.7,2.3-3.1.5-6.1,0-9-1.2-1.3-.6-2.6-1.2-3.9-1.9l-10.7-5.5c-.1-.1-.3-.1-.4,0-4.3,2.2-8.5,4.4-12.7,6.6-2,1-4.1,1.7-6.3,2-3.3.4-6.4,0-9.2-1.7-2.3-1.3-4.1-3.3-5.2-5.7-.9-1.8-1.5-3.7-1.7-5.6-.1-1-.2-2.1-.2-3.1-.1-1.2-.1-2.3-.1-3.4h0ZM41,10.9c.7.5,1.4,1.2,2,1.9,1.8,2.3,2.6,5.3,2.1,8.2-.3,2.6-1.7,5-3.8,6.7q-.2.1,0,.3c2.8,1.5,5.7,2.9,8.5,4.4,1,.6,2.1,1,3.2,1.4,1.7.6,3.5.8,5.3.6,2.7-.3,5-2,6.3-4.4,1-1.8,1.5-3.8,1.5-5.9v-9c-.1-1.7-.5-3.3-1.2-4.8-.6-1.4-1.5-2.5-2.7-3.5-2-1.6-4.3-2.1-6.8-1.8-1.7.2-3.4.7-4.9,1.4-2.4,1.1-4.8,2.3-7.2,3.4-.8.4-1.5.8-2.3,1.1ZM30,27.9l-.2-.2c-.8-.6-1.5-1.3-2-2.1-1.6-2.3-2.3-5.1-1.8-7.9.4-2.6,1.8-5,3.9-6.7q.2-.1,0-.2c-1.8-.8-3.7-1.7-5.5-2.6-1.5-.7-3-1.5-4.5-2.1-2-.9-4.3-1.2-6.5-1-1.4.2-2.8.7-4,1.5-1.8,1.3-3,3.1-3.6,5.2-.5,1.5-.8,3.1-.7,4.7v6.4c0,.8,0,1.6.1,2.4.2,1.6.6,3.3,1.4,4.7.7,1.3,1.7,2.4,2.9,3.1,1.9,1.2,4,1.5,6.2,1.2,1.7-.2,3.3-.8,4.8-1.6,1.8-.9,3.6-1.8,5.3-2.8,1.4-.6,2.8-1.3,4.2-2ZM35.6,14.1c-.3,0-.5,0-.8.1-1.3.3-2.4,1.1-3.1,2.3-1.2,2.1-1,4.7.5,6.6.8,1,2,1.6,3.2,1.6,1.5,0,2.9-.7,3.7-2,1.5-2.1,1.4-5-.3-7-.7-1-1.9-1.5-3.2-1.6Z" />
+        </svg>
+      </div>
+      <h3 style="margin-top: 20px; color: #FFFFFF;">You are being redirected...</h3>
+    </div>
+
+    <script>
+      (function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var urlRegion = urlParams.get('region');
+        var savedRegion = localStorage.getItem('region');
+
+        // Show loader if we're being redirected OR if we just landed after redirect
+        if (savedRegion && (!urlRegion || urlRegion === savedRegion)) {
+          var loader = document.getElementById('region-loader');
+          if (loader) {
+            // Show the loader
+            loader.style.display = 'flex';
+            // Force a reflow so the transition works
+            loader.offsetHeight;
+            document.body.classList.add('redirecting-region');
+          }
+
+          // If we have the region parameter, we just completed redirect - fade out
+          if (urlRegion === savedRegion) {
+            setTimeout(function() {
+              if (loader) {
+                loader.classList.add('fade-out');
+                setTimeout(function() {
+                  loader.style.display = 'none';
+                  document.body.classList.remove('redirecting-region');
+                }, 500); // Match CSS transition
+              }
+            }, 100); // Small delay to ensure loader is visible first
+          }
+
+          // Fallback: Hide loader after 3 seconds in case something goes wrong
+          setTimeout(function() {
+            if (loader && loader.style.display !== 'none') {
+              loader.classList.add('fade-out');
+              setTimeout(function() {
+                loader.style.display = 'none';
+                document.body.classList.remove('redirecting-region');
+              }, 500);
+            }
+          }, 3000);
+        }
+      })();
+    </script>
+
+    <div id="hs_cos_wrapper_Dishcult_Exit_Banner" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+</div>
+
+    <div class="body-wrapper   hs-content-id-0 hs-site-page page ">
+      <!--
+        <div class="preloader">
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      -->
+      
+        <div data-global-resource-path="resdiary/templates/partials/header.html"><div id="hs_cos_wrapper_Navbar_with_Menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+
+
+<header class="kl-header">
+  
+  
+  <div class="search-section">
+    <div class="content-wrapper">
+      <div class="search-close">
+      </div>
+      <div class="hs-search-field"> 
+        <div class="hs-search-field__bar"> 
+          <form action="/hs-search-results">
+            <input type="text" class="hs-search-field__input" name="term" autocomplete="off" aria-label="Search" placeholder="What are you looking for?">
+            <input type="hidden" name="type" value="SITE_PAGE">
+            <input type="hidden" name="type" value="LANDING_PAGE">
+            <input type="hidden" name="type" value="BLOG_POST">
+            <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">
+          </form>
+        </div>
+        <p class="popular_search_title">
+          <strong>Popular searches</strong>
+        </p>
+        <ul class="hs-search-field__suggestions">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="top-nav">
+    <div class="content-wrapper">
+      <ul class="kl-navbar__menu">
+        
+        
+          <li class="kl-navbar__item">
+            
+            
+            <a class="kl-navbar__button  search-button" href="javascript:void(0)" onclick="event.preventDefault()">
+              <span>Search</span>
+            </a>
+          </li>
+        
+          <li class="kl-navbar__item">
+            
+            
+            <a class="kl-navbar__button  " href="https://resdiary.com/frequently-asked-questions">
+              <span>FAQs</span>
+            </a>
+          </li>
+        
+          <li class="kl-navbar__item">
+            
+            
+            <a class="kl-navbar__button  " href="https://resdiary.com/customer-hub">
+              <span>Support</span>
+            </a>
+          </li>
+        
+        <li>
+          <div class="kl-navbar__end">
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <nav class="kl-navbar content-wrapper">
+    
+      
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com">
+        
+
+  
+
+  
+
+  
+    
+  
+
+  <img src="https://resdiary.com/hubfs/ResDiary%20access%20joint%20logos/Access_ResDiary_Dark_250x44.svg" alt="Access_ResDiary_Dark_250x44" width="250" height="44" class="kl-navbar__logo" loading="lazy">
+      </a>
+  
+    
+    <div class="kl-navbar__mobile">
+      
+      
+        <button class="hamburger hamburger--squeeze kl-navbar__hamburger" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      
+    </div>
+    
+    
+    
+    <div class="kl-navbar__content">
+      <ul class="kl-navbar__menu">
+        
+          <li class="kl-navbar__item">
+            
+            
+            
+            
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/features" class="kl-navbar__button kl-navbar__dropdown">
+              <span>Features</span>
+            </a>
+  
+            
+              <a href="#" class="dropdown-toggle" data-check="javascript:void(0);"></a>
+              <div class="kl-navbar__panel">
+                <div class="kl-navbar__panel-wrapper">
+                  <div class="kl-navbar__description kl-navbar__description--full">
+                    
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/features">
+                      <h2>Product at a glance</h2>
+<p>Short description of what this tab menu is about</p>
+                    </a>
+  
+                  </div>
+                  <div class="kl-navbar__categories">
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/features/attract-diners">
+                          <h4><img src="https://resdiary.com/hubfs/icon_attract-diners.svg" width="50" height="53" loading="lazy" alt="icon_attract-diners" style="height: auto; max-width: 100%; width: 50px;"></h4>
+<h6><span style="color: #064169;">Attract Diners</span></h6>
+<p>Promote deals, events, or menus, make your venue more accessible and grow your business.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/features/optimise">
+                          <h4><img src="https://resdiary.com/hubfs/setup.svg" width="53" height="53" loading="lazy" alt="setup" style="height: auto; max-width: 100%; width: 53px;"></h4>
+<h6>Optimise Operations</h6>
+<p>Improve your customer experience while driving efficiency with ResDiary's tools for running a smooth service.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/features/grow">
+                          <h4><img src="https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=53&amp;height=53&amp;name=Graph%20icon%20blue.png" width="53" height="53" loading="lazy" alt="Graph icon blue" style="height: auto; max-width: 100%; width: 53px;" srcset="https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=27&amp;height=27&amp;name=Graph%20icon%20blue.png 27w, https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=53&amp;height=53&amp;name=Graph%20icon%20blue.png 53w, https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=80&amp;height=80&amp;name=Graph%20icon%20blue.png 80w, https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=106&amp;height=106&amp;name=Graph%20icon%20blue.png 106w, https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=133&amp;height=133&amp;name=Graph%20icon%20blue.png 133w, https://resdiary.com/hs-fs/hubfs/Graph%20icon%20blue.png?width=159&amp;height=159&amp;name=Graph%20icon%20blue.png 159w" sizes="(max-width: 53px) 100vw, 53px"></h4>
+<h6>Grow</h6>
+<p>Do more with your booking data and create unique offers that'll turn first-time visitors into loyal customers.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/integrations">
+                          <h4><img src="https://resdiary.com/hubfs/icon_integrations.svg" width="53" height="53" loading="lazy" alt="icon_integrations" style="height: auto; max-width: 100%; width: 53px;"></h4>
+<h6>Integrations</h6>
+<p>Drive meaningful guest experiences and run your venue efficiently with ResDiary partner integrations.</p>
+                        </a>
+  
+                      </div>
+                    
+                  </div>
+                </div>
+              </div>
+            
+          </li>
+        
+          <li class="kl-navbar__item">
+            
+            
+            
+            
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve" class="kl-navbar__button kl-navbar__dropdown">
+              <span>Who we serve</span>
+            </a>
+  
+            
+              <a href="#" class="dropdown-toggle" data-check="javascript:void(0);"></a>
+              <div class="kl-navbar__panel">
+                <div class="kl-navbar__panel-wrapper">
+                  <div class="kl-navbar__description kl-navbar__description--full">
+                    
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve">
+                      <h2>Product at a glance</h2>
+<p>Short description of what this tab menu is about</p>
+                    </a>
+  
+                  </div>
+                  <div class="kl-navbar__categories">
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve/restaurants">
+                          <img src="https://resdiary.com/hubfs/Icon_Bistros.svg" width="66" height="53" loading="lazy" alt="Icon_Bistros" style="height: auto; max-width: 100%; width: 66px;">
+<h6>Restaurants</h6>
+<p>We empower restaurants with technology to efficiently manage yield, walk-in customers, and marketing.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve/hotels">
+                          <img src="https://resdiary.com/hubfs/hotels.svg" width="45" height="53" loading="lazy" alt="hotels" style="height: auto; max-width: 100%; width: 45px;">
+<h6>Hotels</h6>
+<p>Elevate your guest experience, optimise space, and boost sales with effortless table booking management for hotels.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve/pubs-bars">
+                          <img src="https://resdiary.com/hubfs/pubs.svg" width="45" height="53" loading="lazy" alt="pubs" style="height: auto; max-width: 100%; width: 45px;">
+<h6>Pubs &amp; Bars</h6>
+<p>Reach maximum guests, get bookings, and forecast the footfall to rock through the night with ResDiary.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve/restaurant-groups">
+                          <img src="https://resdiary.com/hubfs/restaurants.svg" width="41" height="53" loading="lazy" alt="restaurants" style="height: auto; max-width: 100%; width: 41px;">
+<h6>Restaurant Groups</h6>
+<p>Manage reservations, events and promotions wherever you are, with a table management system built for restaurant groups.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/who-we-serve/cafes">
+                          <img src="https://resdiary.com/hubfs/cafes.svg" width="56" height="53" loading="lazy" alt="cafes" style="height: auto; max-width: 100%; width: 56px;">
+<h6>Cafes</h6>
+<p>Helping Caf<span>é</span>s reserve tables, improve forecasting, staff rostering, increase exposure, and a lot more.</p>
+                        </a>
+  
+                      </div>
+                    
+                  </div>
+                </div>
+              </div>
+            
+          </li>
+        
+          <li class="kl-navbar__item">
+            
+            
+              
+            
+            
+            
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/pricing" class="kl-navbar__button kl-navbar__dropdown kl-navbar__leaf">
+              <span>Pricing</span>
+            </a>
+  
+            
+          </li>
+        
+          <li class="kl-navbar__item">
+            
+            
+            
+            
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/resources" class="kl-navbar__button kl-navbar__dropdown">
+              <span>Resources</span>
+            </a>
+  
+            
+              <a href="#" class="dropdown-toggle" data-check="javascript:void(0);"></a>
+              <div class="kl-navbar__panel">
+                <div class="kl-navbar__panel-wrapper">
+                  <div class="kl-navbar__description kl-navbar__description--full">
+                    
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/resources">
+                      <h2>Product at a glance</h2>
+<p>Short description of what this tab menu is about</p>
+                    </a>
+  
+                  </div>
+                  <div class="kl-navbar__categories">
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/blog">
+                          <img src="https://resdiary.com/hubfs/icons_Insights.svg" width="48" loading="lazy" alt="icons_Insights" style="height: auto; max-width: 100%; width: 48px;">
+<h6>Blog</h6>
+<p>Find news &amp; insights, inspiring stories and the latest hospitality industry trends.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/industry-insights">
+                          <img src="https://resdiary.com/hubfs/icon_SuccessStories-1.svg" width="64" height="53" loading="lazy" alt="icon_SuccessStories-1" style="height: auto; max-width: 100%; width: 64px;">
+<h6>Industry Insights</h6>
+<p>Read the latest trends and reports shaping the hospitality industry.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/tools-and-guides">
+                          <img src="https://resdiary.com/hubfs/icons_ToolsGuides.svg" width="58" height="53" loading="lazy" alt="icons_ToolsGuides" style="height: auto; max-width: 100%; width: 58px;">
+<h6>Tools + Guides</h6>
+<p>Access tools and guides to help you run a smooth service and grow your hospitality business.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/webinars">
+                          <img src="https://resdiary.com/hubfs/WebinarsIcon-1-2.svg" width="64" height="53" loading="lazy" alt="WebinarsIcon-1-2" style="height: auto; max-width: 100%; width: 64px;">
+<h6>Webinars</h6>
+<p>Watch our latest webinars for insights from industry experts, hospitality trends, and more.</p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/case-studies">
+                          <img src="https://resdiary.com/hubfs/SuccessStoriesIcon-1-3.svg" width="64" height="53" loading="lazy" alt="SuccessStoriesIcon-1-3" style="height: auto; max-width: 100%; width: 64px;">
+<h6>Success Stories</h6>
+<p><span>See how hospitality venues like yours found solutions with </span><span>ResDiary.</span></p>
+                        </a>
+  
+                      </div>
+                    
+                      <div class="kl-navbar__description">
+                        
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/alternative">
+                          <img src="https://resdiary.com/hubfs/icons_ProductUpdates.svg" width="53" height="53" loading="lazy" alt="icons_ProductUpdates" style="height: auto; max-width: 100%; width: 53px;">
+<h6>Compare ResDiary</h6>
+<p>Compare ResDiary's functionality and costs to other Reservation and Table Management providers.</p>
+                        </a>
+  
+                      </div>
+                    
+                  </div>
+                </div>
+              </div>
+            
+          </li>
+        
+      </ul>
+      <div class="kl-navbar__end">
+        
+    
+
+  
+  	  
+  	
+		
+	
+	
+    
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://resdiary.com/book-a-demo" class="button Navbar_with_Menu__button">
+      <span>Book a demo</span>
+    </a>
+  
+
+  
+  
+        
+    
+
+  
+  	  
+  	
+		
+	
+	
+    
+      
+    
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+    
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="https://login.resdiary.com/" class="button button--outlined Navbar_with_Menu__button">
+      <span>Login</span>
+    </a>
+  
+
+  
+  
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- <div class="kl-header-placeholder"></div> --></div>
+
+</div>
+      
+
+      
+<main class="body-container-wrapper">
+
+  <section class="content-wrapper">
+    <div class="kl-error-page">
+      <span class="kl-error-page__preheader">ERROR 404</span>
+      <h1 class="kl-error-page__heading">Oops! Page not found.</h1>
+      <p>Let’s get you to where you need to be.</p>
+      <a class="button" href="/">GO HOME</a>
+    </div>
+  </section>
+
+  <section class="content-wrapper">
+    <div class="blog-more blog-more--centered">
+      <h2>Insights you may be interested in</h2>
+      <div class="blog-more-posts">
+        
+          <article class="blog-index__post-wrapper">
+          <div class="blog-index__post  kl-insight-card">
+             <div class="kl-card__image">
+            <a href="https://resdiary.com/blog/restaurant-captions-for-instagram">
+              <img src="https://resdiary.com/hubfs/shutterstock_1793657440.jpg">
+            </a>
+            </div>
+             <a href="https://resdiary.com/blog/restaurant-captions-for-instagram">
+            <div class="blog-index__post-content kl-card-content">
+              <div>
+                
+                
+                 <div class="date">
+                  1 Jan, 2024
+                </div>
+                <h5>216 Best Restaurant Captions for Instagram</h5>
+               
+              </div>
+              
+            </div>
+                </a>
+          </div>
+        
+        </article>
+
+        
+          <article class="blog-index__post-wrapper">
+          <div class="blog-index__post  kl-insight-card">
+             <div class="kl-card__image">
+            <a href="https://resdiary.com/blog/restaurant-manager-duties">
+              <img src="https://resdiary.com/hubfs/restaurant-manager-responsibilities.jpg">
+            </a>
+            </div>
+             <a href="https://resdiary.com/blog/restaurant-manager-duties">
+            <div class="blog-index__post-content kl-card-content">
+              <div>
+                
+                
+                 <div class="tag">Tips &amp; Tricks</div><span class="dot">•</span> 
+            
+                 <div class="date">
+                  26 Jun, 2025
+                </div>
+                <h5>12 Restaurant Manager Duties &amp; Responsibilities</h5>
+               
+              </div>
+              
+            </div>
+                </a>
+          </div>
+        
+        </article>
+
+        
+          <article class="blog-index__post-wrapper">
+          <div class="blog-index__post  kl-insight-card">
+             <div class="kl-card__image">
+            <a href="https://resdiary.com/blog/resdiary-mobile-table-booking-app">
+              <img src="https://resdiary.com/hubfs/1-Feb-14-2024-04-44-32-9718-PM.jpg">
+            </a>
+            </div>
+             <a href="https://resdiary.com/blog/resdiary-mobile-table-booking-app">
+            <div class="blog-index__post-content kl-card-content">
+              <div>
+                
+                
+                 <div class="tag">Release Highlights</div><span class="dot">•</span> 
+            
+                 <div class="date">
+                  8 Apr, 2024
+                </div>
+                <h5>Manage Your Table Bookings on the Move with ResDiary’s Mobile iOS App</h5>
+               
+              </div>
+              
+            </div>
+                </a>
+          </div>
+        
+        </article>
+
+        
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+      
+        <div data-global-resource-path="resdiary/templates/partials/footer.html"><div id="hs_cos_wrapper_Footer" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+
+
+
+
+<footer class="kl-footer">
+  <div class="kl-footer__wrapper content-wrapper">
+    
+      <div class="kl-footer__content">
+        <div class="kl-footer__info">
+          
+
+  
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+    <a href="#">
+              
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  <img src="https://resdiary.com/hubfs/ResDiary%20access%20joint%20logos/Access_ResDiary_Light.svg" alt="Access_ResDiary_Light" width="100%" style="max-width: 250px; max-height: 54px" loading="lazy">
+            </a>
+  
+          <div class="kl-footer__address"></div>
+        </div>
+        <div class="kl-footer__menu">
+          
+            <div class="kl-footer__group">
+              <a class="footer-section-title" href="https://resdiary.com/features">Features</a>
+              <ul>
+                
+                  <li>
+                    <a href="https://resdiary.com/features/attract-diners">Attract Diners</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/features/optimise">Optimise Operations</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/features/grow">Grow</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/integrations">Integrations</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+            <div class="kl-footer__group">
+              <a class="footer-section-title" href="https://resdiary.com/who-we-serve">Who we serve</a>
+              <ul>
+                
+                  <li>
+                    <a href="https://resdiary.com/who-we-serve/restaurants">Restaurants</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/who-we-serve/hotels">Hotels</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/who-we-serve/pubs-bars">Pubs &amp; Bars</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/who-we-serve/restaurant-groups">Restaurant Groups</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/who-we-serve/cafes">Cafés</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+            <div class="kl-footer__group">
+              <a class="footer-section-title" href="https://resdiary.com/pricing">Pricing</a>
+              <ul>
+                
+                  <li>
+                    <a href="https://resdiary.com/pricing">Add-ons</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+            <div class="kl-footer__group">
+              <a class="footer-section-title" href="https://resdiary.com/resources">Resources</a>
+              <ul>
+                
+                  <li>
+                    <a href="https://resdiary.com/blog">Blog</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/industry-insights">Industry Insights</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/tools-and-guides">Tools + Guides</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/webinars">Webinars</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/case-studies">Success Stories</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/alternative">Compare ResDiary</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+            <div class="kl-footer__group">
+              <a class="footer-section-title" href="https://resdiary.com/about-us">Company</a>
+              <ul>
+                
+                  <li>
+                    <a href="https://resdiary.com/about-us">About Us</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/contact-us">Contact Us</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/media">Media</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/careers">Careers</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://login.resdiary.com/">Login</a>
+                  </li>
+                
+                  <li>
+                    <a href="https://resdiary.com/book-a-demo">Book a demo</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+        </div>
+      </div>
+    
+    <hr>
+    
+    
+      <div class="kl-footer__bottom">
+        <div class="kl-footer__legal" style="flex: 1;">
+          <div style="width:100%;margin-bottom:1em;">
+            <!-- Start of HubSpot code snippet -->
+            <button type="button" id="hs_show_banner_button" style="background-color: #425b76; border: 1px solid #425b76;
+                border-radius: 3px; padding: 10px 16px; text-decoration: none; color: #fff;
+                font-family: inherit; font-size: inherit; font-weight: normal; line-height: inherit;
+                text-align: left; text-shadow: none;" onclick="(function(){
+                var _hsp = window._hsp = window._hsp || [];
+                _hsp.push(['showBanner']);
+                })()">
+              Cookie Settings
+            </button>
+            <!-- End of HubSpot code snippet -->
+          </div>
+          <div class="kl-footer__links"><a href="https://pages.theaccessgroup.com/Access-Terms-and-Conditions.html" class="footer-links" rel="noopener" target="_blank">The Access Group Terms &amp; Conditions</a> <a href="https://pages.theaccessgroup.com/ResDiary-Terms-and-Conditions.html" class="footer-links" rel="noopener" target="_blank">ResDiary Product Terms &amp; Conditions</a> <a href="/privacy-policy-b2b" class="footer-links">Privacy Notice</a> <a href="/b2b-cookie-policy" class="footer-links">Cookie Notice</a> <a href="https://resdiary.com/sitemap" class="footer-links" rel="noopener">Sitemap</a></div>
+          <div class="kl-footer__notice"><a id="Terms" data-hs-anchor="true"></a>
+<p>© 2026 Access UK Ltd. All Rights Reserved. Registered in the UK: Company No. 02343760: Registered Office: The Armstrong Building, 10 Oakwood Drive, Loughborough, LE113QF</p></div>
+        </div>
+        <div class="kl-footer__secondary">
+          <div class="kl-footer__regions">
+            <p style="margin-bottom: 0.5rem;text-align:right;">Change region</p>
+            <select style="border-radius: 3px;margin-bottom:1em;padding:0.5rem;" name="region" id="selectedRegionFooter">
+              
+                <option value="GB">ResDiary UK</option>
+              
+                <option value="IE">ResDiary Ireland</option>
+              
+                <option value="USW">ResDiary Global</option>
+              
+                <option value="EUG">ResDiary Europe</option>
+              
+                <option value="APAC">ResDiary APAC</option>
+              
+            </select>
+          </div>
+          <div class="kl-footer__socials" style="width:100%;">
+            <ul class="kl-footer__social">
+              
+                <a href="https://www.facebook.com/resdiary/" target="_blank">
+                  <span id="hs_cos_wrapper_Footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 264 512" aria-hidden="true"><g id="facebook-f1_layer"><path d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229" /></g></svg></span>
+                </a>
+              
+                <a href="https://x.com/ResDiary" target="_blank">
+                  <span id="hs_cos_wrapper_Footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" aria-hidden="true"><g id="twitter2_layer"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" /></g></svg></span>
+                </a>
+              
+                <a href="https://www.youtube.com/@ResDiary" target="_blank">
+                  <span id="hs_cos_wrapper_Footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512" aria-hidden="true"><g id="youtube3_layer"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" /></g></svg></span>
+                </a>
+              
+                <a href="https://www.linkedin.com/company/resdiary/" target="_blank">
+                  <span id="hs_cos_wrapper_Footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" aria-hidden="true"><g id="linkedin-in4_layer"><path d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z" /></g></svg></span>
+                </a>
+              
+                <a href="https://www.instagram.com/resdiary/" target="_blank">
+                  <span id="hs_cos_wrapper_Footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon" style="" data-hs-cos-general-type="widget" data-hs-cos-type="icon"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512" aria-hidden="true"><g id="instagram5_layer"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" /></g></svg></span>
+                </a>
+                      
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</footer></div>
+
+</div>
+      
+    </div>
+
+    
+    
+
+    <!-- begin standard footer -->
+    
+<!-- HubSpot performance collection script -->
+<script defer src="/hs/hsstatic/content-cwv-embed/static-1.1293/embed.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script src="https://resdiary.com/hubfs/hub_generated/module_assets/1/67157376734/1745319070735/module_Dishcult_Exit.min.js"></script>
+<script src="https://resdiary.com/hubfs/hub_generated/template_assets/1/50974386371/1774621657653/template_main.min.js"></script>
+<script src="https://resdiary.com/hubfs/hub_generated/template_assets/1/200216573125/1776436646837/template_bundle.min.js"></script>
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/resdiary.com\/404"]);
+_hsq.push(["setPageId", ""]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": null,
+    "legacyPageId": null,
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": null,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/25835103.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "b52da6ff-4794-4edb-be39-dadff7224cad",
+    ticks: 1776688464902,
+    page_id: 0,
+    
+    content_group_id: 0,
+    portal_id: 25835103,
+    app_hs_base_url: "https://app-eu1.hubspot.com",
+    cp_hs_base_url: "https://cp-eu1.hubspot.com",
+    language: "en",
+    analytics_page_type: "standard-page",
+    scp_content_type: "",
+    
+    analytics_page_id: "null",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.640/js/index.js"></script>
+
+
+
+
+    <!-- end standard footer -->
+
+    
+      <script>
+        if ('URLSearchParams' in window) {
+          var searchParams = new URLSearchParams(window.location.search);
+          
+          if (searchParams.get("region")) {
+            // region is set, add to other page links
+            
+            var pageLinks = document.querySelectorAll("a");
+            
+            pageLinks.forEach(function (link) {
+              if (link.hasAttribute('href')) {
+                var newLink = new URL(link.href);
+                newLink.searchParams.set('region',"");
+                link.href = newLink;
+              }
+            });
+          }
+        }
+      </script>
+
+      <script>
+        var regionSwitchRecommended = true;
+        var regionDict = "";
+        var autoRegionSwitch = true;
+
+        console.warn('redirect check:',localStorage.getItem('region'),regionDict);
+
+        // Auto-redirect if user has saved region and URL has no region parameter
+        if (localStorage.getItem('region') && regionDict == "" && autoRegionSwitch) {
+          changeRegion(localStorage.getItem('region'));
+        } else {
+          // No redirect needed - hide the loader if it's showing
+          hideRegionLoader();
+        }
+
+        // Show region switcher popup if recommended
+        if (localStorage.getItem('hideregionswitcher') == null && regionSwitchRecommended) {
+          showRegionSwitcher();
+        }
+
+        // Hide the region redirect loader with smooth fade
+        function hideRegionLoader() {
+          var loader = document.getElementById('region-loader');
+          if (loader) {
+            loader.classList.add('fade-out');
+            
+            setTimeout(function() {
+              loader.style.display = 'none';
+              document.body.classList.remove('redirecting-region');
+            }, 500);
+          }
+        }
+
+        function showRegionSwitcher() {
+          var switcher = document.getElementById('regional_switcher');
+          if (switcher) {
+            switcher.classList.remove('hidden');
+          }
+        }
+
+        function hideRegionSwitcher() {
+          var switcher = document.getElementById('regional_switcher');
+
+          if (switcher != null) {
+            switcher.classList.add('hidden');
+            localStorage.setItem('hideregionswitcher',true);
+          }
+        }
+
+        function changeRegion(region) {
+          if (!region) {
+            console.warn('Unable to change region. A region must be provided');
+            return;
+          }
+
+          // Validate region against HubL-defined valid region codes
+          var validRegions = ["GB","IE","USW","EUG","APAC"];
+          if (validRegions.indexOf(region) === -1) {
+            console.warn('Invalid region code provided:', region, 'Valid regions:', validRegions);
+            return;
+          }
+
+          localStorage.setItem('hideregionswitcher',true);
+          localStorage.setItem('region',region);
+
+          if ('URLSearchParams' in window && !window.hsInEditor && window.name != "hs-preview-iframe") {
+            var searchParams = new URLSearchParams(window.location.search)
+            searchParams.set("region", region);
+
+            _hsq.push(["trackCustomBehavioralEvent", {
+              name: "pe25835103_regional_redirect"
+            }]);
+
+            // Reload the page with new region parameter
+            // Loader will stay visible during reload
+            window.location.search = searchParams.toString();
+          }
+        }
+
+        var setRegionHeader = document.getElementById("setRegionHeader");
+        var setRegionFooter = document.getElementById("selectedRegionFooter");
+
+        if (setRegionHeader) {
+          setRegionHeader.addEventListener('click', function() {
+            var selectedRegion = document.getElementById("selectedRegionHeader").value;
+            changeRegion(selectedRegion); 
+          });
+        }
+
+        if (setRegionFooter) {
+          setRegionFooter.addEventListener('change', function() {
+            var selectedRegion = document.getElementById("selectedRegionFooter").value;
+            changeRegion(selectedRegion); 
+          });
+        }
+      </script>
+    
+  
+</body></html>

@@ -1,4 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 50" width="132" height="50" preserveAspectRatio="xMidYMid meet">
-  <rect width="132" height="50" rx="7" fill="#1A4FB0"/>
-  <text x="66" y="32" text-anchor="middle" font-family="-apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="800" fill="white" letter-spacing="-0.5">Skarabee</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" role="img" aria-label="Skarabee">
+  <text x="120" y="40" text-anchor="middle" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="32" font-weight="700" fill="#1A1A1A" letter-spacing="0.5">Skarabee</text>
 </svg>

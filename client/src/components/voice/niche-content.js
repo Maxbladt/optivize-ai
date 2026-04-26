@@ -2,7 +2,14 @@
 // Visually verified Unsplash photos + brand logos served from /public/logos/
 
 const unsplash = (id, w = 1400) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
-const logo = (slug) => `/logos/${slug}.svg`;
+// Real brand favicons live as PNGs, generated wordmarks live as SVGs.
+const PNG_LOGOS = new Set([
+  'eetnu', 'formitable', 'funda', 'googlecalendar', 'hubspot', 'klarna',
+  'lightspeed', 'magento', 'microsoftoutlook', 'mollie', 'oase', 'pipedrive',
+  'postnl', 'pro6pp', 'promedico', 'realworks', 'resdiary', 'sendcloud',
+  'shopify', 'thefork', 'untill', 'woocommerce',
+]);
+const logo = (slug) => `/logos/${slug}.${PNG_LOGOS.has(slug) ? 'png' : 'svg'}`;
 
 export const NICHES = {
   tandarts: {
