@@ -1316,22 +1316,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </CardGrid>
               </FadeIn>
 
-              {/* Phone integration callout */}
-              <FadeIn>
-                <PhoneCallout>
-                  <PhoneCalloutIcon><PhoneCall size={28} color="white" /></PhoneCalloutIcon>
-                  <div>
-                    <h3 style={{ margin: '0 0 0.4rem', fontSize: '1.25rem', fontWeight: 800 }}>Klaar voor jouw +31 telefoonnummer</h3>
-                    <p style={{ margin: 0, opacity: 0.94, fontSize: '0.96rem', lineHeight: 1.5 }}>
-                      We koppelen de assistent aan je bestaande zakelijke nummer via VoIP. Klanten bellen jouw nummer zoals altijd - de assistent neemt direct op. Wij regelen alles in de setup.
-                    </p>
-                  </div>
-                  <Secondary as="a" href={CTA_CONTACT.phoneHref} style={{ background: 'white', color: '#0F172A', borderColor: 'white', whiteSpace: 'nowrap' }}>
-                    <Phone size={16} /> {CTA_CONTACT.phone}
-                  </Secondary>
-                </PhoneCallout>
-              </FadeIn>
-
               {/* Slim & aanpasbaar */}
               <FadeIn>
                 <SectionEyebrow>Slim, niet star</SectionEyebrow>
@@ -1474,14 +1458,10 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </p>
               </SideCard>
 
-              {/* Final dark CTA - now scrolls naturally with the rest so both
-                  columns end at the same point above the FAQ section. */}
+              {/* Final dark CTA - the only CTA on the page side */}
               <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
                 <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
                 <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
-                <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
-                  Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen - zo blijft de kwaliteit per klant gegarandeerd.
-                </p>
                 <SideCtaButton href={CTA_CONTACT.phoneHref}>
                   <Phone size={16} /> {CTA_CONTACT.phone}
                 </SideCtaButton>
@@ -1493,9 +1473,11 @@ export default function NicheAssistantPage({ nicheKey }) {
 
       <Section $bg="#F8FAFC" id="faq">
         <Container>
-          <SectionEyebrow>Vragen</SectionEyebrow>
-          <H2>Veelgestelde vragen voor {niche.pretty}</H2>
-          <FaqList style={{ marginTop: '1.5rem' }}>
+          <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+            <SectionEyebrow>Vragen</SectionEyebrow>
+            <H2>Veelgestelde vragen voor {niche.pretty}</H2>
+          </div>
+          <FaqList style={{ marginTop: '1.5rem', marginInline: 'auto' }}>
             {niche.faqs.map((f, i) => (
               <FaqItem key={i}>
                 <summary>{f.q} <ChevronDown size={18} /></summary>
