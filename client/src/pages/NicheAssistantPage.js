@@ -39,7 +39,7 @@ function FadeIn({ children, delay = 0, y = 24 }) {
 /* ===== HERO ===== */
 const Hero = styled.section`
   position: relative;
-  padding: 130px 0 60px;
+  padding: 180px 0 70px;
   background: ${DARK_GRADIENT};
   overflow: hidden;
   color: white;
@@ -51,7 +51,7 @@ const Hero = styled.section`
       radial-gradient(ellipse 50% 60% at 80% 30%, rgba(59,130,246,0.18), transparent),
       radial-gradient(ellipse 40% 40% at 15% 70%, rgba(16,185,129,0.12), transparent);
   }
-  @media (max-width: 768px) { padding: 100px 0 40px; }
+  @media (max-width: 768px) { padding: 130px 0 50px; }
 `;
 
 const HeroInner = styled.div`
