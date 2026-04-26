@@ -492,6 +492,31 @@ const SidePriceValue = styled.div`
   & span { font-size: 0.78rem; font-weight: 500; color: #64748B; }
 `;
 
+const SideImageCard = styled.div`
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  & img { width: 100%; height: 100%; object-fit: cover; display: block; }
+`;
+
+const SideImageOverlay = styled.div`
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.55));
+  padding: 1.5rem 0.6rem 0.4rem;
+  border-radius: 0 0 12px 12px;
+  margin: 0 -1rem -1rem;
+  pointer-events: none;
+`;
+
 const SideCtaButton = styled.a`
   display: inline-flex;
   align-items: center;
@@ -1227,7 +1252,8 @@ export default function NicheAssistantPage({ nicheKey }) {
         <Container>
           <TwoCol>
             <ContentCol>
-              {/* Bewezen in echte teams */}
+              {/* Bewezen in echte teams - image lives on the right column,
+                  so the left side here is just heading + platform grid */}
               <FadeIn>
                 <SectionEyebrow>Bewezen in echte teams</SectionEyebrow>
                 <H2>{niche.bewezen.title}</H2>
@@ -1237,10 +1263,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                     <PlatformItem key={p.name} name={p.name} logo={p.logo} />
                   ))}
                 </PlatformGrid>
-                <SectionImage>
-                  <img src={niche.images.bewezen} alt={`${niche.short} in actie`} loading="lazy" />
-                  <SectionImageCaption>Werkt naadloos met de tools die jouw team al gebruikt</SectionImageCaption>
-                </SectionImage>
               </FadeIn>
 
               {/* Flow graph */}
@@ -1367,69 +1389,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </SmartList>
               </FadeIn>
 
-              {/* Zo werkt het - dark card inside content col */}
-              <FadeIn>
-                <DarkCard>
-                  <SectionEyebrow $light>Zo werkt het</SectionEyebrow>
-                  <H2 $light>Van eerste gesprek tot live in 1-3 dagen</H2>
-                  <SectionSub $light>We koppelen aan jouw systemen, trainen de assistent op jouw bedrijfsinfo en testen samen. Klaar voor klantgesprekken binnen een paar dagen.</SectionSub>
-                  <Steps>
-                    {[
-                      { n: 1, icon: <MessageSquare size={20} color="#10B981" />, t: 'Intakegesprek (30 min)', d: 'Vrijblijvend gesprek over jouw branche, processen en welke systemen je gebruikt.' },
-                      { n: 2, icon: <Plug size={20} color="#10B981" />, t: 'Koppeling & training', d: `We koppelen aan ${niche.bewezen.platforms.slice(0, 2).map(p => p.name).join(' / ')} en trainen op jouw eigen content en tone of voice.` },
-                      { n: 3, icon: <RefreshCcw size={20} color="#10B981" />, t: 'Live testen', d: 'Je test live, geeft feedback en wij verfijnen. Binnen een paar dagen klaar voor echte klantgesprekken.' },
-                      { n: 4, icon: <TrendingUp size={20} color="#10B981" />, t: 'Schaal mee', d: 'De assistent leert door en wij optimaliseren maandelijks - zonder extra kosten.' },
-                    ].map((s) => (
-                      <StepCard key={s.n}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                          <StepNum>{s.n}</StepNum>
-                          {s.icon}
-                        </div>
-                        <h3 style={{ margin: 0, fontSize: '1rem', color: 'white' }}>{s.t}</h3>
-                        <p style={{ margin: 0, color: '#94A3B8', lineHeight: 1.55, fontSize: '0.88rem' }}>{s.d}</p>
-                      </StepCard>
-                    ))}
-                  </Steps>
-                </DarkCard>
-              </FadeIn>
-
-              {/* Pricing inside content col so the demo stays sticky */}
-              <FadeIn>
-                <SectionEyebrow>Pricing</SectionEyebrow>
-                <H2>Laagste prijs op de markt, beste AI-model</H2>
-                <SectionSub>Eenmalige setup en daarna €100 per maand met 5 uur belminuten inbegrepen - genoeg voor de meeste {niche.pretty}. Daarboven betaal je €0,60 per minuut, alles inbegrepen.</SectionSub>
-                <PriceGrid>
-                  <PriceCard>
-                    <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Setup</div>
-                    <PriceAmount>€750 <span>eenmalig</span></PriceAmount>
-                    <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Vaste prijs - geen verrassingen</SectionSub>
-                    <PriceList>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Branche-specifieke training voor {niche.short.toLowerCase()}</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Koppeling met jouw systemen</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Setup van escalatieregels op maat</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Live binnen 1-3 dagen</PriceLi>
-                    </PriceList>
-                  </PriceCard>
-                  <PriceCard $featured>
-                    <FeatBadge>Maandelijks</FeatBadge>
-                    <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Gebruik</div>
-                    <PriceAmount>€100 <span>per maand</span></PriceAmount>
-                    <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Inclusief 5 uur belminuten - daarboven €0,60/min, alles inbegrepen</SectionSub>
-                    <PriceList>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> 5 uur belminuten per maand inbegrepen</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Daarboven €0,60/min - model, telefonie en dashboard inbegrepen</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Doorlopende monitoring & optimalisatie</PriceLi>
-                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Maandelijks opzegbaar</PriceLi>
-                    </PriceList>
-                  </PriceCard>
-                </PriceGrid>
-                <DemandBanner>
-                  <Sparkles size={18} color="#D97706" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>Veel aanvragen op dit moment.</strong> Neem contact op zodat we een datum kunnen inplannen om jouw assistent te bouwen - zo kunnen we de kwaliteit per klant blijven garanderen.
-                  </div>
-                </DemandBanner>
-              </FadeIn>
             </ContentCol>
 
             <StickyDemoCol>
@@ -1458,47 +1417,19 @@ export default function NicheAssistantPage({ nicheKey }) {
                 )}
               </StickyDemoBlock>
 
-              {/* Stats snapshot */}
-              <SideCard>
-                <SideCardTitle><Activity size={14} /> In één oogopslag</SideCardTitle>
-                <SideStatRow>
-                  <SideStatBig>{niche.flow.solved}%</SideStatBig>
-                  <SideStatLabel>van vragen direct opgelost - jouw team alleen voor de complexe cases</SideStatLabel>
-                </SideStatRow>
-                <SideStatRow>
-                  <SideStatBig>24/7</SideStatBig>
-                  <SideStatLabel>bereikbaar - ook 's avonds, weekenden en feestdagen</SideStatLabel>
-                </SideStatRow>
-                <SideStatRow>
-                  <SideStatBig>1-3d</SideStatBig>
-                  <SideStatLabel>van intake tot live klantgesprekken</SideStatLabel>
-                </SideStatRow>
-              </SideCard>
+              {/* Image card lives RIGHT here (Flow section + Story section
+                  keep their images on the LEFT for alternation). */}
+              <SideImageCard>
+                <img src={niche.images.bewezen} alt={`${niche.short} in actie`} loading="lazy" />
+                <SideImageOverlay>
+                  Werkt naadloos met de tools die jouw team al gebruikt
+                </SideImageOverlay>
+              </SideImageCard>
 
-              {/* Mini quote */}
+              {/* Process snapshot - the only "Zo gaat het / Zo werkt het" on the page */}
               <SideCard>
-                <SideCardTitle><Quote size={14} /> Wat klanten zeggen</SideCardTitle>
-                <SideQuote>
-                  {niche.storyQuote.text.replace(/^"|"$/g, '')}
-                  <SideQuoteAuthor><strong>{niche.storyQuote.author}</strong> - {niche.storyQuote.role}</SideQuoteAuthor>
-                </SideQuote>
-              </SideCard>
-
-              {/* What's included */}
-              <SideCard>
-                <SideCardTitle><CheckCircle size={14} /> Wat zit erin</SideCardTitle>
-                <SideCheckList>
-                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Eigen telefoonnummer (+31) via VoIP</SideCheckLi>
-                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Escalatieregels op maat per gesprek</SideCheckLi>
-                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Dashboard met opnames en transcripten</SideCheckLi>
-                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Notificaties op WhatsApp en e-mail</SideCheckLi>
-                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> AVG-proof, EU-data, versleuteld</SideCheckLi>
-                </SideCheckList>
-              </SideCard>
-
-              {/* Process snapshot */}
-              <SideCard>
-                <SideCardTitle><GitBranch size={14} /> Zo gaat het</SideCardTitle>
+                <SideCardTitle><GitBranch size={14} /> Zo werkt het</SideCardTitle>
+                <SideCardH>Van intake tot live in 1-3 dagen</SideCardH>
                 <SideStep>
                   <SideStepNum>1</SideStepNum>
                   <SideStepText><strong>Intakegesprek</strong>30 min over jouw branche en systemen</SideStepText>
@@ -1517,9 +1448,20 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </SideStep>
               </SideCard>
 
-              {/* Pricing snapshot */}
+              {/* AVG / EU data trust card */}
               <SideCard>
-                <SideCardTitle><Zap size={14} /> Pricing snapshot</SideCardTitle>
+                <SideCardTitle><Shield size={14} /> Veilig en AVG-proof</SideCardTitle>
+                <SideCheckList>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Volledige opnames en transcripten</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> EU-data, versleuteld, ondertekende verwerkersovereenkomst</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Geen klant- of patiëntdata in trainingsdata</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Notificaties op WhatsApp, Slack of e-mail</SideCheckLi>
+                </SideCheckList>
+              </SideCard>
+
+              {/* Pricing snapshot - the ONLY pricing on the page now */}
+              <SideCard>
+                <SideCardTitle><Zap size={14} /> Pricing</SideCardTitle>
                 <SideCardH>Laagste prijs op de markt</SideCardH>
                 <SidePriceRow>
                   <SidePriceLabel>Setup</SidePriceLabel>
@@ -1533,21 +1475,23 @@ export default function NicheAssistantPage({ nicheKey }) {
                   <SidePriceLabel>Daarboven</SidePriceLabel>
                   <SidePriceValue>€0,60 <span>/min</span></SidePriceValue>
                 </SidePriceRow>
+                <p style={{ margin: '0.4rem 0 0', fontSize: '0.82rem', color: '#475569', lineHeight: 1.45 }}>
+                  Beste AI-model, alles inbegrepen (telefonie, dashboard, optimalisatie).
+                </p>
               </SideCard>
 
-              {/* Mini CTA - pinned to top once user scrolls past the cards above */}
-              <StickyTail>
-                <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
-                  <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
-                  <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
-                  <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
-                    Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen.
-                  </p>
-                  <SideCtaButton href={CTA_CONTACT.phoneHref}>
-                    <Phone size={16} /> {CTA_CONTACT.phone}
-                  </SideCtaButton>
-                </SideCard>
-              </StickyTail>
+              {/* Final dark CTA - now scrolls naturally with the rest so both
+                  columns end at the same point above the FAQ section. */}
+              <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
+                <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
+                <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                  Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen - zo blijft de kwaliteit per klant gegarandeerd.
+                </p>
+                <SideCtaButton href={CTA_CONTACT.phoneHref}>
+                  <Phone size={16} /> {CTA_CONTACT.phone}
+                </SideCtaButton>
+              </SideCard>
             </StickyDemoCol>
           </TwoCol>
         </Container>
