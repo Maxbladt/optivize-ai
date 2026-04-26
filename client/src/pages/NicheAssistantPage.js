@@ -1420,26 +1420,6 @@ export default function NicheAssistantPage({ nicheKey }) {
                 </SideQuote>
               </SideCard>
 
-              {/* Trustpilot mini rating card */}
-              <SideCard>
-                <SideCardTitle><Star size={14} /> Beoordeeld door klanten</SideCardTitle>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <div style={{ display: 'flex', gap: 2 }}>
-                    {[1,2,3,4,5].map(i => (
-                      <span key={i} style={{ width: 22, height: 22, background: '#00B67A', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
-                        <Star size={12} fill="white" strokeWidth={0} />
-                      </span>
-                    ))}
-                  </div>
-                  <div style={{ fontSize: '0.92rem', color: '#0F172A' }}>
-                    <strong style={{ fontWeight: 800 }}>4.9</strong> / 5 op 12 reviews
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: '#475569', lineHeight: 1.45 }}>
-                  Aanbevolen door Nederlandse {niche.pretty} - betrouwbaar, snel live en altijd binnen handbereik.
-                </p>
-              </SideCard>
-
               {/* Process snapshot - the only "Zo werkt het" on the page */}
               <SideCard>
                 <SideCardTitle><GitBranch size={14} /> Zo werkt het</SideCardTitle>
