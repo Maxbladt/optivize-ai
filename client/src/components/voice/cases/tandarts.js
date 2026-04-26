@@ -6,9 +6,9 @@ import { Panel, PanelHeader, PanelTitle, Badge, Subtle, plus, ymd, dayLabel, tre
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 60px repeat(5, 1fr);
-  gap: 4px;
-  font-size: 0.78rem;
+  grid-template-columns: 50px repeat(10, 1fr);
+  gap: 3px;
+  font-size: 0.7rem;
 `;
 
 const HeaderCell = styled.div`
@@ -48,10 +48,18 @@ const Slot = styled.div`
   }
 `;
 
-const TIMES = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+const TIMES = ['09:00','10:00','11:00','12:00','13:30','14:30','15:30','16:30'];
 
-function getWeekDays(weekStart) {
-  return Array.from({ length: 5 }, (_, i) => ymd(plus(weekStart, i)));
+function getTwoWeekDays(weekStart) {
+  // Two work weeks (Mon-Fri x 2 = 10 days), skipping weekends
+  const days = [];
+  let cursor = new Date(weekStart);
+  while (days.length < 10) {
+    const d = cursor.getDay();
+    if (d !== 0 && d !== 6) days.push(ymd(cursor));
+    cursor = plus(cursor, 1);
+  }
+  return days;
 }
 
 const today = new Date();
@@ -64,13 +72,15 @@ const monday = (() => {
 
 export const initialState = {
   weekStart: ymd(monday),
-  days: getWeekDays(monday),
+  days: getTwoWeekDays(monday),
   appointments: [
     { id: 1, datum: ymd(monday), tijd: '10:00', naam: 'J. de Vries', behandeling: 'controle' },
     { id: 2, datum: ymd(plus(monday, 1)), tijd: '14:30', naam: 'M. Bakker', behandeling: 'vulling' },
-    { id: 3, datum: ymd(plus(monday, 2)), tijd: '11:30', naam: 'K. Jansen', behandeling: 'gebitsreiniging' },
-    { id: 4, datum: ymd(plus(monday, 3)), tijd: '09:30', naam: 'P. Visser', behandeling: 'controle' },
-    { id: 5, datum: ymd(plus(monday, 4)), tijd: '16:00', naam: 'L. Smit', behandeling: 'kroon' },
+    { id: 3, datum: ymd(plus(monday, 2)), tijd: '11:00', naam: 'K. Jansen', behandeling: 'gebitsreiniging' },
+    { id: 4, datum: ymd(plus(monday, 3)), tijd: '09:00', naam: 'P. Visser', behandeling: 'controle' },
+    { id: 5, datum: ymd(plus(monday, 4)), tijd: '16:30', naam: 'L. Smit', behandeling: 'kroon' },
+    { id: 6, datum: ymd(plus(monday, 7)), tijd: '11:00', naam: 'A. Mulder', behandeling: 'controle' },
+    { id: 7, datum: ymd(plus(monday, 9)), tijd: '15:30', naam: 'H. Peters', behandeling: 'vulling' },
   ],
   lastBookedId: null,
 };
@@ -138,7 +148,7 @@ export function Component({ state }) {
         <PanelTitle><Calendar size={18} color="#3B82F6" /> Praktijkagenda</PanelTitle>
         <Badge $bg="#DCFCE7" $color="#065F46"><Sparkles size={10} style={{ marginRight: 4 }} /> Live</Badge>
       </PanelHeader>
-      <Subtle>Tandartspraktijk Optivaize - week van {dayLabel(days[0]).split(' ')[1]}</Subtle>
+      <Subtle>Tandartspraktijk Optivaize - 2 weken vooruit ({dayLabel(days[0]).split(' ')[1]} - {dayLabel(days[days.length-1]).split(' ')[1]})</Subtle>
       <Grid>
         <HeaderCell></HeaderCell>
         {days.map((d) => (
@@ -152,11 +162,10 @@ export function Component({ state }) {
               return (
                 <Slot key={`${datum}-${tijd}`} $booked={!!appt} $justBooked={appt && appt.id === state.lastBookedId}>
                   {appt ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-                      <span>{appt.naam}</span>
-                      <span style={{ opacity: 0.7, fontSize: 9 }}>{treatmentLabel(appt.behandeling)}</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.05, padding: '1px 0', overflow: 'hidden', width: '100%' }} title={`${appt.naam} - ${treatmentLabel(appt.behandeling)}`}>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: 9 }}>{appt.naam.split(' ').pop()}</span>
                     </div>
-                  ) : '.'}
+                  ) : ''}
                 </Slot>
               );
             })}

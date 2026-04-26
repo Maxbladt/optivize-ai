@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { Mic, MicOff, PhoneOff, Loader2, AlertCircle } from 'lucide-react';
+import { Mic, MicOff, PhoneOff, Phone, Loader2, AlertCircle, CheckCircle2, Activity } from 'lucide-react';
 
 const pulse = keyframes`
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -13,82 +13,117 @@ const ringWave = keyframes`
   100% { transform: scale(1.6); opacity: 0; }
 `;
 
+const speak = keyframes`
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   background: linear-gradient(180deg, #0F172A, #1E293B);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(59,130,246,0.15);
+  border-radius: 22px;
+  padding: 0;
+  border: 1px solid rgba(59,130,246,0.18);
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 24px 50px rgba(15,23,42,0.18);
+`;
+
+/* Idle state - the "call to action" surface */
+const IdlePane = styled.div`
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  text-align: center;
+`;
+
+const IdleAvatar = styled.div`
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #10B981);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 36px rgba(16,185,129,0.35);
+  flex-shrink: 0;
+`;
+
+const IdleTitle = styled.div`
+  font-size: 1.15rem;
+  font-weight: 700;
   color: white;
 `;
 
-const ButtonRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+const IdleSub = styled.div`
+  font-size: 0.85rem;
+  color: #94A3B8;
+  max-width: 320px;
+  line-height: 1.5;
 `;
 
 const StartButton = styled.button`
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   background: linear-gradient(135deg, #10B981, #059669);
   color: white;
   border: none;
-  padding: 1rem 1.75rem;
+  padding: 1rem 1.85rem;
   border-radius: 999px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(16,185,129,0.35);
+  box-shadow: 0 12px 32px rgba(16,185,129,0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  &:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(16,185,129,0.45); }
-  &:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+  &:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(16,185,129,0.55); }
+  &:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 `;
 
-const StopButton = styled.button`
-  display: inline-flex;
+/* Active call UI - looks like a real phone call */
+const CallPane = styled.div`
+  padding: 1.5rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(16,185,129,0.08), transparent 70%);
+`;
+
+const CallTopRow = styled.div`
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(239,68,68,0.15);
-  color: #FCA5A5;
-  border: 1px solid rgba(239,68,68,0.3);
-  padding: 0.85rem 1.5rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: #94A3B8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   font-weight: 600;
-  cursor: pointer;
-  &:hover { background: rgba(239,68,68,0.25); }
 `;
 
-const StatusPill = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  color: #CBD5E1;
-`;
-
-const Dot = styled.span`
-  width: 8px; height: 8px; border-radius: 50%;
-  background: ${(p) => (p.$on ? '#10B981' : '#64748B')};
-  ${(p) => p.$on && css`animation: ${pulse} 1.4s infinite;`}
-`;
-
-const MicVisual = styled.div`
-  position: relative;
-  width: 88px;
-  height: 88px;
+const LiveDot = styled.span`
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: ${(p) => (p.$active ? 'linear-gradient(135deg, #10B981, #059669)' : 'rgba(255,255,255,0.08)')};
+  background: #10B981;
+  animation: ${pulse} 1.4s infinite;
+`;
+
+const CallerRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const CallerAvatar = styled.div`
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #10B981);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,62 +131,186 @@ const MicVisual = styled.div`
   &::before, &::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: -2px;
     border-radius: 50%;
     border: 2px solid rgba(16,185,129,0.4);
-    ${(p) => p.$active && css`animation: ${ringWave} 1.6s ease-out infinite;`}
+    ${(p) => p.$active && css`animation: ${ringWave} 1.8s ease-out infinite;`}
   }
   &::after { animation-delay: 0.6s; }
 `;
 
-const Timer = styled.div`
+const CallerName = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+`;
+
+const CallerTitle = styled.div`
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const CallerSub = styled.div`
+  font-size: 0.78rem;
+  color: #94A3B8;
+`;
+
+const CallTimer = styled.div`
   font-variant-numeric: tabular-nums;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: ${(p) => (p.$warn ? '#FBBF24' : '#94A3B8')};
 `;
 
-const Transcript = styled.div`
-  background: rgba(0,0,0,0.25);
-  border-radius: 12px;
-  padding: 1rem;
-  max-height: 220px;
+const SpeakerVis = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 28px;
+  margin: 0.25rem 0;
+`;
+
+const Bar = styled.span`
+  display: inline-block;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #10B981, #3B82F6);
+  border-radius: 2px;
+  transform-origin: center;
+  animation: ${speak} ${(p) => p.$dur || '0.7s'} ease-in-out infinite;
+  animation-delay: ${(p) => p.$delay || '0s'};
+  opacity: ${(p) => (p.$on ? 1 : 0.25)};
+`;
+
+const CallButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+`;
+
+const EndButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #EF4444;
+  color: white;
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(239,68,68,0.35);
+  transition: transform 0.15s;
+  &:hover { transform: translateY(-1px); }
+`;
+
+/* Transcript */
+const TranscriptArea = styled.div`
+  background: rgba(0,0,0,0.28);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem 1.25rem;
+  max-height: 200px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  border: 1px solid rgba(255,255,255,0.05);
+  gap: 0.7rem;
 `;
 
 const Line = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.18rem;
   font-size: 0.9rem;
   color: ${(p) => (p.$role === 'user' ? '#FDE68A' : '#A7F3D0')};
-  & > span:first-child {
-    font-size: 0.7rem;
+  & > .lbl {
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     opacity: 0.7;
+    font-weight: 700;
   }
+`;
+
+/* Tool call activity feed */
+const FeedArea = styled.div`
+  background: rgba(0,0,0,0.32);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 130px;
+  overflow-y: auto;
+`;
+
+const FeedHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748B;
+  font-weight: 700;
+`;
+
+const FeedItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  line-height: 1.4;
+  & > svg { flex-shrink: 0; margin-top: 2px; }
 `;
 
 const ErrorBox = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.5rem;
   background: rgba(239,68,68,0.1);
   border: 1px solid rgba(239,68,68,0.3);
   color: #FCA5A5;
   padding: 0.85rem 1rem;
+  margin: 0 1.25rem 1.25rem;
   border-radius: 12px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 `;
 
 const Hint = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: #64748B;
+  text-align: center;
+  padding: 0 1.25rem 0.85rem;
+`;
+
+const EndedPane = styled.div`
+  padding: 1.75rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  text-align: center;
+`;
+
+const EndedIcon = styled.div`
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(239,68,68,0.18);
+  color: #FCA5A5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 function fmt(s) {
@@ -160,11 +319,45 @@ function fmt(s) {
   return `${m}:${sec}`;
 }
 
-export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessionEnd }) {
+const FRIENDLY_LABELS = {
+  // tandarts
+  vrije_tijden_opvragen: (a) => `Vrije tijden opgezocht voor ${a.datum}`,
+  boek_afspraak: (a) => `Afspraak ingepland: ${a.patient_naam} - ${a.datum} ${a.tijd}`,
+  verzet_afspraak: (a) => `Afspraak verzet: ${a.patient_naam} naar ${a.nieuwe_datum} ${a.nieuwe_tijd}`,
+  annuleer_afspraak: (a) => `Afspraak geannuleerd: ${a.patient_naam}`,
+  // webshop
+  zoek_bestelling: (a) => `Bestelling opgezocht: ${a.bestelnummer}`,
+  track_pakket: (a) => `Pakket getrackt: ${a.bestelnummer}`,
+  start_retour: (a) => `Retour gestart: ${a.bestelnummer} (${a.reden})`,
+  wijzig_adres: (a) => `Adres gewijzigd: ${a.bestelnummer}`,
+  // restaurant
+  vrije_tafels: (a) => `Beschikbaarheid gecheckt: ${a.datum} ${a.tijd}, ${a.aantal_personen} pers.`,
+  boek_tafel: (a) => `Tafel gereserveerd: ${a.naam} - ${a.datum} ${a.tijd}`,
+  verzet_reservering: (a) => `Reservering verzet: ${a.naam}`,
+  annuleer_reservering: (a) => `Reservering geannuleerd: ${a.naam}`,
+  // makelaar
+  zoek_woningen: (a) => `Woningen gezocht (max €${a.max_prijs?.toLocaleString('nl-NL')})`,
+  plan_bezichtiging: (a) => `Bezichtiging gepland: ${a.naam} - ${a.datum} ${a.tijd}`,
+  kwalificeer_lead: (a) => `Lead vastgelegd: ${a.naam}`,
+  beeindig_gesprek: () => `Gesprek wordt afgesloten...`,
+};
+
+function describeToolCall(name, args) {
+  try {
+    const fn = FRIENDLY_LABELS[name];
+    return fn ? fn(args || {}) : name.replace(/_/g, ' ');
+  } catch {
+    return name.replace(/_/g, ' ');
+  }
+}
+
+export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart, onSessionEnd }) {
   const [state, setState] = useState('idle'); // idle | connecting | connected | error | ended
   const [error, setError] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(180);
   const [transcript, setTranscript] = useState([]);
+  const [feed, setFeed] = useState([]);
+  const [aiSpeaking, setAiSpeaking] = useState(false);
 
   const pcRef = useRef(null);
   const dcRef = useRef(null);
@@ -173,6 +366,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
   const timerRef = useRef(null);
   const aiBufferRef = useRef('');
   const aiItemRef = useRef(null);
+  const endTimeoutRef = useRef(null);
 
   function appendUser(text) {
     if (!text || !text.trim()) return;
@@ -188,8 +382,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
 
   function appendAiDelta(delta) {
     aiBufferRef.current += delta;
-    const id = aiItemRef.current;
-    if (id == null) startAiBuffer();
+    if (aiItemRef.current == null) startAiBuffer();
     setTranscript((t) =>
       t.map((it) => (it.id === aiItemRef.current ? { ...it, text: aiBufferRef.current } : it))
     );
@@ -198,6 +391,10 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
   function finalizeAi() {
     aiItemRef.current = null;
     aiBufferRef.current = '';
+  }
+
+  function pushFeed(label) {
+    setFeed((f) => [...f, { id: Date.now() + Math.random(), text: label }]);
   }
 
   function sendEvent(obj) {
@@ -213,27 +410,47 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
         appendUser(evt.transcript);
         break;
       }
-      case 'response.audio_transcript.delta': {
-        if (aiItemRef.current == null) startAiBuffer();
-        appendAiDelta(evt.delta || '');
-        break;
-      }
-      case 'response.audio_transcript.done': {
-        finalizeAi();
-        break;
-      }
+      case 'response.audio_transcript.delta':
       case 'response.output_audio_transcript.delta': {
         if (aiItemRef.current == null) startAiBuffer();
         appendAiDelta(evt.delta || '');
         break;
       }
+      case 'response.audio_transcript.done':
       case 'response.output_audio_transcript.done': {
         finalizeAi();
+        break;
+      }
+      case 'output_audio_buffer.started': {
+        setAiSpeaking(true);
+        break;
+      }
+      case 'output_audio_buffer.stopped': {
+        setAiSpeaking(false);
         break;
       }
       case 'response.function_call_arguments.done': {
         let args = {};
         try { args = JSON.parse(evt.arguments || '{}'); } catch { args = {}; }
+
+        // Special: end-call tool. Let the model see ok, give it ~2s to finish speaking,
+        // then close the call cleanly.
+        if (evt.name === 'beeindig_gesprek') {
+          pushFeed(describeToolCall(evt.name, args));
+          sendEvent({
+            type: 'conversation.item.create',
+            item: {
+              type: 'function_call_output',
+              call_id: evt.call_id,
+              output: JSON.stringify({ ok: true }),
+            },
+          });
+          // Don't trigger a new response — model already said its goodbye before this call.
+          if (endTimeoutRef.current) clearTimeout(endTimeoutRef.current);
+          endTimeoutRef.current = setTimeout(() => stop('ai_ended'), 2500);
+          break;
+        }
+
         let result = { ok: true };
         try {
           if (typeof onToolCall === 'function') {
@@ -243,6 +460,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
         } catch (e) {
           result = { ok: false, error: String(e?.message || e) };
         }
+        pushFeed(describeToolCall(evt.name, args));
         sendEvent({
           type: 'conversation.item.create',
           item: {
@@ -269,6 +487,10 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
+    if (endTimeoutRef.current) {
+      clearTimeout(endTimeoutRef.current);
+      endTimeoutRef.current = null;
+    }
     if (micStreamRef.current) {
       micStreamRef.current.getTracks().forEach((t) => t.stop());
       micStreamRef.current = null;
@@ -284,6 +506,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
     if (audioRef.current) {
       audioRef.current.srcObject = null;
     }
+    setAiSpeaking(false);
   }
 
   function stop(reason) {
@@ -295,6 +518,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
   async function start() {
     setError(null);
     setTranscript([]);
+    setFeed([]);
     setSecondsLeft(180);
     setState('connecting');
 
@@ -330,12 +554,7 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
       dcRef.current = dc;
       dc.onopen = () => {
         if (typeof onSessionStart === 'function') onSessionStart();
-        // Trigger the assistant to speak first (greeting from system prompt).
-        // Without this, the model waits for user audio via server VAD, so a
-        // visitor who stays quiet hears silence.
-        try {
-          dc.send(JSON.stringify({ type: 'response.create' }));
-        } catch {}
+        try { dc.send(JSON.stringify({ type: 'response.create' })); } catch {}
       };
       dc.onmessage = (e) => {
         try {
@@ -378,7 +597,12 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
       }, 1000);
     } catch (err) {
       console.error(err);
-      setError(err.message || 'Er ging iets mis bij het starten van het gesprek');
+      const msg = err.name === 'NotAllowedError'
+        ? 'Geen toegang tot de microfoon. Sta het toe in je browser om te bellen.'
+        : err.name === 'NotFoundError'
+        ? 'Geen microfoon gevonden op dit apparaat.'
+        : err.message || 'Er ging iets mis bij het starten van het gesprek';
+      setError(msg);
       stop('error');
     }
   }
@@ -393,63 +617,88 @@ export default function VoiceDemo({ caseKey, onToolCall, onSessionStart, onSessi
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caseKey]);
 
+  const callerName = caller?.name || 'Optivaize Demo';
+  const callerSub = caller?.sub || 'Live AI assistent';
+
   return (
     <Wrapper>
-      <ButtonRow>
-        <MicVisual $active={state === 'connected'}>
-          {state === 'connected' ? <Mic size={32} color="white" /> : <MicOff size={32} color="#94A3B8" />}
-        </MicVisual>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', flex: 1, minWidth: 200 }}>
-          {state === 'idle' || state === 'ended' || state === 'error' ? (
-            <StartButton onClick={start}>
-              <Mic size={18} />
-              {state === 'ended' || state === 'error' ? 'Start nieuw gesprek' : 'Start gesprek'}
-            </StartButton>
-          ) : state === 'connecting' ? (
-            <StartButton disabled>
-              <Loader2 size={18} className="spin" /> Verbinden...
-            </StartButton>
-          ) : (
-            <StopButton onClick={() => stop('user')}>
-              <PhoneOff size={16} /> Stop gesprek
-            </StopButton>
-          )}
-          <ButtonRow>
-            <StatusPill>
-              <Dot $on={state === 'connected'} />
-              {state === 'idle' && 'Klaar om te starten'}
-              {state === 'connecting' && 'Verbinden...'}
-              {state === 'connected' && 'Live'}
-              {state === 'ended' && 'Gesprek beëindigd'}
-              {state === 'error' && 'Fout'}
-            </StatusPill>
-            {(state === 'connected' || state === 'ended') && (
-              <Timer $warn={secondsLeft <= 30 && state === 'connected'}>{fmt(secondsLeft)}</Timer>
-            )}
-          </ButtonRow>
-        </div>
-      </ButtonRow>
-
-      {error && (
-        <ErrorBox>
-          <AlertCircle size={18} />
-          <div>{error}</div>
-        </ErrorBox>
+      {(state === 'idle') && (
+        <IdlePane>
+          <IdleAvatar><Phone size={42} color="white" /></IdleAvatar>
+          <IdleTitle>Bel direct met de AI assistent</IdleTitle>
+          <IdleSub>Klik hieronder, sta de microfoon toe, en spreek Nederlands. Max 3 minuten gratis.</IdleSub>
+          <StartButton onClick={start}><Mic size={18} /> Start gesprek</StartButton>
+        </IdlePane>
       )}
 
-      <Hint>
-        Gratis demo, max 3 minuten per gesprek. Werkt het beste in Chrome of Edge. Je gaf een keer toestemming voor de microfoon.
-      </Hint>
+      {state === 'connecting' && (
+        <IdlePane>
+          <IdleAvatar><Loader2 size={42} color="white" className="spin" /></IdleAvatar>
+          <IdleTitle>Verbinding maken...</IdleTitle>
+          <IdleSub>Sta de microfoon toe in je browser om te beginnen.</IdleSub>
+        </IdlePane>
+      )}
+
+      {state === 'connected' && (
+        <CallPane>
+          <CallTopRow>
+            <LiveDot /> Live gesprek
+          </CallTopRow>
+          <CallerRow>
+            <CallerAvatar $active={aiSpeaking}>
+              <Phone size={28} color="white" />
+            </CallerAvatar>
+            <CallerName>
+              <CallerTitle>{callerName}</CallerTitle>
+              <CallerSub>{callerSub}</CallerSub>
+            </CallerName>
+            <CallTimer $warn={secondsLeft <= 30}>{fmt(secondsLeft)}</CallTimer>
+          </CallerRow>
+          <SpeakerVis>
+            {[0, 0.1, 0.2, 0.3, 0.4, 0.5].map((d, i) => (
+              <Bar key={i} $on={aiSpeaking} $delay={`${d}s`} $dur={`${0.6 + (i % 2) * 0.2}s`} />
+            ))}
+          </SpeakerVis>
+          <CallButtons>
+            <EndButton onClick={() => stop('user')}><PhoneOff size={16} /> Ophangen</EndButton>
+          </CallButtons>
+        </CallPane>
+      )}
+
+      {(state === 'ended' || state === 'error') && (
+        <EndedPane>
+          <EndedIcon><PhoneOff size={26} /></EndedIcon>
+          <IdleTitle>{state === 'error' ? 'Gesprek mislukt' : 'Gesprek beëindigd'}</IdleTitle>
+          {error && <IdleSub style={{ color: '#FCA5A5' }}>{error}</IdleSub>}
+          <StartButton onClick={start}><Mic size={18} /> Nieuw gesprek</StartButton>
+        </EndedPane>
+      )}
+
+      {state !== 'idle' && state !== 'connecting' && (
+        <Hint>Werkt het beste in Chrome of Edge. Demo: max 3 minuten per gesprek.</Hint>
+      )}
 
       {transcript.length > 0 && (
-        <Transcript>
+        <TranscriptArea>
           {transcript.map((m) => (
             <Line key={m.id} $role={m.role}>
-              <span>{m.role === 'user' ? 'Jij' : 'Assistent'}</span>
+              <span className="lbl">{m.role === 'user' ? 'Jij' : 'Assistent'}</span>
               <span>{m.text || (m.role === 'ai' ? '...' : '')}</span>
             </Line>
           ))}
-        </Transcript>
+        </TranscriptArea>
+      )}
+
+      {feed.length > 0 && (
+        <FeedArea>
+          <FeedHeader><Activity size={11} /> Live acties</FeedHeader>
+          {feed.slice(-6).map((f) => (
+            <FeedItem key={f.id}>
+              <CheckCircle2 size={14} color="#10B981" />
+              <span>{f.text}</span>
+            </FeedItem>
+          ))}
+        </FeedArea>
       )}
 
       <audio ref={audioRef} autoPlay playsInline style={{ display: 'none' }} />
