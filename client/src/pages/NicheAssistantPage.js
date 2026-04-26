@@ -317,15 +317,184 @@ const ContentCol = styled.div`
 `;
 
 const StickyDemoCol = styled.div`
-  position: sticky;
-  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   align-self: start;
   min-width: 0;
   @media (max-width: 1024px) {
-    position: static;
     order: -1;
     margin-bottom: 1rem;
   }
+`;
+
+const StickyDemoBlock = styled.div`
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  @media (max-width: 1024px) { position: static; }
+`;
+
+const SideCard = styled.div`
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+`;
+
+const SideCardTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3B82F6;
+`;
+
+const SideCardH = styled.h3`
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.25;
+`;
+
+const SideStatRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #F1F5F9;
+  &:last-child { border-bottom: none; }
+`;
+
+const SideStatBig = styled.div`
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: ${GRADIENT};
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  min-width: 60px;
+  line-height: 1;
+`;
+
+const SideStatLabel = styled.div`
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.35;
+`;
+
+const SideCheckList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const SideCheckLi = styled.li`
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.86rem;
+  color: #334155;
+  line-height: 1.4;
+`;
+
+const SideQuote = styled.div`
+  background: #F8FAFC;
+  border-left: 3px solid #3B82F6;
+  border-radius: 0 12px 12px 0;
+  padding: 0.85rem 1rem;
+  font-size: 0.92rem;
+  color: #1E293B;
+  line-height: 1.5;
+  font-style: italic;
+`;
+
+const SideQuoteAuthor = styled.div`
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: #64748B;
+  font-style: normal;
+  & strong { color: #0F172A; }
+`;
+
+const SideStep = styled.div`
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  padding: 0.45rem 0;
+`;
+
+const SideStepNum = styled.div`
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: ${GRADIENT};
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+`;
+
+const SideStepText = styled.div`
+  font-size: 0.86rem;
+  color: #334155;
+  line-height: 1.4;
+  & strong { color: #0F172A; display: block; margin-bottom: 0.1rem; }
+`;
+
+const SidePriceRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed #E2E8F0;
+  &:last-child { border-bottom: none; }
+`;
+
+const SidePriceLabel = styled.div`
+  font-size: 0.85rem;
+  color: #475569;
+`;
+
+const SidePriceValue = styled.div`
+  font-weight: 800;
+  color: #0F172A;
+  font-size: 1.05rem;
+  & span { font-size: 0.78rem; font-weight: 500; color: #64748B; }
+`;
+
+const SideCtaButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  background: ${GRADIENT};
+  color: white;
+  text-decoration: none;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  box-shadow: 0 10px 24px rgba(59,130,246,0.25);
+  transition: transform 0.15s;
+  &:hover { transform: translateY(-2px); }
 `;
 
 const SectionEyebrow = styled.div`
@@ -1251,22 +1420,22 @@ export default function NicheAssistantPage({ nicheKey }) {
             </ContentCol>
 
             <StickyDemoCol>
-              <div style={{ marginBottom: '0.85rem' }}>
-                <Eyebrow style={{ color: '#3B82F6' }}>Live Demo</Eyebrow>
-                <h3 style={{ margin: '0.25rem 0 0', fontSize: '1.05rem', color: '#0F172A', fontWeight: 700 }}>Bel nu met de AI</h3>
-              </div>
-              <VoiceDemo
-                caseKey={nicheKey}
-                caller={{ name: niche.callerName, sub: niche.callerSub }}
-                onToolCall={onToolCall}
-              />
-              <ExamplesCard>
-                <ExamplesTitle><Sparkles size={14} color="#3B82F6" /> Probeer iets als</ExamplesTitle>
-                {niche.examples.map((e, i) => (
-                  <ExampleLine key={i}>{e.replace(/^"|"$/g, '')}</ExampleLine>
-                ))}
-              </ExamplesCard>
-              <div style={{ marginTop: '1rem' }}>
+              <StickyDemoBlock>
+                <div>
+                  <Eyebrow style={{ color: '#3B82F6' }}>Live Demo</Eyebrow>
+                  <h3 style={{ margin: '0.25rem 0 0', fontSize: '1.05rem', color: '#0F172A', fontWeight: 700 }}>Bel nu met de AI</h3>
+                </div>
+                <VoiceDemo
+                  caseKey={nicheKey}
+                  caller={{ name: niche.callerName, sub: niche.callerSub }}
+                  onToolCall={onToolCall}
+                />
+                <ExamplesCard>
+                  <ExamplesTitle><Sparkles size={14} color="#3B82F6" /> Probeer iets als</ExamplesTitle>
+                  {niche.examples.map((e, i) => (
+                    <ExampleLine key={i}>{e.replace(/^"|"$/g, '')}</ExampleLine>
+                  ))}
+                </ExamplesCard>
                 {FakeBackend && demoState ? (
                   <FakeBackend state={demoState} />
                 ) : (
@@ -1274,7 +1443,96 @@ export default function NicheAssistantPage({ nicheKey }) {
                     Demo wordt geladen...
                   </div>
                 )}
-              </div>
+              </StickyDemoBlock>
+
+              {/* Stats snapshot */}
+              <SideCard>
+                <SideCardTitle><Activity size={14} /> In één oogopslag</SideCardTitle>
+                <SideStatRow>
+                  <SideStatBig>{niche.flow.solved}%</SideStatBig>
+                  <SideStatLabel>van vragen direct opgelost - jouw team alleen voor de complexe cases</SideStatLabel>
+                </SideStatRow>
+                <SideStatRow>
+                  <SideStatBig>24/7</SideStatBig>
+                  <SideStatLabel>bereikbaar - ook 's avonds, weekenden en feestdagen</SideStatLabel>
+                </SideStatRow>
+                <SideStatRow>
+                  <SideStatBig>1-3d</SideStatBig>
+                  <SideStatLabel>van intake tot live klantgesprekken</SideStatLabel>
+                </SideStatRow>
+              </SideCard>
+
+              {/* Mini quote */}
+              <SideCard>
+                <SideCardTitle><Quote size={14} /> Wat klanten zeggen</SideCardTitle>
+                <SideQuote>
+                  {niche.storyQuote.text.replace(/^"|"$/g, '')}
+                  <SideQuoteAuthor><strong>{niche.storyQuote.author}</strong> - {niche.storyQuote.role}</SideQuoteAuthor>
+                </SideQuote>
+              </SideCard>
+
+              {/* What's included */}
+              <SideCard>
+                <SideCardTitle><CheckCircle size={14} /> Wat zit erin</SideCardTitle>
+                <SideCheckList>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Eigen telefoonnummer (+31) via VoIP</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Escalatieregels op maat per gesprek</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Dashboard met opnames en transcripten</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Notificaties op WhatsApp en e-mail</SideCheckLi>
+                  <SideCheckLi><CheckCircle size={14} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> AVG-proof, EU-data, versleuteld</SideCheckLi>
+                </SideCheckList>
+              </SideCard>
+
+              {/* Process snapshot */}
+              <SideCard>
+                <SideCardTitle><GitBranch size={14} /> Zo gaat het</SideCardTitle>
+                <SideStep>
+                  <SideStepNum>1</SideStepNum>
+                  <SideStepText><strong>Intakegesprek</strong>30 min over jouw branche en systemen</SideStepText>
+                </SideStep>
+                <SideStep>
+                  <SideStepNum>2</SideStepNum>
+                  <SideStepText><strong>Koppeling & training</strong>op {niche.bewezen.platforms.slice(0, 2).map(p => p.name).join(' / ')} en jouw content</SideStepText>
+                </SideStep>
+                <SideStep>
+                  <SideStepNum>3</SideStepNum>
+                  <SideStepText><strong>Live testen</strong>jij geeft feedback, wij verfijnen</SideStepText>
+                </SideStep>
+                <SideStep>
+                  <SideStepNum>4</SideStepNum>
+                  <SideStepText><strong>Schaal mee</strong>maandelijks geoptimaliseerd, geen extra kosten</SideStepText>
+                </SideStep>
+              </SideCard>
+
+              {/* Pricing snapshot */}
+              <SideCard>
+                <SideCardTitle><Zap size={14} /> Pricing snapshot</SideCardTitle>
+                <SideCardH>Laagste prijs op de markt</SideCardH>
+                <SidePriceRow>
+                  <SidePriceLabel>Setup</SidePriceLabel>
+                  <SidePriceValue>€750 <span>eenmalig</span></SidePriceValue>
+                </SidePriceRow>
+                <SidePriceRow>
+                  <SidePriceLabel>Per maand <span style={{ display: 'block', fontSize: '0.75rem', color: '#94A3B8' }}>incl. 5 uur belminuten</span></SidePriceLabel>
+                  <SidePriceValue>€100 <span>/m</span></SidePriceValue>
+                </SidePriceRow>
+                <SidePriceRow>
+                  <SidePriceLabel>Daarboven</SidePriceLabel>
+                  <SidePriceValue>€0,60 <span>/min</span></SidePriceValue>
+                </SidePriceRow>
+              </SideCard>
+
+              {/* Mini CTA */}
+              <SideCard style={{ background: 'linear-gradient(135deg, #0F172A, #1E293B)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                <SideCardTitle style={{ color: '#6EE7B7' }}><PhoneCall size={14} /> Klaar om te starten?</SideCardTitle>
+                <SideCardH style={{ color: 'white' }}>Plan een intake</SideCardH>
+                <p style={{ margin: 0, color: '#CBD5E1', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                  Veel aanvragen op dit moment. Bel of mail ons om een builddatum in te plannen.
+                </p>
+                <SideCtaButton href={CTA_CONTACT.phoneHref}>
+                  <Phone size={16} /> {CTA_CONTACT.phone}
+                </SideCtaButton>
+              </SideCard>
             </StickyDemoCol>
           </TwoCol>
         </Container>
