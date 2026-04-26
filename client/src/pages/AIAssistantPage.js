@@ -38,6 +38,11 @@ const float = keyframes`
   50% { transform: translateY(-6px); }
 `;
 
+const heroPulse = keyframes`
+  0% { transform: scale(0.85); opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+`;
+
 const Hero = styled.section`
   padding: 130px 0 70px;
   background: linear-gradient(135deg, #0A0F1F 0%, #131A33 60%, #1E293B 100%);
@@ -189,10 +194,7 @@ const WaveRing = styled.div`
   height: 320px;
   border-radius: 50%;
   border: 2px solid rgba(59,130,246,0.2);
-  animation: ${keyframes`
-    0% { transform: scale(0.85); opacity: 0.5; }
-    100% { transform: scale(1.4); opacity: 0; }
-  `} 2.5s ease-out infinite;
+  animation: ${heroPulse} 2.5s ease-out infinite;
 `;
 
 const PhoneIcon = styled.div`

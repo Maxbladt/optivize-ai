@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { Mic, MicOff, PhoneOff, Loader2, AlertCircle } from 'lucide-react';
 
 const pulse = keyframes`
@@ -80,7 +80,7 @@ const StatusPill = styled.div`
 const Dot = styled.span`
   width: 8px; height: 8px; border-radius: 50%;
   background: ${(p) => (p.$on ? '#10B981' : '#64748B')};
-  ${(p) => p.$on && `animation: ${pulse} 1.4s infinite;`}
+  ${(p) => p.$on && css`animation: ${pulse} 1.4s infinite;`}
 `;
 
 const MicVisual = styled.div`
@@ -99,7 +99,7 @@ const MicVisual = styled.div`
     inset: 0;
     border-radius: 50%;
     border: 2px solid rgba(16,185,129,0.4);
-    ${(p) => p.$active && `animation: ${ringWave} 1.6s ease-out infinite;`}
+    ${(p) => p.$active && css`animation: ${ringWave} 1.6s ease-out infinite;`}
   }
   &::after { animation-delay: 0.6s; }
 `;
