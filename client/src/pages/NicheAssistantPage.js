@@ -60,17 +60,31 @@ const HeroInner = styled.div`
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
   @media (max-width: 1024px) { grid-template-columns: 1fr; gap: 2rem; }
 `;
 
+const HeroTextCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+`;
+
 const Eyebrow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #6EE7B7;
-  margin-bottom: 1rem;
+  background: rgba(110,231,183,0.1);
+  border: 1px solid rgba(110,231,183,0.25);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
 `;
 
 const H1 = styled.h1`
@@ -386,29 +400,13 @@ const PlatformCard = styled.div`
   &:hover { transform: translateY(-2px); border-color: #3B82F6; box-shadow: 0 10px 24px rgba(59,130,246,0.12); }
 `;
 
-const SiLogo = styled.div`
-  width: 52px;
-  height: 52px;
+const PlatformLogoBox = styled.div`
+  width: 100%;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  & img { max-width: 100%; max-height: 100%; object-fit: contain; }
-`;
-
-const Wordmark = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: ${(p) => p.$bg || '#0F172A'};
-  color: ${(p) => p.$color || 'white'};
-  padding: 7px 14px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 0.92rem;
-  letter-spacing: -0.02em;
-  font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  & img { max-width: 100%; max-height: 56px; width: auto; height: auto; object-fit: contain; }
 `;
 
 const PlatformName = styled.div`
@@ -421,21 +419,9 @@ const PlatformName = styled.div`
 function PlatformItem({ name, logo }) {
   return (
     <PlatformCard title={name}>
-      {logo.type === 'si' ? (
-        <SiLogo>
-          <img
-            src={`https://cdn.simpleicons.org/${logo.slug}`}
-            alt={name}
-            loading="lazy"
-            onError={(e) => { e.target.style.display = 'none'; const wm = e.target.parentElement.parentElement.querySelector('[data-wm]'); if (wm) wm.style.display = 'inline-flex'; }}
-          />
-        </SiLogo>
-      ) : (
-        <Wordmark $bg={logo.bg} $color={logo.color}>{logo.text}</Wordmark>
-      )}
-      {logo.type === 'si' && (
-        <Wordmark data-wm $bg="#0F172A" style={{ display: 'none' }}>{name}</Wordmark>
-      )}
+      <PlatformLogoBox>
+        <img src={logo} alt={name} loading="lazy" />
+      </PlatformLogoBox>
       <PlatformName>{name}</PlatformName>
     </PlatformCard>
   );
@@ -902,8 +888,8 @@ export default function NicheAssistantPage({ nicheKey }) {
       <Hero>
         <Container>
           <HeroInner>
-            <div>
-              <Eyebrow>{niche.hero.eyebrow}</Eyebrow>
+            <HeroTextCol>
+              <Eyebrow><Sparkles size={11} />{niche.hero.eyebrow}</Eyebrow>
               <H1>
                 {niche.hero.h1Lead} <Highlight>{niche.hero.h1Highlight}</Highlight> {niche.hero.h1Tail}
               </H1>
@@ -918,7 +904,7 @@ export default function NicheAssistantPage({ nicheKey }) {
                 <HeroBadge><Shield size={13} color="#10B981" /> AVG-proof, EU data</HeroBadge>
                 <HeroBadge><Headphones size={13} color="#10B981" /> Menselijke escalatie</HeroBadge>
               </HeroBadges>
-            </div>
+            </HeroTextCol>
             <HeroImageWrap>
               <HeroImg src={niche.hero.image} alt={niche.hero.imageAlt} />
               <HeroImageOverlay />
