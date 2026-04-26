@@ -75,12 +75,14 @@ export const NICHES = {
       '"Wat kost een gebitsreiniging en hoe lang duurt dat?"',
       '"Hebben jullie nog plek voor een spoedgeval vandaag?"',
     ],
+    escalationExample: 'Bij een spoedgeval of bloeding verbindt Robin direct door naar de dienstdoende tandarts of mobiel - de patiënt merkt geen overdracht.',
     faqs: [
       { q: 'Welke tandartssoftware kunnen jullie koppelen?', a: 'We hebben out-of-the-box koppelingen met Exquise, Promedico-ASP, OASE en Wincare. Andere systemen koppelen we via API of webhook - in 9 van de 10 gevallen geen probleem. Tijdens het intakegesprek bekijken we jouw setup.' },
-      { q: 'Hoe wordt een spoedgeval afgehandeld?', a: 'Robin herkent de toon en urgentie. Bij een spoedgeval verbindt hij direct door naar jouw dienstdoende tandarts of mobiel - zonder dat de patiënt het verschil merkt.' },
+      { q: 'Hoe wordt een spoedgeval afgehandeld?', a: 'Robin herkent de toon en urgentie. Bij een spoedgeval verbindt hij direct door naar jouw dienstdoende tandarts of mobiel - zonder dat de patiënt het verschil merkt. Deze regels stellen we samen met jou in.' },
       { q: 'Voldoet dit aan de AVG en patiëntprivacy?', a: 'Ja. Alle gesprekken zijn versleuteld, data blijft binnen de EU, we ondertekenen een verwerkersovereenkomst. Patiëntgegevens worden alleen gebruikt voor het verlenen van de dienst.' },
       { q: 'Wat als de AI iets niet weet?', a: 'Dan zegt hij dat eerlijk, biedt aan om door te verbinden of een terugbelverzoek te plannen. Hij verzint nooit antwoorden. Tijdens setup leren we hem alle veelgestelde vragen van jouw praktijk.' },
-      { q: 'Kost het echt €100 per maand voor onbeperkt gesprekken?', a: 'Ja, ongeacht het aantal patiëntcontacten. Pas bij extreem hoog volume (10.000+ gesprekken/maand) bespreken we een aangepast pakket. Dat is voor de meeste praktijken niet nodig.' },
+      { q: 'Wat zit er in €100 per maand?', a: 'Tot 5 uur belminuten per maand - genoeg voor de meeste praktijken. Daarboven betaal je €0,60 per minuut, alles inbegrepen (model, telefonie, dashboard). Geen per-seat of per-gesprek kosten.' },
+      { q: 'Krijg ik inzicht in alle gesprekken?', a: 'Ja. Je krijgt een dashboard met alle opnames en transcripten. Notificaties over belangrijke gesprekken of escalaties komen op WhatsApp of e-mail binnen, waar je ook werkt.' },
     ],
   },
 
@@ -155,8 +157,10 @@ export const NICHES = {
       { q: 'Werkt het voor zowel telefoon als webchat?', a: 'Ja. Dezelfde assistent kan via een telefoonnummer (VoIP), via de chat-widget op je website, en via WhatsApp Business werken. Je krijgt één assistent voor alle kanalen.' },
       { q: 'Wat als er een klacht binnenkomt?', a: 'Robin herkent klachten en escaleert automatisch met de volledige gespreksgeschiedenis en bestelinfo naar jouw team. De klant hoeft niet opnieuw uit te leggen.' },
       { q: 'Hoe zit het met productvragen waarop hij geen antwoord weet?', a: 'Tijdens setup importeren we je productcatalogus. Voor specifieke vragen biedt hij aan om je terug te bellen of door te verbinden naar verkoop. Hij verzint nooit specs.' },
-      { q: 'Schaalt het mee als ik groei?', a: 'Ja - €100/maand blijft hetzelfde of je nu 100 of 5.000 contacten per maand hebt. Geen per-seat of per-ticket kosten.' },
+      { q: 'Wat zit er in €100 per maand?', a: 'Tot 5 uur belminuten per maand, genoeg voor de meeste shops. Daarboven betaal je €0,60 per minuut, alles inbegrepen (model, telefonie, dashboard). Geen per-seat of per-ticket kosten.' },
+      { q: 'Krijg ik inzicht in alle gesprekken?', a: 'Ja. Het dashboard toont alle opnames en transcripten. Klachten of escalaties krijg je direct op WhatsApp of e-mail, waar je ook werkt.' },
     ],
+    escalationExample: 'Bij een echte klacht of een schadeclaim escaleert Robin automatisch met de volledige gespreksgeschiedenis en bestelinfo naar jouw service-team.',
   },
 
   restaurant: {
@@ -230,7 +234,10 @@ export const NICHES = {
       { q: 'Hoe gaat hij om met allergieën?', a: 'Hij vraagt expliciet naar allergenen en dieetwensen, noteert die bij de reservering en seint indien nodig de keuken in. Bij ernstige allergieën verbindt hij door met de chef.' },
       { q: 'Kan hij ook in andere talen?', a: 'Standaard Nederlands, op verzoek ook Engels en Duits voor restaurants in toeristische gebieden. Hij switcht automatisch op basis van de taal van de beller.' },
       { q: 'Hoe wordt no-show verminderd?', a: 'Robin belt of WhatsApp\'t automatisch een dag van tevoren om de reservering te bevestigen. Geen reactie binnen 24u? Hij belt opnieuw of stelt verzetten voor. Bewezen 30-50% minder no-shows.' },
+      { q: 'Wat zit er in €100 per maand?', a: 'Tot 5 uur belminuten per maand, dat dekt vrijwel elke shift. Daarboven betaal je €0,60 per minuut, alles inbegrepen (model, telefonie, dashboard).' },
+      { q: 'Krijg ik inzicht in alle gesprekken?', a: 'Ja. Het dashboard toont alle opnames en transcripten. Grote groepen, allergie-overleg of klachten krijg je direct op WhatsApp of e-mail.' },
     ],
+    escalationExample: 'Een groep vanaf 8 personen, een privé-event of een gast met serieuze allergie gaat met volledige info naar de gastvrouw of manager - geen drempel voor de gast.',
   },
 
   makelaar: {
@@ -304,7 +311,10 @@ export const NICHES = {
       { q: 'Hoe wordt een lead gescoord?', a: 'Robin vraagt budget, urgentie (direct/3-6mnd/oriënterend), gewenste regio en type woning uit. Je krijgt een volledig profiel in je CRM, niet alleen "iemand belde".' },
       { q: 'Werkt het ook voor verkopers (taxatie/intake)?', a: 'Ja. Voor taxatie-aanvragen of verkopers die een waardebepaling willen, plant hij een intakegesprek met jouw makelaar in. Werkt voor zowel koop als verkoop.' },
       { q: 'Wat als de woning al verkocht is?', a: 'Hij ziet realtime de status in Funda/Realworks. Bij verkochte woningen biedt hij vergelijkbare alternatieven aan en kwalificeert alsnog de lead voor toekomstige aanbod.' },
+      { q: 'Wat zit er in €100 per maand?', a: 'Tot 5 uur belminuten per maand, dat is genoeg voor de meeste kantoren. Daarboven betaal je €0,60 per minuut, alles inbegrepen (model, telefonie, dashboard).' },
+      { q: 'Krijg ik inzicht in alle gesprekken?', a: 'Ja. Het dashboard bevat elke opname, transcriptie en het leadprofiel. Een serieuze koper met budget krijg je direct op WhatsApp of e-mail, waar je ook bezichtigt.' },
     ],
+    escalationExample: 'Een serieuze koper met budget en urgentie, of iemand die een bod wil uitbrengen, gaat met volledig leadprofiel en transcriptie naar jouw makelaar.',
   },
 };
 

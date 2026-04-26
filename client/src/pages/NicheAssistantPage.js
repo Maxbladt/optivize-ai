@@ -7,7 +7,7 @@ import {
   Mic, Phone, Mail, Star, Shield, Sparkles, Headphones, Clock, Users,
   ArrowRight, CheckCircle, ChevronDown, Activity, MessageSquare, Plug,
   RefreshCcw, TrendingUp, BadgeCheck, PhoneCall, ArrowDown, Quote, Zap,
-  CalendarDays,
+  CalendarDays, GitBranch, BellRing, ListChecks, Settings2, MonitorPlay,
 } from 'lucide-react';
 import Link from '../components/Link';
 import SEOHead from '../components/SEOHead';
@@ -616,6 +616,108 @@ const Steps = styled.div`
   gap: 1rem;
 `;
 
+/* ===== DARK CARD (used inside ContentCol for "Zo werkt het") ===== */
+const DarkCard = styled.div`
+  background: linear-gradient(180deg, #0F172A, #1E293B);
+  color: white;
+  border-radius: 24px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 40% 60% at 90% 10%, rgba(59,130,246,0.18), transparent),
+      radial-gradient(ellipse 30% 40% at 5% 90%, rgba(16,185,129,0.12), transparent);
+    pointer-events: none;
+  }
+  & > * { position: relative; z-index: 1; }
+  @media (max-width: 768px) { padding: 1.5rem; border-radius: 18px; }
+`;
+
+/* ===== SMART FEATURE CARDS ===== */
+const SmartList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+`;
+
+const SmartCard = styled.div`
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 1rem;
+  align-items: start;
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.2s;
+  &:hover { border-color: #3B82F6; box-shadow: 0 10px 24px rgba(15,23,42,0.06); }
+`;
+
+const SmartIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: ${(p) => p.$bg || 'rgba(59,130,246,0.1)'};
+  color: ${(p) => p.$color || '#3B82F6'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SmartBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+`;
+
+const SmartTitle = styled.h3`
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0F172A;
+`;
+
+const SmartText = styled.p`
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.55;
+`;
+
+const SmartExample = styled.div`
+  margin-top: 0.4rem;
+  background: #F1F5F9;
+  border-left: 3px solid #3B82F6;
+  border-radius: 0 8px 8px 0;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.45;
+  font-style: italic;
+`;
+
+/* ===== HIGH-DEMAND NOTICE ===== */
+const DemandBanner = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(251,191,36,0.05));
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 14px;
+  padding: 0.95rem 1.15rem;
+  margin-top: 1rem;
+  color: #78350F;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  & strong { color: #92400E; }
+  @media (max-width: 480px) { gap: 0.6rem; padding: 0.85rem 1rem; }
+`;
+
 const StepCard = styled.div`
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
@@ -934,7 +1036,7 @@ export default function NicheAssistantPage({ nicheKey }) {
             <StatBlock><StatNum>{niche.flow.solved}%</StatNum><StatLabel>vragen automatisch</StatLabel></StatBlock>
             <StatBlock><StatNum>24/7</StatNum><StatLabel>bereikbaar</StatLabel></StatBlock>
             <StatBlock><StatNum>1-3d</StatNum><StatLabel>tot live</StatLabel></StatBlock>
-            <StatBlock><StatNum>€100</StatNum><StatLabel>per maand, onbeperkt</StatLabel></StatBlock>
+            <StatBlock><StatNum>€100</StatNum><StatLabel>per maand, 5u inbegrepen</StatLabel></StatBlock>
           </StatGrid>
         </Container>
       </StatStrip>
@@ -1044,6 +1146,108 @@ export default function NicheAssistantPage({ nicheKey }) {
                   </Secondary>
                 </PhoneCallout>
               </FadeIn>
+
+              {/* Slim & aanpasbaar */}
+              <FadeIn>
+                <SectionEyebrow>Slim, niet star</SectionEyebrow>
+                <H2>Echt slim - met regels die jij zelf bepaalt</H2>
+                <SectionSub>De assistent is geen vaste chatbot. We voegen handmatig regels toe op basis van hoe jouw team werkt - zo escaleert hij precies wanneer dat moet en niet één keer extra.</SectionSub>
+                <SmartList>
+                  <SmartCard>
+                    <SmartIcon $bg="rgba(245,158,11,0.12)" $color="#D97706"><GitBranch size={22} /></SmartIcon>
+                    <SmartBody>
+                      <SmartTitle>Eigen escalatieregels</SmartTitle>
+                      <SmartText>Wij stellen samen met jou de regels in voor wanneer Robin een gesprek doorzet naar een mens. Aanpassen kan op elk moment.</SmartText>
+                      <SmartExample>{niche.escalationExample}</SmartExample>
+                    </SmartBody>
+                  </SmartCard>
+                  <SmartCard>
+                    <SmartIcon $bg="rgba(59,130,246,0.1)" $color="#2563EB"><MonitorPlay size={22} /></SmartIcon>
+                    <SmartBody>
+                      <SmartTitle>Dashboard met alle gesprekken</SmartTitle>
+                      <SmartText>Je ziet elke opname, transcriptie en het hele verloop. Filter op type vraag, escalatie of klantgeluid - precies zoals jouw team graag werkt.</SmartText>
+                    </SmartBody>
+                  </SmartCard>
+                  <SmartCard>
+                    <SmartIcon $bg="rgba(16,185,129,0.1)" $color="#059669"><BellRing size={22} /></SmartIcon>
+                    <SmartBody>
+                      <SmartTitle>Notificaties waar jij werkt</SmartTitle>
+                      <SmartText>Belangrijke gesprekken en escalaties komen direct binnen op WhatsApp, e-mail of Slack - waar je ook werkt. Geen losse app om te checken.</SmartText>
+                    </SmartBody>
+                  </SmartCard>
+                  <SmartCard>
+                    <SmartIcon $bg="rgba(99,102,241,0.1)" $color="#4F46E5"><Settings2 size={22} /></SmartIcon>
+                    <SmartBody>
+                      <SmartTitle>Natuurlijk afsluiten van gesprekken</SmartTitle>
+                      <SmartText>Robin sluit gesprekken zelf netjes af - met een korte samenvatting en een 5 seconden afscheidstoon, zoals een echte receptionist. Geen abrupt klikje.</SmartText>
+                    </SmartBody>
+                  </SmartCard>
+                </SmartList>
+              </FadeIn>
+
+              {/* Zo werkt het - dark card inside content col */}
+              <FadeIn>
+                <DarkCard>
+                  <SectionEyebrow $light>Zo werkt het</SectionEyebrow>
+                  <H2 $light>Van eerste gesprek tot live in 1-3 dagen</H2>
+                  <SectionSub $light>We koppelen aan jouw systemen, trainen de assistent op jouw bedrijfsinfo en testen samen. Klaar voor klantgesprekken binnen een paar dagen.</SectionSub>
+                  <Steps>
+                    {[
+                      { n: 1, icon: <MessageSquare size={20} color="#10B981" />, t: 'Intakegesprek (30 min)', d: 'Vrijblijvend gesprek over jouw branche, processen en welke systemen je gebruikt.' },
+                      { n: 2, icon: <Plug size={20} color="#10B981" />, t: 'Koppeling & training', d: `We koppelen aan ${niche.bewezen.platforms.slice(0, 2).map(p => p.name).join(' / ')} en trainen op jouw eigen content en tone of voice.` },
+                      { n: 3, icon: <RefreshCcw size={20} color="#10B981" />, t: 'Live testen', d: 'Je test live, geeft feedback en wij verfijnen. Binnen een paar dagen klaar voor echte klantgesprekken.' },
+                      { n: 4, icon: <TrendingUp size={20} color="#10B981" />, t: 'Schaal mee', d: 'De assistent leert door en wij optimaliseren maandelijks - zonder extra kosten.' },
+                    ].map((s) => (
+                      <StepCard key={s.n}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                          <StepNum>{s.n}</StepNum>
+                          {s.icon}
+                        </div>
+                        <h3 style={{ margin: 0, fontSize: '1rem', color: 'white' }}>{s.t}</h3>
+                        <p style={{ margin: 0, color: '#94A3B8', lineHeight: 1.55, fontSize: '0.88rem' }}>{s.d}</p>
+                      </StepCard>
+                    ))}
+                  </Steps>
+                </DarkCard>
+              </FadeIn>
+
+              {/* Pricing inside content col so the demo stays sticky */}
+              <FadeIn>
+                <SectionEyebrow>Pricing</SectionEyebrow>
+                <H2>Laagste prijs op de markt, beste AI-model</H2>
+                <SectionSub>Eenmalige setup en daarna €100 per maand met 5 uur belminuten inbegrepen - genoeg voor de meeste {niche.pretty}. Daarboven betaal je €0,60 per minuut, alles inbegrepen.</SectionSub>
+                <PriceGrid>
+                  <PriceCard>
+                    <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Setup</div>
+                    <PriceAmount>€750 <span>eenmalig</span></PriceAmount>
+                    <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Vaste prijs - geen verrassingen</SectionSub>
+                    <PriceList>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Branche-specifieke training voor {niche.short.toLowerCase()}</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Koppeling met jouw systemen</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Setup van escalatieregels op maat</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Live binnen 1-3 dagen</PriceLi>
+                    </PriceList>
+                  </PriceCard>
+                  <PriceCard $featured>
+                    <FeatBadge>Maandelijks</FeatBadge>
+                    <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Gebruik</div>
+                    <PriceAmount>€100 <span>per maand</span></PriceAmount>
+                    <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Inclusief 5 uur belminuten - daarboven €0,60/min, alles inbegrepen</SectionSub>
+                    <PriceList>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> 5 uur belminuten per maand inbegrepen</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Daarboven €0,60/min - model, telefonie en dashboard inbegrepen</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Doorlopende monitoring & optimalisatie</PriceLi>
+                      <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Maandelijks opzegbaar</PriceLi>
+                    </PriceList>
+                  </PriceCard>
+                </PriceGrid>
+                <DemandBanner>
+                  <Sparkles size={18} color="#D97706" style={{ flexShrink: 0 }} />
+                  <div>
+                    <strong>Veel aanvragen op dit moment.</strong> Neem contact op zodat we een datum kunnen inplannen om jouw assistent te bouwen - zo kunnen we de kwaliteit per klant blijven garanderen.
+                  </div>
+                </DemandBanner>
+              </FadeIn>
             </ContentCol>
 
             <StickyDemoCol>
@@ -1076,67 +1280,7 @@ export default function NicheAssistantPage({ nicheKey }) {
         </Container>
       </Section>
 
-      <Section $bg="dark">
-        <Container>
-          <SectionEyebrow $light>Zo werkt het</SectionEyebrow>
-          <H2 $light>Van eerste gesprek tot live in 1-3 dagen</H2>
-          <SectionSub $light>We koppelen aan jouw systemen, trainen de assistent op jouw bedrijfsinfo en testen samen. Klaar voor klantgesprekken binnen een paar dagen.</SectionSub>
-          <Steps>
-            {[
-              { n: 1, icon: <MessageSquare size={20} color="#10B981" />, t: 'Intakegesprek (30 min)', d: 'Vrijblijvend gesprek over jouw branche, processen en welke systemen je gebruikt.' },
-              { n: 2, icon: <Plug size={20} color="#10B981" />, t: 'Koppeling & training', d: `We koppelen aan ${niche.bewezen.platforms.slice(0, 2).map(p => p.name).join(' / ')} en trainen op jouw eigen content en tone of voice.` },
-              { n: 3, icon: <RefreshCcw size={20} color="#10B981" />, t: 'Live testen', d: 'Je test live, geeft feedback en wij verfijnen. Binnen een paar dagen klaar voor echte klantgesprekken.' },
-              { n: 4, icon: <TrendingUp size={20} color="#10B981" />, t: 'Schaal mee', d: 'De assistent leert door en wij optimaliseren maandelijks - zonder extra kosten.' },
-            ].map((s) => (
-              <FadeIn key={s.n} delay={s.n * 0.05}>
-                <StepCard>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <StepNum>{s.n}</StepNum>
-                    {s.icon}
-                  </div>
-                  <h3 style={{ margin: 0, fontSize: '1rem', color: 'white' }}>{s.t}</h3>
-                  <p style={{ margin: 0, color: '#94A3B8', lineHeight: 1.55, fontSize: '0.88rem' }}>{s.d}</p>
-                </StepCard>
-              </FadeIn>
-            ))}
-          </Steps>
-        </Container>
-      </Section>
-
-      <Section id="pricing">
-        <Container>
-          <SectionEyebrow>Pricing</SectionEyebrow>
-          <H2>Eenvoudige prijzen, geen verrassingen</H2>
-          <SectionSub>Eenmalige setup om alles aan jouw systemen te koppelen. Daarna een vast laag bedrag per maand met onbeperkt gebruik.</SectionSub>
-          <PriceGrid>
-            <PriceCard>
-              <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Setup</div>
-              <PriceAmount>€750 <span>tot €2.500</span></PriceAmount>
-              <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Eenmalig - afhankelijk van koppelingen</SectionSub>
-              <PriceList>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Branche-specifieke training voor {niche.short.toLowerCase()}</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Koppeling met jouw systemen</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Setup van menselijke escalatie</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Live binnen 1-3 dagen</PriceLi>
-              </PriceList>
-            </PriceCard>
-            <PriceCard $featured>
-              <FeatBadge>Maandelijks</FeatBadge>
-              <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '1.05rem' }}>Onbeperkt gebruik</div>
-              <PriceAmount>€100 <span>per maand</span></PriceAmount>
-              <SectionSub style={{ fontSize: '0.88rem', margin: 0 }}>Geen limiet op gesprekken of minuten</SectionSub>
-              <PriceList>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Onbeperkt aantal gesprekken</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Doorlopende monitoring & optimalisatie</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Kleine aanpassingen inbegrepen</PriceLi>
-                <PriceLi><CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} /> Maandelijks opzegbaar</PriceLi>
-              </PriceList>
-            </PriceCard>
-          </PriceGrid>
-        </Container>
-      </Section>
-
-      <Section $bg="#F8FAFC">
+      <Section $bg="#F8FAFC" id="faq">
         <Container>
           <SectionEyebrow>Vragen</SectionEyebrow>
           <H2>Veelgestelde vragen voor {niche.pretty}</H2>
