@@ -207,7 +207,11 @@ const StatsBar = styled.div`
   border-top: 1px solid ${MIST_08};
   border-bottom: 1px solid ${MIST_08};
   padding: 1.5rem 0;
-  @media (max-width: 768px) { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0; }
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2.5rem;
+    padding: 1rem 0;
+  }
 `;
 
 const StatCell = styled.div`
@@ -286,7 +290,13 @@ const BentoGrid = styled.div`
   grid-auto-rows: minmax(280px, auto);
   gap: 1rem;
   & > .lead { grid-column: span 2; }
-  /* 1+2 layout preserved at all widths - no full-stack on mobile */
+  @media (max-width: 760px) {
+    grid-auto-rows: auto;
+  }
+  @media (max-width: 460px) {
+    grid-template-columns: 1fr;
+    & > .lead, & > * { grid-column: span 1; }
+  }
 `;
 
 const BentoCard = styled(Link)`
@@ -399,7 +409,8 @@ const StatementCard = styled.div`
   box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
   position: relative;
   overflow: hidden;
-  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.65rem; }
+  @media (max-width: 900px) { gap: 1.5rem; padding: 1.85rem; }
+  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.4rem; }
 `;
 
 const StatementGlow = styled.div`
@@ -1114,28 +1125,34 @@ export default function HomePage_composio({ initialCases = [] }) {
             </FadeIn>
           </HeroInner>
 
-          <FadeIn delay={0.2}>
-            <StatsBar>
-              <StatCell>
-                <StatNum><span className="accent">150+</span></StatNum>
-                <StatLabel>bedrijven</StatLabel>
-              </StatCell>
-              <StatCell>
-                <StatNum>40+</StatNum>
-                <StatLabel>uur/week bespaard</StatLabel>
-              </StatCell>
-              <StatCell>
-                <StatNum><span className="accent">3×</span></StatNum>
-                <StatLabel>sneller bouwen</StatLabel>
-              </StatCell>
-              <StatCell>
-                <StatNum>1-3d</StatNum>
-                <StatLabel>tot live</StatLabel>
-              </StatCell>
-            </StatsBar>
-          </FadeIn>
         </Container>
       </Hero>
+
+      {/* ========= TRUST STRIP - metrics band right after hero ========= */}
+      <Section $pad="60px 0" $padMobile="40px 0">
+        <Container>
+          <FadeIn>
+            <MetricBand>
+              <MetricCell>
+                <MetricNum>150+</MetricNum>
+                <MetricLabel>klanten geholpen</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>27</MetricNum>
+                <MetricLabel>native integraties</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>3×</MetricNum>
+                <MetricLabel>sneller dan agencies</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>40+</MetricNum>
+                <MetricLabel>uur/week bespaard</MetricLabel>
+              </MetricCell>
+            </MetricBand>
+          </FadeIn>
+        </Container>
+      </Section>
 
       {/* ========= WAT DOEN WIJ (statement + bento) ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
@@ -1301,39 +1318,6 @@ export default function HomePage_composio({ initialCases = [] }) {
               </FadeIn>
             </FadeIn>
           </TwoCol>
-        </Container>
-      </Section>
-
-      {/* ========= METRICS BAND (replaces logo wall) ========= */}
-      <Section $pad="100px 0" $padMobile="60px 0">
-        <Container>
-          <FadeIn>
-            <SectionTag><Terminal size={11} /> by_the_numbers</SectionTag>
-            <SectionH2>Vijf jaar bouwen, gemeten in echte uitkomsten.</SectionH2>
-            <SectionLede>
-              Geen vanity-metrics. De getallen die laten zien waarom klanten bij ons blijven.
-            </SectionLede>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <MetricBand>
-              <MetricCell>
-                <MetricNum>150+</MetricNum>
-                <MetricLabel>klanten geholpen</MetricLabel>
-              </MetricCell>
-              <MetricCell>
-                <MetricNum>27</MetricNum>
-                <MetricLabel>native integraties</MetricLabel>
-              </MetricCell>
-              <MetricCell>
-                <MetricNum>3×</MetricNum>
-                <MetricLabel>sneller dan agencies</MetricLabel>
-              </MetricCell>
-              <MetricCell>
-                <MetricNum>40+</MetricNum>
-                <MetricLabel>uur/week bespaard</MetricLabel>
-              </MetricCell>
-            </MetricBand>
-          </FadeIn>
         </Container>
       </Section>
 

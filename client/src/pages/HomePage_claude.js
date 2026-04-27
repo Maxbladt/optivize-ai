@@ -121,11 +121,12 @@ const HeroSub = styled.p`
 `;
 
 const HeroStatsRow = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2.5rem;
   margin: 0 0 2.25rem;
-  @media (max-width: 480px) { gap: 1.5rem; }
+  @media (max-width: 600px) { gap: 1.5rem 2rem; }
+  @media (max-width: 360px) { gap: 1rem 1.5rem; }
 `;
 
 const HeroStat = styled.div`
@@ -263,10 +264,14 @@ const BentoGrid = styled.div`
   grid-auto-rows: minmax(280px, auto);
   gap: 1.25rem;
   & > .lead { grid-column: span 2; }
-  @media (max-width: 480px) {
-    /* very narrow: stack lead, keep the two sub-cards 50/50 below */
-    grid-template-columns: 1fr 1fr;
-    & > .lead { grid-column: span 2; }
+  @media (max-width: 760px) {
+    grid-auto-rows: auto;
+    gap: 1rem;
+  }
+  @media (max-width: 460px) {
+    /* phones: stack everything so cards aren't squeezed below 200px */
+    grid-template-columns: 1fr;
+    & > .lead, & > * { grid-column: span 1; }
   }
 `;
 
@@ -371,7 +376,8 @@ const StatementCard = styled.div`
   align-items: center;
   margin-bottom: 1.25rem;
   box-shadow: 0 0 0 1px ${DARK_SURFACE}, 0 18px 40px rgba(20,20,19,0.18);
-  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.85rem; }
+  @media (max-width: 900px) { gap: 1.5rem; padding: 2rem; }
+  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.5rem; border-radius: 18px; }
 `;
 
 const StatementTitle = styled.h3`
@@ -1039,6 +1045,24 @@ export default function HomePage_claude({ initialCases = [] }) {
         </Container>
       </Hero>
 
+      {/* ========= TRUST STRIP (logo wall right after hero) ========= */}
+      <Section $bg={IVORY} $pad="60px 0" $padMobile="40px 0">
+        <Container>
+          <FadeIn>
+            <SectionLabel style={{ textAlign: 'center', margin: '0 0 1.5rem' }}>
+              Naadloos gekoppeld aan de tools die jouw team al gebruikt
+            </SectionLabel>
+          </FadeIn>
+          <LogoWall>
+            {LOGO_SLUGS.map((slug) => (
+              <LogoCell key={slug} title={slug}>
+                <img src={logoSrc(slug)} alt={slug} loading="lazy" />
+              </LogoCell>
+            ))}
+          </LogoWall>
+        </Container>
+      </Section>
+
       {/* ========= WAT DOEN WIJ (statement + bento) ========= */}
       <Section $bg={PARCHMENT}>
         <Container>
@@ -1201,26 +1225,6 @@ export default function HomePage_claude({ initialCases = [] }) {
         </Container>
       </Section>
 
-      {/* ========= LOGO WALL ========= */}
-      <Section $bg={PARCHMENT} $pad="100px 0" $padMobile="60px 0">
-        <Container>
-          <FadeIn>
-            <SectionLabel>Naadloos gekoppeld</SectionLabel>
-            <SectionH2>De tools die jouw team al gebruikt - wij koppelen er aan.</SectionH2>
-            <SectionLede>
-              Praktijksoftware, kassasystemen, CRM, e-commerce en betaalproviders. Onze AI praat ze allemaal aan.
-            </SectionLede>
-          </FadeIn>
-          <LogoWall>
-            {LOGO_SLUGS.map((slug) => (
-              <LogoCell key={slug} title={slug}>
-                <img src={logoSrc(slug)} alt={slug} loading="lazy" />
-              </LogoCell>
-            ))}
-          </LogoWall>
-        </Container>
-      </Section>
-
       {/* ========= ABOUT MAX ========= */}
       <Section $bg={IVORY}>
         <Container>
@@ -1337,28 +1341,6 @@ export default function HomePage_claude({ initialCases = [] }) {
               Bekijk de blog <ArrowUpRight size={14} />
             </SecondaryCta>
           </div>
-        </Container>
-      </Section>
-
-      {/* ========= EDITORIAL DARK QUOTE ========= */}
-      <Section $dark $pad="140px 0" $padMobile="80px 0">
-        <Container>
-          <TwoColEditorial>
-            <FadeIn>
-              <SectionLabel $light>Wat opdrachtgevers zeggen</SectionLabel>
-              <EditorialQuote>
-                Optivaize bouwde in een week wat ons interne team niet voor elkaar kreeg in een kwartaal. Geen hype, geen demo's - gewoon code die werkt.
-              </EditorialQuote>
-              <QuoteAttribution>
-                <strong>Operations</strong> · Nederlandse retailer
-              </QuoteAttribution>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <FeatureImageDark>
-                <img src="/images/home-variants/home-warm-desk.jpg" alt="Schetsen op papier naast een laptop" loading="lazy" />
-              </FeatureImageDark>
-            </FadeIn>
-          </TwoColEditorial>
         </Container>
       </Section>
 
