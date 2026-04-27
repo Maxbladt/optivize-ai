@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import { Mic, MicOff, PhoneOff, Phone, Loader2, AlertCircle, CheckCircle2, Activity } from 'lucide-react';
+import { Mic, MicOff, PhoneOff, Phone, Loader2, AlertCircle, CheckCircle2, Activity, PhoneForwarded } from 'lucide-react';
 
 const pulse = keyframes`
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -340,7 +340,11 @@ const FRIENDLY_LABELS = {
   plan_bezichtiging: (a) => `Bezichtiging gepland: ${a.naam} - ${a.datum} ${a.tijd}`,
   kwalificeer_lead: (a) => `Lead vastgelegd: ${a.naam}`,
   beeindig_gesprek: () => `Gesprek wordt afgesloten...`,
+  verbind_medewerker: () => `Doorverbinden met medewerker...`,
 };
+
+const HANG_UP_DELAY_MS = 10000;
+const TRANSFER_DELAY_MS = 10000;
 
 function describeToolCall(name, args) {
   try {
@@ -352,12 +356,13 @@ function describeToolCall(name, args) {
 }
 
 export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart, onSessionEnd }) {
-  const [state, setState] = useState('idle'); // idle | connecting | connected | error | ended
+  const [state, setState] = useState('idle'); // idle | connecting | connected | transferring | error | ended
   const [error, setError] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(180);
   const [transcript, setTranscript] = useState([]);
   const [feed, setFeed] = useState([]);
   const [aiSpeaking, setAiSpeaking] = useState(false);
+  const [endReason, setEndReason] = useState(null); // 'transfer' | 'goodbye' | etc
 
   const pcRef = useRef(null);
   const dcRef = useRef(null);
@@ -433,8 +438,8 @@ export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart,
         let args = {};
         try { args = JSON.parse(evt.arguments || '{}'); } catch { args = {}; }
 
-        // Special: end-call tool. Let the model see ok, give it ~2s to finish speaking,
-        // then close the call cleanly.
+        // Special: end-call tool. Show "ending" UI and close the call after 10s
+        // so the model has plenty of time to finish its goodbye phrase.
         if (evt.name === 'beeindig_gesprek') {
           pushFeed(describeToolCall(evt.name, args));
           sendEvent({
@@ -445,9 +450,29 @@ export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart,
               output: JSON.stringify({ ok: true }),
             },
           });
-          // Don't trigger a new response — model already said its goodbye before this call.
+          // Don't trigger a new response - the model already said its goodbye.
+          setEndReason('goodbye');
           if (endTimeoutRef.current) clearTimeout(endTimeoutRef.current);
-          endTimeoutRef.current = setTimeout(() => stop('ai_ended'), 2500);
+          endTimeoutRef.current = setTimeout(() => stop('ai_ended'), HANG_UP_DELAY_MS);
+          break;
+        }
+
+        // Special: transfer-to-employee. Switch to the "connecting" UI and
+        // close the call after 10s.
+        if (evt.name === 'verbind_medewerker') {
+          pushFeed(describeToolCall(evt.name, args));
+          sendEvent({
+            type: 'conversation.item.create',
+            item: {
+              type: 'function_call_output',
+              call_id: evt.call_id,
+              output: JSON.stringify({ ok: true, status: 'doorverbinden' }),
+            },
+          });
+          setState('transferring');
+          setEndReason('transfer');
+          if (endTimeoutRef.current) clearTimeout(endTimeoutRef.current);
+          endTimeoutRef.current = setTimeout(() => stop('transferred'), TRANSFER_DELAY_MS);
           break;
         }
 
@@ -520,6 +545,7 @@ export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart,
     setTranscript([]);
     setFeed([]);
     setSecondsLeft(180);
+    setEndReason(null);
     setState('connecting');
 
     try {
@@ -665,10 +691,20 @@ export default function VoiceDemo({ caseKey, caller, onToolCall, onSessionStart,
         </CallPane>
       )}
 
+      {state === 'transferring' && (
+        <EndedPane>
+          <IdleAvatar style={{ background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }}>
+            <PhoneForwarded size={42} color="white" />
+          </IdleAvatar>
+          <IdleTitle>Doorverbinden met medewerker</IdleTitle>
+          <IdleSub>Een moment geduld - we verbinden je door met een collega.</IdleSub>
+        </EndedPane>
+      )}
+
       {(state === 'ended' || state === 'error') && (
         <EndedPane>
           <EndedIcon><PhoneOff size={26} /></EndedIcon>
-          <IdleTitle>{state === 'error' ? 'Gesprek mislukt' : 'Gesprek beëindigd'}</IdleTitle>
+          <IdleTitle>{state === 'error' ? 'Gesprek mislukt' : endReason === 'transfer' ? 'Doorverbonden' : 'Gesprek beëindigd'}</IdleTitle>
           {error && <IdleSub style={{ color: '#FCA5A5' }}>{error}</IdleSub>}
           <StartButton onClick={start}><Mic size={18} /> Nieuw gesprek</StartButton>
         </EndedPane>

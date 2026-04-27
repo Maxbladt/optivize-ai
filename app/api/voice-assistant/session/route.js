@@ -46,10 +46,14 @@ export async function POST(request) {
     );
   }
 
+  const instructions = typeof useCase.instructions === 'function'
+    ? useCase.instructions()
+    : useCase.instructions;
+
   const sessionConfig = {
     type: 'realtime',
     model: 'gpt-realtime',
-    instructions: useCase.instructions,
+    instructions,
     audio: {
       output: { voice: useCase.voice || 'marin' },
     },

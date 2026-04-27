@@ -78,18 +78,62 @@ const monday = (() => {
   return d;
 })();
 
+// Pre-fill the calendar so each day has 5-6 booked slots out of 8 -
+// only 2-3 free spots remain, makes the demo feel like a real busy practice.
+const SEED_NAMES = [
+  'de Vries', 'Bakker', 'Jansen', 'Visser', 'Smit', 'Mulder', 'Peters', 'de Wit',
+  'van Dijk', 'Hendriks', 'Bos', 'de Boer', 'Dekker', 'Brouwer', 'de Graaf',
+  'Meijer', 'van Leeuwen', 'Klein', 'van der Berg', 'Willems', 'van Beek',
+  'Kuipers', 'Hoekstra', 'de Jong', 'Vermeer', 'Schipper', 'Koster', 'Vos',
+  'Maas', 'Postma', 'Kramer', 'Verhoeven', 'van Dam', 'Bouwman', 'Bakkers',
+  'Timmer', 'Knoop', 'Sanders', 'Driessen', 'van Vliet', 'Geerts', 'Roos',
+];
+const SEED_FIRST = ['J.', 'M.', 'K.', 'P.', 'L.', 'A.', 'H.', 'R.', 'T.', 'E.', 'S.', 'D.', 'B.', 'F.', 'C.'];
+const SEED_TREATMENTS = ['controle', 'controle', 'gebitsreiniging', 'vulling', 'controle', 'gebitsreiniging', 'kroon', 'vulling'];
+
+// Fixed pseudo-random pattern of which slots to book per day (out of 8 times),
+// 5-6 per day, leaving 2-3 free. Indices into TIMES.
+const DAILY_BOOKINGS = [
+  [0, 1, 2, 4, 6, 7],     // day 0: free 11:00, 13:30
+  [0, 1, 3, 4, 5, 7],     // day 1: free 11:00, 15:30
+  [1, 2, 3, 4, 6, 7],     // day 2: free 09:00, 14:30
+  [0, 2, 3, 5, 6, 7],     // day 3: free 10:00, 13:30
+  [0, 1, 2, 5, 6],        // day 4: free 11:00, 13:30, 16:30
+  [0, 1, 3, 4, 6, 7],     // day 5: free 11:00, 14:30
+  [0, 2, 3, 4, 5, 7],     // day 6: free 10:00, 16:30
+  [1, 2, 4, 5, 6, 7],     // day 7: free 09:00, 12:00
+  [0, 1, 2, 4, 5, 7],     // day 8: free 13:30, 14:30
+  [0, 1, 3, 4, 6],        // day 9: free 11:00, 13:30, 16:30
+];
+
+function buildSeedAppointments(days) {
+  const out = [];
+  let id = 1;
+  for (let d = 0; d < days.length && d < DAILY_BOOKINGS.length; d++) {
+    const slots = DAILY_BOOKINGS[d];
+    for (const slotIdx of slots) {
+      const fi = (id * 7) % SEED_FIRST.length;
+      const ni = (id * 13) % SEED_NAMES.length;
+      const ti = (id * 5) % SEED_TREATMENTS.length;
+      out.push({
+        id,
+        datum: days[d],
+        tijd: TIMES[slotIdx],
+        naam: `${SEED_FIRST[fi]} ${SEED_NAMES[ni]}`,
+        behandeling: SEED_TREATMENTS[ti],
+      });
+      id++;
+    }
+  }
+  return out;
+}
+
+const SEED_DAYS = getTwoWeekDays(monday);
+
 export const initialState = {
   weekStart: ymd(monday),
-  days: getTwoWeekDays(monday),
-  appointments: [
-    { id: 1, datum: ymd(monday), tijd: '10:00', naam: 'J. de Vries', behandeling: 'controle' },
-    { id: 2, datum: ymd(plus(monday, 1)), tijd: '14:30', naam: 'M. Bakker', behandeling: 'vulling' },
-    { id: 3, datum: ymd(plus(monday, 2)), tijd: '11:00', naam: 'K. Jansen', behandeling: 'gebitsreiniging' },
-    { id: 4, datum: ymd(plus(monday, 3)), tijd: '09:00', naam: 'P. Visser', behandeling: 'controle' },
-    { id: 5, datum: ymd(plus(monday, 4)), tijd: '16:30', naam: 'L. Smit', behandeling: 'kroon' },
-    { id: 6, datum: ymd(plus(monday, 7)), tijd: '11:00', naam: 'A. Mulder', behandeling: 'controle' },
-    { id: 7, datum: ymd(plus(monday, 9)), tijd: '15:30', naam: 'H. Peters', behandeling: 'vulling' },
-  ],
+  days: SEED_DAYS,
+  appointments: buildSeedAppointments(SEED_DAYS),
   lastBookedId: null,
 };
 
@@ -182,7 +226,7 @@ export function Component({ state }) {
         ))}
       </Grid>
       </ScrollWrap>
-      <Subtle style={{ marginTop: 'auto' }}>{state.appointments.length} afspraken deze week. Vraag de assistent om er een te plannen, te verzetten of te annuleren.</Subtle>
+      <Subtle style={{ marginTop: 'auto' }}>{state.appointments.length} afspraken in deze 2 weken - meestal 2-3 plekken vrij per dag. Vraag de assistent om er een te plannen, te verzetten of te annuleren.</Subtle>
     </Panel>
   );
 }
