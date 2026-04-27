@@ -531,6 +531,155 @@ const BlogMeta = styled.div`
   letter-spacing: 0.3px;
 `;
 
+/* ============== FUNNEL (proefcase narrative) ============== */
+const FunnelGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 0 4rem;
+  @media (max-width: 900px) { grid-template-columns: 1fr; gap: 0.85rem; margin-bottom: 2.5rem; }
+`;
+
+const FunnelCard = styled.div`
+  background: ${(p) => p.$accent
+    ? 'linear-gradient(135deg, rgba(59,130,246,0.10), rgba(16,185,129,0.06))'
+    : PURE_BLACK};
+  border: 1px solid ${(p) => p.$accent ? MIST_12 : MIST_10};
+  border-radius: 4px;
+  padding: 2rem 1.85rem 1.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: rgba(0,0,0,0.5) 6px 6px 0px 0px;
+    border-color: ${MIST_12};
+  }
+`;
+
+const FunnelStep = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: ${OPTI_GREEN};
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  &::before { content: '> '; color: ${WHISPER}; }
+`;
+
+const FunnelTitle = styled.h3`
+  font-family: ${SANS};
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: ${PURE_WHITE};
+`;
+
+const FunnelPrice = styled.div`
+  font-family: ${MONO};
+  font-size: 1.7rem;
+  line-height: 1.0;
+  margin: 0.7rem 0 0.85rem;
+  color: ${PURE_WHITE};
+  letter-spacing: -0.02em;
+  background: ${OPTI_GRADIENT};
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  & span {
+    background: none;
+    -webkit-text-fill-color: ${WHISPER};
+    color: ${WHISPER};
+    font-size: 11px;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+`;
+
+const FunnelBody = styled.p`
+  font-family: ${SANS};
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: ${GHOST};
+  margin: 0;
+`;
+
+/* ============== EXAMPLES (10 small-case examples) ============== */
+const ExamplesHeading = styled.h3`
+  font-family: ${SANS};
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.10;
+  color: ${PURE_WHITE};
+  margin: 0 auto 0.5rem;
+  text-align: center;
+  letter-spacing: -0.01em;
+`;
+
+const ExamplesSub = styled.p`
+  font-family: ${SANS};
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: ${GHOST};
+  margin: 0 auto 2rem;
+  max-width: 540px;
+  text-align: center;
+`;
+
+const ExampleGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+  @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 760px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 380px) { grid-template-columns: 1fr; }
+`;
+
+const ExampleTile = styled.div`
+  background: ${PURE_BLACK};
+  border: 1px solid ${MIST_10};
+  border-radius: 4px;
+  padding: 1.15rem 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  &:hover {
+    border-color: ${MIST_12};
+    transform: translate(-2px, -2px);
+    box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
+  }
+`;
+
+const ExampleNum = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  color: ${OPTI_GREEN};
+  letter-spacing: 0.5px;
+`;
+
+const ExampleTitle = styled.div`
+  font-family: ${SANS};
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.20;
+  color: ${PURE_WHITE};
+`;
+
+const ExampleDesc = styled.div`
+  font-family: ${SANS};
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: ${GHOST};
+`;
+
 /* ============== METRIC BAND (replaces the ugly logo wall) ============== */
 const MetricBand = styled.div`
   display: grid;
@@ -1037,15 +1186,44 @@ const BLOG_FALLBACKS = [
   },
 ];
 
-const INTAKE = [
-  { num: '[01]', icon: <ClipboardList size={20} />, tint: 'rgba(59,130,246,0.10)', color: OPTI_BLUE,
-    title: 'Jouw case', text: 'Presenteer je bedrijfsvraagstuk. Wat wil je bereiken en waar loop je tegenaan?' },
-  { num: '[02]', icon: <Search size={20} />, tint: 'rgba(16,185,129,0.10)', color: OPTI_GREEN,
-    title: 'Wij reviewen', text: 'We analyseren je situatie en beoordelen de mogelijkheden grondig.' },
-  { num: '[03]', icon: <Lightbulb size={20} />, tint: 'rgba(245,158,11,0.10)', color: '#F59E0B',
-    title: 'Beste oplossing', text: 'We bedenken de meest impactvolle AI-oplossing voor jouw specifieke situatie.' },
-  { num: '[04]', icon: <Wrench size={20} />, tint: 'rgba(139,92,246,0.10)', color: '#8B5CF6',
-    title: 'Wij bouwen', text: 'We bouwen en implementeren de oplossing, niet in maanden maar in weken.' },
+const FUNNEL_STAGES = [
+  {
+    step: 'stap_01 // proefcase',
+    title: 'Proefcase',
+    price: '€800 - €1.200',
+    priceSub: 'eenmalig',
+    body: 'Een afgebakende, concrete vraag. Onze AI-developers bouwen het, en jij ziet binnen 1-2 weken het echte werk live. Zo bewijzen we ons voordat je groter commit.',
+    accent: false,
+  },
+  {
+    step: 'stap_02 // process_mapping',
+    title: 'Process mapping',
+    price: 'Inbegrepen',
+    priceSub: 'tijdens dezelfde uren',
+    body: 'Tijdens de proefcase brengen we de rest van jouw processen in kaart. Je krijgt een kaart van waar AI nog meer waarde kan toevoegen - zonder dat het extra kost.',
+    accent: true,
+  },
+  {
+    step: 'stap_03 // long_term_partner',
+    title: 'Lange-termijn partner',
+    price: 'Op maat',
+    priceSub: 'na bewezen waarde',
+    body: 'Na de proefcase worden klanten vaak partner. We bouwen grotere systemen, retainer-modellen, of nemen complete bedrijfsprocessen over.',
+    accent: false,
+  },
+];
+
+const PROEFCASE_EXAMPLES = [
+  { num: '01', title: 'Sales agent', desc: 'AI die leads belt en kwalificeert' },
+  { num: '02', title: 'Marketing autopilot', desc: 'Content + ads automatisering' },
+  { num: '03', title: 'Efficiency dashboard', desc: 'Realtime KPI\'s per team' },
+  { num: '04', title: 'Klantenservice bot', desc: '24/7 vragen beantwoorden' },
+  { num: '05', title: 'Lead-scoring tool', desc: 'Inkomende leads automatisch labelen' },
+  { num: '06', title: 'Content engine', desc: 'SEO-blog op auto-pilot' },
+  { num: '07', title: 'Intern dashboard', desc: 'Custom view voor jouw team' },
+  { num: '08', title: 'Data pipeline', desc: 'Data uit losse systemen samenvoegen' },
+  { num: '09', title: 'CRM-koppeling', desc: 'Twee stacks praten met elkaar' },
+  { num: '10', title: 'AI-training', desc: 'Je team leren AI gebruiken' },
 ];
 
 const LOCATIONS = [
@@ -1374,28 +1552,51 @@ export default function HomePage_composio({ initialCases = [] }) {
         </Container>
       </Section>
 
-      {/* ========= INTAKE / PROCESS ========= */}
+      {/* ========= FUNNEL: HOE WIJ BEGINNEN ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
           <FadeIn>
-            <SectionTag><Code2 size={11} /> process</SectionTag>
-            <SectionH2>Van idee tot resultaat in weken.</SectionH2>
+            <SectionTag><Code2 size={11} /> how_we_start</SectionTag>
+            <SectionH2>Eerst een kleine <HeroAccent>proefcase</HeroAccent>. Daarna wordt het pas écht groot.</SectionH2>
             <SectionLede>
-              Geen eindeloze trajecten. We werken snel, gestructureerd en resultaatgericht.
+              We starten altijd met een afgebakende, betaalbare case van €800 - €1.200. Daarmee bewijzen onze AI-developers wat ze waard zijn. Tijdens dezelfde uren brengen we ook de rest van jouw processen in kaart. Vaak worden klanten daarna lange-termijn partners.
             </SectionLede>
           </FadeIn>
-          <Grid4>
-            {INTAKE.map((s, i) => (
-              <FadeIn key={s.num} delay={i * 0.06}>
-                <DarkCard>
-                  <IntakeNum>{s.num.replace(/[\[\]]/g, '')}</IntakeNum>
-                  <SmallIcon $tint={s.tint} $color={s.color}>{s.icon}</SmallIcon>
-                  <CardTitle>{s.title}</CardTitle>
-                  <CardCopy style={{ marginBottom: 0 }}>{s.text}</CardCopy>
-                </DarkCard>
+
+          <FunnelGrid>
+            {FUNNEL_STAGES.map((s, i) => (
+              <FadeIn key={s.title} delay={i * 0.1}>
+                <FunnelCard $accent={s.accent}>
+                  <FunnelStep>{s.step}</FunnelStep>
+                  <FunnelTitle>{s.title}</FunnelTitle>
+                  <FunnelPrice>{s.price} <span>{s.priceSub}</span></FunnelPrice>
+                  <FunnelBody>{s.body}</FunnelBody>
+                </FunnelCard>
               </FadeIn>
             ))}
-          </Grid4>
+          </FunnelGrid>
+
+          <FadeIn delay={0.05}>
+            <ExamplesHeading>Tien voorbeelden van een proefcase</ExamplesHeading>
+            <ExamplesSub>Klein, concreet, en bewezen waardevol. Iets wat we vaak doen voor klanten die net starten.</ExamplesSub>
+          </FadeIn>
+          <ExampleGrid>
+            {PROEFCASE_EXAMPLES.map((ex, i) => (
+              <FadeIn key={ex.num} delay={i * 0.04}>
+                <ExampleTile>
+                  <ExampleNum>{ex.num}</ExampleNum>
+                  <ExampleTitle>{ex.title}</ExampleTitle>
+                  <ExampleDesc>{ex.desc}</ExampleDesc>
+                </ExampleTile>
+              </FadeIn>
+            ))}
+          </ExampleGrid>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <PrimaryCta to="/contact">
+              <Zap size={16} /> Plan jouw proefcase
+            </PrimaryCta>
+          </div>
         </Container>
       </Section>
 
