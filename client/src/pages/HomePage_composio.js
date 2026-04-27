@@ -183,7 +183,9 @@ const HeroVisual = styled.div`
   background: ${PURE_BLACK};
   border: 1px solid ${MIST_12};
   box-shadow: rgba(0,0,0,0.6) 4px 4px 0px 0px, 0 30px 60px rgba(0,0,0,0.5);
-  & img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; }
+  & img, & video {
+    width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92;
+  }
   @media (max-width: 768px) { aspect-ratio: 5/3; }
 `;
 
@@ -275,6 +277,292 @@ const SectionLede = styled.p`
   color: ${GHOST};
   margin: 0 0 3rem;
   max-width: 600px;
+`;
+
+/* ============== BENTO (1 + 2) ============== */
+const BentoGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(280px, auto);
+  gap: 1rem;
+  & > .lead { grid-column: span 2; }
+  /* 1+2 layout preserved at all widths - no full-stack on mobile */
+`;
+
+const BentoCard = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: ${PURE_WHITE};
+  background: ${PURE_BLACK};
+  border: 1px solid ${MIST_10};
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+  &:hover {
+    border-color: ${MIST_12};
+    transform: translate(-2px, -2px);
+    box-shadow: rgba(0,0,0,0.5) 6px 6px 0px 0px;
+  }
+`;
+
+const BentoLeadMedia = styled.div`
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: ${SURFACE_DEEP};
+  & img {
+    width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85;
+  }
+  @media (max-width: 760px) { height: 220px; }
+`;
+
+const BentoLeadOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%),
+    radial-gradient(ellipse 50% 60% at 30% 30%, rgba(59,130,246,0.18), transparent 60%);
+  pointer-events: none;
+`;
+
+const BentoSmallMedia = styled.div`
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: ${SURFACE_DEEP};
+  & img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+`;
+
+const BentoBody = styled.div`
+  padding: 1.65rem 1.85rem 1.85rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.4rem;
+`;
+
+const BentoEyebrow = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: ${OPTI_GREEN};
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  &::before { content: '> '; color: ${WHISPER}; }
+`;
+
+const BentoTitle = styled.h3`
+  font-family: ${SANS};
+  font-weight: 500;
+  font-size: ${(p) => p.$big ? '1.85rem' : '1.4rem'};
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.55rem;
+  color: ${PURE_WHITE};
+  @media (max-width: 760px) { font-size: ${(p) => p.$big ? '1.45rem' : '1.2rem'}; }
+`;
+
+const BentoCopy = styled.p`
+  font-family: ${SANS};
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: ${GHOST};
+  margin: 0 0 1.25rem;
+`;
+
+const BentoLink = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  font-family: ${MONO};
+  font-size: 0.85rem;
+  color: ${OPTI_BLUE};
+  letter-spacing: 0.3px;
+`;
+
+/* ============== STATEMENT CARD ============== */
+const StatementCard = styled.div`
+  background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(16,185,129,0.10));
+  color: ${PURE_WHITE};
+  border: 1px solid ${MIST_12};
+  border-radius: 4px;
+  padding: 2.25rem 2.25rem;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2.25rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
+  position: relative;
+  overflow: hidden;
+  @media (max-width: 760px) { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.65rem; }
+`;
+
+const StatementGlow = styled.div`
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 80% 100%, rgba(59,130,246,0.22), transparent 70%);
+  pointer-events: none;
+`;
+
+const StatementTitle = styled.h3`
+  font-family: ${SANS};
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  color: ${PURE_WHITE};
+  margin: 0;
+  position: relative;
+`;
+
+const StatementCopy = styled.p`
+  font-family: ${SANS};
+  font-size: 1rem;
+  line-height: 1.55;
+  color: ${GHOST};
+  margin: 0;
+  position: relative;
+  & strong { color: ${PURE_WHITE}; font-weight: 500; }
+`;
+
+/* ============== VIDEO BLOCK ============== */
+const VideoCard = styled.div`
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: ${PURE_BLACK};
+  border: 1px solid ${MIST_12};
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 0px 0px;
+  & video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+`;
+
+/* ============== BLOG ============== */
+const BlogGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 520px) { grid-template-columns: 1fr; }
+`;
+
+const BlogCard = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: ${PURE_WHITE};
+  background: ${PURE_BLACK};
+  border: 1px solid ${MIST_10};
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  &:hover {
+    border-color: ${MIST_12};
+    transform: translate(-2px, -2px);
+    box-shadow: rgba(0,0,0,0.5) 4px 4px 0px 0px;
+  }
+`;
+
+const BlogImg = styled.div`
+  position: relative;
+  aspect-ratio: 16/10;
+  background: ${SURFACE_DEEP};
+  overflow: hidden;
+  & img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.88; }
+`;
+
+const BlogBody = styled.div`
+  padding: 1.25rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+`;
+
+const BlogTag = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: ${OPTI_GREEN};
+  text-transform: uppercase;
+`;
+
+const BlogTitle = styled.h3`
+  font-family: ${SANS};
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.20;
+  color: ${PURE_WHITE};
+  margin: 0;
+`;
+
+const BlogExcerpt = styled.p`
+  font-family: ${SANS};
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: ${GHOST};
+  margin: 0;
+`;
+
+const BlogMeta = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  color: ${WHISPER};
+  margin-top: auto;
+  padding-top: 0.6rem;
+  letter-spacing: 0.3px;
+`;
+
+/* ============== METRIC BAND (replaces the ugly logo wall) ============== */
+const MetricBand = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid ${MIST_10};
+  border-radius: 4px;
+  overflow: hidden;
+  background: ${PURE_BLACK};
+  margin-top: 2rem;
+  @media (max-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+`;
+
+const MetricCell = styled.div`
+  padding: 2.25rem 1.5rem;
+  border-right: 1px solid ${MIST_06};
+  border-bottom: 1px solid ${MIST_06};
+  text-align: center;
+  &:nth-child(4n) { border-right: none; }
+  @media (max-width: 768px) {
+    &:nth-child(2n) { border-right: none; }
+    &:nth-child(4n) { border-right: 1px solid ${MIST_06}; }
+  }
+`;
+
+const MetricNum = styled.div`
+  font-family: ${MONO};
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: ${OPTI_GRADIENT};
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+`;
+
+const MetricLabel = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: ${GHOST};
+  text-transform: uppercase;
 `;
 
 /* ============== CARD GRIDS ============== */
@@ -684,19 +972,58 @@ const PILLARS = [
     text: 'Custom AI-applicaties op maat: van automatiseringen tot complete platforms. Sneller dan traditionele bureaus.' },
 ];
 
-const SERVICES = [
-  { tag: '01 / SOFTWARE', icon: <Code2 size={20} strokeWidth={1.6} />, tint: 'rgba(139,92,246,0.10)', color: '#8B5CF6',
-    title: 'Software & Platforms',
-    copy: 'Custom software, dashboards en automatisering. Van maatwerk platforms tot volledig geautomatiseerde workflows.',
-    href: '/software-platforms' },
-  { tag: '02 / AI AGENTS', icon: <Bot size={20} strokeWidth={1.6} />, tint: 'rgba(59,130,246,0.10)', color: OPTI_BLUE,
-    title: 'AI Agents & Chatbots',
-    copy: 'Autonome AI agents en chatbots die 24/7 taken overnemen, klanten helpen en processen automatiseren.',
-    href: '/ai-agents-chatbots' },
-  { tag: '03 / MARKETING', icon: <TrendingUp size={20} strokeWidth={1.6} />, tint: 'rgba(16,185,129,0.10)', color: OPTI_GREEN,
-    title: 'AI Marketing',
-    copy: 'AI-SEO, content automatisering en Google Ads optimalisatie voor maximale organische groei.',
-    href: '/ai-marketing' },
+const BENTO = {
+  lead: {
+    eyebrow: '01 / ai_software',
+    title: 'Custom platforms en dashboards die jouw processen versnellen.',
+    copy: 'Van interne tools tot complete platforms. Wij bouwen het, gehost waar je wilt, beheerd door je eigen team.',
+    href: '/software-platforms',
+    image: '/images/fonteyn_dashboard.webp',
+    imageAlt: 'Een door Optivaize gebouwd Fonteyn dashboard',
+  },
+  subA: {
+    eyebrow: '02 / ai_agents',
+    title: 'Voice agents en chatbots die 24/7 het werk doen.',
+    copy: 'Plannen afspraken, beantwoorden klantvragen en escaleren netjes naar een mens als dat moet.',
+    href: '/ai-agents-chatbots',
+    image: '/images/home-variants/home-dark-code.jpg',
+    imageAlt: 'Code editor met agent integratie',
+  },
+  subB: {
+    eyebrow: '03 / ai_marketing',
+    title: 'SEO, content en ads die meetbaar groeien.',
+    copy: 'Content op jouw merkstijl, gekoppeld aan GA4 en Search Console - zichtbaar in jouw boekhouding.',
+    href: '/ai-marketing',
+    image: '/images/passion_icebaths.webp',
+    imageAlt: 'Wim Hof - Passion Ice Baths brand',
+  },
+};
+
+const BLOG_FALLBACKS = [
+  {
+    slug: 'voice-agents-die-werken',
+    tag: 'voice_agents',
+    title: 'Hoe wij voice-agents bouwen die echt klantgesprekken afhandelen',
+    excerpt: 'Achter de schermen van onze tandarts-, restaurant- en webshop-agents - prompt-engineering tot escalatie-regels.',
+    image: '/images/home-variants/home-warm-team.jpg',
+    date: '2026.04',
+  },
+  {
+    slug: 'wim-hof-seo',
+    tag: 'ai_marketing',
+    title: "Wim Hof's organic SEO: hoe AI-content authentiek blijft",
+    excerpt: 'Een eigen model trainen op je merkstem - hoe houd je dat technisch geoptimaliseerd zonder generic te klinken?',
+    image: '/images/wimhof.webp',
+    date: '2026.03',
+  },
+  {
+    slug: 'weken-niet-maanden',
+    tag: 'engineering',
+    title: 'Van weken naar dagen: hoe ons AI-team 3× sneller bouwt',
+    excerpt: 'Geen ticket-stack, geen overdracht, alleen AI-developers - hoe wij elk proces vanuit AI optimaliseren.',
+    image: '/images/home-variants/home-warm-desk.jpg',
+    date: '2026.03',
+  },
 ];
 
 const INTAKE = [
@@ -777,7 +1104,11 @@ export default function HomePage_composio({ initialCases = [] }) {
             </FadeIn>
             <FadeIn delay={0.1}>
               <HeroVisual>
-                <img src="/images/home-variants/home-dark-code.jpg" alt="Code editor" loading="lazy" />
+                <video
+                  src="/videos/optivaize_intro_vid.mp4"
+                  poster="/images/optivaize_logo_new.webp"
+                  autoPlay muted loop playsInline preload="metadata"
+                />
                 <HeroVisualOverlay />
               </HeroVisual>
             </FadeIn>
@@ -806,28 +1137,73 @@ export default function HomePage_composio({ initialCases = [] }) {
         </Container>
       </Hero>
 
-      {/* ========= IDENTITY / 3 PILLARS ========= */}
+      {/* ========= WAT DOEN WIJ (statement + bento) ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
           <FadeIn>
-            <SectionTag><Cpu size={11} /> who_we_are</SectionTag>
-            <SectionH2>We bouwen AI in jouw organisatie - niet ernaast.</SectionH2>
+            <SectionTag><Cpu size={11} /> what_we_do</SectionTag>
+            <SectionH2>Drie disciplines, één team van AI-developers.</SectionH2>
             <SectionLede>
-              Geen hype, geen powerpoints. We zetten AI rechtstreeks in jouw bedrijfsprocessen, trainen je team, en bouwen de applicaties die jouw concurrentie nog niet heeft.
+              We bouwen software, zetten AI-agents op en doen marketing - en omdat ons hele team uit AI-developers bestaat, optimaliseren we elk proces vanuit AI op.
             </SectionLede>
           </FadeIn>
-          <Grid3>
-            {PILLARS.map((p, i) => (
-              <FadeIn key={p.title} delay={i * 0.08}>
-                <DarkCard>
-                  <SmallIcon $tint={p.tint} $color={p.color}>{p.icon}</SmallIcon>
-                  <TagLine>{p.tag}</TagLine>
-                  <CardTitle>{p.title}</CardTitle>
-                  <CardCopy style={{ marginBottom: 0 }}>{p.text}</CardCopy>
-                </DarkCard>
-              </FadeIn>
-            ))}
-          </Grid3>
+
+          <FadeIn delay={0.05}>
+            <StatementCard>
+              <StatementGlow />
+              <StatementTitle>
+                Geen junior medewerkers, geen losse freelancers. Alleen AI-developers die jouw bedrijf vanuit AI verbeteren.
+              </StatementTitle>
+              <StatementCopy>
+                Wij helpen drie dingen. <strong>Bouwen</strong> we software, automatiseringen en dashboards. <strong>Zetten</strong> we AI-agents en chatbots op die 24/7 werk doen. En we doen <strong>AI Marketing</strong> waarmee jij organisch groeit.
+              </StatementCopy>
+            </StatementCard>
+          </FadeIn>
+
+          <BentoGrid>
+            <FadeIn delay={0.1}>
+              <BentoCard to={BENTO.lead.href} className="lead">
+                <BentoLeadMedia>
+                  <img src={BENTO.lead.image} alt={BENTO.lead.imageAlt} loading="lazy" />
+                  <BentoLeadOverlay />
+                </BentoLeadMedia>
+                <BentoBody>
+                  <BentoEyebrow>{BENTO.lead.eyebrow}</BentoEyebrow>
+                  <BentoTitle $big>{BENTO.lead.title}</BentoTitle>
+                  <BentoCopy>{BENTO.lead.copy}</BentoCopy>
+                  <BentoLink>view software <ArrowRight size={14} /></BentoLink>
+                </BentoBody>
+              </BentoCard>
+            </FadeIn>
+
+            <FadeIn delay={0.15}>
+              <BentoCard to={BENTO.subA.href}>
+                <BentoSmallMedia>
+                  <img src={BENTO.subA.image} alt={BENTO.subA.imageAlt} loading="lazy" />
+                </BentoSmallMedia>
+                <BentoBody>
+                  <BentoEyebrow>{BENTO.subA.eyebrow}</BentoEyebrow>
+                  <BentoTitle>{BENTO.subA.title}</BentoTitle>
+                  <BentoCopy>{BENTO.subA.copy}</BentoCopy>
+                  <BentoLink>view agents <ArrowRight size={14} /></BentoLink>
+                </BentoBody>
+              </BentoCard>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <BentoCard to={BENTO.subB.href}>
+                <BentoSmallMedia>
+                  <img src={BENTO.subB.image} alt={BENTO.subB.imageAlt} loading="lazy" />
+                </BentoSmallMedia>
+                <BentoBody>
+                  <BentoEyebrow>{BENTO.subB.eyebrow}</BentoEyebrow>
+                  <BentoTitle>{BENTO.subB.title}</BentoTitle>
+                  <BentoCopy>{BENTO.subB.copy}</BentoCopy>
+                  <BentoLink>view marketing <ArrowRight size={14} /></BentoLink>
+                </BentoBody>
+              </BentoCard>
+            </FadeIn>
+          </BentoGrid>
         </Container>
       </Section>
 
@@ -893,66 +1269,70 @@ export default function HomePage_composio({ initialCases = [] }) {
         </Container>
       </Section>
 
-      {/* ========= SERVICES ========= */}
+      {/* ========= OPENCLAW VIDEO ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
-          <FadeIn>
-            <SectionTag><Cpu size={11} /> services</SectionTag>
-            <SectionH2>AI voor elk onderdeel van je bedrijf.</SectionH2>
-            <SectionLede>
-              Van agents tot automatisering, van software tot strategie - wij bouwen het allemaal, met dezelfde mensen.
-            </SectionLede>
-          </FadeIn>
-          <Grid3>
-            {SERVICES.map((s, i) => (
-              <FadeIn key={s.href} delay={0.08 * i}>
-                <DarkCardLink to={s.href}>
-                  <SmallIcon $tint={s.tint} $color={s.color}>{s.icon}</SmallIcon>
-                  <TagLine>{s.tag}</TagLine>
-                  <CardTitle>{s.title}</CardTitle>
-                  <CardCopy>{s.copy}</CardCopy>
-                  <CardLink>view dienst <ArrowRight size={14} /></CardLink>
-                </DarkCardLink>
-              </FadeIn>
-            ))}
-          </Grid3>
+          <TwoCol>
+            <FadeIn>
+              <VideoCard>
+                <video
+                  src="/videos/Openclaw intro.mp4"
+                  poster="/images/optivaize_logo_new.webp"
+                  controls
+                  preload="metadata"
+                  playsInline
+                />
+              </VideoCard>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <SectionTag><Zap size={11} /> watch_video</SectionTag>
+              <SectionH2>Hoe AI-agents werken - in één minuut.</SectionH2>
+              <p style={{ fontFamily: SANS, fontSize: '1.05rem', lineHeight: 1.55, color: GHOST, margin: '0 0 1.5rem' }}>
+                Max laat zien hoe onze OpenClaw-agents 24/7 taken overnemen via WhatsApp, Slack en Teams. Geen demo's, geen hype - gewoon een agent die echt werkt.
+              </p>
+              <FeatureLink to="/ai-agenten">Meer over AI Agents <ArrowRight size={14} /></FeatureLink>
 
-          {/* terminal mock */}
-          <FadeIn delay={0.15}>
-            <Term>
-              <TermDots><span /><span /><span /></TermDots>
-              <TermLine><span className="prompt">$</span> curl https://api.optivaize.nl/agent/<span className="key">tandarts</span></TermLine>
-              <TermLine>{'{'}</TermLine>
-              <TermLine>&nbsp;&nbsp;<span className="key">"status"</span>: <span className="str">"ready"</span>,</TermLine>
-              <TermLine>&nbsp;&nbsp;<span className="key">"voice"</span>: <span className="str">"marin (NL)"</span>,</TermLine>
-              <TermLine>&nbsp;&nbsp;<span className="key">"tools"</span>: [<span className="str">"vrije_tijden_opvragen"</span>, <span className="str">"boek_afspraak"</span>, <span className="str">"verbind_medewerker"</span>],</TermLine>
-              <TermLine>&nbsp;&nbsp;<span className="key">"max_session_seconds"</span>: 180,</TermLine>
-              <TermLine>&nbsp;&nbsp;<span className="key">"latency_p50_ms"</span>: 220</TermLine>
-              <TermLine>{'}'}</TermLine>
-              <TermLine style={{ marginTop: '0.5rem' }}><span className="ok">✓</span> session minted in 84ms</TermLine>
-            </Term>
-          </FadeIn>
+              <FadeIn delay={0.15}>
+                <Term style={{ marginTop: '2rem' }}>
+                  <TermDots><span /><span /><span /></TermDots>
+                  <TermLine><span className="prompt">$</span> curl https://api.optivaize.nl/agent/<span className="key">tandarts</span></TermLine>
+                  <TermLine>&nbsp;&nbsp;<span className="ok">✓</span> session minted, latency_p50: 220ms</TermLine>
+                </Term>
+              </FadeIn>
+            </FadeIn>
+          </TwoCol>
         </Container>
       </Section>
 
-      {/* ========= INTEGRATIONS / LOGO WALL ========= */}
+      {/* ========= METRICS BAND (replaces logo wall) ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
           <FadeIn>
-            <SectionTag><Terminal size={11} /> integrations</SectionTag>
-            <SectionH2>27 native integraties. En jouw stack krijgt er zo één bij.</SectionH2>
+            <SectionTag><Terminal size={11} /> by_the_numbers</SectionTag>
+            <SectionH2>Vijf jaar bouwen, gemeten in echte uitkomsten.</SectionH2>
             <SectionLede>
-              Praktijksoftware, kassasystemen, CRM, e-commerce, betalingen, verzending. Wat we niet out-of-the-box hebben, koppelen we via API of webhook.
+              Geen vanity-metrics. De getallen die laten zien waarom klanten bij ons blijven.
             </SectionLede>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <LogoGrid>
-              {LOGO_SLUGS.map((slug) => (
-                <LogoTile key={slug} title={slug}>
-                  <img src={logoSrc(slug)} alt={slug} loading="lazy" />
-                </LogoTile>
-              ))}
-            </LogoGrid>
+            <MetricBand>
+              <MetricCell>
+                <MetricNum>150+</MetricNum>
+                <MetricLabel>klanten geholpen</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>27</MetricNum>
+                <MetricLabel>native integraties</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>3×</MetricNum>
+                <MetricLabel>sneller dan agencies</MetricLabel>
+              </MetricCell>
+              <MetricCell>
+                <MetricNum>40+</MetricNum>
+                <MetricLabel>uur/week bespaard</MetricLabel>
+              </MetricCell>
+            </MetricBand>
           </FadeIn>
         </Container>
       </Section>
@@ -1032,6 +1412,39 @@ export default function HomePage_composio({ initialCases = [] }) {
               </FadeIn>
             ))}
           </Grid4>
+        </Container>
+      </Section>
+
+      {/* ========= BLOG ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <FadeIn>
+            <SectionTag><Code2 size={11} /> blog</SectionTag>
+            <SectionH2>Hoe wij denken over AI in de praktijk.</SectionH2>
+            <SectionLede>
+              Korte artikelen over agents bouwen, marketing meetbaar maken en wat we onderweg leren.
+            </SectionLede>
+          </FadeIn>
+          <BlogGrid>
+            {BLOG_FALLBACKS.map((p, i) => (
+              <FadeIn key={p.slug} delay={i * 0.08}>
+                <BlogCard to={`/blog/${p.slug}`}>
+                  <BlogImg>
+                    <img src={p.image} alt={p.title} loading="lazy" />
+                  </BlogImg>
+                  <BlogBody>
+                    <BlogTag>{p.tag}</BlogTag>
+                    <BlogTitle>{p.title}</BlogTitle>
+                    <BlogExcerpt>{p.excerpt}</BlogExcerpt>
+                    <BlogMeta>{p.date} · 4 min</BlogMeta>
+                  </BlogBody>
+                </BlogCard>
+              </FadeIn>
+            ))}
+          </BlogGrid>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <GhostCta as={Link} to="/blog">view blog <ArrowRight size={14} /></GhostCta>
+          </div>
         </Container>
       </Section>
 
