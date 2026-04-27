@@ -3,28 +3,27 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, Phone, Mail, Bot, Code2, TrendingUp, Terminal, Zap, Cpu } from 'lucide-react';
+import {
+  ArrowRight, Phone, Mail, Bot, Code2, TrendingUp, Terminal, Zap, Cpu,
+  GraduationCap, ClipboardList, Search, Lightbulb, Wrench, MapPin,
+} from 'lucide-react';
 import Link from '../components/Link';
 import SEOHead from '../components/SEOHead';
 
 /**
- * HomePage_composio
- * Developer-dark / Composio-inspired variant.
- * Design system: void-black canvas, white-opacity borders, ultra-tight heading
- * line-heights, dual abcDiatype + JetBrains Mono identity, hard-offset brutalist
- * shadows, glow-accent strategy.
- * Brand bridge: Composio's electric cyan is replaced with Optivaize's
- * blue→green gradient, used for the primary CTA + glow halos.
+ * HomePage_composio - developer-dark / Composio-inspired variant of the real
+ * Optivaize home. Same content as HomePage.js, restyled with void-black
+ * canvas, ultra-tight headings, geometric sans + JetBrains Mono dual font,
+ * brutalist hard-offset shadows. Optivaize blue→green gradient replaces
+ * Composio's electric cyan as the only saturated accent.
  */
 
 const VOID_BLACK = '#0f0f0f';
 const PURE_BLACK = '#000000';
 const SURFACE_DEEP = '#161616';
-const CHARCOAL = '#2c2c2c';
 const PURE_WHITE = '#ffffff';
 const GHOST = 'rgba(255,255,255,0.6)';
 const WHISPER = 'rgba(255,255,255,0.5)';
-const PHANTOM = 'rgba(255,255,255,0.2)';
 const MIST_12 = 'rgba(255,255,255,0.12)';
 const MIST_10 = 'rgba(255,255,255,0.10)';
 const MIST_08 = 'rgba(255,255,255,0.08)';
@@ -71,7 +70,6 @@ function FadeIn({ children, delay = 0, y = 16 }) {
   );
 }
 
-/* ============== GLOW (radial blue/green halo) ============== */
 const HeroGlow = styled.div`
   position: absolute;
   inset: 0;
@@ -101,7 +99,6 @@ const HeroInner = styled.div`
 const HeroOverline = styled.div`
   font-family: ${MONO};
   font-size: 12px;
-  font-weight: 400;
   color: ${GHOST};
   letter-spacing: 0.3px;
   margin-bottom: 1.5rem;
@@ -280,25 +277,31 @@ const SectionLede = styled.p`
   max-width: 600px;
 `;
 
-/* ============== SERVICE / FEATURE CARDS ============== */
-const ServiceGrid = styled.div`
+/* ============== CARD GRIDS ============== */
+const Grid3 = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   @media (max-width: 900px) { grid-template-columns: 1fr; }
 `;
 
-const ServiceCard = styled(Link)`
-  display: flex;
-  flex-direction: column;
+const Grid4 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  @media (max-width: 1000px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr; }
+`;
+
+const DarkCard = styled.div`
   background: ${PURE_BLACK};
   border: 1px solid ${MIST_10};
   border-radius: 4px;
   padding: 2rem 1.85rem;
-  text-decoration: none;
-  color: ${PURE_WHITE};
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-  position: relative;
   &:hover {
     border-color: ${MIST_12};
     background: ${SURFACE_DEEP};
@@ -307,7 +310,12 @@ const ServiceCard = styled(Link)`
   }
 `;
 
-const ServiceIcon = styled.div`
+const DarkCardLink = styled(DarkCard).attrs({ as: Link })`
+  text-decoration: none;
+  color: ${PURE_WHITE};
+`;
+
+const SmallIcon = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 4px;
@@ -317,28 +325,28 @@ const ServiceIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1rem;
 `;
 
-const ServiceTag = styled.div`
+const TagLine = styled.div`
   font-family: ${MONO};
   font-size: 11px;
   color: ${WHISPER};
-  margin-bottom: 0.5rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  margin-bottom: 0.4rem;
 `;
 
-const ServiceTitle = styled.h3`
+const CardTitle = styled.h3`
   font-family: ${SANS};
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.20;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.5rem;
   color: ${PURE_WHITE};
 `;
 
-const ServiceCopy = styled.p`
+const CardCopy = styled.p`
   font-family: ${SANS};
   font-size: 0.95rem;
   line-height: 1.55;
@@ -346,7 +354,7 @@ const ServiceCopy = styled.p`
   margin: 0 0 1.25rem;
 `;
 
-const ServiceLink = styled.div`
+const CardLink = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -357,8 +365,130 @@ const ServiceLink = styled.div`
   letter-spacing: 0.3px;
 `;
 
-/* ============== TERMINAL CODE-LIKE BLOCK ============== */
-const Terminal2 = styled.div`
+/* ============== CASES (terminal grid) ============== */
+const CaseGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
+`;
+
+const CaseTile = styled(Link)`
+  position: relative;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  border: 1px solid ${MIST_10};
+  background: ${PURE_BLACK};
+  text-decoration: none;
+  color: ${PURE_WHITE};
+  box-shadow: rgba(0,0,0,0.4) 4px 4px 0px 0px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: rgba(0,0,0,0.5) 6px 6px 0px 0px;
+  }
+`;
+
+const CaseTileImg = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  opacity: 0.85;
+`;
+
+const CaseTileBody = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem 1.4rem;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.92) 30%);
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+const CaseTileSlug = styled.div`
+  font-family: ${MONO};
+  font-size: 11px;
+  color: ${OPTI_GREEN};
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+  &::before { content: '> '; color: ${WHISPER}; }
+`;
+
+const CaseTileTitle = styled.div`
+  font-family: ${SANS};
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.20;
+  color: ${PURE_WHITE};
+`;
+
+const CaseTilePreview = styled.div`
+  font-family: ${SANS};
+  font-size: 0.85rem;
+  color: ${GHOST};
+  margin-top: 0.35rem;
+  line-height: 1.4;
+`;
+
+/* ============== FEATURED 2-COL ============== */
+const TwoCol = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  @media (max-width: 900px) { grid-template-columns: 1fr; gap: 2rem; }
+`;
+
+const FeaturedImage = styled.div`
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  border: 1px solid ${MIST_12};
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 0px 0px;
+  & img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.95; }
+  @media (max-width: 768px) { aspect-ratio: 5/3; }
+`;
+
+const FeatureBadgeRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.25rem 0 1.5rem;
+`;
+
+const FeatureBadge = styled.span`
+  font-family: ${MONO};
+  font-size: 12px;
+  color: ${PURE_WHITE};
+  background: ${PURE_BLACK};
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid ${MIST_10};
+  letter-spacing: 0.3px;
+`;
+
+const FeatureLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: ${MONO};
+  font-size: 0.9rem;
+  color: ${OPTI_BLUE};
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  &:hover { text-decoration: underline; }
+`;
+
+/* ============== TERMINAL CODE BLOCK ============== */
+const Term = styled.div`
   background: ${PURE_BLACK};
   border: 1px solid ${MIST_10};
   border-radius: 4px;
@@ -372,7 +502,7 @@ const Terminal2 = styled.div`
   box-shadow: rgba(0,0,0,0.5) 4px 4px 0px 0px;
 `;
 
-const TerminalDots = styled.div`
+const TermDots = styled.div`
   display: flex;
   gap: 6px;
   margin-bottom: 1rem;
@@ -382,7 +512,7 @@ const TerminalDots = styled.div`
   }
 `;
 
-const TerminalLine = styled.div`
+const TermLine = styled.div`
   & .prompt { color: ${OPTI_GREEN}; }
   & .key { color: ${OPTI_BLUE}; }
   & .str { color: #FBBF24; }
@@ -425,64 +555,70 @@ const LogoTile = styled.div`
   }
 `;
 
-/* ============== CASES (terminal list) ============== */
-const CaseList = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid ${MIST_10};
-  border-radius: 4px;
-  overflow: hidden;
-  background: ${PURE_BLACK};
-`;
-
-const CaseRow = styled(Link)`
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 1.5rem;
-  padding: 1.5rem 1.75rem;
-  border-bottom: 1px solid ${MIST_06};
-  text-decoration: none;
-  color: ${PURE_WHITE};
-  transition: background 0.18s ease;
-  align-items: center;
-  &:last-child { border-bottom: none; }
-  &:hover { background: ${SURFACE_DEEP}; }
-  @media (max-width: 600px) { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.25rem; }
-`;
-
-const CaseNum = styled.div`
-  font-family: ${MONO};
-  font-size: 0.95rem;
-  color: ${WHISPER};
-`;
-
-const CaseHead = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  min-width: 0;
-`;
-
-const CaseTitle = styled.div`
-  font-family: ${SANS};
-  font-weight: 500;
-  font-size: 1.15rem;
-  line-height: 1.20;
-  color: ${PURE_WHITE};
-`;
-
-const CaseSub = styled.div`
+/* ============== INTAKE ============== */
+const IntakeNum = styled.div`
   font-family: ${MONO};
   font-size: 12px;
-  color: ${GHOST};
-  letter-spacing: 0.3px;
+  color: ${OPTI_GREEN};
+  letter-spacing: 0.5px;
+  margin-bottom: 0.85rem;
+  &::before { content: '['; color: ${WHISPER}; }
+  &::after { content: ']'; color: ${WHISPER}; }
 `;
 
-const CaseArrow = styled.div`
-  color: ${WHISPER};
+/* ============== LOCATIONS ============== */
+const LocationGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  @media (max-width: 760px) { grid-template-columns: 1fr; }
+`;
+
+const LocationCard = styled.div`
+  background: ${PURE_BLACK};
+  border: 1px solid ${MIST_10};
+  border-radius: 4px;
+  padding: 1.4rem 1.5rem;
   display: flex;
   align-items: center;
-  @media (max-width: 600px) { display: none; }
+  gap: 1rem;
+  & .city {
+    font-family: ${SANS};
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: ${PURE_WHITE};
+  }
+  & .role {
+    font-family: ${MONO};
+    font-size: 12px;
+    color: ${GHOST};
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+`;
+
+const LocIcon = styled.div`
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(59,130,246,0.10);
+  border: 1px solid ${MIST_10};
+  color: ${OPTI_BLUE};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+`;
+
+/* ============== ABOUT MAX ============== */
+const AboutImage = styled.div`
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  border: 1px solid ${MIST_12};
+  box-shadow: rgba(0,0,0,0.5) 4px 4px 0px 0px;
+  & img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.95; }
 `;
 
 /* ============== CTA BLOCK ============== */
@@ -536,34 +672,60 @@ const CtaButtons = styled.div`
 `;
 
 /* ============== DATA ============== */
-const SERVICES_DATA = [
-  {
-    icon: <Code2 size={20} strokeWidth={1.6} />,
-    tag: '01 / SOFTWARE',
-    tint: 'rgba(59,130,246,0.10)',
-    color: OPTI_BLUE,
+const PILLARS = [
+  { tag: '01 / DEPLOY', icon: <Bot size={20} strokeWidth={1.6} />, tint: 'rgba(59,130,246,0.10)', color: OPTI_BLUE,
+    title: 'AI inzetten',
+    text: 'We zetten AI rechtstreeks in jouw bestaande workflows. Geen lange transformatie-trajecten - direct meetbaar resultaat.' },
+  { tag: '02 / TRAIN', icon: <GraduationCap size={20} strokeWidth={1.6} />, tint: 'rgba(249,115,22,0.10)', color: '#F97316',
+    title: 'AI training',
+    text: 'We bouwen het fundament door je hele team te trainen. Van management tot uitvoering - iedereen leert AI productief gebruiken.' },
+  { tag: '03 / BUILD', icon: <Code2 size={20} strokeWidth={1.6} />, tint: 'rgba(16,185,129,0.10)', color: OPTI_GREEN,
+    title: 'AI bouwen',
+    text: 'Custom AI-applicaties op maat: van automatiseringen tot complete platforms. Sneller dan traditionele bureaus.' },
+];
+
+const SERVICES = [
+  { tag: '01 / SOFTWARE', icon: <Code2 size={20} strokeWidth={1.6} />, tint: 'rgba(139,92,246,0.10)', color: '#8B5CF6',
     title: 'Software & Platforms',
-    copy: 'Custom dashboards, API\'s, automatisering. Voor bedrijven die rust willen op het IT-vlak en geen abonnementsmoeras.',
-    href: '/software-platforms',
-  },
-  {
-    icon: <Bot size={20} strokeWidth={1.6} />,
-    tag: '02 / AI AGENTS',
-    tint: 'rgba(16,185,129,0.10)',
-    color: OPTI_GREEN,
+    copy: 'Custom software, dashboards en automatisering. Van maatwerk platforms tot volledig geautomatiseerde workflows.',
+    href: '/software-platforms' },
+  { tag: '02 / AI AGENTS', icon: <Bot size={20} strokeWidth={1.6} />, tint: 'rgba(59,130,246,0.10)', color: OPTI_BLUE,
     title: 'AI Agents & Chatbots',
-    copy: 'Voice- en chat-agenten die 24/7 klantgesprekken voeren. Stack-agnostic, koppelt aan jouw CRM, agenda en kassa.',
-    href: '/ai-agents-chatbots',
-  },
-  {
-    icon: <TrendingUp size={20} strokeWidth={1.6} />,
-    tag: '03 / MARKETING',
-    tint: 'rgba(139,92,246,0.10)',
-    color: '#8B5CF6',
+    copy: 'Autonome AI agents en chatbots die 24/7 taken overnemen, klanten helpen en processen automatiseren.',
+    href: '/ai-agents-chatbots' },
+  { tag: '03 / MARKETING', icon: <TrendingUp size={20} strokeWidth={1.6} />, tint: 'rgba(16,185,129,0.10)', color: OPTI_GREEN,
     title: 'AI Marketing',
-    copy: 'SEO-content, ad-creatives en social automatisering. Geen vage clicks - direct te koppelen aan marge in jouw boekhouding.',
-    href: '/ai-marketing',
-  },
+    copy: 'AI-SEO, content automatisering en Google Ads optimalisatie voor maximale organische groei.',
+    href: '/ai-marketing' },
+];
+
+const INTAKE = [
+  { num: '[01]', icon: <ClipboardList size={20} />, tint: 'rgba(59,130,246,0.10)', color: OPTI_BLUE,
+    title: 'Jouw case', text: 'Presenteer je bedrijfsvraagstuk. Wat wil je bereiken en waar loop je tegenaan?' },
+  { num: '[02]', icon: <Search size={20} />, tint: 'rgba(16,185,129,0.10)', color: OPTI_GREEN,
+    title: 'Wij reviewen', text: 'We analyseren je situatie en beoordelen de mogelijkheden grondig.' },
+  { num: '[03]', icon: <Lightbulb size={20} />, tint: 'rgba(245,158,11,0.10)', color: '#F59E0B',
+    title: 'Beste oplossing', text: 'We bedenken de meest impactvolle AI-oplossing voor jouw specifieke situatie.' },
+  { num: '[04]', icon: <Wrench size={20} />, tint: 'rgba(139,92,246,0.10)', color: '#8B5CF6',
+    title: 'Wij bouwen', text: 'We bouwen en implementeren de oplossing, niet in maanden maar in weken.' },
+];
+
+const LOCATIONS = [
+  { flag: '🇳🇱', city: 'Utrecht', role: 'ai_research // hq' },
+  { flag: '🇮🇳', city: 'Mumbai', role: 'engineering' },
+  { flag: '🇵🇭', city: 'Manila', role: 'engineering' },
+];
+
+const HOME_CASE_SLUGS = ['fonteyn', 'red-button', 'blosh'];
+const CASE_IMAGES = {
+  fonteyn: '/images/fonteyn_dashboard.webp',
+  blosh: '/images/blosh_office.webp',
+  'red-button': '/images/magic_apparels_dashboard.webp',
+};
+const CASE_FALLBACKS = [
+  { slug: 'fonteyn', title_nl: 'Fonteyn', preview_nl: 'Volledig AI-platform voor de #1 wellness-importeur', image: CASE_IMAGES.fonteyn },
+  { slug: 'red-button', title_nl: 'Red Button', preview_nl: 'AI-dashboard dat productie en design verbindt', image: CASE_IMAGES['red-button'] },
+  { slug: 'blosh', title_nl: 'Blosh', preview_nl: 'AI-gedreven content engine voor mode-merk', image: CASE_IMAGES.blosh },
 ];
 
 const LOGO_SLUGS = [
@@ -578,15 +740,11 @@ const PNG_LOGOS = new Set([
 ]);
 const logoSrc = (s) => `/logos/${s}.${PNG_LOGOS.has(s) ? 'png' : 'svg'}`;
 
-const FALLBACK_CASES = [
-  { slug: 'fashiondraw', title: 'FashionDraw', subtitle: 'Eigen ontwerpsuite voor mode-merken', tag: 'software' },
-  { slug: 'hitchcut', title: 'Hitchcut', subtitle: 'AI-coupeur voor textiel- en kleersegment', tag: 'ai_agent' },
-  { slug: 'optipic', title: 'Optipic', subtitle: 'Visual AI voor woonbeeld en interieur', tag: 'ai_marketing' },
-];
-
 /* ============== COMPONENT ============== */
 export default function HomePage_composio({ initialCases = [] }) {
-  const cases = (initialCases?.length ? initialCases : FALLBACK_CASES).slice(0, 5);
+  const homeCases = HOME_CASE_SLUGS
+    .map((slug) => initialCases.find((c) => c.slug === slug) || CASE_FALLBACKS.find((c) => c.slug === slug))
+    .filter(Boolean);
 
   return (
     <Page>
@@ -603,14 +761,14 @@ export default function HomePage_composio({ initialCases = [] }) {
             <FadeIn>
               <HeroOverline>optivaize.nl // ai_engineering_studio</HeroOverline>
               <HeroH1>
-                AI-infrastructuur die <HeroAccent>echt werkt</HeroAccent>, zonder de hype.
+                De snelste <HeroAccent>AI partner</HeroAccent> van Nederland.
               </HeroH1>
               <HeroSub>
-                Voice agents, custom dashboards en marketing-automatisering voor Nederlandse bedrijven. Stack-agnostic, AVG-proof, en live binnen een paar dagen, niet maanden.
+                Wij helpen jouw bedrijf AI te gebruiken, te bouwen en het hele team te trainen om er efficient mee te werken. Niet in maanden, maar in weken.
               </HeroSub>
               <CtaRow>
                 <PrimaryCta to="/contact">
-                  <Zap size={16} /> Plan een intake
+                  <Zap size={16} /> Plan gratis gesprek
                 </PrimaryCta>
                 <GhostCta href="tel:+31642698918">
                   <Phone size={16} /> Bel ons
@@ -619,7 +777,7 @@ export default function HomePage_composio({ initialCases = [] }) {
             </FadeIn>
             <FadeIn delay={0.1}>
               <HeroVisual>
-                <img src="/images/home-variants/home-dark-code.jpg" alt="Code editor met syntax highlighting" loading="lazy" />
+                <img src="/images/home-variants/home-dark-code.jpg" alt="Code editor" loading="lazy" />
                 <HeroVisualOverlay />
               </HeroVisual>
             </FadeIn>
@@ -628,64 +786,151 @@ export default function HomePage_composio({ initialCases = [] }) {
           <FadeIn delay={0.2}>
             <StatsBar>
               <StatCell>
-                <StatNum><span className="accent">87%</span></StatNum>
-                <StatLabel>vragen autonoom</StatLabel>
+                <StatNum><span className="accent">150+</span></StatNum>
+                <StatLabel>bedrijven</StatLabel>
               </StatCell>
               <StatCell>
-                <StatNum>24/7</StatNum>
-                <StatLabel>uptime</StatLabel>
+                <StatNum>40+</StatNum>
+                <StatLabel>uur/week bespaard</StatLabel>
+              </StatCell>
+              <StatCell>
+                <StatNum><span className="accent">3×</span></StatNum>
+                <StatLabel>sneller bouwen</StatLabel>
               </StatCell>
               <StatCell>
                 <StatNum>1-3d</StatNum>
                 <StatLabel>tot live</StatLabel>
-              </StatCell>
-              <StatCell>
-                <StatNum><span className="accent">€100</span></StatNum>
-                <StatLabel>per maand</StatLabel>
               </StatCell>
             </StatsBar>
           </FadeIn>
         </Container>
       </Hero>
 
+      {/* ========= IDENTITY / 3 PILLARS ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <FadeIn>
+            <SectionTag><Cpu size={11} /> who_we_are</SectionTag>
+            <SectionH2>We bouwen AI in jouw organisatie - niet ernaast.</SectionH2>
+            <SectionLede>
+              Geen hype, geen powerpoints. We zetten AI rechtstreeks in jouw bedrijfsprocessen, trainen je team, en bouwen de applicaties die jouw concurrentie nog niet heeft.
+            </SectionLede>
+          </FadeIn>
+          <Grid3>
+            {PILLARS.map((p, i) => (
+              <FadeIn key={p.title} delay={i * 0.08}>
+                <DarkCard>
+                  <SmallIcon $tint={p.tint} $color={p.color}>{p.icon}</SmallIcon>
+                  <TagLine>{p.tag}</TagLine>
+                  <CardTitle>{p.title}</CardTitle>
+                  <CardCopy style={{ marginBottom: 0 }}>{p.text}</CardCopy>
+                </DarkCard>
+              </FadeIn>
+            ))}
+          </Grid3>
+        </Container>
+      </Section>
+
+      {/* ========= CASES ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <FadeIn>
+            <SectionTag><Code2 size={11} /> recent_work</SectionTag>
+            <SectionH2>Resultaten die voor zich spreken.</SectionH2>
+            <SectionLede>
+              Van AI-agents tot complete integraties. Een korte selectie van wat we voor klanten hebben gebouwd.
+            </SectionLede>
+          </FadeIn>
+          <CaseGrid>
+            {homeCases.map((c, i) => (
+              <FadeIn key={c.slug} delay={i * 0.08}>
+                <CaseTile to={`/cases/${c.slug}`}>
+                  <CaseTileImg src={c.image || CASE_IMAGES[c.slug]} alt={c.title_nl || c.title} loading="lazy" />
+                  <CaseTileBody>
+                    <CaseTileSlug>{(c.slug || 'project').replace(/-/g, '_')}.case</CaseTileSlug>
+                    <CaseTileTitle>{c.title_nl || c.title}</CaseTileTitle>
+                    <CaseTilePreview>{c.preview_nl || c.subtitle || ''}</CaseTilePreview>
+                  </CaseTileBody>
+                </CaseTile>
+              </FadeIn>
+            ))}
+          </CaseGrid>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <GhostCta as={Link} to="/cases">
+              Bekijk alle cases <ArrowRight size={14} />
+            </GhostCta>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ========= WIM HOF FEATURED ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <TwoCol>
+            <FadeIn>
+              <FeaturedImage>
+                <img src="/images/wimhof.webp" alt="Wim Hof - Passion Ice Baths" loading="lazy" />
+              </FeaturedImage>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <SectionTag><Zap size={11} /> featured_case</SectionTag>
+              <SectionH2>Wim Hof's merk groeit organisch met AI-gedreven SEO.</SectionH2>
+              <p style={{ fontFamily: SANS, fontSize: '1.05rem', lineHeight: 1.55, color: GHOST, margin: '0 0 1.25rem' }}>
+                Voor Passion Ice Baths bouwden we een volledig AI-gedreven SEO-systeem op basis van GA4-data en Google Search Console. We trainden een eigen model op hun merkstijl - genereert content die authentiek aanvoelt en tegelijk technisch geoptimaliseerd is.
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: '1.05rem', lineHeight: 1.55, color: GHOST, margin: '0 0 1rem' }}>
+                Daarbovenop bouwen we een custom Shopify-app die het hele content-publication-proces automatiseert.
+              </p>
+              <FeatureBadgeRow>
+                <FeatureBadge>ga4_data</FeatureBadge>
+                <FeatureBadge>search_console</FeatureBadge>
+                <FeatureBadge>custom_model</FeatureBadge>
+                <FeatureBadge>shopify_app</FeatureBadge>
+              </FeatureBadgeRow>
+              <FeatureLink to="/cases"> Bekijk alle cases <ArrowRight size={14} /></FeatureLink>
+            </FadeIn>
+          </TwoCol>
+        </Container>
+      </Section>
+
       {/* ========= SERVICES ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
           <FadeIn>
             <SectionTag><Cpu size={11} /> services</SectionTag>
-            <SectionH2>Drie disciplines. Eén team. Elke build production-ready.</SectionH2>
+            <SectionH2>AI voor elk onderdeel van je bedrijf.</SectionH2>
             <SectionLede>
-              Software, agenten, marketing - geleverd door dezelfde mensen die de keuzes maken. Geen ticket-stack, geen overdracht, geen wachttijd.
+              Van agents tot automatisering, van software tot strategie - wij bouwen het allemaal, met dezelfde mensen.
             </SectionLede>
           </FadeIn>
-          <ServiceGrid>
-            {SERVICES_DATA.map((s, i) => (
+          <Grid3>
+            {SERVICES.map((s, i) => (
               <FadeIn key={s.href} delay={0.08 * i}>
-                <ServiceCard to={s.href}>
-                  <ServiceIcon $tint={s.tint} $color={s.color}>{s.icon}</ServiceIcon>
-                  <ServiceTag>{s.tag}</ServiceTag>
-                  <ServiceTitle>{s.title}</ServiceTitle>
-                  <ServiceCopy>{s.copy}</ServiceCopy>
-                  <ServiceLink>view dienst <ArrowRight size={14} /></ServiceLink>
-                </ServiceCard>
+                <DarkCardLink to={s.href}>
+                  <SmallIcon $tint={s.tint} $color={s.color}>{s.icon}</SmallIcon>
+                  <TagLine>{s.tag}</TagLine>
+                  <CardTitle>{s.title}</CardTitle>
+                  <CardCopy>{s.copy}</CardCopy>
+                  <CardLink>view dienst <ArrowRight size={14} /></CardLink>
+                </DarkCardLink>
               </FadeIn>
             ))}
-          </ServiceGrid>
+          </Grid3>
 
-          {/* Terminal-style code preview */}
+          {/* terminal mock */}
           <FadeIn delay={0.15}>
-            <Terminal2>
-              <TerminalDots><span /><span /><span /></TerminalDots>
-              <TerminalLine><span className="prompt">$</span> curl https://api.optivaize.nl/agent/<span className="key">tandarts</span></TerminalLine>
-              <TerminalLine>{'{'}</TerminalLine>
-              <TerminalLine>&nbsp;&nbsp;<span className="key">"status"</span>: <span className="str">"ready"</span>,</TerminalLine>
-              <TerminalLine>&nbsp;&nbsp;<span className="key">"voice"</span>: <span className="str">"marin (NL)"</span>,</TerminalLine>
-              <TerminalLine>&nbsp;&nbsp;<span className="key">"tools"</span>: [<span className="str">"vrije_tijden_opvragen"</span>, <span className="str">"boek_afspraak"</span>, <span className="str">"verbind_medewerker"</span>],</TerminalLine>
-              <TerminalLine>&nbsp;&nbsp;<span className="key">"max_session_seconds"</span>: 180,</TerminalLine>
-              <TerminalLine>&nbsp;&nbsp;<span className="key">"latency_p50_ms"</span>: 220</TerminalLine>
-              <TerminalLine>{'}'}</TerminalLine>
-              <TerminalLine style={{ marginTop: '0.5rem' }}><span className="ok">✓</span> session minted in 84ms</TerminalLine>
-            </Terminal2>
+            <Term>
+              <TermDots><span /><span /><span /></TermDots>
+              <TermLine><span className="prompt">$</span> curl https://api.optivaize.nl/agent/<span className="key">tandarts</span></TermLine>
+              <TermLine>{'{'}</TermLine>
+              <TermLine>&nbsp;&nbsp;<span className="key">"status"</span>: <span className="str">"ready"</span>,</TermLine>
+              <TermLine>&nbsp;&nbsp;<span className="key">"voice"</span>: <span className="str">"marin (NL)"</span>,</TermLine>
+              <TermLine>&nbsp;&nbsp;<span className="key">"tools"</span>: [<span className="str">"vrije_tijden_opvragen"</span>, <span className="str">"boek_afspraak"</span>, <span className="str">"verbind_medewerker"</span>],</TermLine>
+              <TermLine>&nbsp;&nbsp;<span className="key">"max_session_seconds"</span>: 180,</TermLine>
+              <TermLine>&nbsp;&nbsp;<span className="key">"latency_p50_ms"</span>: 220</TermLine>
+              <TermLine>{'}'}</TermLine>
+              <TermLine style={{ marginTop: '0.5rem' }}><span className="ok">✓</span> session minted in 84ms</TermLine>
+            </Term>
           </FadeIn>
         </Container>
       </Section>
@@ -712,30 +957,81 @@ export default function HomePage_composio({ initialCases = [] }) {
         </Container>
       </Section>
 
-      {/* ========= CASES ========= */}
+      {/* ========= ABOUT MAX ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <TwoCol>
+            <FadeIn>
+              <SectionTag><Cpu size={11} /> about_us</SectionTag>
+              <SectionH2>Gestart vanuit passie voor AI, gegroeid tot een internationaal team.</SectionH2>
+              <p style={{ fontFamily: SANS, fontSize: '1.05rem', lineHeight: 1.55, color: GHOST, margin: '0 0 1.25rem' }}>
+                Maximilian Bladt startte Optivaize nadat hij in 2020 de eerste AI-modellen zag opkomen. Na 2 jaar Elevate Digital, een Business bachelor, Econometrie premaster en een master Quantitative Finance aan de UvA, was de stap naar Optivaize logisch.
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: '1.05rem', lineHeight: 1.55, color: GHOST, margin: '0 0 1.5rem' }}>
+                In de afgelopen vijf jaar bouwden we tientallen AI-tools en platformen voor Nederlandse klanten - van automatiseringen die duizenden uren besparen tot complete AI-systemen die omzet verhogen.
+              </p>
+              <FeatureLink to="/over-ons">Meer over ons <ArrowRight size={14} /></FeatureLink>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <AboutImage>
+                <img src="/images/max_bladt_upclose.webp" alt="Maximilian Bladt - oprichter Optivaize" loading="lazy" />
+              </AboutImage>
+            </FadeIn>
+          </TwoCol>
+        </Container>
+      </Section>
+
+      {/* ========= GLOBAL TEAM ========= */}
       <Section $pad="100px 0" $padMobile="60px 0">
         <Container>
           <FadeIn>
-            <SectionTag><Code2 size={11} /> recent_work</SectionTag>
-            <SectionH2>Selectie van het werk.</SectionH2>
+            <SectionTag><MapPin size={11} /> global_workforce</SectionTag>
+            <SectionH2>Ons team werkt vanuit drie landen.</SectionH2>
             <SectionLede>
-              Klein op het label, groot in impact. Van interne tools tot publieke producten met paying users.
+              AI-onderzoek en projectleiding doen we vanuit Nederland. Development vindt plaats in Mumbai en Manila, waar we toegang hebben tot uitzonderlijk talent. Regie en eindverantwoordelijkheid blijven bij ons Nederlandse team.
             </SectionLede>
           </FadeIn>
-          <FadeIn delay={0.08}>
-            <CaseList>
-              {cases.map((c, i) => (
-                <CaseRow key={c.slug || c.id || i} to={c.slug ? `/cases/${c.slug}` : '/cases'}>
-                  <CaseNum>{String(i + 1).padStart(2, '0')}/</CaseNum>
-                  <CaseHead>
-                    <CaseTitle>{c.title || c.name || 'Project'}</CaseTitle>
-                    <CaseSub>{(c.tag || c.category || 'project').toString().toLowerCase().replace(/\s+/g, '_')} ::: {c.subtitle || c.description || 'custom build'}</CaseSub>
-                  </CaseHead>
-                  <CaseArrow><ArrowRight size={20} strokeWidth={1.5} /></CaseArrow>
-                </CaseRow>
-              ))}
-            </CaseList>
+          <LocationGrid>
+            {LOCATIONS.map((loc, i) => (
+              <FadeIn key={loc.city} delay={i * 0.08}>
+                <LocationCard>
+                  <LocIcon><MapPin size={16} /></LocIcon>
+                  <div>
+                    <div className="city">{loc.flag} {loc.city}</div>
+                    <div className="role">{loc.role}</div>
+                  </div>
+                </LocationCard>
+              </FadeIn>
+            ))}
+          </LocationGrid>
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <GhostCta as={Link} to="/hiring">Bekijk vacatures <ArrowRight size={14} /></GhostCta>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ========= INTAKE / PROCESS ========= */}
+      <Section $pad="100px 0" $padMobile="60px 0">
+        <Container>
+          <FadeIn>
+            <SectionTag><Code2 size={11} /> process</SectionTag>
+            <SectionH2>Van idee tot resultaat in weken.</SectionH2>
+            <SectionLede>
+              Geen eindeloze trajecten. We werken snel, gestructureerd en resultaatgericht.
+            </SectionLede>
           </FadeIn>
+          <Grid4>
+            {INTAKE.map((s, i) => (
+              <FadeIn key={s.num} delay={i * 0.06}>
+                <DarkCard>
+                  <IntakeNum>{s.num.replace(/[\[\]]/g, '')}</IntakeNum>
+                  <SmallIcon $tint={s.tint} $color={s.color}>{s.icon}</SmallIcon>
+                  <CardTitle>{s.title}</CardTitle>
+                  <CardCopy style={{ marginBottom: 0 }}>{s.text}</CardCopy>
+                </DarkCard>
+              </FadeIn>
+            ))}
+          </Grid4>
         </Container>
       </Section>
 
@@ -745,13 +1041,13 @@ export default function HomePage_composio({ initialCases = [] }) {
           <FadeIn>
             <CtaCard>
               <CtaGlow />
-              <CtaH2>Klaar voor een build die <HeroAccent>écht</HeroAccent> werkt?</CtaH2>
+              <CtaH2>Klaar om <HeroAccent>AI</HeroAccent> in te zetten?</CtaH2>
               <CtaSub>
-                Bel of mail ons. Binnen 24 uur weet je of we passen, en wat het kost.
+                Plan een gratis gesprek en ontdek binnen 30 minuten hoe AI jouw bedrijf kan transformeren.
               </CtaSub>
               <CtaButtons>
                 <PrimaryCta to="/contact">
-                  <Zap size={16} /> Plan een intake
+                  <Zap size={16} /> Plan gratis gesprek
                 </PrimaryCta>
                 <GhostCta href="tel:+31642698918">
                   <Phone size={16} /> Bel ons
